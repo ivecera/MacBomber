@@ -33,7 +33,7 @@ Particle_Item::Particle_Item(glm::vec3 vPos, ParticleManager *pParticleManager,
 
 	m_iTTL = 40;
 	m_fScaleFactor = 0.1;
-	m_fVelocity = 15 + rand() % 6;
+	m_fVelocity = 15 + SDL_rand(6);
 	m_vDisplacement.y = 1;
 	m_pParticleManager = pParticleManager;
 

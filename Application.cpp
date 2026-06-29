@@ -41,7 +41,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "Engine/Clock.h"
 
 #include "Engine/ortho.h"
-#include <time.h>
 
 #include "Defines.h"
 
@@ -162,7 +161,9 @@ void Application::init()
 	setState(MENU);
 
 	//initiate "random" number generator
-	srand(time(NULL));
+	SDL_Time now;
+	SDL_GetCurrentTime(&now);
+	SDL_srand(now);
 
 	m_time0 = SDL_GetTicks();
 	m_time1 = m_time0;

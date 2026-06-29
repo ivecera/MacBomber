@@ -34,8 +34,8 @@ glm::vec3 ItemThrower::getTarget(int ignoreFieldX, int ignoreFieldZ)
 					 bConsiderVoid = false;
 
 	while (!bDone) {
-		x = rand() % m_pMap->getWidth();
-		z = rand() % m_pMap->getHeight();
+		x = SDL_rand(m_pMap->getWidth());
+		z = SDL_rand(m_pMap->getHeight());
 
 		//Also take void fields in consideration if there are too few plain fields !
 		if (bConsiderVoid) {

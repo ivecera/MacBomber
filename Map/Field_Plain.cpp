@@ -40,12 +40,12 @@ Field_Plain::Field_Plain(int xGridPos, int zGridPos, bool bCrate, Map *pMap)
 		placeCrate();
 
 	//throw the dice to see if this field has a second texture
-	if (rand() % 6 == 0) {
+	if (SDL_rand(6) == 0) {
 		m_bDecal = true;
-		m_iDecalOrientation = rand() % 4;
+		m_iDecalOrientation = SDL_rand(4);
 
 		// now decide which second texture
-		switch (rand() % 3) {
+		switch (SDL_rand(3)) {
 		case 0:
 			m_iDecalTexture = FIELD_MUD0_TEXTURE;
 			break;

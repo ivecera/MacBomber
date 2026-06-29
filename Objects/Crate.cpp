@@ -26,7 +26,7 @@ Crate::Crate(int xBlock, int zBlock)
 {
 	m_iType = CRATE_OBJECT;
 	//randomly choose between 0,90,180 and 270
-	m_iOrientation = (rand() % 4) * 90;
+	m_iOrientation = (SDL_rand(4)) * 90;
 }
 
 void Crate::draw()

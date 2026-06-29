@@ -109,7 +109,7 @@ void Player::doDie()
 	m_iState = DEADBYBOMB;
 
 	//let the player face in a random direction
-	m_fOrientation = rand() % 360;
+	m_fOrientation = SDL_rand(360);
 
 	// Put some Items into the ItemThrowerList
 	// calulate the amount of items this player picked up

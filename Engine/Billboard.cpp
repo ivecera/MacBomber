@@ -19,10 +19,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "Camera.h"
 #include "../Application.h"
 
-static void createBillboardMatrix(const glm::vec3 &vPos,
-				  const glm::vec3 &vLook,
-				  const glm::vec3 &vUp,
-				  const glm::vec3 &vRight, float *pMatrix)
+static void createBillboardMatrix(const glm::vec3 &vPos, const glm::vec3 &vLook,
+				  const glm::vec3 &vUp, const glm::vec3 &vRight,
+				  float *pMatrix)
 {
 	pMatrix[0] = vRight.x;
 	pMatrix[1] = vRight.y;

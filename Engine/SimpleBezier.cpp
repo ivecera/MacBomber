@@ -102,4 +102,3 @@ float SimpleBezier::calculateBernsteinPolynomial(float t, int i)
 
 	return binCoeffi * rest;
 }
-

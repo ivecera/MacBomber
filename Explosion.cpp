@@ -106,10 +106,10 @@ void Explosion::draw()
 void Explosion::reset()
 {
 	//set initial scalefactor
-	float rnd = float(rand() % 10);
+	float rnd = float(SDL_rand(10));
 	m_fScaleFactor = 1.3 + rnd / 10;
 	//randomly choose one of three explosion textures
-	switch (rand() % 3) {
+	switch (SDL_rand(3)) {
 	case 0:
 		m_iTextureIndex = EXPLOSION_TEXTURE1;
 		break;

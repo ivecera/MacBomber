@@ -119,7 +119,7 @@ Map::Map(Game *pGame, int mapIndex)
 				}
 				break;
 			case 'R':
-				if ((rand() % 3) == 0) {
+				if ((SDL_rand(3)) == 0) {
 					Field *pField = new Field_Plain(
 						j, i, true, this);
 					m_pMap[j][i] = pField;
@@ -335,7 +335,7 @@ void Map::calculateDisplacement(glm::vec3 &vDisplacement)
 	float x, y, z;
 
 	//randomly choose an angle between minAngle - maxAngle;
-	angle = rand() % (360);
+	angle = SDL_rand(360);
 	//convert deg -> rad
 	angle = (angle * SDL_PI_F / 180);
 
@@ -345,7 +345,7 @@ void Map::calculateDisplacement(glm::vec3 &vDisplacement)
 	z = 0;
 
 	//rotate the point (x,z) araund the y axis by a random angle
-	rotateAroundYAxis(x, z, rand() % 360);
+	rotateAroundYAxis(x, z, SDL_rand(360));
 
 	vDisplacement.x = x;
 	vDisplacement.y = y;

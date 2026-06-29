@@ -11,28 +11,28 @@ Particle_Explosion::Particle_Explosion(glm::vec3 vPos)
 	: Particle(vPos)
 {
 	m_iTTL = 16;
-	//m_fScaleFactor =  0.2 + ((rand()%2) *0.1);
+	//m_fScaleFactor =  0.2 + ((SDL_rand(2)) *0.1);
 	m_fVelocity = 0;
 	m_vPosition.y = 0.5;
 
-	/*	float rnd = ((float)(rand()%5))/10 ;
+	/*	float rnd = ((float)(SDL_rand(5)))/10 ;
 	m_fColor[0] = 0.6 + rnd;
 	m_fColor[1] = 0.6;
 	m_fColor[2] = 0.6;
 	m_fColor[3] = 1;
 */
-	float rnd = ((float)(rand() % 3)) / 10;
+	float rnd = ((float)(SDL_rand(3))) / 10;
 	m_fColor[0] = 0.8 + rnd;
 	m_fColor[1] = 0.9;
 	m_fColor[2] = 0.9;
 	m_fColor[3] = 1;
 
 	//set initial scalefactor
-	rnd = float(rand() % 10);
+	rnd = float(SDL_rand(10));
 	//	m_fScaleFactor = 1.3 + rnd/10;
 	m_fScaleFactor = 0.8 + rnd / 10;
 	//randomly choose one of three explosion textures
-	switch (rand() % 3) {
+	switch (SDL_rand(3)) {
 	case 0:
 		m_iTextureIndex = EXPLOSION_TEXTURE1;
 		break;

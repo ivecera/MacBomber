@@ -97,13 +97,13 @@ void ParticleManager::addPlayerSmokeParticle(glm::vec3 vPos, int count)
 		particle->m_fScaleFactor = 0.75;
 		particle->m_fScaleFactorModifier = 1;
 
-		float fColorMod = 0.5 + ((rand() % 7) * 0.1);
+		float fColorMod = 0.5 + ((SDL_rand(7)) * 0.1);
 		particle->m_fColor[0] = fColorMod;
 		particle->m_fColor[1] = fColorMod;
 		particle->m_fColor[2] = fColorMod;
 		particle->m_fColor[3] = 0.8;
 
-		particle->m_fVelocity = 1 + ((rand() % 11) * 0.1);
+		particle->m_fVelocity = 1 + ((SDL_rand(11)) * 0.1);
 		particle->m_vDisplacement.y = 1;
 		particle->m_iTextureIndex = PARTICLE_SMOKE0_TEXTURE;
 
@@ -126,10 +126,10 @@ void ParticleManager::addWileyParticle(glm::vec3 vPos, int count)
 		particle->m_iTTL = 50;
 		particle->m_fScaleFactor = 0.75;
 		particle->m_fScaleFactorModifier = -0.5;
-		particle->m_fRotation = rand() % 360;
+		particle->m_fRotation = SDL_rand(360);
 
 		//determine randomly a yellow color
-		float fColorMod = 0.1 + ((rand() % 5) * 0.1);
+		float fColorMod = 0.1 + ((SDL_rand(5)) * 0.1);
 		particle->m_fColor[0] = 1;
 		particle->m_fColor[1] = 1;
 		particle->m_fColor[2] = fColorMod;
@@ -150,7 +150,7 @@ void ParticleManager::calculateDisplacement(glm::vec3 &vDisplacement,
 	float x, y, z;
 
 	//randomly choose an angle between minAngle - maxAngle;
-	angle = rand() % (maxAngle - minAngle);
+	angle = SDL_rand(maxAngle - minAngle);
 	angle += minAngle;
 	//convert deg -> rad
 	angle = (angle * SDL_PI_F / 180);
@@ -161,7 +161,7 @@ void ParticleManager::calculateDisplacement(glm::vec3 &vDisplacement,
 	z = 0;
 
 	//rotate the point (x,z) araund the y axis by a random angle
-	rotateAroundYAxis(x, z, rand() % 360);
+	rotateAroundYAxis(x, z, SDL_rand(360));
 
 	vDisplacement.x = x;
 	vDisplacement.y = y;
@@ -174,7 +174,7 @@ void ParticleManager::randomizeStartPosition(glm::vec3 &vPosition, float radius)
 	float x, y, z;
 
 	//randomly choose an angle between minAngle - maxAngle;
-	angle = rand() % 360;
+	angle = SDL_rand(360);
 	//convert deg -> rad
 	angle = (angle * SDL_PI_F / 180);
 
@@ -184,7 +184,7 @@ void ParticleManager::randomizeStartPosition(glm::vec3 &vPosition, float radius)
 	z = 0;
 
 	//rotate the point (x,z) araund the y axis by a random angle
-	rotateAroundYAxis(x, z, rand() % 360);
+	rotateAroundYAxis(x, z, SDL_rand(360));
 
 	vPosition.x += x * radius;
 	vPosition.y += y * radius;

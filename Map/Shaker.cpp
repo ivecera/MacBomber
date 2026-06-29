@@ -15,6 +15,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
+#include <SDL3/SDL.h>
 #include "Shaker.h"
 
 Shaker::Shaker()
@@ -23,8 +24,8 @@ Shaker::Shaker()
 
 glm::vec3 Shaker::doShake(glm::vec3 &vec1, glm::vec3 &vec2)
 {
-	float deltaX = (rand() % 2) * 0.1;
-	float deltaZ = (rand() % 2) * 0.1;
+	float deltaX = (SDL_rand(2)) * 0.1;
+	float deltaZ = (SDL_rand(2)) * 0.1;
 
 	vec1.x = vec1.x + deltaX;
 	vec2.x = vec2.x - deltaX;
@@ -35,7 +36,7 @@ glm::vec3 Shaker::doShake(glm::vec3 &vec1, glm::vec3 &vec2)
 	glm::vec3 vDelta = vec2 - vec1;
 
 	// Random value between 0 and 1
-	float t = (rand() % 100) * 0.01;
+	float t = (SDL_rand(100)) * 0.01;
 	glm::vec3 output = vec1 + (vDelta * t);
 	return output;
 }

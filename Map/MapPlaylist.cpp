@@ -26,7 +26,7 @@ void MapPlaylist::addMapIndex(int index)
 			m_vMapEntryIndices.push_back(index);
 		} else {
 			//insert index at a random postion within the vector
-			int iPosition = rand() % m_vMapEntryIndices.size();
+			int iPosition = SDL_rand(m_vMapEntryIndices.size());
 			vector<int>::iterator it = m_vMapEntryIndices.begin();
 			it += iPosition;
 			m_vMapEntryIndices.insert(it, index);

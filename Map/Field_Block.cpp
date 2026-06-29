@@ -30,7 +30,7 @@ Field_Block::Field_Block(int xGrid, int yGrid, Map *pMap)
 	m_vPos.y = 0.0f;
 
 	//randomly choose between 0,90,180 and 270
-	m_iOrientation = (rand() % 4) * 90;
+	m_iOrientation = (SDL_rand(4)) * 90;
 }
 
 bool Field_Block::placeBomb(Bomb *bomb)

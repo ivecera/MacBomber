@@ -56,8 +56,8 @@ glm::vec3 MapDestroyer::getTarget()
 	float x, z, y = 0;
 	bool done = false;
 	while (!done) {
-		x = rand() % m_pMap->getWidth();
-		z = rand() % m_pMap->getHeight();
+		x = SDL_rand(m_pMap->getWidth());
+		z = SDL_rand(m_pMap->getHeight());
 
 		// Don't choose a void field
 		if (m_pMap->getType((int)x, (int)z) != VOID)

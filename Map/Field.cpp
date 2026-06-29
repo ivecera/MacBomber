@@ -142,7 +142,7 @@ void Field::explodeField(int iSteps, glm::vec3 vDir, int x, int z)
 
 void Field::generateItem()
 {
-	switch (rand() % 9) {
+	switch (SDL_rand(9)) {
 	case 0:
 		if (Application::m_pConfig->getPower()) {
 			m_pItem = new Item_PowerUp(m_iXGrid, m_iZGrid);
@@ -162,7 +162,7 @@ void Field::generateItem()
 		}
 		break;
 	case 3:
-		switch (rand() % 2) {
+		switch (SDL_rand(2)) {
 		case 0:
 			if (Application::m_pConfig->getKick()) {
 				m_pItem =
@@ -178,7 +178,7 @@ void Field::generateItem()
 		break;
 	case 4:
 	case 5:
-		switch (rand() % 7) {
+		switch (SDL_rand(7)) {
 		case 0:
 			if (Application::m_pConfig->getJoint()) {
 				m_pItem = new Item_Joint(m_iXGrid, m_iZGrid);

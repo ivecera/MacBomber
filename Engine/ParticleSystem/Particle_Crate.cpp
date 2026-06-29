@@ -20,16 +20,16 @@ Particle_Crate::Particle_Crate(glm::vec3 vPos,
 {
 	m_iTTL = 40;
 	m_fScaleFactor = 0.8;
-	m_fVelocity = 5 + rand() % 6;
+	m_fVelocity = 5 + SDL_rand(6);
 	m_vDisplacement.y = 1;
 	m_pParticleManager = pParticleManager;
 	m_iTextureIndex = PARTICLE_CRATE_TEXTURE;
 
-	m_fAngleX = rand() % 360;
-	m_fAngleY = rand() % 360;
-	m_fAngleZ = rand() % 360;
+	m_fAngleX = SDL_rand(360);
+	m_fAngleY = SDL_rand(360);
+	m_fAngleZ = SDL_rand(360);
 
-	float rnd = ((float)(rand() % 3)) / 10;
+	float rnd = ((float)(SDL_rand(3))) / 10;
 	m_fColor[0] = 0.8 + rnd;
 	m_fColor[1] = 0.8 + rnd;
 	m_fColor[2] = 0.8 + rnd;
