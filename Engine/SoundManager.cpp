@@ -20,8 +20,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "../Config.h"
 #include "../Application.h"
 
-#include <iostream>
-
 SoundManager::SoundManager(MIX_Mixer *mixer)
 {
 	m_Samples[EXPlOSION_SOUND] = MIX_LoadAudio(

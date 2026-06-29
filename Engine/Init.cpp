@@ -16,7 +16,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
 #include "Init.h"
-#include <iostream>
 #include <SDL3/SDL_opengl.h>
 #include <GL/glu.h>
 #include <string>
@@ -32,19 +31,18 @@ using namespace std;
 // Initialize SDL
 void initSDL()
 {
-	cout << "SDL: Init VIDEO|AUDIO" << endl;
+	SDL_Log("SDL: Init VIDEO|AUDIO");
 	// Initialize video system and joystick input
 	if (!SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK | SDL_INIT_AUDIO)) {
-		cout << "SDL: Couldn't initialize. Error:" << SDL_GetError()
-		     << endl;
+		SDL_Log("SDL: Couldn't initialize. Error: %s", SDL_GetError());
 		SDL_Quit();
 	}
 
 	// AUDIO 48000
 	// Note: Dennis sampled the song at 48000 sample rate... maybe less would be better?
 	if (!MIX_Init()) {
-		cout << "SDL: Failed initializing mixer. Error:"
-		     << SDL_GetError() << endl;
+		SDL_Log("SDL: Failed initializing mixer. Error: %s",
+			SDL_GetError());
 		SDL_Quit();
 	}
 
@@ -52,8 +50,8 @@ void initSDL()
 	Application::m_pMixer = MIX_CreateMixerDevice(
 		SDL_AUDIO_DEVICE_DEFAULT_PLAYBACK, &audioSpec);
 	if (Application::m_pMixer == NULL) {
-		cout << "SDL: Failed opening Audio Device. Error:"
-		     << SDL_GetError() << endl;
+		SDL_Log("SDL: Failed opening Audio Device. Error: %s",
+			SDL_GetError());
 		SDL_Quit();
 	}
 
@@ -76,11 +74,9 @@ void initSDL()
 	int width = Application::m_pConfig->getScreenWidth();
 	int height = Application::m_pConfig->getScreenHeight();
 
-	cout << "SDL: Setting Resolution " << width << " x " << height;
-	if (Application::m_pConfig->getFullscreen())
-		cout << " (fullscreen)" << endl;
-	else
-		cout << " (window)" << endl;
+	SDL_Log("SDL: Setting Resolution %d x %d%s", width, height,
+		Application::m_pConfig->getFullscreen() ? " (fullscreen)" :
+							  " (window)");
 
 	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
 
@@ -91,15 +87,13 @@ void initSDL()
 	Application::m_pWindow = SDL_CreateWindow("MacBomber v.0.5.1", width,
 						  height, windowFlags);
 	if (Application::m_pWindow == NULL) {
-		cout << "SDL: Error creating window: " << SDL_GetError()
-		     << endl;
+		SDL_Log("SDL: Error creating window: %s", SDL_GetError());
 		SDL_Quit();
 	}
 
 	Application::m_glContext = SDL_GL_CreateContext(Application::m_pWindow);
 	if (Application::m_glContext == NULL) {
-		cout << "SDL: Error creating GL context: " << SDL_GetError()
-		     << endl;
+		SDL_Log("SDL: Error creating GL context: %s", SDL_GetError());
 		SDL_Quit();
 	}
 
@@ -232,7 +226,7 @@ void dumpScreen()
 	screen->pixels = pixels;
 	string fullpath = strPath + strFileBaseName +
 			  convertValueToString(count) + ".bmp";
-	printf("Dumping Screenshot: %s\n", fullpath.c_str());
+	SDL_Log("Dumping Screenshot: %s", fullpath.c_str());
 	SDL_SaveBMP(screen, fullpath.c_str());
 
 	SDL_DestroySurface(screen);

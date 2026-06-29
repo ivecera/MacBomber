@@ -39,29 +39,27 @@ Item::Item(int xBlock, int zBlock)
 
 void Item::showType()
 {
-	printf("Picked Up: ");
 	switch (m_iType) {
 	case BOMBUP:
-		printf("BOMBUP\n");
+		SDL_Log("Picked Up: BOMBUP");
 		break;
 	case SPEEDUP:
-		printf("SPEEDUP\n");
+		SDL_Log("Picked Up: SPEEDUP");
 		break;
 	case POWERUP:
-		printf("POWERUP\n");
+		SDL_Log("Picked Up: POWERUP");
 		break;
 	case ENABLEKICK:
-		printf("ENABLEKICK\n");
+		SDL_Log("Picked Up: ENABLEKICK");
 		break;
-
 	case JOINT:
-		printf("JOINT\n");
+		SDL_Log("Picked Up: JOINT");
 		break;
 	case COCAINE:
-		printf("COCAINE\n");
+		SDL_Log("Picked Up: COCAINE");
 		break;
 	case VIAGRA:
-		printf("VIAGRA\n");
+		SDL_Log("Picked Up: VIAGRA");
 		break;
 	}
 }

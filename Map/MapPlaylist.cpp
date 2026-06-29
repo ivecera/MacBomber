@@ -57,7 +57,6 @@ void MapPlaylist::showIndices()
 	vector<int>::iterator it;
 	for (it = m_vMapEntryIndices.begin(); it != m_vMapEntryIndices.end();
 	     it++) {
-		printf("%d\n", *it);
+		SDL_Log("%d", *it);
 	}
-	printf("\n");
 }

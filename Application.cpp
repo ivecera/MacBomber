@@ -162,7 +162,7 @@ void Application::registerSleepCallBack()
 					     Application::sleepCallBack,
 					     &notifierObject);
 	if (root_port == NULL) {
-		printf("IORegisterForSystemPower failed\n");
+		SDL_Log("IORegisterForSystemPower failed");
 	}
 
 	// add the notification port to the application runloop
@@ -227,7 +227,7 @@ void Application::sleepCallBack(void *refCon, io_service_t service,
 
 void Application::init()
 {
-	cout << "Starting MacBomber v. 0.5.1" << endl;
+	SDL_Log("Starting MacBomber v. 0.5.1");
 
 	//load Config first, since we need to know which screen resolution to use
 	m_pConfig = new Config();

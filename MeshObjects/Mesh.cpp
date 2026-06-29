@@ -15,8 +15,6 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-#include <iostream>
-
 #include <SDL3/SDL_opengl.h>
 
 #include "../Application.h"
@@ -58,7 +56,7 @@ void Mesh::load3dsFile(const char *fileName)
 	pFile = lib3ds_file_load(fileName);
 
 	if (pFile == NULL) {
-		cout << "TriangleMesh: File not found. Exit" << endl;
+		SDL_Log("TriangleMesh: File not found. Exit");
 		exit(-1);
 	}
 

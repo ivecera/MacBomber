@@ -15,8 +15,6 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-#include <iostream>
-
 #include "loadTexture.h"
 
 #include "TriangleMesh.h"
@@ -49,7 +47,7 @@ void TriangleMesh::load3dsFile(Lib3dsFile *pFile)
 	Lib3dsMaterial *mat = NULL;
 
 	if (pFile == NULL) {
-		cout << "CTRiangleMesh: File not found." << endl;
+		SDL_Log("TriangleMesh: File not found.");
 		exit(-1);
 	}
 

@@ -15,6 +15,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
+#include <SDL3/SDL.h>
 #include "Vector3.h"
 
 Vector3::Vector3()
@@ -56,5 +57,5 @@ Vector3 Vector3::operator/(float skalar)
 
 void Vector3::showElements()
 {
-	cout << x << " / " << y << " / " << z << endl;
+	SDL_Log("%f / %f / %f", x, y, z);
 }

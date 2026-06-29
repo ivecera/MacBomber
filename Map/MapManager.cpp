@@ -16,8 +16,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
 #include <dirent.h>
-#include <fstream>
-#include <iostream>
 
 #include "../Application.h"
 #include "../Config.h"
@@ -51,6 +49,20 @@ MapManager::~MapManager()
 {
 }
 
+static char *readLine(char **pos, char *buf, int maxlen)
+{
+	if (!*pos)
+		return NULL;
+	char *nl = SDL_strchr(*pos, '\n');
+	int len = nl ? (int)(nl - *pos) : SDL_strlen(*pos);
+	if (len >= maxlen)
+		len = maxlen - 1;
+	SDL_memcpy(buf, *pos, len);
+	buf[len] = '\0';
+	*pos = nl ? nl + 1 : NULL;
+	return buf;
+}
+
 void MapManager::readMap(StMapEntry &mapEntry)
 {
 	char *mapName = mapEntry.name;
@@ -59,36 +71,41 @@ void MapManager::readMap(StMapEntry &mapEntry)
 	SDL_strlcat(fileName, m_cDirectory, sizeof(fileName));
 	SDL_strlcat(fileName, mapName, sizeof(fileName));
 
-	ifstream in;
-	in.open(fileName);
-
-	if (!in) {
-		printf("MapManager: File %s not found!", fileName);
+	SDL_IOStream *io = SDL_IOFromFile(fileName, "r");
+	if (!io) {
+		SDL_Log("MapManager: File %s not found!", fileName);
 		exit(-1);
 	}
 
-	in.getline(mapEntry.author, 100, '\n');
-	in >> mapEntry.playerCount;
+	Sint64 size = SDL_GetIOSize(io);
+	char *data = (char *)SDL_malloc(size + 1);
+	SDL_ReadIO(io, data, size);
+	data[size] = '\0';
+	SDL_CloseIO(io);
+
+	char *pos = data;
+
+	readLine(&pos, mapEntry.author, 100);
+	char tmp[18];
+	readLine(&pos, tmp, sizeof(tmp));
+	SDL_sscanf(tmp, "%d", &mapEntry.playerCount);
 
 	// First, all fields are set to void
 	for (int i = 0; i < 15; i++)
 		for (int j = 0; j < 19; j++)
 			mapEntry.cArray[i][j] = '-';
 
-	// discard the extra line
-	char panties[18];
-	in.getline(panties, 18, '\n');
-
 	//Read the array line by line from the file
 	for (int i = 1; i < 14; i++) {
 		char line[18];
-		in.getline(line, 18, '\n');
+		readLine(&pos, line, sizeof(line));
 
 		for (int j = 0; j < 17; j++)
 			mapEntry.cArray[i][j + 1] = line[j];
 	}
 	mapEntry.enabled = true;
-	in.close();
+
+	SDL_free(data);
 }
 
 void MapManager::readMaps()
@@ -134,14 +151,15 @@ void MapManager::showMaps()
 	vector<StMapEntry>::iterator it;
 
 	for (it = m_vMapEntries.begin(); it != m_vMapEntries.end(); it++) {
-		cout << endl << "Map: " << (*it).name << endl;
-		cout << "Players: " << (*it).playerCount << endl;
+		SDL_Log("Map: %s", (*it).name);
+		SDL_Log("Players: %d", (*it).playerCount);
 
 		for (int i = 0; i < 15; i++) {
-			for (int j = 0; j < 19; j++) {
-				printf("%c", (*it).cArray[i][j]);
-			}
-			printf("\n");
+			char row[20];
+			for (int j = 0; j < 19; j++)
+				row[j] = (*it).cArray[i][j];
+			row[19] = '\0';
+			SDL_Log("%s", row);
 		}
 	}
 }

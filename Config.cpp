@@ -15,8 +15,6 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-#include <iostream>
-#include <fstream>
 #include <string>
 
 #include "Config.h"
@@ -238,138 +236,150 @@ void Config::setMapStatus(int nr, bool bValue)
 void Config::saveConfig()
 {
 	string fileName = Application::expandResourcePath("/Config.cfg");
-	//create an Output File stream
-	ofstream configfile(fileName.c_str());
-	if (!configfile) {
-		cout << "Config: Couldn't save Config.cfg" << endl;
+	SDL_IOStream *io = SDL_IOFromFile(fileName.c_str(), "w");
+	if (!io) {
+		SDL_Log("Config: Couldn't save Config.cfg");
 		return;
 	}
 
-	//	printf("%s\n",fileName.c_str());
-	configfile << "1" << endl; //Version
+	SDL_IOprintf(io, "%d\n", 1); //Version
 
 	// Game Options
-	configfile << m_iStartBombs << endl;
-	configfile << m_iStartPower << endl;
-	configfile << m_iStartSpeed << endl;
-	configfile << m_bStartKick << endl;
+	SDL_IOprintf(io, "%d\n", m_iStartBombs);
+	SDL_IOprintf(io, "%d\n", m_iStartPower);
+	SDL_IOprintf(io, "%d\n", m_iStartSpeed);
+	SDL_IOprintf(io, "%d\n", m_bStartKick);
 
-	configfile << m_iExtraBombs << endl;
-	configfile << m_iExtraPower << endl;
-	configfile << m_iExtraSpeed << endl;
+	SDL_IOprintf(io, "%d\n", m_iExtraBombs);
+	SDL_IOprintf(io, "%d\n", m_iExtraPower);
+	SDL_IOprintf(io, "%d\n", m_iExtraSpeed);
 
-	configfile << m_iGameType << endl;
-	configfile << m_iRoundTime << endl;
-	configfile << m_iPointsForVictory << endl;
-	configfile << m_iPlayerCount << endl;
+	SDL_IOprintf(io, "%d\n", m_iGameType);
+	SDL_IOprintf(io, "%d\n", m_iRoundTime);
+	SDL_IOprintf(io, "%d\n", m_iPointsForVictory);
+	SDL_IOprintf(io, "%d\n", m_iPlayerCount);
 
-	configfile << m_bKick << endl;
-	configfile << m_bJoint << endl;
-	configfile << m_bCocaine << endl;
-	configfile << m_bCondom << endl;
-	configfile << m_bViagra << endl;
-	configfile << m_bBomb << endl;
-	configfile << m_bPower << endl;
-	configfile << m_bSpeed << endl;
-	configfile << m_bRandomMapOrder << endl;
+	SDL_IOprintf(io, "%d\n", m_bKick);
+	SDL_IOprintf(io, "%d\n", m_bJoint);
+	SDL_IOprintf(io, "%d\n", m_bCocaine);
+	SDL_IOprintf(io, "%d\n", m_bCondom);
+	SDL_IOprintf(io, "%d\n", m_bViagra);
+	SDL_IOprintf(io, "%d\n", m_bBomb);
+	SDL_IOprintf(io, "%d\n", m_bPower);
+	SDL_IOprintf(io, "%d\n", m_bSpeed);
+	SDL_IOprintf(io, "%d\n", m_bRandomMapOrder);
 
 	//Audio Options
-	configfile << m_bPlaySoundFX << endl;
-	configfile << m_bPlayMusic << endl;
-	configfile << m_iSoundFXVolume << endl;
-	configfile << m_iMusicVolume << endl;
+	SDL_IOprintf(io, "%d\n", m_bPlaySoundFX);
+	SDL_IOprintf(io, "%d\n", m_bPlayMusic);
+	SDL_IOprintf(io, "%d\n", m_iSoundFXVolume);
+	SDL_IOprintf(io, "%d\n", m_iMusicVolume);
 
 	//Video Options
-	configfile << m_bFullscreen << endl;
-	configfile << m_iResolution << endl;
+	SDL_IOprintf(io, "%d\n", m_bFullscreen);
+	SDL_IOprintf(io, "%d\n", m_iResolution);
 
 	//Camera Option
-	configfile << m_iCameraPreset << endl;
+	SDL_IOprintf(io, "%d\n", m_iCameraPreset);
 
 	//Player Setup
 	for (int i = 0; i < 4; i++) {
-		configfile << m_stPlayers[i].iKeySet << endl;
-		configfile << m_stPlayers[i].iSkin << endl;
-		configfile << m_stPlayers[i].bEnabled << endl;
+		SDL_IOprintf(io, "%d\n", m_stPlayers[i].iKeySet);
+		SDL_IOprintf(io, "%d\n", m_stPlayers[i].iSkin);
+		SDL_IOprintf(io, "%d\n", m_stPlayers[i].bEnabled);
 	}
 
 	//Map Settings
-	configfile << m_iMapCount << endl;
+	SDL_IOprintf(io, "%d\n", m_iMapCount);
 	for (int i = 0; i < m_iMapCount; i++)
-		configfile << m_bMapStatus[i] << endl;
+		SDL_IOprintf(io, "%d\n", m_bMapStatus[i]);
 
-	configfile.close();
+	SDL_CloseIO(io);
+}
+
+static int readInt(char **pos)
+{
+	int val = 0;
+	SDL_sscanf(*pos, "%d", &val);
+	*pos = SDL_strchr(*pos, '\n');
+	if (*pos)
+		(*pos)++;
+	return val;
 }
 
 void Config::loadConfig()
 {
 	string fileName = Application::expandResourcePath("/Config.cfg");
-	//create an Input File stream
-	ifstream configfile(fileName.c_str());
-	if (!configfile) {
-		cout << "Config: Couldn't open Config.cfg. Using defaults instead!"
-		     << endl;
+	SDL_IOStream *io = SDL_IOFromFile(fileName.c_str(), "r");
+	if (!io) {
+		SDL_Log("Config: Couldn't open Config.cfg. Using defaults instead!");
 		return;
 	}
 
-	int version;
-	configfile >> version; //Version
+	Sint64 size = SDL_GetIOSize(io);
+	char *data = (char *)SDL_malloc(size + 1);
+	SDL_ReadIO(io, data, size);
+	data[size] = '\0';
+	SDL_CloseIO(io);
 
+	char *pos = data;
+
+	int version = readInt(&pos);
 	if (version != 1) {
-		cout << "Config: Wrong version. Using defaults instead!"
-		     << endl;
+		SDL_Log("Config: Wrong version. Using defaults instead!");
+		SDL_free(data);
 		return;
 	}
+
 	// Game Options
+	m_iStartBombs = readInt(&pos);
+	m_iStartPower = readInt(&pos);
+	m_iStartSpeed = readInt(&pos);
+	m_bStartKick = readInt(&pos);
 
-	configfile >> m_iStartBombs;
-	configfile >> m_iStartPower;
-	configfile >> m_iStartSpeed;
-	configfile >> m_bStartKick;
+	m_iExtraBombs = readInt(&pos);
+	m_iExtraPower = readInt(&pos);
+	m_iExtraSpeed = readInt(&pos);
 
-	configfile >> m_iExtraBombs;
-	configfile >> m_iExtraPower;
-	configfile >> m_iExtraSpeed;
+	m_iGameType = readInt(&pos);
+	m_iRoundTime = readInt(&pos);
+	m_iPointsForVictory = readInt(&pos);
+	m_iPlayerCount = readInt(&pos);
 
-	configfile >> m_iGameType;
-	configfile >> m_iRoundTime;
-	configfile >> m_iPointsForVictory;
-	configfile >> m_iPlayerCount;
-
-	configfile >> m_bKick;
-	configfile >> m_bJoint;
-	configfile >> m_bCocaine;
-	configfile >> m_bCondom;
-	configfile >> m_bViagra;
-	configfile >> m_bBomb;
-	configfile >> m_bPower;
-	configfile >> m_bSpeed;
-	configfile >> m_bRandomMapOrder;
+	m_bKick = readInt(&pos);
+	m_bJoint = readInt(&pos);
+	m_bCocaine = readInt(&pos);
+	m_bCondom = readInt(&pos);
+	m_bViagra = readInt(&pos);
+	m_bBomb = readInt(&pos);
+	m_bPower = readInt(&pos);
+	m_bSpeed = readInt(&pos);
+	m_bRandomMapOrder = readInt(&pos);
 
 	//Audio Options
-	configfile >> m_bPlaySoundFX;
-	configfile >> m_bPlayMusic;
-	configfile >> m_iSoundFXVolume;
-	configfile >> m_iMusicVolume;
+	m_bPlaySoundFX = readInt(&pos);
+	m_bPlayMusic = readInt(&pos);
+	m_iSoundFXVolume = readInt(&pos);
+	m_iMusicVolume = readInt(&pos);
 
 	//Video Options
-	configfile >> m_bFullscreen;
-	configfile >> m_iResolution;
+	m_bFullscreen = readInt(&pos);
+	m_iResolution = readInt(&pos);
 
 	//Camera Option
-	configfile >> m_iCameraPreset;
+	m_iCameraPreset = readInt(&pos);
 
 	//Player Setup
 	for (int i = 0; i < 4; i++) {
-		configfile >> m_stPlayers[i].iKeySet;
-		configfile >> m_stPlayers[i].iSkin;
-		configfile >> m_stPlayers[i].bEnabled;
+		m_stPlayers[i].iKeySet = readInt(&pos);
+		m_stPlayers[i].iSkin = readInt(&pos);
+		m_stPlayers[i].bEnabled = readInt(&pos);
 	}
 
 	//Map Settings
-	configfile >> m_iMapCount;
+	m_iMapCount = readInt(&pos);
 	for (int i = 0; i < m_iMapCount; i++)
-		configfile >> m_bMapStatus[i];
+		m_bMapStatus[i] = readInt(&pos);
 
-	configfile.close();
+	SDL_free(data);
 }

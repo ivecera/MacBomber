@@ -47,7 +47,7 @@ InputManager::InputManager(Application *pApp)
 	//Restrict to 4 Joysticks at most
 	if (m_iJoystickCount > 4)
 		m_iJoystickCount = 4;
-	printf("InputManager: Found %d joystick(s)\n", m_iJoystickCount);
+	SDL_Log("InputManager: Found %d joystick(s)", m_iJoystickCount);
 
 	for (int i = 0; i < m_iJoystickCount; i++) {
 		m_pController[4 + i] = new Controller_Joystick(
@@ -90,7 +90,7 @@ bool InputManager::isJoystickPresent(int joystickID)
 Controller *InputManager::getController(int ctrlID)
 {
 	if (m_pController[ctrlID] == NULL) {
-		printf("InputManager: Null Controller requested!\n");
+		SDL_Log("InputManager: Null Controller requested!");
 		return m_pController[0];
 	} else
 		return m_pController[ctrlID];
