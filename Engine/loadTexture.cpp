@@ -114,9 +114,10 @@ bool loadTexture(GLuint *texture, int index, const char *texturePath,
 					GL_LINEAR);
 			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,
 					GL_LINEAR_MIPMAP_NEAREST);
-			gluBuild2DMipmaps(GL_TEXTURE_2D, 4, _pTexture->w,
-					  _pTexture->h, GL_RGBA,
-					  GL_UNSIGNED_BYTE, _pTexture->pixels);
+			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, _pTexture->w,
+				     _pTexture->h, 0, GL_RGBA, GL_UNSIGNED_BYTE,
+				     _pTexture->pixels);
+			glGenerateMipmap(GL_TEXTURE_2D);
 		} else { // Linear Filtering (slow but looks good)
 			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, _pTexture->w,
 				     _pTexture->h, 0, GL_RGBA, GL_UNSIGNED_BYTE,

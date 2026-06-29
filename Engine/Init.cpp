@@ -17,7 +17,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #include "Init.h"
 #include <SDL3/SDL_opengl.h>
-#include <GL/glu.h>
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 #include <string>
 #include <SDL3_mixer/SDL_mixer.h>
 
@@ -182,8 +184,10 @@ int sizeGLWindow()
 
 	//		Field of view	Aspect ratio	Camera clipping distance
 	//						     near   far
-	gluPerspective(45.0f, (GLfloat)screenWidth / (GLfloat)screenHeight, 1,
-		       150.0f);
+	glm::mat4 proj = glm::perspective(
+		glm::radians(45.0f), (float)screenWidth / (float)screenHeight,
+		1.0f, 150.0f);
+	glLoadMatrixf(glm::value_ptr(proj));
 
 	glMatrixMode(GL_MODELVIEW); // Select the modelview matrix
 	glLoadIdentity(); // Reset the modelview matrix

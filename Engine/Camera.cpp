@@ -16,7 +16,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
 #include <SDL3/SDL_opengl.h>
-#include <GL/glu.h>
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 #include "Camera.h"
 #include "../Application.h"
@@ -185,8 +187,11 @@ void Camera::setViewByMouse()
 
 void Camera::setView()
 {
-	gluLookAt(m_vPosition.x, m_vPosition.y, m_vPosition.z, m_vView.x,
-		  m_vView.y, m_vView.z, m_vUp.x, m_vUp.y, m_vUp.z);
+	glm::mat4 v = glm::lookAt(glm::vec3(m_vPosition.x, m_vPosition.y,
+					    m_vPosition.z),
+				  glm::vec3(m_vView.x, m_vView.y, m_vView.z),
+				  glm::vec3(m_vUp.x, m_vUp.y, m_vUp.z));
+	glMultMatrixf(glm::value_ptr(v));
 }
 
 void Camera::setPreset(int nr)

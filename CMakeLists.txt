@@ -4,6 +4,7 @@ project(MacBomber LANGUAGES C CXX)
 set(CMAKE_CXX_STANDARD 11)
 
 find_package(OpenGL REQUIRED)
+find_package(glm REQUIRED)
 find_package(Freetype REQUIRED)
 find_package(ZLIB REQUIRED)
 find_package(PkgConfig REQUIRED)
@@ -139,7 +140,7 @@ target_include_directories(macbomber PRIVATE
 
 target_link_libraries(macbomber PRIVATE
     OpenGL::GL
-    OpenGL::GLU
+    glm::glm
     ${SDL3_LIBRARIES}
     ${SDL3_IMAGE_LIBRARIES}
     ${SDL3_MIXER_LIBRARIES}

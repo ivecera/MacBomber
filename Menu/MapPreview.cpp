@@ -16,7 +16,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
 #include <SDL3/SDL_opengl.h>
-#include <GL/glu.h>
+#include <glm/glm.hpp>
+#include <glm/gtc/matrix_transform.hpp>
+#include <glm/gtc/type_ptr.hpp>
 
 #include "MapPreview.h"
 #include "../Application.h"
@@ -330,9 +332,9 @@ void MapPreview::draw()
 {
 	glPushMatrix();
 	glLoadIdentity();
-	gluLookAt(13, 25, 13,
-		  /*12,25,0,*/
-		  13, -1, 9.5, 0, 1, 0);
+	glm::mat4 v = glm::lookAt(glm::vec3(13, 25, 13), glm::vec3(13, -1, 9.5),
+				  glm::vec3(0, 1, 0));
+	glMultMatrixf(glm::value_ptr(v));
 	glTranslatef(8, -2, 2);
 
 	drawCrateFields();
