@@ -167,7 +167,7 @@ void Player::doDie()
 
 void Player::handleInput()
 {
-	// Richtung in Abh. vom Controller setzen
+	// Set direction based on controller input
 	if (m_pController->isDownHold()) {
 		setDirection(DOWN);
 	} else if (m_pController->isUpHold()) {
@@ -245,7 +245,7 @@ void Player::move()
 		}
 	}
 
-	// aktualisiere die Gird Koordinaten
+	// Update the grid coordinates
 	m_xBlock = int(m_vPos.x);
 	m_zBlock = int(m_vPos.z);
 	m_pBBox->update(m_vPos);

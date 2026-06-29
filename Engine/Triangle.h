@@ -20,34 +20,34 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #include "Vector3.h";
 
-// Daten die per Dreieck angegeben werden
+// Data specified per triangle
 class CTriangle {
 public:
-	// Jedes Dreieck hat drei Punkte ( vektoren )
+	// Each triangle has three points (vectors)
 	int nVertex[3];
 
 	Vector3 *pVertex[3];
 
-	// die jeweils eine x,y Tekturkoordinate haben
+	// each with an x,y texture coordinate
 	float texCoordX[3];
 	float texCoordY[3];
 
-	// Die Index Nummer des Materials der Surface
+	// The index number of the surface's material
 	int nMaterial;
 
-	// Die folgenden zwei Infos werden nicht benötigt, da die Info im Material steckt
-	// Ist dieses Dreieck Texturiert
+	// The following two fields are not needed, as the info is in the material
+	// Is this triangle textured
 	bool bTexture;
-	// Die Index Nummer der Texture
+	// The index number of the texture
 	int iTextureIndex;
 
-	// Der Mittelpunkt des Dreiecks
+	// The center point of the triangle
 	Vector3 vMiddle;
 
-	// Der NormalVektor des Dreiecks
+	// The normal vector of the triangle
 	Vector3 vNormal;
 
-	// Der Abstand der vom Dreieck aufgespannten Fl√§che zum Ursprung
+	// The distance from the plane spanned by the triangle to the origin
 	float distanceToOrigin;
 };
 

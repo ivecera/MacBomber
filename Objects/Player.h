@@ -29,7 +29,7 @@ class ItemManager;
 class Timer;
 
 class Player : public Object_Moving {
-	// Die Goodies /Badies brauchen direkten Zugriff auf die Spieler Objekte !
+	// The goodies/badies need direct access to the player objects!
 	friend class Item_BombUp;
 	friend class Item_PowerUp;
 	friend class Item_SpeedUp;
@@ -40,10 +40,10 @@ class Player : public Object_Moving {
 	friend class Item_Condom;
 
 private:
-	bool m_bKickBomb; // Kann der Spieler Bomben schieben ?
-	int m_iBombCount; // Die Anzahl der Bomben die der Spieler legen kann
-	int m_iBombStrength; // Die St��rke der Bomben, die der Spieler legt, in Feldern
-	int m_iSpeed; // Die momentane Geschwindigkeitsstufe des Spielers
+	bool m_bKickBomb; // Can the player kick bombs?
+	int m_iBombCount; // The number of bombs the player can place
+	int m_iBombStrength; // The strength of the bombs the player places, in tiles
+	int m_iSpeed; // The current speed level of the player
 	const char *m_cName;
 
 	/*

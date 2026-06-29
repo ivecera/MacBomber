@@ -32,20 +32,20 @@ struct stMaterial {
 	GLfloat shi;
 	float trans;
 
-	// Gehört zu diesem Material eine Texturemap
+	// Does this material have a texture map
 	bool bTexture;
-	// Welche Texture soll verwendet werden ?
+	// Which texture should be used?
 	int iTextureIndex;
 };
 
 class TriangleMesh {
 protected:
 	int m_iTexture;
-	// Array das die verwendeten Texturen enthält
+	// Array containing the textures in use
 	//GLuint m_TextureArray[10];
 
 public:
-	// Anzahl der Vertices/Materialien/Dreiecke(Faces)
+	// Number of vertices/materials/triangles(faces)
 	int m_nVertices;
 	int m_nTexels;
 	int m_nTriangles;

@@ -35,16 +35,16 @@ using namespace std;
 
 SDL_Surface *screen;
 
-// Initialisiert SDL
+// Initialize SDL
 void initSDL()
 {
-	// Enthaelt Informationen ¸ber das Video Systems
+	// Contains information about the video system
 	const SDL_VideoInfo *videoInfo;
 	int videoFlags = 0;
 	int audio_buffers = 1024;
 
 	cout << "SDL: Init VIDEO|AUDIO" << endl;
-	// Initialisiere Video System sowie Joystick Input
+	// Initialize video system and joystick input
 	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK | SDL_INIT_TIMER |
 		     SDL_INIT_AUDIO) < 0) {
 		cout << "SDL: Couldn't initialize. Error:" << SDL_GetError()
@@ -53,7 +53,7 @@ void initSDL()
 	}
 
 	// AUDIO 44100
-	// Hinweis: Dennis hat den song mit 48000 abtastrarte gesampelt...vielleicht wre weniger besser?
+	// Note: Dennis sampled the song at 48000 sample rate... maybe less would be better?
 	if (Mix_OpenAudio(48000, MIX_DEFAULT_FORMAT, 2, audio_buffers) < 0) {
 		cout << "SDL: Failed opening Audio Device. Error:"
 		     << SDL_GetError() << endl;
@@ -76,14 +76,14 @@ void initSDL()
 	cout << "     Video blit_hw   :	" << videoInfo->blit_hw << endl;
 	*/
 
-	// Wir erzeugen uns ein Integer mit den entsprechenden Flags
-	videoFlags = SDL_OPENGL; // Aktiviere OpenGL in SDL
+	// Create an integer with the appropriate flags
+	videoFlags = SDL_OPENGL; // Enable OpenGL in SDL
 	videoFlags |=
-		SDL_GL_DOUBLEBUFFER; // Aktiviere Double Buffering in SDL mit OpenGL
-	videoFlags |= SDL_RESIZABLE; // Fenstergrˆﬂe soll variabl sein
-	videoFlags |= SDL_HWPALETTE; // Speichere die Palette in Hardware
+		SDL_GL_DOUBLEBUFFER; // Enable double buffering in SDL with OpenGL
+	videoFlags |= SDL_RESIZABLE; // Window size should be variable
+	videoFlags |= SDL_HWPALETTE; // Store the palette in hardware
 
-	// Kˆnnen Hardware Surfaces benutzt werden ?
+	// Can hardware surfaces be used?
 	if (videoInfo->hw_available) {
 		videoFlags |= SDL_HWSURFACE;
 		cout << "SDL: Using Hardware Surfaces. " << endl;
@@ -93,7 +93,7 @@ void initSDL()
 		cout << "SDL: Using Software Surfaces. " << endl;
 	}
 
-	// Kann Hardware Beschleunigung benutzt werden ?
+	// Can hardware acceleration be used?
 	if (videoInfo->blit_hw) {
 		videoFlags |= SDL_HWACCEL;
 		cout << "SDL: Using Hardware Acceleration " << endl;
@@ -151,7 +151,7 @@ void initSDL()
 	SDL_ShowCursor(SDL_DISABLE);
 }
 
-// Initialisiert OpenGL
+// Initialize OpenGL
 int initGL()
 {
 #ifdef __APPLE__
@@ -160,12 +160,12 @@ int initGL()
 	CGLSetParameter(CGLGetCurrentContext(), kCGLCPSwapInterval, &VBL);
 #endif
 
-	// aktiviere Smooth Shadows
+	// Enable smooth shading
 	glShadeModel(GL_SMOOTH);
 
 	glEnable(GL_TEXTURE_2D);
 
-	// Die Farbe mit der der Bildschirm gelˆscht werden soll
+	// The color used to clear the screen
 	glClearColor(0.0f, 0.0f, 0.0f, 0.0f);
 	//glClearColor ( 1.0f, 0.58f, 0.0f, 0.0f );
 	/* Depth buffer setup */
@@ -214,29 +214,29 @@ int initGL()
 	return 1;
 }
 
-// Setzt einige OpenGL Parameter neu, wenn die Fenstergrˆsse ver‰ndert wurde
+// Reset some OpenGL parameters when the window size has changed
 int sizeGLWindow()
 {
 	int screenWidth = Application::m_pConfig->getScreenWidth();
 	int screenHeight = Application::m_pConfig->getScreenHeight();
 
-	// Da wir width durch Height dividieren werden, m¸ssen wir ausschlieﬂen, dass Height "0" ist
+	// Since we divide width by height, we must ensure height is not "0"
 	if (screenWidth == 0)
 		screenHeight = 1;
 
-	// Unser Viewport ist der gesamte Bildschirm
+	// Our viewport is the entire screen
 	glViewport(0, 0, screenWidth, screenHeight);
 
-	glMatrixMode(GL_PROJECTION); // w‰hle die Projektionsmatrix
-	glLoadIdentity(); // Resete die Projektionsmatrix
+	glMatrixMode(GL_PROJECTION); // Select the projection matrix
+	glLoadIdentity(); // Reset the projection matrix
 
-	//		Blickwinkel	Relation	Entfernung Kamera bis geclippt wird
-	//						     nah   fern
+	//		Field of view	Aspect ratio	Camera clipping distance
+	//						     near   far
 	gluPerspective(45.0f, (GLfloat)screenWidth / (GLfloat)screenHeight, 1,
 		       150.0f);
 
-	glMatrixMode(GL_MODELVIEW); // w‰hle die Modelview Matrix
-	glLoadIdentity(); // Resete die Modelview Matrix
+	glMatrixMode(GL_MODELVIEW); // Select the modelview matrix
+	glLoadIdentity(); // Reset the modelview matrix
 
 	return 1;
 }

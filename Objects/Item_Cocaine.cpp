@@ -44,7 +44,7 @@ Item_Cocaine::~Item_Cocaine()
 
 bool Item_Cocaine::affectPlayer(Player *player)
 {
-	// start des Timers beim ersten Aufruf
+	// Start the timer on the first call
 	if (!m_bActive) {
 		m_pPlayer = player;
 		m_bActive = true;
@@ -53,7 +53,7 @@ bool Item_Cocaine::affectPlayer(Player *player)
 		m_tDuration.setAlarm(5000);
 	}
 
-	// Wirkungsdauer Ende ?
+	// Effect duration over?
 	if (m_tDuration.isTimeUp()) {
 		player->m_bWobble = false;
 		//recalculate speed:

@@ -23,38 +23,38 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 void calculateFramerate()
 {
-	// Statische Variablen damit sie persistent sind
+	// Static variables so they persist across calls
 
-	static float framesPerSecond = 0.0f; // Frames pro Sekunde
+	static float framesPerSecond = 0.0f; // Frames per second
 	static float lastTime =
-		0.0f; // Hilft uns zu entscheiden wann eine Sekunde vorbei ist
+		0.0f; // Helps us determine when one second has passed
 	static char strFrameRate[50] = {
 		0
-	}; // String der die FPS speichert ( fuer Fenster )
+	}; // String that stores the FPS (for window title)
 
-	// Wir nehmen die aktuelle Zeit.
-	// SDL liefert mit SDL_GetTicks die Zahl der Millisekunden seit Programmbeginn
-	// Wir wandeln millisekunden in Sekunden um, durch die Multiplikaton mit 0.001
+	// Get the current time.
+	// SDL_GetTicks returns the number of milliseconds since program start.
+	// We convert milliseconds to seconds by multiplying with 0.001.
 	// 12637 ms -> 12.637 s
 
 	float currentTime = SDL_GetTicks() * 0.001f;
 
-	// Bei jedem Aufruf dieser Methode in DrawGLscene z‰hlen wir ein Frame nach oben
+	// Each call to this method in DrawGLscene increments the frame counter
 	++framesPerSecond;
 
-	// Ist eine Sekunde vergangen ?
+	// Has one second passed?
 	if (currentTime - lastTime > 1.0f) {
 		lastTime = currentTime;
 
 #ifdef DRAWFPS
-		// Kopiert die FPS in den String strFrameRate
+		// Copy the FPS into the string strFrameRate
 		sprintf(strFrameRate, "FPS: %d", int(framesPerSecond));
 
-		// Zeige schlieﬂlich den FPS-String in der FensterTitelBar an
+		// Finally display the FPS string in the window title bar
 		SDL_WM_SetCaption(strFrameRate, "OpenGL. ");
 #endif
 		//Application::m_fReciprocalFPS = 1/framesPerSecond;
-		// Setze den Frame Z‰hler wieder auf 0
+		// Reset the frame counter to 0
 		framesPerSecond = 0.0f;
 	}
 }

@@ -39,14 +39,14 @@ Item_Joint::~Item_Joint()
 
 bool Item_Joint::affectPlayer(Player *player)
 {
-	// start des Timers beim ersten Aufruf
+	// Start the timer on the first call
 	if (!m_bActive) {
 		m_pPlayer = player;
 		m_bActive = true;
 		m_tDuration.setAlarm(5000);
 	}
 
-	// Wirkungsdauer Ende ?
+	// Effect duration over?
 	if (m_tDuration.isTimeUp()) {
 		player->m_bWobble = false;
 		return true;

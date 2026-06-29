@@ -60,9 +60,9 @@ Field_Arrow::Field_Arrow(int xGrid, int yGrid, int direction, Map *pMap)
 
 bool Field_Arrow::doFlip()
 {
-	//Nur flippen wenn die Richtung nicht stimmt
+	//Only flip if the direction is wrong
 	if (m_pBomb->getDirection() != m_iDirection) {
-		//Schaue nach, ob die Bombe eine bestimmte Linie überschritten hat
+		//Check if the bomb has crossed a certain line
 		switch (m_pBomb->getDirection()) {
 		case UP:
 			if (m_pBomb->getPosition().z < m_vPos.z)
@@ -92,18 +92,18 @@ bool Field_Arrow::doFlip()
 			return false;
 			break;
 		}
-	} else // Richtung stimmt
+	} else // Direction is correct
 		return false;
 }
 
 bool Field_Arrow::placeBomb(Bomb *bomb)
 {
-	// Auf ein Feld kann nur eine Bombe gelegt werden
+	// Only one bomb can be placed on a field
 	if (m_bBomb == false) {
 		m_bBomb = true;
 		m_pBomb = bomb;
 
-		// Das Feld ist nicht begehbar, falls eine Bombe gelegt wurde
+		// The field is not walkable if a bomb was placed
 		m_bFree = false;
 		return true;
 	} else
@@ -117,40 +117,40 @@ void Field_Arrow::moveBomb()
 		Vector3 vPos_next = m_pBomb->getPosition() +
 				    (m_pBomb->getDisplacement() * fSize);
 
-		// Bewegt sich die Bombe nicht (gerade gelegt), schubs sie an
+		// If the bomb is not moving (just placed), push it
 		if ((m_pBomb->getDirection() == NONE) &&
 		    (m_pMap->isFree(m_iNextBlockX, m_iNextBlockZ)))
 			m_pBomb->setDirection(m_iDirection);
 
-		// Flippen wenn die Richtung nicht stimmt
+		// Flip if the direction is wrong
 		if (doFlip())
 			m_pBomb->setDirection(m_iDirection);
 
-		// Ist vPos_next noch im selben Feld ?
+		// Is vPos_next still in the same field?
 		if ((int(vPos_next.x) == m_iXGrid) &&
 		    (int(vPos_next.z) == m_iZGrid)) {
-			// Die Bome kann ohne Bedenken bewegt werden, falls sie sich denn bewegen soll
+			// The bomb can safely be moved, if it is supposed to move
 			if (m_pBomb->doesMove())
 				m_pBomb->move();
 
-		} else // neues Feld erreicht
+		} else // new field reached
 		{
 			int nextBlockX =
 				(int)(m_iXGrid + m_pBomb->getDisplacement().x);
 			int nextBlockZ =
 				(int)(m_iZGrid + m_pBomb->getDisplacement().z);
 
-			//Ist das neu erreicht Feld frei ?
+			//Is the newly reached field free?
 			if ((m_pMap->isFree(nextBlockX, nextBlockZ)) &&
 			    (!m_pMap->hasPlayer(nextBlockX, nextBlockZ))) {
-				// bewege die Bombe
+				// move the bomb
 				m_pBomb->move();
 
-				// Ist der Mittelpunkt der Bombe in einem neuem Feld gelandet ?
-				// Falls ja, wird die Bombe an dieses Feld übergeben
+				// Has the center of the bomb landed in a new field?
+				// If so, hand the bomb over to that field
 				if ((m_pBomb->getXBlock() != m_iXGrid) ||
 				    (m_pBomb->getZBlock() != m_iZGrid)) {
-					// Die Bombe wird an das nächste Feld übergeben
+					// The bomb is handed over to the next field
 					m_pMap->placeBomb(m_pBomb);
 					dispatchBomb();
 				}

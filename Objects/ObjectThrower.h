@@ -43,7 +43,7 @@ private:
 	// tells us how far we already traveled (0 to m_fLength)
 	float m_fLengthTraveled;
 
-	bool m_bDone; // True wenn das Objekt ihr Ziel erreicht hat
+	bool m_bDone; // True when the object has reached its target
 	Vector3 m_vObjectPosition;
 	Vector3 m_vDisplacement;
 

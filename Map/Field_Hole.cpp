@@ -45,10 +45,10 @@ Field_Hole::~Field_Hole()
 
 bool Field_Hole::startFall(Bomb *pBomb)
 {
-	//Nur flippen wenn d	ie Richtung nicht stimmt
+	//Only flip if the direction is wrong
 	//if (m_pBomb->getDirection() != m_iDirection)
 
-	//Schaue nach, ob die Bombe die Feld Mittellinie überschritten hat
+	//Check if the bomb has crossed the field center line
 	switch (pBomb->getDirection()) {
 	case UP:
 		if (pBomb->getPosition().z < m_vPos.z)
@@ -101,10 +101,10 @@ bool Field_Hole::placeBomb(Bomb *bomb)
 {
 	SBombContainer newContainer;
 	newContainer.pBomb = bomb;
-	newContainer.bDoesFall = false; // Eine neu platzierte Bombe fällt nicht
-	newContainer.bDoesFly = false; // Eine neu platzierte Bombe fällt nicht
+	newContainer.bDoesFall = false; // A newly placed bomb does not fall
+	newContainer.bDoesFly = false; // A newly placed bomb does not fly
 	newContainer.bDraw = true;
-	// Packe die Bombe in die Liste der fallenden Bomben
+	// Add the bomb to the list of falling bombs
 	m_lBombList.push_back(newContainer);
 	return true;
 }
@@ -116,7 +116,7 @@ void Field_Hole::moveBomb()
 		(*it).pBomb->update();
 		(*it).pBomb->move();
 
-		// Falls die Bombe noch nicht fällt, überprüfe, ob sie jetzt fallen solle
+		// If the bomb is not yet falling, check if it should start falling now
 		if ((*it).bDoesFall == false) {
 			if (startFall((*it).pBomb)) {
 				(*it).bDoesFall = true;

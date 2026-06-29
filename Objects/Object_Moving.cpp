@@ -84,7 +84,7 @@ void Object_Moving::move()
 	m_vPos = m_vPos + (m_vDisplacement *
 			   (m_fVelocity * Application::m_fReciprocalFPS));
 
-	// aktualisiere die Blockkoordinaten
+	// update the block coordinates
 	m_xBlock = int(m_vPos.x);
 	m_zBlock = int(m_vPos.z);
 

@@ -32,18 +32,18 @@ protected:
 	int m_iBombID;
 	bool m_bOwnerLeft;
 
-	// Ist die Bombe explodiert ?
-	// Diese Variable ist wichtig für das Vorgehen im Bombmanager
+	// Has the bomb exploded?
+	// This variable is important for the bomb manager logic
 	bool m_bExploded;
 
-	// Die maximale Explosions"radius" der Bombe in Feldern
+	// The maximum explosion radius of the bomb in tiles
 	int m_iStrength;
 
-	// Die folgenden Werte geben an, wieviele Felder von der Bombe bzgl. der 4 möglichen Explosionrichtungen
-	// erfasst werden
+	// The following values indicate how many tiles from the bomb are covered
+	// in each of the 4 possible explosion directions
 	int m_iRadius[4];
 
-	// Der Zeitpunkt an dem die Bombe explodiert
+	// The time at which the bomb explodes
 	float m_fExplosionTime;
 
 public:
@@ -51,13 +51,13 @@ public:
 
 	Timer m_StartExplosionTimer;
 
-	// Übergeben werden Position, Besitzer und Stärke der Bombe
+	// Parameters: position, owner, and strength of the bomb
 	Bomb(int xBlock, int zBlock, int owner, int strength);
 
-	// setzt m_bExploded auf true;
+	// Sets m_bExploded to true
 	void explode();
 
-	// returniert, ob die Bombe explodiert ist
+	// Returns whether the bomb has exploded
 	bool isExploded();
 	int getStrength();
 
@@ -79,9 +79,9 @@ public:
 		m_bOwnerLeft = b;
 	};
 
-	// returniert true falls die Bombe sich bewegt
+	// Returns true if the bomb is moving
 	bool doesMove();
-	// stoppt die Bewegung
+	// Stops the movement
 	void stopMovement();
 
 	void update();

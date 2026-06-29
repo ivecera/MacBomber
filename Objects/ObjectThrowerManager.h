@@ -29,7 +29,7 @@ class ObjectThrowerManager {
 protected:
 	struct SThrowerContainer {
 		ObjectThrower *pThrower;
-		Object_Moving *pObject; // pObject reicht für setPosition()
+		Object_Moving *pObject; // pObject is sufficient for setPosition()
 	};
 
 	list<SThrowerContainer> m_listThrower;

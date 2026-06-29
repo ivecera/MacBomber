@@ -51,10 +51,10 @@ class Map {
 		int z;
 	};
 
-	int m_iPlayerCount; //Anzahl der Spielerstartpunkte in der Map
-	pos2D m_StPlayerStartPos[8]; // Die Position der Spielerstartpunkte
+	int m_iPlayerCount; //Number of player start points in the map
+	pos2D m_StPlayerStartPos[8]; // The positions of the player start points
 
-	// Die Grösse des Spielfeldes in Blöcken
+	// The size of the playing field in blocks
 	int m_iWidth;
 	int m_iHeight;
 
@@ -141,7 +141,7 @@ public:
 	Map(Game *pGame, int mapIndex);
 	~Map();
 
-	// Initialisiert das Field Spielfeld Array in Abhängigkeit vom übergebenen Char Array
+	// Initializes the field array based on the provided char array
 	void init();
 
 	bool hasBomb(int x, int z);
@@ -152,21 +152,21 @@ public:
 	// returns the type of field at x,z
 	int getType(int x, int z);
 
-	// returniert true wenn auf dem entsprechendem Feld kein Block / Crate / Bombe steht
+	// Returns true if there is no block / crate / bomb on the specified field
 	bool isFree(int x, int z);
 
-	//platziert auf dem spezifizierten Feld die Bombe bomb
+	//Places the bomb on the specified field
 	bool placeBomb(Bomb *bomb);
 	void dispatchBomb(int x, int z);
 	void placeItem(Item *item);
 	void dispatchItem(int x, int z);
 
-	// wird aufgerufen eine Explosion des entsprechenden Block erreicht
+	// Called when an explosion reaches the corresponding block
 	void destroyBlock(int x, int z);
 
-	// Überprüft, ob der Spieler auf einem Feld ist, das gerade explodiert
+	// Checks if the player is on a field that is currently exploding
 	bool doesBurn(Player *player);
-	// Überprüft, ob das spezifizierte Feld gerade explodiert
+	// Checks if the specified field is currently exploding
 	bool doesBurn(int x, int z);
 
 	Bomb *getBomb(int x, int z);

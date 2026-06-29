@@ -24,37 +24,37 @@ Matrix::Matrix()
 
 void Matrix::setupRotation(Vector3 axis, float theta)
 {
-	// Berechne den Sinus und Cosinus von Theta einmal
+	// Calculate sine and cosine of theta once
 	float sinTheta = sin(theta);
 	float cosTheta = cos(theta);
 
-	// Wir werden ( 1 - cos ( theta ) ) öfters in der Rotationsmatrix gebrauchen
+	// We will use ( 1 - cos ( theta ) ) frequently in the rotation matrix
 	float a = 1.0f - cosTheta;
 
 	/*
-     * Die folgenden Ausdrücke kommen ebenfalls in der Matrix öfter vor, weshalb wir sie auch im voraus
-     * berechnen
+     * The following expressions also appear frequently in the matrix,
+     * so we precompute them as well.
      */
 
 	float ax = axis.x * a;
 	float ay = axis.y * a;
 	float az = axis.z * a;
 
-	/* Aus dieser Matrix:
-    
+	/* From this matrix:
+
     m11 = axis.x * axis.x * a + cosTheta;
     m12 = axis.x * axis.y * a + axis.z * sinTheta;
     m13 = axis.x * axis.z * a - axis.y * sinTheta;
-    
+
     m21 = axis.x * axis.y * a - axis.z * sinTheta;
     m22 = axis.y * axis.y * a + cosTheta;
     m23 = axis.y * axis.z * a + axis.x sinTheta;
-    
+
     m31 = axis.x * axis.z * a + axis.y * sinTheta;
     m32 = axis.y * axis.z * a - axis.x * sinTheta;
     m33 = axis.z * axis.z * a + cosTheta;
-    
-    mach dann : */
+
+    becomes: */
 
 	m11 = ax * axis.x + cosTheta;
 	m12 = ax * axis.y + axis.z * sinTheta;
@@ -68,7 +68,7 @@ void Matrix::setupRotation(Vector3 axis, float theta)
 	m32 = az * axis.y - axis.x * sinTheta;
 	m33 = az * axis.z + cosTheta;
 
-	// Da wir nur eine Rotationsmatrix haben wollen, setzen wir die Translationselemente auf 0;
+	// Since we only want a rotation matrix, set the translation elements to 0
 	tx = 0.0f;
 	ty = 0.0f;
 	tz = 0.0f;

@@ -23,10 +23,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 class Object_Moving : public Object {
 protected:
 	float m_fVelocity;
-	Vector3 m_vDisplacement; // Die Richtung des Spielers
-	int m_iDirection; // Die Richtung des Spielers (UP = 0; RIGHT, DOWN, LEFT)
+	Vector3 m_vDisplacement; // The direction of the player
+	int m_iDirection; // The direction of the player (UP = 0; RIGHT, DOWN, LEFT)
 
-	bool m_bDoesDrop; // True, wenn die Variable auf true gesetzt wurde
+	bool m_bDoesDrop; // True when this variable has been set to true
 
 	// Rotate Object around m_fAngle around Y-Axis depepnding on its direction.
 	// Usually this variable has one of the following values: 0,90,180,-90 or similar
@@ -64,7 +64,7 @@ public:
 	// uesd to correct collision
 	void move(Vector3 vDisplacement);
 	virtual void move();
-	//returniert "true" wenn das Objekt am fallen ist und "false" wenn die Fallzeitdauer abgelaufen ist
+	// Returns true if the object is falling, false if the fall duration has expired
 	bool doDrop();
 };
 #endif

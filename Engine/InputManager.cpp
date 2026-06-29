@@ -115,8 +115,7 @@ void InputManager::update()
 			break;
 		case SDL_KEYDOWN:
 
-			// Iteriere durch Tasten bei denen Tastenwiederholung
-			// unerw¬∏nscht ist
+			// Iterate through keys where key repeat is unwanted
 			switch (event.key.keysym.sym) {
 			case SDLK_1:
 				m_pApp->m_pCamera->setPreset(0);

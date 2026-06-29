@@ -21,19 +21,19 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "Vector3.h"
 #include "../Defines.h"
 
-// Wir haben es nur mit quadratischen BBoxes zu tun
-// Also packen wir eine BoundingCircle gleich mit hinzu
+// We only deal with square bounding boxes
+// So we include a bounding circle as well
 class BoundingBox_2D {
 private:
-	// Es handelt sich um eine 2D Bounding Box. Also vier Eckpunkte
-	// Diese Vektoren geben die Position der Eckpunkt RELATIV zum Objektmittelpunkt ( 0,0,0 ) an
+	// This is a 2D bounding box, so four corner points
+	// These vectors give the position of the corners RELATIVE to the object center (0,0,0)
 	//
 	//      0--------1
 	//      |        |
 	//      |        |
 	//      3--------2
 
-	// Die Position der BBox im Worldspace
+	// The position of the bounding box in world space
 	Vector3 m_vPos;
 	float m_fRadius;
 
@@ -44,10 +44,10 @@ public:
 	Vector3 m_vVertex[4];
 	Vector3 m_vVertex_Worldspace[4];
 
-	// Übergeben werden StartworldPis + die Minimalen / Maximalen Vertices der 3D Boundingbox
+	// Parameters: start world position + the min/max vertices of the 3D bounding box
 	BoundingBox_2D(Vector3 vPos, float size);
 
-	//Updatet die Worldspace Koordinaten
+	//Updates the world space coordinates
 	void update(Vector3 &vPos);
 
 	//checks fixed bboxes for collision

@@ -22,7 +22,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 class Timer {
 private:
-	Uint32 m_iAlarmTime; // Der Zeitpunkt an dem der Timer Alarm schlägt
+	// The point in time when the timer alarm triggers
+	Uint32 m_iAlarmTime;
 	// Time at Timer has been started
 	Uint32 m_iStartTime;
 
@@ -30,8 +31,8 @@ public:
 	Timer();
 	Timer(uint alarm);
 	void setAlarm(uint alarmTime);
-	bool
-	isTimeUp(); // returniert true wenn die AlertTime überschritten wurde
+	// returns true when the alert time has been exceeded
+	bool isTimeUp();
 	// returns Elapsed Time since Timer Start in ms
 	uint getElapsedTime();
 };

@@ -51,7 +51,7 @@ Bomb::Bomb(int xBlock, int zBlock, int owner, int strength)
 
 void Bomb::explode()
 {
-	// Wenn es sich um eine Bombe in Bewegung handelt, dann stoppe die Bewegung
+	// If the bomb is moving, stop the movement
 	m_iDirection = NONE;
 	m_bExploded = true;
 

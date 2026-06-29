@@ -83,7 +83,7 @@ bool Field_Plain::placeBomb(Bomb *bomb)
 		m_bBomb = true;
 		m_pBomb = bomb;
 
-		// Das Feld ist nicht begehbar, falls eine Bombe gelegt wurde
+		// The field is not walkable if a bomb was placed
 		m_bFree = false;
 		return true;
 	} else {
@@ -99,16 +99,16 @@ void Field_Plain::moveBomb()
 		Vector3 vPos_next = m_pBomb->getPosition() +
 				    (m_pBomb->getDisplacement() * fSize);
 
-		// Ist vPos_next noch im selben Feld ?
+		// Is vPos_next still in the same field?
 		if ((int(vPos_next.x) == m_iXGrid) &&
 		    (int(vPos_next.z) == m_iZGrid)) {
-			// Die Bome kann ohne Bedenken bewegt werden, falls sie sich denn bewegen soll
+			// The bomb can safely be moved, if it is supposed to move
 			if (m_pBomb->doesMove()) {
 				m_pBomb->move();
 			}
 
 		} else {
-			//Ist das neu erreicht Feld frei & kein Player ?
+			//Is the newly reached field free and has no player?
 			if (((m_pMap->isFree(
 				     m_iXGrid +
 					     (int)m_pBomb->getDisplacement().x,
@@ -121,16 +121,16 @@ void Field_Plain::moveBomb()
 							.z))) // &&
 			    //(!m_pMap->hasItem(m_iXGrid + m_pBomb->getDisplacement().x,m_iZGrid + m_pBomb->getDisplacement().z))
 			    )
-			//hier check auf ITEM?
+			//check for ITEM here?
 			{
-				// bewege die Bombe
+				// move the bomb
 				m_pBomb->move();
 
-				// Ist der Mittelpunkt der Bombe in einem neuem Feld gelandet ?
-				// Falls ja, wird die Bombe an dieses Feld übergeben
+				// Has the center of the bomb landed in a new field?
+				// If so, hand the bomb over to that field
 				if ((m_pBomb->getXBlock() != m_iXGrid) ||
 				    (m_pBomb->getZBlock() != m_iZGrid)) {
-					// Die Bombe wird an das nächste Feld übergeben
+					// The bomb is handed over to the next field
 					m_pMap->placeBomb(m_pBomb);
 					dispatchBomb();
 				}

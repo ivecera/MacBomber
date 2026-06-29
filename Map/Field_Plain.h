@@ -41,7 +41,7 @@ public:
 
 	~Field_Plain();
 
-	// returniert true, falls eine Bombe platziert werden konnte
+	// Returns true if a bomb could be placed
 	bool placeBomb(Bomb *bomb);
 	void moveBomb();
 	void kickBomb(int dir);

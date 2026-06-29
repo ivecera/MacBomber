@@ -26,13 +26,13 @@ public:
 	int m_iControlPointCount;
 	Vector3 *m_pControlPoints;
 
-	// returniert für einen Wert t aus[0,1] einen Punkt auf der Kurve
+	// returns a point on the curve for a value t in [0,1]
 	Vector3 calculatePoint(float t);
 
-	int calculateFactorial(int number); // Fakultät von Number
-	int calculateBinomialCoefficient(int n, int k); //(n über k)
-	float calculateBernsteinPolynomial(
-		float t, int i); // Bersteinpoly vom Grad m_iControlPointCount
+	int calculateFactorial(int number); // factorial of number
+	int calculateBinomialCoefficient(int n, int k); // (n choose k)
+	// Bernstein polynomial of degree m_iControlPointCount
+	float calculateBernsteinPolynomial(float t, int i);
 
 public:
 	SimpleBezier();

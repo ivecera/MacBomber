@@ -35,7 +35,7 @@ TriangleMesh::TriangleMesh()
 	m_nMaterials = 0;
 	m_iTexture = 0;
 
-	// Array in dem wir die Vertices des Meshs speichern
+	// Array to store the vertices of the mesh
 	m_pVertexIndices = NULL;
 	m_pVertices = NULL;
 	m_pVertexNormals = NULL;
@@ -57,12 +57,12 @@ void TriangleMesh::load3dsFile(Lib3dsFile *pFile)
 	mesh = pFile->meshes;
 	mat = pFile->materials;
 
-	// -----------------	Ermittele die Anzahlen
+	// -----------------	Determine the counts
 	m_nVertices = mesh->points;
 	m_nTriangles = mesh->faces;
 	m_nTexels = mesh->texels;
 
-	// Wieviele Materialien gibt es ?
+	// How many materials are there?
 	Lib3dsMaterial *m;
 	for (m = pFile->materials; m; m = m->next) {
 		//printf ("%s\n",m->name);
@@ -73,15 +73,15 @@ void TriangleMesh::load3dsFile(Lib3dsFile *pFile)
 	m_pVertexNormals = new Vector3[m_nVertices];
 	m_pTexCoords = new float[m_nTexels * 2];
 
-	// -----------------	f�lle Arrays
+	// -----------------	Fill arrays
 	// Vertices
 	Lib3dsVector pos;
 
 	for (int i = 0; i < m_nVertices; i++) {
 		lib3ds_vector_copy(pos, mesh->pointL[i].pos);
 
-		//	Bei Wings3d also angeben, dass Y/z beim Export nicht geswapt werden sollen
-		//	(So bleiben auch die Normals erhalten..)
+		//	In Wings3D, specify that Y/Z should not be swapped on export
+		//	(This also preserves the normals)
 		m_pVertices[i].x = pos[0];
 		m_pVertices[i].y = pos[1];
 		m_pVertices[i].z = pos[2];
@@ -132,10 +132,10 @@ void TriangleMesh::load3dsFile(Lib3dsFile *pFile)
 		}
 
 		/*		
-		// Hat das Mesh eine Textur ?
+		// Does the mesh have a texture?
 		int textureIndex = 0;
-				
-			// Bestimme die Textur
+
+			// Determine the texture
 		for (m=pFile->materials; m; m=m->next)
 		{
 				Lib3dsTextureMap tmpMap = m->texture1_map;

@@ -20,26 +20,26 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #include "Vector3.h"
 
-/// berechnet das Kreuzprodukt zweier Vekoren
+/// Calculates the cross product of two vectors
 Vector3 crossProduct(const Vector3 &u, const Vector3 &v);
 
-/** berechnt das Dot Produkt zweier Vekoren
+/** Calculates the dot product of two vectors
  *
- *  \param u,v die Vekoren deren DotProduct gebildet werden soll
- *  \return Das DotProduct von u und v
+ *  \param u,v the vectors whose dot product should be computed
+ *  \return The dot product of u and v
  */
 float dotProduct(const Vector3 &u, const Vector3 &v);
 
-/** brechnet die Länge des Vektors v
+/** Calculates the length of vector v
  *
- * \return Die Länge des Vektors v
+ * \return The length of vector v
  *
  */
 float magnitude(const Vector3 &v);
 
-/** Berechnet den Einheitsvektor ( Einen Vektor mir selber Richtung aber Länge eins )
- * \param v Der zu normalisierende Vektor
- * \return Der normalisierte Vektor
+/** Calculates the unit vector (a vector with same direction but length one)
+ * \param v The vector to normalize
+ * \return The normalized vector
  *
  */
 Vector3 normalize(Vector3 &v);

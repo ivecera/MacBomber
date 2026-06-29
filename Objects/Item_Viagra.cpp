@@ -38,14 +38,14 @@ Item_Viagra::~Item_Viagra()
 
 bool Item_Viagra::affectPlayer(Player *player)
 {
-	// start des Timers beim ersten Aufruf
+	// Start the timer on the first call
 	if (!m_bActive) {
 		m_pPlayer = player;
 		m_bActive = true;
 		m_tDuration.setAlarm(10000);
 	}
 
-	// Wirkungsdauer Ende ?
+	// Effect duration over?
 	if (m_tDuration.isTimeUp()) {
 		player->m_bWobble = false;
 		return true;

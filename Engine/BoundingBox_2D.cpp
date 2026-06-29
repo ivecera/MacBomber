@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 BoundingBox_2D::BoundingBox_2D(Vector3 vPos, float size)
 
 {
-	// Initialisiere das VertexArray für die Box
+	// Initialize the vertex array for the box
 	//      0--------1
 	//      |        |
 	//      |        |

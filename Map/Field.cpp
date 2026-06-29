@@ -54,8 +54,8 @@ Field::Field(int xGridPos, int zGridPos, Map *pMap)
 	m_iXGrid = xGridPos;
 	m_iZGrid = zGridPos;
 
-	// Berechnne aus der Gitterposition die Position des Blocks seine Welt Koordinaten
-	// Diese einfache Zuweisung funktioniert, weil die Blocklänge 1 ist.
+	// Calculate the block's world coordinates from the grid position
+	// This simple assignment works because the block length is 1.
 	m_vMin.x = xGridPos;
 	m_vMin.z = zGridPos;
 	m_vMax.x = xGridPos + 1;
@@ -72,7 +72,7 @@ Field::Field(int xGridPos, int zGridPos, Map *pMap)
 	m_vRotationAxis.y = 1;
 	m_vRotationAxis.z = 0;
 
-	// +0.5 y, damit die Explosion auf dem Feld ist
+	// +0.5 y so the explosion is on the field
 	m_pExplosion = new Explosion(m_vPos + Vector3(0, 0.5, 0));
 
 	m_iState = NORMAL;
@@ -121,7 +121,7 @@ void Field::checkBomb()
 
 void Field::explodeField(int iSteps, Vector3 vDir, int x, int z)
 {
-	// Abbruch falls out of Bounds / max. Anzahl an Steps erreicht /  erreichtes Feld ist Block / erreichtes Feld hat Crate
+	// Abort if out of bounds / max steps reached / reached field is a block / reached field has a crate
 	if ((x < 0) || (x == m_pMap->getWidth()) || (z < 0) ||
 	    (z == m_pMap->getHeight()) || (iSteps == 0) ||
 	    (m_pMap->getType(x, z) == BLOCK))
@@ -270,9 +270,9 @@ void Field::dispatchBomb()
 
 void Field::placeItem(Item *item)
 {
-	// Auf dem Feld steht bereits ein Item
+	// There is already an item on the field
 	if (m_bItem) {
-		delete m_pItem; // altes Item löschen
+		delete m_pItem; // delete the old item
 		m_pItem = item;
 	} else {
 		m_bItem = true;
@@ -298,19 +298,19 @@ Bomb *Field::getBomb()
 	return m_pBomb;
 }
 
-// steht auf dem Block eine Bombe
+// is there a bomb on the block
 bool Field::hasBomb()
 {
 	return m_bBomb;
 }
 
-// steht auf dem Block ein Crate
+// is there a crate on the block
 bool Field::hasCrate()
 {
 	return m_bCrate;
 }
 
-// ist das Feld begehbar ?
+// is the field walkable?
 bool Field::isFree()
 {
 	return m_bFree;

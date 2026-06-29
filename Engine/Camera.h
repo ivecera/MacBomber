@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "3DMath.h"
 #include <SDL.h>
 
-/** Diese Klasse repäsentiert die virtuelle Kamera in der 3D Welt
+/** This class represents the virtual camera in the 3D world
   *
   *
   */
@@ -40,49 +40,49 @@ struct stPreset {
 
 class Camera {
 private:
-	// Vordefinierte Werte fŸr Kameraeinstellung
+	// Predefined values for camera settings
 	stPreset m_stPresets[3];
 
 	//index of our currently uses preset
 	int m_iPreset;
 
 public:
-	Vector3 m_vPosition; // Die Position der virtuellen Kamera
-	Vector3 m_vView; // Die Blickrichtung der virtuellen Kamera
-	Vector3 m_vUp; // Die Richtung, welche "Oben" definiert
-	// FIXME: LEft Vektor
+	Vector3 m_vPosition; // The position of the virtual camera
+	Vector3 m_vView; // The viewing direction of the virtual camera
+	Vector3 m_vUp; // The direction that defines "up"
+	// FIXME: Left vector
 
 	Camera();
 
-	/** Positioniert die Kamera in der virtuellen Welt
-		 * \param positionX,positionY,positionZ Die Position der Kamera in der Welt
-		 * \param viewX,viewY,viewZ Der Vektor in die die Kamera blickt
-		 * \param upVectorX,upVectorY,upVectorZ Der Vektor beschreibt welche Richtung "oben" ist
+	/** Position the camera in the virtual world
+		 * \param positionX,positionY,positionZ The camera's position in the world
+		 * \param viewX,viewY,viewZ The vector the camera is looking at
+		 * \param upVectorX,upVectorY,upVectorZ The vector describing which direction is "up"
 		 */
 
 	void positionCamera(float positionX, float positionY, float positionZ,
 			    float viewX, float viewY, float viewZ,
 			    float upVectorX, float upVectorY, float upVectorZ);
 
-	/** Bewegt die Kamera durch die virtuelle Welt Vor- und Rückwärts
+	/** Moves the camera through the virtual world forward and backward
 		 *
-		 * \param distance Der Betrag um den die Kamera bewegt werden soll
+		 * \param distance The amount by which the camera should be moved
 		 *
 		 */
 
 	void
-	moveCamera(float distance); //bewegt die Kamera um den Betrag "distance"
+	moveCamera(float distance); // Moves the camera by the amount "distance"
 
-	/** Straft die Camera um den Betrag Distance nach links bzw. rechts
-		 *  \param distance Der Betrag um den die Kamera gestraft werden soll
+	/** Strafe the camera by the amount distance to the left or right
+		 *  \param distance The amount by which the camera should be strafed
 		 *
 		 */
 	void strafeCamera(float distance);
 
-	/** Rotiert die Kamera um die Achse (x,y,z)
-		 * 
-		 * \param angle Der Winkel um den rotiert werden soll
-		 * \param x,y,z Definieren die Achse um die gedreht werden soll
+	/** Rotate the camera around the axis (x,y,z)
+		 *
+		 * \param angle The angle by which to rotate
+		 * \param x,y,z Define the axis around which to rotate
 		 *
 		 */
 	void rotateView(float angle, float x, float y, float z);

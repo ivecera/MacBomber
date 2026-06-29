@@ -31,12 +31,12 @@ protected:
 	void showType();
 
 public:
-	//      type    _   der Typ des Goodies/Badies
+	//      type    -   the type of the goodie/badie
 	Item(int xBlock, int zBlock);
 
-	/* Wendet das Goodie/Badie am Spieler an
-	Returniert true wenn die Aktion ausgeführt wurde (einmalige Anwendung, z.B bei Goodie)
-	oder wenn die Anwendungszeit (bei Badies) abgelaufen ist.
+	/* Applies the goodie/badie to the player.
+	Returns true when the action has been performed (one-time application, e.g. for goodies)
+	or when the effect duration (for badies) has expired.
 	*/
 	virtual bool affectPlayer(Player *player) = 0;
 	int getType()

@@ -24,15 +24,15 @@ class Map;
 
 class Field_Arrow : public Field {
 protected:
-	// Die Richtung in die Bomben geschubst werden sollen
+	// The direction in which bombs should be pushed
 	int m_iDirection;
 
-	// Die X/Z Koordinaten des Blocks auf den die Bomben geschubst werden
+	// The X/Z coordinates of the block to which bombs are pushed
 	int m_iNextBlockX;
 	int m_iNextBlockZ;
 	Map *m_pMap;
 
-	// Bestimmt, ob die Richtung der Bombe gedreht werden muss
+	// Determines whether the bomb's direction needs to be flipped
 	bool doFlip();
 
 public:

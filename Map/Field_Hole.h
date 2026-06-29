@@ -30,9 +30,9 @@ class Field_Hole : public Field {
 protected:
 	struct SBombContainer {
 		Bomb *pBomb;
-		bool bDoesFall; // Bewegt sich die Bombe noch Richtung Feld Mitte ?
-		bool bDoesFly; // wurde sie bereits katapultiert ?
-		Timer tDelayTimer; // Erst katapultieren wenn der Delay vorbei ist
+		bool bDoesFall; // Is the bomb still moving toward the field center?
+		bool bDoesFly; // Has it already been catapulted?
+		Timer tDelayTimer; // Only catapult when the delay is over
 		bool bDraw;
 	};
 

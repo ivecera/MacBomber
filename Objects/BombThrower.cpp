@@ -68,14 +68,14 @@ void BombThrower::add(Vector3 vStart, Bomb *pBomb)
 void BombThrower::handleDestinationReached(Object_Moving *pObject)
 {
 	Bomb *pBomb = (Bomb *)pObject;
-	// Auf dem erreichten Feld steht eine Bombe. Dieses muss zum explodieren gebracht werden
+	// There is a bomb on the reached tile. It must be detonated
 	if (m_pMap->hasBomb(pBomb->getXBlock(), pBomb->getZBlock())) {
 		m_pMap->destroyBlock(pBomb->getXBlock(), pBomb->getZBlock());
 
 		Map::m_iBombsOnField[pBomb->getOwnerID()]--;
 		delete pBomb;
 
-	} else // Rufe die entsprechende placeBomb Methode des Felds auf ( auch bei Blöcken)
+	} else // Call the appropriate placeBomb method of the field (also for blocks)
 	{
 		pBomb->setDisplacement(Vector3(0, 0, 0));
 		m_pMap->placeBomb(pBomb);

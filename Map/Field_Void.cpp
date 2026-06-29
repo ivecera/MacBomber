@@ -41,7 +41,7 @@ Field_Void::~Field_Void()
 
 bool Field_Void::startFall(Object_Moving *pObject)
 {
-	//Schaue nach, ob die Bombe die Feld Mittellinie überschritten hat
+	//Check if the bomb has crossed the field center line
 	switch (pObject->getDirection()) {
 	case UP:
 		if (pObject->getPosition().z < m_vPos.z)
@@ -90,9 +90,9 @@ bool Field_Void::placeBomb(Bomb *bomb)
 {
 	SBombContainer newContainer;
 	newContainer.pObject = bomb;
-	newContainer.bDoesFall = false; // Eine neu platzierte Bombe fällt nicht
+	newContainer.bDoesFall = false; // A newly placed bomb does not fall
 
-	// Packe die Bombe in die Liste der fallenden Bomben
+	// Add the bomb to the list of falling bombs
 	m_lBombList.push_back(newContainer);
 	return true;
 }
@@ -101,9 +101,9 @@ void Field_Void::placeItem(Item *pItem)
 {
 	SBombContainer newContainer;
 	newContainer.pObject = pItem;
-	newContainer.bDoesFall = false; // Eine neu platzierte Bombe fällt nicht
+	newContainer.bDoesFall = false; // A newly placed bomb does not fall
 
-	// Packe die Bombe in die Liste der fallenden Bomben
+	// Add the bomb to the list of falling bombs
 	m_lBombList.push_back(newContainer);
 }
 
@@ -121,7 +121,7 @@ void Field_Void::moveBomb()
 	for (it = m_lBombList.begin(); it != m_lBombList.end(); it++) {
 		(*it).pObject->move();
 
-		// Falls die Bombe noch nicht fällt, überprüfe, ob sie jetzt fallen solle
+		// If the bomb is not yet falling, check if it should start falling now
 		if ((*it).bDoesFall == false) {
 			if (startFall((*it).pObject)) {
 				(*it).bDoesFall = true;

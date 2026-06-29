@@ -68,17 +68,17 @@ void Camera::positionCamera(float positionX, float positionY, float positionZ,
 void Camera::moveCamera(float speed)
 {
 	/*
- 	* Wir bestimmen in welche Richtung wir schauen.
- 	* Dies geschieht indem wir den View Vektor vom Positions Vektor subtrahieren
+ 	* Determine the direction we are looking at.
+ 	* This is done by subtracting the position vector from the view vector.
  	*/
 
 	Vector3 vDirection = m_vView - m_vPosition;
 
 	/*
-	* Wir haben den RichtungsVektor berechnet in die wir schauen.
-	* Nun bewegen wir uns, in die esntsprechende Richtung indem wir die x,y,z Werte
-	* des Richtungsvektors mit den entsprechenden Elmenten unsers Positionsvektor
-	* multiplizieren
+	* We have calculated the direction vector we are looking at.
+	* Now we move in that direction by multiplying the x,y,z values
+	* of the direction vector with the corresponding elements of our
+	* position vector.
 	*
 	*/
 
@@ -87,7 +87,7 @@ void Camera::moveCamera(float speed)
 	m_vPosition.z += vDirection.z * speed * Application::m_fReciprocalFPS;
 
 	/*
-	 * Berechnung eines neuen Viewpoints
+	 * Calculate a new viewpoint
 	 */
 	m_vView.x += vDirection.x * speed * Application::m_fReciprocalFPS;
 	m_vView.y += vDirection.y * speed * Application::m_fReciprocalFPS;
@@ -96,7 +96,7 @@ void Camera::moveCamera(float speed)
 
 void Camera::strafeCamera(float distance)
 {
-	// Die Bewegungs Richtung ist senkrecht zum Up- und View Vektor
+	// The movement direction is perpendicular to the up and view vectors
 	Vector3 vStrafeAxis = crossProduct((m_vView - m_vPosition), m_vUp);
 
 	vStrafeAxis = normalize(vStrafeAxis);
@@ -143,40 +143,40 @@ void Camera::rotateView(float angle, float x, float y, float z)
 
 void Camera::setViewByMouse()
 {
-	// Berechnung der Fenster Mitte durch Bit Shifting
+	// Calculate the window center using bit shifting
 	int screenMiddleX = Application::screenWidth >> 1;
 	int screenMiddleY = Application::screenHeight >> 1;
 
-	// Speicheren die aktuellen Mauskoordinaten die wir mit SDL_GetMouseState(&mouseX,&mouseY) erhalten
+	// Store the current mouse coordinates obtained via SDL_GetMouseState(&mouseX,&mouseY)
 	int mouseX;
 	int mouseY;
 
-	float angleY; // Der Winkel um den der Viewpoint um die Y-Achse rotiert werden soll
-	float angleZ; // Der Winkel um den der Viewpoint um die Z-Achse rotiert werden soll
+	float angleY; // The angle by which the viewpoint should be rotated around the Y axis
+	float angleZ; // The angle by which the viewpoint should be rotated around the Z axis
 
-	// Wo befindet sich die Maus momentan ?
+	// Where is the mouse currently?
 	SDL_GetMouseState(&mouseX, &mouseY);
 
-	// WEnn keine Maus Bewegung stattfandt - Abbruch
+	// If no mouse movement occurred - abort
 	if ((mouseX == screenMiddleX) && (mouseY == screenMiddleY))
 		return;
 
-	// "Bewege" die Maus zurück zur Bildschirm Mitte
+	// Move the mouse back to the screen center
 	SDL_WarpMouse(screenMiddleX, screenMiddleY);
 
-	/* Wir berechnen um wieviel die Maus sich in x und y Richtung bewegt hat 
-	 * Durch Division wandeln wir diese Angaben in "echte" Winkel um
+	/* Calculate how much the mouse has moved in the x and y directions.
+	 * By dividing we convert these values into actual angles.
 	 */
 	angleY = (screenMiddleX - mouseX) / 1000.0f;
 	angleZ = (screenMiddleY - mouseY) / 1000.0f;
 
-	/* Die Achse um die der ViewPoint horizontal gedreht werden soll
-	 * Diese ist senkrecht zum View- und UpVektor. Darum berechnen wir das Kreuzprodukt der 
-	 * beiden Vektoren
+	/* The axis around which the viewpoint should be rotated horizontally.
+	 * This is perpendicular to the view and up vectors, so we calculate
+	 * the cross product of both vectors.
 	 */
 	Vector3 vAxis = crossProduct((m_vView - m_vPosition), m_vUp);
 
-	// Bringe den resultierenden auf Einheitslänge ( 1 )
+	// Normalize the resulting vector to unit length (1)
 	vAxis = normalize(vAxis);
 
 	rotateView(angleZ, vAxis.x, vAxis.y, vAxis.z);

@@ -22,8 +22,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "../Engine/BoundingBox_2D.h"
 
 /*
- * Diese Klasse beschreibt ein Objekt auf dem Spielfeld.
- * Ein Objekt kann ein Spieler oder eine Bombe sein
+ * This class describes an object on the game field.
+ * An object can be a player or a bomb.
  *
  */
 
@@ -34,12 +34,12 @@ protected:
 	//what kind of object is this ?
 	int m_iType;
 
-	// Die Position des Objekts auf dem Spielfeld in Blöcken
+	// The position of the object on the game field in blocks
 	int m_xBlock;
 	int m_zBlock;
 
-	Vector3 m_vPos; // Die Position des Objektmittelpunkts auf dem Spielfeld in World Koordinaten
-	float m_fSize; // Die Seitenlänge des Objekts
+	Vector3 m_vPos; // The position of the object's center on the game field in world coordinates
+	float m_fSize; // The side length of the object
 
 	BoundingBox_2D *m_pBBox;
 
@@ -48,10 +48,10 @@ protected:
 	Wobbler *m_pWobbler;
 
 public:
-	// Dem konstruktor werden folgende Werte übergeben:
-	//      xBlock  -   die x Position des Objekts in Blockkoordinaten
-	//      zBlock  -   die z Position des Objekts in Blockkoordinaten
-	//      size    _   die Länge der Bounding Box des Objekts  ( Default = 1 )
+	// The following values are passed to the constructor:
+	//      xBlock  -   the x position of the object in block coordinates
+	//      zBlock  -   the z position of the object in block coordinates
+	//      size    -   the length of the object's bounding box (default = 1)
 
 	Object(int xBlock, int zBlock, float size = 1.0f);
 	virtual ~Object();
@@ -68,7 +68,7 @@ public:
 	Vector3 getPosition();
 	BoundingBox_2D *getBoundingBox();
 
-	// überprüft, ob dieses Objekt mit einem anderen kollidiert
+	// Checks whether this object collides with another
 	bool doesCollideWith(Object *pObject);
 
 	void setWobble(bool bWobble);

@@ -35,45 +35,45 @@ class TextureManager;
 class BoundingBox_2D;
 
 class Field {
-	/*IDEE:
-	Oberblöcke, die von dieser Klasse erben.
-	Sie erhalten dann spezifische Routinen für Ereignisse, wie Z.b
-	Placebomb, onenter, etc...*/
+	/*IDEA:
+	Subclasses that inherit from this class.
+	They receive specific routines for events such as
+	placeBomb, onEnter, etc...*/
 
 public:
 	enum state { NORMAL, BURNING, FALLING };
 
 protected:
-	char m_iType; // Die Typ des Blocks ( Mauer, Feld )
+	char m_iType; // The type of the block (wall, field)
 	int m_iTexture; // index of the fields main texture
 	bool m_bColor; // the color of the field (true = color 1; false = color 2)
 
-	bool m_bCrate; // Steht auf dem Block eine Kiste ?
-	bool m_bBomb; // Steht auf dem Feld eine Bombe ?
-	bool m_bFree; // m_bCrate + Typ
+	bool m_bCrate; // Is there a crate on the block?
+	bool m_bBomb; // Is there a bomb on the field?
+	bool m_bFree; // m_bCrate + type
 	bool m_bItem; // does this field has an item
 
-	Timer m_EndOfExplosion; // Ende der Expolsion auf dem Feld
+	Timer m_EndOfExplosion; // End of the explosion on the field
 
-	// Pointer zu einer eventuellem Bombe, die auf dem Feld steht
+	// Pointer to a possible bomb on the field
 	Bomb *m_pBomb;
-	// Pointer zu einem eventuellen Crate, das auf dem Feld steht
+	// Pointer to a possible crate on the field
 	Crate *m_pCrate;
-	// Pointer zu einem eventuellen Item, das auf dem Feld steht
+	// Pointer to a possible item on the field
 	Item *m_pItem;
 
 	Map *m_pMap;
-	// Die Postion des Blocks im Block Gitter
+	// The position of the block in the block grid
 	int m_iXGrid, m_iZGrid;
 
 	Explosion *m_pExplosion;
 	/*CParticleSystem * m_pItemParticleSystem;
 	CParticleSystem * m_pCrateParticleSystem;*/
 
-	// Die x/y Position des Minimus / Maximus des Blocks in Worldspace Koordinaten
+	// The x/y position of the min/max of the block in world space coordinates
 	Vector3 m_vMin;
 	Vector3 m_vMax;
-	// Die Mitte des Blocks im Worldspace
+	// The center of the block in world space
 	Vector3 m_vPos;
 
 	BoundingBox_2D *m_pBBox;
@@ -85,9 +85,9 @@ protected:
 
 	state m_iState;
 
-	// Überprüft, ob die auf dem Feld vorhandene Bombe explodiert
+	// Checks whether the bomb on the field has exploded
 	void checkBomb();
-	// wird rekursiv aufgerufen, um andere Felder zum explodieren zu bringen
+	// Called recursively to make other fields explode
 	void explodeField(int iSteps, Vector3 vDir, int x, int z);
 	void generateItem();
 
@@ -98,9 +98,9 @@ public:
 
 	virtual ~Field();
 
-	// platziert eine Bombe auf den Block
-	// returniert true, falls eine Bombe platziert werden konnte (es befand sich noch keine Bombe auf dem entsprechenden Feld)
-	// Hole- und Void Felder returnieren immer true, da man bel. viele Bomben auf ihnen platzieren kann
+	// Places a bomb on the block
+	// Returns true if a bomb could be placed (there was no bomb on the field yet)
+	// Hole and Void fields always return true, since any number of bombs can be placed on them
 	virtual bool placeBomb(Bomb *bomb)
 	{
 		return true;
@@ -144,12 +144,12 @@ public:
 		return m_bColor;
 	};
 
-	// ist das Feld begehbar ?
+	// Is the field walkable?
 	bool isFree();
 	bool isExploding();
 	//void setExploding(bool value){ m_bExploding = value;};
 
-	// returnieren die x/z Koordinate des kleinsten Punktes der BoundingBox
+	// Return the x/z coordinate of the smallest point of the bounding box
 	float getMinX();
 	float getMinZ();
 	float getMaxX();

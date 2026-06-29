@@ -73,16 +73,16 @@ void MapManager::readMap(StMapEntry &mapEntry)
 	in.getline(mapEntry.author, 100, '\n');
 	in >> mapEntry.playerCount;
 
-	// Als erstes werden aller Felder auf void eingesetzt
+	// First, all fields are set to void
 	for (int i = 0; i < 15; i++)
 		for (int j = 0; j < 19; j++)
 			mapEntry.cArray[i][j] = '-';
 
-	// vernichte überflüssige Zeile
+	// discard the extra line
 	char panties[18];
 	in.getline(panties, 18, '\n');
 
-	//Lies das Array zeilenweise aus der Datei
+	//Read the array line by line from the file
 	for (int i = 1; i < 14; i++) {
 		char line[18];
 		in.getline(line, 18, '\n');
@@ -101,7 +101,7 @@ void MapManager::readMaps()
 
 	while ((entry = readdir(pDir)) != NULL) {
 		if (strstr(entry->d_name, ".map") !=
-		    NULL) //Filter alle nicht .map Dateien raus
+		    NULL) //Filter out all non-.map files
 		{
 			StMapEntry mapEntry;
 

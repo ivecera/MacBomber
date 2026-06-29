@@ -34,7 +34,7 @@ Vector3 Shaker::doShake(Vector3 &vec1, Vector3 &vec2)
 
 	Vector3 vDelta = vec2 - vec1;
 
-	// Zufälliger Wert zwischen 0 und 1
+	// Random value between 0 and 1
 	float t = (rand() % 100) * 0.01;
 	Vector3 output = vec1 + (vDelta * t);
 	return output;

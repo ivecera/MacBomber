@@ -31,9 +31,9 @@ protected:
 		bool bDoesFall;
 	};
 
-	//Liste, die alle fallenden Bomben enthält
+	//List containing all falling bombs
 	list<SBombContainer> m_lBombList;
-	// Returniert true wenn die Bombe fallen darf (Mittellinie überschrittenn)
+	// Returns true when the bomb is allowed to fall (center line crossed)
 	bool startFall(Object_Moving *pObject);
 	bool stopFall(Object *pObject);
 

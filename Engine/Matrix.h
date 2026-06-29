@@ -22,17 +22,17 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 class Matrix {
 public:
-	// Die obere Hälfter der Matrix beschreibt die Rotation
+	// The upper half of the matrix describes the rotation
 	float m11, m12, m13;
 	float m21, m22, m23;
 	float m31, m32, m33;
 
-	// Die Translations Vektoren
+	// The translation vectors
 	float tx, ty, tz;
 
 	Matrix();
 
-	// Setzt eine Rotationsmatrix um die ( normalisierte ) Achse "axis" und den Winkel "theta"
+	// Sets a rotation matrix around the (normalized) axis "axis" and angle "theta"
 	void setupRotation(Vector3 axis, float theta);
 };
 
