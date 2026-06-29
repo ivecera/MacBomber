@@ -42,9 +42,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "Engine/Clock.h"
 
 #include "Engine/ortho.h"
-#ifdef __APPLE__
-#include <CoreFoundation/CoreFoundation.h>
-#endif
 #include <time.h>
 
 #include "Defines.h"
@@ -77,15 +74,10 @@ string Application::m_strPrefPath = string();
 int Application::screenWidth = 0;
 int Application::screenHeight = 0;
 
-#ifdef __APPLE__
-io_connect_t root_port;
-#endif
-
 Application::Application()
 {
 	m_pApplication = this;
 	initPaths();
-	registerSleepCallBack();
 }
 
 Application::~Application()
@@ -132,82 +124,6 @@ void Application::initPaths()
 		m_strPrefPath = m_strResourcePath;
 	}
 }
-
-void Application::registerSleepCallBack()
-{
-#ifdef __APPLE__
-	IONotificationPortRef
-		notifyPortRef; // notification port allocated by IORegisterForSystemPower
-	io_object_t notifierObject; // notifier object, used to deregister later
-	void *refCon = NULL; // this parameter is passed to the callback
-
-	// register to receive system sleep notifications
-	root_port = IORegisterForSystemPower(refCon, &notifyPortRef,
-					     Application::sleepCallBack,
-					     &notifierObject);
-	if (root_port == NULL) {
-		SDL_Log("IORegisterForSystemPower failed");
-	}
-
-	// add the notification port to the application runloop
-	CFRunLoopAddSource(CFRunLoopGetCurrent(),
-			   IONotificationPortGetRunLoopSource(notifyPortRef),
-			   kCFRunLoopCommonModes);
-
-	/*
-       Start the run loop to receive sleep notifications.  You don't need to
-       call this if you already have a Carbon or Cocoa EventLoop running.
-    */
-	//   CFRunLoopRun();
-#endif
-}
-
-#ifdef __APPLE__
-void Application::sleepCallBack(void *refCon, io_service_t service,
-				natural_t messageType, void *messageArgument)
-{
-	switch (messageType) {
-	case kIOMessageCanSystemSleep:
-		/*
-               Idle sleep is about to kick in.
-               Applications have a chance to prevent sleep by calling IOCancelPowerChange.
-               Most applications should not prevent idle sleep.
-
-               Power Management waits up to 30 seconds for you to either allow or deny idle sleep.
-               If you don't acknowledge this power change by calling either IOAllowPowerChange
-               or IOCancelPowerChange, the system will wait 30 seconds then go to sleep.
-            */
-
-		// we will allow idle sleep
-		IOAllowPowerChange(root_port, (long)messageArgument);
-		break;
-
-	case kIOMessageSystemWillSleep:
-		/* The system WILL go to sleep. If you do not call IOAllowPowerChange or
-                IOCancelPowerChange to acknowledge this message, sleep will be
-               delayed by 30 seconds.
-
-               NOTE: If you call IOCancelPowerChange to deny sleep it returns kIOReturnSuccess,
-               however the system WILL still go to sleep.
-            */
-
-		// if we are not paused -> pause
-		m_pApplication->startPause();
-		// we cannot deny forced sleep
-		IOAllowPowerChange(root_port, (long)messageArgument);
-		break;
-
-	case kIOMessageSystemWillPowerOn:
-		m_pApplication->m_bSuspendEvent = true;
-		// Delay seems to be necessary for SDL_GetTicks to work properly (?)
-		SDL_Delay(1000);
-		/* The system WILL wake up*/
-		break;
-	default:
-		break;
-	}
-}
-#endif
 
 void Application::init()
 {
@@ -300,16 +216,29 @@ void Application::startNewGame()
 
 SDL_AppResult Application::handleEvent(SDL_Event *event)
 {
-	if (event->type == SDL_EVENT_QUIT)
+	switch (event->type) {
+	case SDL_EVENT_QUIT:
 		return SDL_APP_SUCCESS;
 
-	// only dispatch input-relevant events to controllers
-	if (event->type == SDL_EVENT_KEY_DOWN ||
-	    event->type == SDL_EVENT_KEY_UP ||
-	    event->type == SDL_EVENT_JOYSTICK_AXIS_MOTION ||
-	    event->type == SDL_EVENT_JOYSTICK_BUTTON_DOWN ||
-	    event->type == SDL_EVENT_JOYSTICK_BUTTON_UP)
+	case SDL_EVENT_DID_ENTER_BACKGROUND:
+		startPause();
+		break;
+
+	case SDL_EVENT_DID_ENTER_FOREGROUND:
+		m_bSuspendEvent = true;
+		break;
+
+	case SDL_EVENT_KEY_DOWN:
+	case SDL_EVENT_KEY_UP:
+	case SDL_EVENT_JOYSTICK_AXIS_MOTION:
+	case SDL_EVENT_JOYSTICK_BUTTON_DOWN:
+	case SDL_EVENT_JOYSTICK_BUTTON_UP:
 		m_pInputManager->dispatchEvent(*event);
+		break;
+
+	default:
+		break;
+	}
 
 	if (event->type == SDL_EVENT_KEY_DOWN) {
 		switch (event->key.key) {

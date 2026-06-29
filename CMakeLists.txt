@@ -150,10 +150,3 @@ target_link_libraries(macbomber PRIVATE
     ${LIB3DS_LIBRARY}
 )
 
-if(APPLE)
-    target_link_libraries(macbomber PRIVATE
-        "-framework CoreFoundation"
-        "-framework IOKit"
-        "-framework Cocoa"
-    )
-endif()

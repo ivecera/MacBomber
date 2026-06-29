@@ -23,14 +23,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 struct MIX_Mixer;
 
-#ifdef __APPLE__
-#include <mach/mach_port.h>
-#include <mach/mach_interface.h>
-#include <mach/mach_init.h>
-#include <IOKit/pwr_mgt/IOPMLib.h>
-#include <IOKit/IOMessage.h>
-#endif
-
 using namespace std;
 
 class Clock;
@@ -62,12 +54,6 @@ private:
 
 	// determines resource and preferences paths
 	void initPaths();
-	//registers the callback "sleepCallback"  to receive system sleep notifications
-	void registerSleepCallBack();
-#ifdef __APPLE__
-	static void sleepCallBack(void *refCon, io_service_t service,
-				  natural_t messageType, void *messageArgument);
-#endif
 
 public:
 	/* The following Vars are Pointers to Game Classes. By making them static, we can easily access them
