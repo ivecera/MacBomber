@@ -15,8 +15,6 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-#include <dirent.h>
-
 #include "../Application.h"
 #include "../Config.h"
 #include "MapManager.h"
@@ -110,40 +108,33 @@ void MapManager::readMap(StMapEntry &mapEntry)
 
 void MapManager::readMaps()
 {
-	DIR *pDir = opendir(m_cDirectory);
-	struct dirent *entry;
+	int count = 0;
+	char **files = SDL_GlobDirectory(m_cDirectory, "*.map", 0, &count);
+	if (!files)
+		return;
 
-	while ((entry = readdir(pDir)) != NULL) {
-		if (SDL_strstr(entry->d_name, ".map") !=
-		    NULL) //Filter out all non-.map files
-		{
-			StMapEntry mapEntry;
+	m_vMapEntries.reserve(count);
 
-			//			mapEntry.name = entry->d_name;
-			SDL_strlcpy(mapEntry.name, entry->d_name,
-				    sizeof(mapEntry.name));
-			m_vMapEntries.push_back(mapEntry);
-		}
-	}
+	for (int i = 0; i < count; i++) {
+		StMapEntry mapEntry;
+		SDL_strlcpy(mapEntry.name, files[i], sizeof(mapEntry.name));
+		readMap(mapEntry);
 
-	vector<StMapEntry>::iterator it;
-
-	for (it = m_vMapEntries.begin(); it != m_vMapEntries.end(); it++) {
-		readMap((*it));
 		//Edit Map Name, for e.g: "Big_Standard.map"  --> "Big Standard"
 
-		// 1. Replace underscore by Space FIXME: Only replaces ONE _ !!!
-		char *strTmp = SDL_strchr((*it).name, '_');
-		if (strTmp != NULL)
+		// 1. Replace underscores by spaces
+		char *strTmp;
+		while ((strTmp = SDL_strchr(mapEntry.name, '_')) != NULL)
 			*strTmp = ' ';
 
 		// 2. cut .map extension
-		char *dot = SDL_strchr((*it).name, '.');
+		char *dot = SDL_strchr(mapEntry.name, '.');
 		if (dot != NULL)
 			*dot = '\0';
-	}
 
-	closedir(pDir);
+		m_vMapEntries.push_back(mapEntry);
+	}
+	SDL_free(files);
 }
 
 void MapManager::showMaps()
