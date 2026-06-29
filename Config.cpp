@@ -237,7 +237,7 @@ void Config::setMapStatus(int nr, bool bValue)
 
 void Config::saveConfig()
 {
-	string fileName = Application::m_strResourcePath + "/Config.cfg";
+	string fileName = Application::expandResourcePath("/Config.cfg");
 	//create an Output File stream
 	ofstream configfile(fileName.c_str());
 	if (!configfile) {
@@ -303,7 +303,7 @@ void Config::saveConfig()
 
 void Config::loadConfig()
 {
-	string fileName = Application::m_strResourcePath + "/Config.cfg";
+	string fileName = Application::expandResourcePath("/Config.cfg");
 	//create an Input File stream
 	ifstream configfile(fileName.c_str());
 	if (!configfile) {

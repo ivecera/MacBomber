@@ -32,8 +32,7 @@ MapManager::MapManager()
 {
 	//	m_cDirectory = "../maps/";
 	//create a path to the Maps Files within the Bundle
-	string tmp = Application::m_strResourcePath;
-	tmp = tmp + "/Maps/";
+	string tmp = Application::expandResourcePath("/Maps/");
 	m_cDirectory = tmp.c_str();
 	readMaps();
 	//	currentMap = m_vMapEntries.begin();

@@ -44,15 +44,8 @@ Mesh::Mesh(const char *filename)
 	m_pVertexNormals = NULL;
 	m_pTexCoords = NULL;
 
-	load3dsFile(expand(filename));
+	load3dsFile(Application::expandResourcePath(filename).c_str());
 	createVBO();
-}
-
-const char *Mesh::expand(const char *path)
-{
-	string tmp = Application::m_strResourcePath;
-	tmp = tmp + path;
-	return tmp.c_str();
 }
 
 void Mesh::load3dsFile(const char *fileName)

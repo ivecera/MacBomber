@@ -147,48 +147,40 @@ MeshManager::~MeshManager()
 	delete[] m_pTriangleMesh;
 }
 
-const char *MeshManager::expand(char *path)
-{
-	string tmp = Application::m_strResourcePath;
-	tmp = tmp + path;
-
-	return tmp.c_str();
-}
-
 /*
 void MeshManager::loadMeshes()
 {
 	Lib3dsFile * pFile;
 
-	//pFile = lib3ds_file_load(expand("/MeshObjects/mac3.3ds"));
-	pFile = lib3ds_file_load(expand("/Meshes/MacClassic.3ds"));
+	//pFile = lib3ds_file_load(Application::expandResourcePath("/MeshObjects/mac3.3ds").c_str());
+	pFile = lib3ds_file_load(Application::expandResourcePath("/Meshes/MacClassic.3ds").c_str());
 	m_pTriangleMesh[PLAYER_OBJECT].load3dsFile(pFile);
 	m_pTriangleMesh[PLAYER_OBJECT].createVBO();
 	lib3ds_file_free(pFile);
 	
-	pFile = lib3ds_file_load(expand("/Meshes/item.3ds")); 
+	pFile = lib3ds_file_load(Application::expandResourcePath("/Meshes/item.3ds").c_str()); 
 	m_pTriangleMesh[ITEM_OBJECT].load3dsFile(pFile);
 	m_pTriangleMesh[ITEM_OBJECT].createVBO();
 	lib3ds_file_free(pFile);
 	
 
 	
-	pFile = lib3ds_file_load(expand("/Meshes/block.3ds"));
+	pFile = lib3ds_file_load(Application::expandResourcePath("/Meshes/block.3ds").c_str());
 	m_pTriangleMesh[BLOCK_OBJECT].load3dsFile(pFile);
 	m_pTriangleMesh[BLOCK_OBJECT].createVBO();
 	lib3ds_file_free(pFile);
 	
-	pFile = lib3ds_file_load(expand("/Meshes/crate.3ds"));
+	pFile = lib3ds_file_load(Application::expandResourcePath("/Meshes/crate.3ds").c_str());
 	m_pTriangleMesh[CRATE_OBJECT].load3dsFile(pFile);
 	m_pTriangleMesh[CRATE_OBJECT].createVBO();	
 	lib3ds_file_free(pFile);
 	
-	pFile = lib3ds_file_load(expand("/Meshes/bomb.3ds")); 
+	pFile = lib3ds_file_load(Application::expandResourcePath("/Meshes/bomb.3ds").c_str()); 
 	m_pTriangleMesh[BOMB_OBJECT].load3dsFile(pFile);
 	m_pTriangleMesh[BOMB_OBJECT].createVBO();	
 	lib3ds_file_free(pFile);
 	
-	pFile = lib3ds_file_load(expand("/Meshes/cup.3ds")); 
+	pFile = lib3ds_file_load(Application::expandResourcePath("/Meshes/cup.3ds").c_str()); 
 	m_pTriangleMesh[CUP_OBJECT].load3dsFile(pFile);
 	m_pTriangleMesh[CUP_OBJECT].createVBO();	
 	lib3ds_file_free(pFile);

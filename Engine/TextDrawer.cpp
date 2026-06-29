@@ -36,8 +36,8 @@ TextDrawer::TextDrawer()
 	m_iWidth = Application::screenWidth;
 	m_iHeight = Application::screenHeight;
 
-	string fontfile = Application::m_strResourcePath;
-	fontfile = fontfile + "/Fonts/annifont.ttf";
+	string fontfile =
+		Application::expandResourcePath("/Fonts/annifont.ttf");
 
 	// fix for a nasty 10.4.7 ATI X1600 glTexSubImage2D() bug *deprecated*
 	std::string renderer = (const char *)glGetString(GL_RENDERER);

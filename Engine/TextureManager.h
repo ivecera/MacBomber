@@ -24,7 +24,6 @@ class TextureManager {
 private:
 	//contains all Textures
 	GLuint m_TextureArray[50];
-	const char *expand(const char *path);
 
 public:
 	TextureManager();

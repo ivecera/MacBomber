@@ -88,6 +88,10 @@ public:
 	static Application *m_pApplication;
 
 	static string m_strResourcePath;
+	static string expandResourcePath(const char *relativePath)
+	{
+		return m_strResourcePath + relativePath;
+	}
 
 	bool m_bSuspendEvent;
 

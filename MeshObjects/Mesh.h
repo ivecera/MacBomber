@@ -54,7 +54,6 @@ protected:
 	GLuint m_nVBONormals;
 	GLuint m_nVBOTexcoords;
 
-	const char *expand(const char *path);
 	void load3dsFile(const char *fileName);
 
 public:

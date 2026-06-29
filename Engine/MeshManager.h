@@ -40,8 +40,6 @@ private:
 	// These Arrays contain Material Information for each Mesh
 	stMaterial m_stMaterials[7];
 
-	const char *expand(char *path);
-
 public:
 	// These are pointers to our Meshobjects (public for now)
 	// to draw an object we call m_p<*>Mesh->drawVBO();

@@ -24,15 +24,22 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 SoundManager::SoundManager()
 {
-	m_Samples[EXPlOSION_SOUND] = Mix_LoadWAV(expand("/Sounds/explode.wav"));
-	m_Samples[PUTBOMB_SOUND] = Mix_LoadWAV(expand("/Sounds/putbomb.wav"));
-	m_Samples[CRUNCH_SOUND] = Mix_LoadWAV(expand("/Sounds/crunch.wav"));
+	m_Samples[EXPlOSION_SOUND] = Mix_LoadWAV(
+		Application::expandResourcePath("/Sounds/explode.wav").c_str());
+	m_Samples[PUTBOMB_SOUND] = Mix_LoadWAV(
+		Application::expandResourcePath("/Sounds/putbomb.wav").c_str());
+	m_Samples[CRUNCH_SOUND] = Mix_LoadWAV(
+		Application::expandResourcePath("/Sounds/crunch.wav").c_str());
 
-	m_Music[MENU_MUSIC] =
-		Mix_LoadMUS(expand("/Sounds/macbomber_theme.mp3"));
-	m_Music[SCORESCREEN_MUSIC] =
-		Mix_LoadMUS(expand("/Sounds/macbomber_fanfare.mp3"));
-	m_Music[GAME_MUSIC] = Mix_LoadMUS(expand("/Sounds/macbomber_game.mp3"));
+	m_Music[MENU_MUSIC] = Mix_LoadMUS(
+		Application::expandResourcePath("/Sounds/macbomber_theme.mp3")
+			.c_str());
+	m_Music[SCORESCREEN_MUSIC] = Mix_LoadMUS(
+		Application::expandResourcePath("/Sounds/macbomber_fanfare.mp3")
+			.c_str());
+	m_Music[GAME_MUSIC] = Mix_LoadMUS(
+		Application::expandResourcePath("/Sounds/macbomber_game.mp3")
+			.c_str());
 
 	m_bMusicPlaying = false;
 	m_bLoopMusic = false;
@@ -50,14 +57,6 @@ SoundManager::~SoundManager()
 	Mix_FreeMusic(m_Music[MENU_MUSIC]);
 	Mix_FreeMusic(m_Music[SCORESCREEN_MUSIC]);
 	Mix_FreeMusic(m_Music[GAME_MUSIC]);
-}
-
-const char *SoundManager::expand(const char *path)
-{
-	string tmp = Application::m_strResourcePath;
-	tmp = tmp + path;
-
-	return tmp.c_str();
 }
 
 void SoundManager::musicDone()

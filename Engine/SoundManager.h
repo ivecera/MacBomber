@@ -37,7 +37,6 @@ private:
 	bool m_bMusicWaiting;
 
 	// Expands a given path with root "Contents/Resource" to absolute System Path
-	const char *expand(const char *path);
 
 	/* 
 	 * void musicDone() is a callback function needed for SDLs Mix_HookMusicFinished call.
