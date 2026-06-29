@@ -29,7 +29,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "checkScreenResolution.h"
 #include "../Config.h"
 #include "../Application.h"
-#include "Workaround.h"
 
 using namespace std;
 

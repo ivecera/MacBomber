@@ -18,7 +18,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include <iostream>
 
 #include <SDL_opengl.h>
-#include "../Engine/Workaround.h"
 
 #include "../Application.h"
 #include "../Defines.h"

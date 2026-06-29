@@ -21,7 +21,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "../Engine/TextureManager.h"
 
 #include <SDL_opengl.h>
-#include "../Engine/Workaround.h"
 
 ItemMesh::ItemMesh()
 	: Mesh("/Meshes/item.3ds")
