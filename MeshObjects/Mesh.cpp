@@ -15,24 +15,23 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-#include <iostream.h>
+#include <iostream>
 
-#include <GLUT/glut.h>
-#include <OpenGL/glext.h>
-#include "Workaround.h"
+#include <SDL_opengl.h>
+#include "../Engine/Workaround.h"
 
 #include "../Application.h"
 #include "../Defines.h"
 #include "../Engine/TextureManager.h"
 
 #include "Mesh.h"
-#include "3DMath.h"
+#include "../Engine/3DMath.h"
 #include "lib3ds/chunk.h"
 #include "lib3ds/mesh.h"
 #include "lib3ds/vector.h"
 #include "lib3ds/material.h"
 
-Mesh::Mesh(char *filename)
+Mesh::Mesh(const char *filename)
 {
 	m_bUseVBO = true;
 	m_nVertices = 0;
@@ -90,7 +89,7 @@ void Mesh::load3dsFile(const char *fileName)
 	m_pVertexNormals = new Vector3[m_nVertices];
 	m_pTexCoords = new float[m_nTexels * 2];
 
-	// -----------------	fŸlle Arrays
+	// -----------------	fï¿½lle Arrays
 	// Vertices
 	Lib3dsVector pos;
 
@@ -176,25 +175,25 @@ void Mesh::createVBO()
 	glBindBufferARB(GL_ARRAY_BUFFER_ARB, m_nVBOVertices);
 	glBufferDataARB(GL_ARRAY_BUFFER_ARB, m_nVertices * sizeof(Vector3),
 			m_pVertices, GL_STATIC_DRAW_ARB);
-	glBindBufferARB(GL_ARRAY_BUFFER_ARB, NULL);
+	glBindBufferARB(GL_ARRAY_BUFFER_ARB, 0);
 
 	glGenBuffersARB(1, &m_nVBONormals);
 	glBindBufferARB(GL_ARRAY_BUFFER_ARB, m_nVBONormals);
 	glBufferDataARB(GL_ARRAY_BUFFER_ARB, m_nVertices * sizeof(Vector3),
 			m_pVertexNormals, GL_STATIC_DRAW_ARB);
-	glBindBufferARB(GL_ARRAY_BUFFER_ARB, NULL);
+	glBindBufferARB(GL_ARRAY_BUFFER_ARB, 0);
 
 	glGenBuffersARB(1, &m_nVBOTexcoords);
 	glBindBufferARB(GL_ARRAY_BUFFER_ARB, m_nVBOTexcoords);
 	glBufferDataARB(GL_ARRAY_BUFFER_ARB, m_nVertices * 2 * sizeof(GLfloat),
 			m_pTexCoords, GL_STATIC_DRAW_ARB);
-	glBindBufferARB(GL_ARRAY_BUFFER_ARB, NULL);
+	glBindBufferARB(GL_ARRAY_BUFFER_ARB, 0);
 
 	glGenBuffersARB(1, &m_nVBOIndices);
 	glBindBufferARB(GL_ELEMENT_ARRAY_BUFFER_ARB, m_nVBOIndices);
 	glBufferDataARB(GL_ELEMENT_ARRAY_BUFFER_ARB, m_nIndices * sizeof(int),
 			m_pVertexIndices, GL_STATIC_DRAW_ARB);
-	glBindBufferARB(GL_ELEMENT_ARRAY_BUFFER_ARB, NULL);
+	glBindBufferARB(GL_ELEMENT_ARRAY_BUFFER_ARB, 0);
 
 	glBindBufferARB(GL_ELEMENT_ARRAY_BUFFER_ARB, 0);
 	glBindBufferARB(GL_ARRAY_BUFFER_ARB, 0);

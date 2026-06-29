@@ -18,13 +18,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #ifndef TEXTUREMANAGER_H
 #define TEXTUREMANAGER_H
 
-#include <GLUT/glut.h>
+#include <SDL_opengl.h>
 
 class TextureManager {
 private:
 	//contains all Textures
 	GLuint m_TextureArray[50];
-	const char *expand(char *path);
+	const char *expand(const char *path);
 
 public:
 	TextureManager();
@@ -34,4 +34,4 @@ public:
 	void bindTexture(int index);
 };
 
-#endif TEXTUREMANAGER_H
+#endif

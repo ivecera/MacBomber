@@ -18,13 +18,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #ifndef BOMB_H
 #define BOMB_H
 
-#include <GLUT/glut.h>
-#include <iostream.h>
-#include "SDL/SDL.h"
+#include <SDL_opengl.h>
+#include <iostream>
+#include <SDL.h>
 
 #include "../Defines.h"
 #include "Object_Moving.h"
-#include "Timer.h"
+#include "../Engine/Timer.h"
 
 class Bomb : public Object_Moving {
 protected:
@@ -88,4 +88,4 @@ public:
 	void draw();
 };
 
-#endif;
+#endif

@@ -16,13 +16,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
 #include "Item.h"
-#include <GLUT/glut.h>
+#include <SDL_opengl.h>
 #include "../Engine/MeshManager.h"
 #include "../Engine/Wobbler.h"
 
 #include "../MeshObjects/ItemMesh.h"
 
-#include "Application.h"
+#include "../Application.h"
 
 Item::Item(int xBlock, int zBlock)
 	: Object_Moving(xBlock, zBlock, 1.0f)

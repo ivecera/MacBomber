@@ -15,10 +15,10 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-#include "Application.h"
+#include "../Application.h"
 #include "ValueItem.h"
-#include <GLUT/glut.h>
-#include "TextDrawer.h"
+#include <SDL_opengl.h>
+#include "../Engine/TextDrawer.h"
 #include "../Engine/intToString.h"
 #include "../Engine/ortho.h"
 
@@ -26,7 +26,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include <sstream>
 #include <string>
 
-ValueItem::ValueItem(char *caption, int min, int max, int stepping)
+ValueItem::ValueItem(const char *caption, int min, int max, int stepping)
 	: MenuItem(caption)
 {
 	m_iMin = min;

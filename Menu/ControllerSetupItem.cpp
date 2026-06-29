@@ -1,6 +1,6 @@
 
 #include "ControllerSetupItem.h"
-#include "Defines.h"
+#include "../Defines.h"
 #include "ToggleItem.h"
 #include "../Application.h"
 #include "../Engine/InputManager.h"
@@ -121,7 +121,7 @@ void ControllerSetupItem::draw()
 
 	glPopMatrix();
 	//	Application::m_pTextDrawer->setSize(24);
-	glBindTexture(GL_TEXTURE_2D, NULL);
+	glBindTexture(GL_TEXTURE_2D, 0);
 	Application::m_pTextDrawer->drawText(0, 0, (*m_itIterator).name);
 	glPopMatrix();
 

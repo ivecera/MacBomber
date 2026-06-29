@@ -19,7 +19,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "../Engine/TriangleMesh.h"
 #include "../Engine/MeshManager.h"
 #include "../MeshObjects/BlockMesh.h"
-#include "Application.h"
+#include "../Application.h"
 #include "../Defines.h"
 
 Field_Block::Field_Block(int xGrid, int yGrid, Map *pMap)

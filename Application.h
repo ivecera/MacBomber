@@ -20,11 +20,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #include <string>
 
+#ifdef __APPLE__
 #include <mach/mach_port.h>
 #include <mach/mach_interface.h>
 #include <mach/mach_init.h>
 #include <IOKit/pwr_mgt/IOPMLib.h>
 #include <IOKit/IOMessage.h>
+#endif
 
 using namespace std;
 
@@ -56,11 +58,10 @@ private:
 	void determineBundlePath();
 	//registers the callback "sleepCallback"  to receive system sleep notifications
 	void registerSleepCallBack();
-	/*	callback function: gets called when Mac OS wants to sleep.
-		see http://developer.apple.com/qa/qa2004/qa1340.html
-	*/
+#ifdef __APPLE__
 	static void sleepCallBack(void *refCon, io_service_t service,
 				  natural_t messageType, void *messageArgument);
+#endif
 
 public:
 	/* The following Vars are Pointers to Game Classes. By making them static, we can easily access them

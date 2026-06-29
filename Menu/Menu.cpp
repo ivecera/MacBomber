@@ -15,7 +15,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-#include <GLUT/glut.h>
+#include <SDL_opengl.h>
 #include "../Application.h"
 #include "../Defines.h"
 #include "../Controller/Controller_Keyboard.h"
@@ -26,7 +26,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 Menu *Menu::pActiveMenu = NULL;
 
-Menu::Menu(char *Title, Menu *pMenu, char *helpText)
+Menu::Menu(const char *Title, Menu *pMenu, const char *helpText)
 {
 	m_fYValue = 0.8;
 	m_pParentMenu = pMenu;

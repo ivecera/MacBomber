@@ -18,7 +18,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #ifndef TriangleMesh_H
 #define TriangleMesh_H
 
-#include <GLUT/glut.h>
+#include <SDL_opengl.h>
 #include "lib3ds/file.h"
 
 class Vector3;
@@ -76,4 +76,4 @@ public:
 	void drawVBO();
 };
 
-#endif;
+#endif

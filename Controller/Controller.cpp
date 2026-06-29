@@ -16,7 +16,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
 #include "Controller.h"
-#include "Defines.h"
+#include "../Defines.h"
 
 Controller::Controller()
 {

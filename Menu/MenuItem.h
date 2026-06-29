@@ -18,7 +18,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #ifndef MENUITEM_H
 #define MENUITEM_H
 
-#include "Vector3.h"
+#include "../Engine/Vector3.h"
 
 class Menu;
 
@@ -75,4 +75,4 @@ public:
 	virtual void draw() {};
 };
 
-#endif MENUITEM_H
+#endif

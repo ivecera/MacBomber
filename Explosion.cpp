@@ -15,14 +15,13 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-#include <GLUT/glut.h>
-#include <OpenGL/glext.h>
+#include <SDL_opengl.h>
 
 #include "Explosion.h"
-#include "Vector3.h"
-#include "TextureManager.h"
-#include "Billboard.h"
-#include "Camera.h"
+#include "Engine/Vector3.h"
+#include "Engine/TextureManager.h"
+#include "Engine/Billboard.h"
+#include "Engine/Camera.h"
 #include "Application.h"
 #include "Defines.h"
 
@@ -96,7 +95,7 @@ void Explosion::draw()
 	//		glTranslatef(-0.2,0,-0.1);
 
 	glPopMatrix();
-	glBindTexture(GL_TEXTURE_2D, NULL);
+	glBindTexture(GL_TEXTURE_2D, 0);
 
 	glDisable(GL_BLEND);
 

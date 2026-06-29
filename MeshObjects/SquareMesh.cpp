@@ -20,11 +20,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "../Application.h"
 #include "../Engine/TextureManager.h"
 #include "../Defines.h"
-#include "../Engine/3dMath.h"
+#include "../Engine/3DMath.h"
 
-#include <GLUT/glut.h>
-#include <opengl/glext.h>
-#include "Workaround.h"
+#include <SDL_opengl.h>
+#include <SDL_opengl.h>
+#include "../Engine/Workaround.h"
 
 SquareMesh::SquareMesh()
 {
@@ -105,7 +105,7 @@ void SquareMesh::init()
 		glBindBufferARB(GL_ARRAY_BUFFER_ARB, m_nVBOTexcoords[i]);
 		glBufferDataARB(GL_ARRAY_BUFFER_ARB, 4 * 2 * sizeof(GLfloat),
 				m_fTexCoords[i], GL_STATIC_DRAW_ARB);
-		glBindBufferARB(GL_ARRAY_BUFFER_ARB, NULL);
+		glBindBufferARB(GL_ARRAY_BUFFER_ARB, 0);
 	}
 
 	GLfloat fTexCoords[12] = { -0.5, 0.0, 0.5,  0.5,  0.0, 0.5,
@@ -115,14 +115,14 @@ void SquareMesh::init()
 	glBindBufferARB(GL_ARRAY_BUFFER_ARB, m_nVBOVertices);
 	glBufferDataARB(GL_ARRAY_BUFFER_ARB, 4 * 3 * sizeof(GLfloat),
 			fTexCoords, GL_STATIC_DRAW_ARB);
-	glBindBufferARB(GL_ARRAY_BUFFER_ARB, NULL);
+	glBindBufferARB(GL_ARRAY_BUFFER_ARB, 0);
 
 	GLuint iIndices[4] = { 0, 1, 2, 3 };
 	glGenBuffersARB(1, &m_nVBOIndices);
 	glBindBufferARB(GL_ARRAY_BUFFER_ARB, m_nVBOIndices);
 	glBufferDataARB(GL_ARRAY_BUFFER_ARB, 4 * sizeof(GLuint), iIndices,
 			GL_STATIC_DRAW_ARB);
-	glBindBufferARB(GL_ARRAY_BUFFER_ARB, NULL);
+	glBindBufferARB(GL_ARRAY_BUFFER_ARB, 0);
 
 	GLfloat fNormals[12] = { 0.0, 1.0, 0.0, 0.0, 1.0, 0.0,
 				 0.0, 1.0, 0.0, 0.0, 1.0, 0.0 };
@@ -131,7 +131,7 @@ void SquareMesh::init()
 	glBindBufferARB(GL_ARRAY_BUFFER_ARB, m_nVBONormals);
 	glBufferDataARB(GL_ARRAY_BUFFER_ARB, 4 * 3 * sizeof(GLfloat), fNormals,
 			GL_STATIC_DRAW_ARB);
-	glBindBufferARB(GL_ARRAY_BUFFER_ARB, NULL);
+	glBindBufferARB(GL_ARRAY_BUFFER_ARB, 0);
 }
 
 void SquareMesh::setTexCoord(int type)

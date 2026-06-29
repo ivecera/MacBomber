@@ -17,7 +17,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #ifndef CONTROLLER_H
 #define CONTROLLER_H
 
-#include "SDL/SDL.h"
+#include <SDL.h>
 
 /*
  Die Controller Klassen werden zu Beginn des Programms initialisiert. Anschließend werden sie bei Konstruktion

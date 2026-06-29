@@ -15,13 +15,12 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-#include <GLUT/glut.h>
-#include <OpenGL/glext.h>
+#include <SDL_opengl.h>
 
-#include "Defines.h"
-#include "Application.h"
+#include "../Defines.h"
+#include "../Application.h"
 #include "ApplicationMenu.h"
-#include "Vector3.h"
+#include "../Engine/Vector3.h"
 #include "Menu.h"
 #include "PlayerSetupMenu.h"
 #include "LevelSelectionMenu.h"
@@ -30,8 +29,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "MenuSwitchItem.h"
 #include "ToggleItem.h"
 #include "ValueItem.h"
-#include "Config.h"
-#include "TextDrawer.h"
+#include "../Config.h"
+#include "../Engine/TextDrawer.h"
 #include "../Engine/ortho.h"
 #include "../Engine/Timer.h"
 #include "../Engine/Init.h"
@@ -520,7 +519,7 @@ void ApplicationMenu::draw()
 	glTexCoord2f(0, 1);
 	glVertex3f(0, Application::screenHeight, -100);
 	glEnd();
-	glBindTexture(GL_TEXTURE_2D, NULL);
+	glBindTexture(GL_TEXTURE_2D, 0);
 	glColor3f(1, 1, 1);
 
 	// draw Current Menu

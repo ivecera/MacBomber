@@ -15,7 +15,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-#include <iostream.h>
+#include <iostream>
 
 #include "loadTexture.h"
 #include "Workaround.h"
@@ -73,7 +73,7 @@ void TriangleMesh::load3dsFile(Lib3dsFile *pFile)
 	m_pVertexNormals = new Vector3[m_nVertices];
 	m_pTexCoords = new float[m_nTexels * 2];
 
-	// -----------------	fŸlle Arrays
+	// -----------------	fï¿½lle Arrays
 	// Vertices
 	Lib3dsVector pos;
 
@@ -170,26 +170,26 @@ void TriangleMesh::createVBO()
 	glBindBufferARB(GL_ARRAY_BUFFER_ARB, m_nVBOVertices);
 	glBufferDataARB(GL_ARRAY_BUFFER_ARB, m_nVertices * sizeof(Vector3),
 			m_pVertices, GL_STATIC_DRAW_ARB);
-	glBindBufferARB(GL_ARRAY_BUFFER_ARB, NULL);
+	glBindBufferARB(GL_ARRAY_BUFFER_ARB, 0);
 
 	glGenBuffersARB(1, &m_nVBONormals);
 	glBindBufferARB(GL_ARRAY_BUFFER_ARB, m_nVBONormals);
 	glBufferDataARB(GL_ARRAY_BUFFER_ARB, m_nVertices * sizeof(Vector3),
 			m_pVertexNormals, GL_STATIC_DRAW_ARB);
-	glBindBufferARB(GL_ARRAY_BUFFER_ARB, NULL);
+	glBindBufferARB(GL_ARRAY_BUFFER_ARB, 0);
 
 	glGenBuffersARB(1, &m_nVBOTexcoords);
 	glBindBufferARB(GL_ARRAY_BUFFER_ARB, m_nVBOTexcoords);
 	glBufferDataARB(GL_ARRAY_BUFFER_ARB, m_nVertices * 2 * sizeof(GLfloat),
 			m_pTexCoords, GL_STATIC_DRAW_ARB);
-	glBindBufferARB(GL_ARRAY_BUFFER_ARB, NULL);
+	glBindBufferARB(GL_ARRAY_BUFFER_ARB, 0);
 
 	glGenBuffersARB(1, &m_nVBOIndices);
 	glBindBufferARB(GL_ELEMENT_ARRAY_BUFFER_ARB, m_nVBOIndices);
 	glBufferDataARB(GL_ELEMENT_ARRAY_BUFFER_ARB,
 			m_nTriangles * 3 * sizeof(int), m_pVertexIndices,
 			GL_STATIC_DRAW_ARB);
-	glBindBufferARB(GL_ELEMENT_ARRAY_BUFFER_ARB, NULL);
+	glBindBufferARB(GL_ELEMENT_ARRAY_BUFFER_ARB, 0);
 
 	glBindBufferARB(GL_ELEMENT_ARRAY_BUFFER_ARB, 0);
 	glBindBufferARB(GL_ARRAY_BUFFER_ARB, 0);
@@ -221,8 +221,8 @@ void TriangleMesh::drawVBO()
 	glDisableClientState(GL_NORMAL_ARRAY);
 	glDisableClientState(GL_TEXTURE_COORD_ARRAY);
 
-	glBindBufferARB(GL_ELEMENT_ARRAY_BUFFER_ARB, NULL);
-	glBindBufferARB(GL_ARRAY_BUFFER_ARB, NULL);
+	glBindBufferARB(GL_ELEMENT_ARRAY_BUFFER_ARB, 0);
+	glBindBufferARB(GL_ARRAY_BUFFER_ARB, 0);
 
-	glBindTexture(GL_TEXTURE_2D, NULL);
+	glBindTexture(GL_TEXTURE_2D, 0);
 }

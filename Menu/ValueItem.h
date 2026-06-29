@@ -32,7 +32,7 @@ private:
 	//converts m_iValue integer to a string
 
 public:
-	ValueItem(char *caption, int min, int max, int stepping);
+	ValueItem(const char *caption, int min, int max, int stepping);
 
 	void enter() {};
 	void left();

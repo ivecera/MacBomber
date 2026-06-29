@@ -19,11 +19,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 for the freedom of thought which they never use - Kierkegaard 
  */
 #include "InputManager.h"
-#include "Defines.h"
+#include "../Defines.h"
 #include "../Application.h"
 #include "Camera.h"
-#include "Controller_Keyboard.h"
-#include "Controller_Joystick.h"
+#include "../Controller/Controller_Keyboard.h"
+#include "../Controller/Controller_Joystick.h"
 #include "../Config.h"
 #include "Init.h"
 

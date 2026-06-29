@@ -6,8 +6,7 @@
  *  Copyright 2007 __MyCompanyName__. All rights reserved.
  *
  */
-#include <GLUT/glut.h>
-#include <OpenGL/glext.h>
+#include <SDL_opengl.h>
 
 #include "../../Application.h"
 #include "../../Defines.h"

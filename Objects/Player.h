@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "Object_Moving.h"
 #include "Bomb.h"
 #include "../Defines.h"
-#include "Controller_Keyboard.h"
+#include "../Controller/Controller_Keyboard.h"
 
 class Item;
 class ItemManager;
@@ -42,9 +42,9 @@ class Player : public Object_Moving {
 private:
 	bool m_bKickBomb; // Kann der Spieler Bomben schieben ?
 	int m_iBombCount; // Die Anzahl der Bomben die der Spieler legen kann
-	int m_iBombStrength; // Die StŠ¤rke der Bomben, die der Spieler legt, in Feldern
+	int m_iBombStrength; // Die Stï¿½ï¿½rke der Bomben, die der Spieler legt, in Feldern
 	int m_iSpeed; // Die momentane Geschwindigkeitsstufe des Spielers
-	char *m_cName;
+	const char *m_cName;
 
 	/*
 	 * ALIVE		player is alive 
@@ -122,8 +122,8 @@ public:
 	{
 		return m_pItemManager;
 	};
-	void setName(char *name);
-	char *getName()
+	void setName(const char *name);
+	const char *getName()
 	{
 		return m_cName;
 	};
@@ -141,4 +141,4 @@ public:
 	void draw();
 };
 
-#endif;
+#endif

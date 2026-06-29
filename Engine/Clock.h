@@ -18,7 +18,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #ifndef CLOCK_H
 #define CLOCK_H
 
-#include "SDL/SDL.h"
+#include <SDL.h>
 
 class Clock {
 private:

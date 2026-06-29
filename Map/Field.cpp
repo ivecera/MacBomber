@@ -30,7 +30,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #include "../Explosion.h"
 #include "../Config.h"
-#include "Application.h"
+#include "../Application.h"
 #include "../Engine/MeshManager.h"
 
 #include "../Engine/ParticleSystem/ParticleManager.h"

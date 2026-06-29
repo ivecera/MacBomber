@@ -20,7 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #include "Vector3.h"
 #include "3DMath.h"
-#include "SDL/SDL.h"
+#include <SDL.h>
 
 /** Diese Klasse repäsentiert die virtuelle Kamera in der 3D Welt
   *

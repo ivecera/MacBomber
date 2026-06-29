@@ -19,7 +19,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #define ITEM_VIAGRA_H
 
 #include "Item.h"
-#include "Timer.h"
+#include "../Engine/Timer.h"
 
 class Item_Viagra : public Item {
 protected:

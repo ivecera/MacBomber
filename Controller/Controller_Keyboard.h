@@ -18,7 +18,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #ifndef CONTROLLER_KEYBOARD_H
 #define CONTROLLER_KEYBOARD_H
 
-#include "SDL/SDL.h"
+#include <SDL.h>
 #include "Controller.h"
 
 class Controller_Keyboard : public Controller {

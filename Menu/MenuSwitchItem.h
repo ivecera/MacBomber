@@ -28,7 +28,7 @@ private:
 	Menu *m_pLinkedMenu;
 
 public:
-	MenuSwitchItem(char *caption, Menu *linkedMenu);
+	MenuSwitchItem(const char *caption, Menu *linkedMenu);
 
 	void enter();
 

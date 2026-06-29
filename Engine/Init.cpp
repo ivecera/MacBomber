@@ -16,16 +16,19 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
 #include "Init.h"
-#include <iostream.h>
-#include <GLUT/glut.h>
-#include <Opengl/Opengl.h>
+#include <iostream>
+#include <SDL_opengl.h>
+#include <GL/glu.h>
+#ifdef __APPLE__
+#include <OpenGL/OpenGL.h>
+#endif
 #include <string>
-#include "SDL_mixer/SDL_mixer.h"
+#include <SDL_mixer.h>
 
 #include "intToString.h"
 #include "checkScreenResolution.h"
-#include "Config.h"
-#include "Application.h"
+#include "../Config.h"
+#include "../Application.h"
 #include "Workaround.h"
 
 using namespace std;
@@ -50,7 +53,7 @@ void initSDL()
 	}
 
 	// AUDIO 44100
-	// Hinweis: Dennis hat den song mit 48000 abtastrarte gesampelt...vielleicht wŠre weniger besser?
+	// Hinweis: Dennis hat den song mit 48000 abtastrarte gesampelt...vielleicht wÂŠre weniger besser?
 	if (Mix_OpenAudio(48000, MIX_DEFAULT_FORMAT, 2, audio_buffers) < 0) {
 		cout << "SDL: Failed opening Audio Device. Error:"
 		     << SDL_GetError() << endl;
@@ -151,9 +154,11 @@ void initSDL()
 // Initialisiert OpenGL
 int initGL()
 {
+#ifdef __APPLE__
 	//activate vsyncing
 	long VBL = 1;
 	CGLSetParameter(CGLGetCurrentContext(), kCGLCPSwapInterval, &VBL);
+#endif
 
 	// aktiviere Smooth Shadows
 	glShadeModel(GL_SMOOTH);

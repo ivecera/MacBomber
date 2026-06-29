@@ -15,16 +15,15 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
-#include <GLUT/glut.h>
-#include <OpenGL/glext.h>
+#include <SDL_opengl.h>
 
 #include "PlayerSetupMenu.h"
 #include "PlayerSetupRow.h"
 #include "ControllerSetupItem.h"
 #include "Menu.h"
-#include "Controller_Keyboard.h"
-#include "Timer.h"
-#include "TextDrawer.h"
+#include "../Controller/Controller_Keyboard.h"
+#include "../Engine/Timer.h"
+#include "../Engine/TextDrawer.h"
 #include "../Application.h"
 #include "../Engine/TextDrawer.h"
 #include "../Engine/ortho.h"

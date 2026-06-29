@@ -15,9 +15,10 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-#include "Application.h"
+#include <cstring>
+#include "../Application.h"
 #include "ToggleItem.h"
-#include <GLUT/glut.h>
+#include <SDL_opengl.h>
 #include "../Engine/TextDrawer.h"
 #include "../Engine/ortho.h"
 

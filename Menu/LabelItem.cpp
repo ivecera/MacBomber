@@ -15,13 +15,14 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
+#include <cstring>
 #include "LabelItem.h"
 #include "Menu.h"
 
 #include "../Application.h"
 #include "../Engine/TextDrawer.h"
 
-LabelItem::LabelItem(char *caption)
+LabelItem::LabelItem(const char *caption)
 	: MenuItem(caption)
 {
 	//	m_cCaption = caption;

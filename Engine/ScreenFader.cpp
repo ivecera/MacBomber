@@ -16,7 +16,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
 #include "ScreenFader.h"
-#include <GLUT/glut.h>
+#include <SDL_opengl.h>
 #include "ortho.h"
 #include "../Application.h"
 

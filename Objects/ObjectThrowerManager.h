@@ -20,7 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #include <list>
 #include "ObjectThrower.h"
-#include "Vector3.h"
+#include "../Engine/Vector3.h"
 
 class Map;
 class Object_Moving;
@@ -37,7 +37,7 @@ protected:
 
 	virtual Vector3 getTarget(int ignoreFieldX, int ignoreFieldZ) = 0;
 	virtual void handleDestinationReached(Object_Moving *pObject) = 0;
-	void addToList(Vector3 vStart, Vector3 vStart, Object_Moving *pObject);
+	void addToList(Vector3 vStart, Vector3 vEnd, Object_Moving *pObject);
 
 public:
 	ObjectThrowerManager(Map *pMap);

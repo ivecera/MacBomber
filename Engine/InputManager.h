@@ -17,7 +17,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #ifndef INPUTMANAGER_H
 #define INPUTMANAGER_H
-#include "SDL/SDL.h"
+#include <SDL.h>
 
 class Application;
 class Controller;

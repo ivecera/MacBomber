@@ -28,7 +28,7 @@ TextureManager::TextureManager()
 {
 }
 
-const char *TextureManager::expand(char *path)
+const char *TextureManager::expand(const char *path)
 {
 	string tmp = Application::m_strResourcePath;
 	tmp = tmp + path;

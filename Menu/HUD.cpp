@@ -16,8 +16,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 #include "HUD.h"
 
-#include <GLUT/glut.h>
-#include <OpenGL/glext.h>
+#include <SDL_opengl.h>
 
 #include "../Application.h"
 #include "../Gametypes/Game.h"

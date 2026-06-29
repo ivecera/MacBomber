@@ -20,7 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "../Config.h"
 #include "../Application.h"
 
-#include <iostream.h>
+#include <iostream>
 
 SoundManager::SoundManager()
 {
@@ -52,7 +52,7 @@ SoundManager::~SoundManager()
 	Mix_FreeMusic(m_Music[GAME_MUSIC]);
 }
 
-const char *SoundManager::expand(char *path)
+const char *SoundManager::expand(const char *path)
 {
 	string tmp = Application::m_strResourcePath;
 	tmp = tmp + path;

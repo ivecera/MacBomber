@@ -15,13 +15,14 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
+#include <cstring>
 #include "MenuSwitchItem.h"
 #include "Menu.h"
 
 #include "../Application.h"
 #include "../Engine/TextDrawer.h"
 
-MenuSwitchItem::MenuSwitchItem(char *caption, Menu *pLinkedMenu)
+MenuSwitchItem::MenuSwitchItem(const char *caption, Menu *pLinkedMenu)
 	: MenuItem(caption)
 {
 	m_pLinkedMenu = pLinkedMenu;

@@ -18,8 +18,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #ifndef OBJECT_H
 #define OBJECT_H
 
-#include "Vector3.h"
-#include "BoundingBox_2D.h"
+#include "../Engine/Vector3.h"
+#include "../Engine/BoundingBox_2D.h"
 
 /*
  * Diese Klasse beschreibt ein Objekt auf dem Spielfeld.

@@ -20,12 +20,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "../Application.h"
 #include "../Engine/TextureManager.h"
 #include "../Defines.h"
-#include "../engine/ortho.h"
+#include "../Engine/ortho.h"
 
 #include "PlayerSetupItem.h"
 #include "ControllerSetupItem.h"
 
-#include <GLUT/glut.h>
+#include <SDL_opengl.h>
 
 PlayerSetupRow::PlayerSetupRow(int skin, int keyset, bool bEnabled)
 	: MenuItem(" ")

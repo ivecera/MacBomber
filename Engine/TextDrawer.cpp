@@ -16,17 +16,16 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-#include <GLUT/glut.h>
+#include <SDL_opengl.h>
 #include <string>
 #include <iostream>
 using namespace std;
 
 #include "TextDrawer.h"
-#include "FTGL/FTGLTextureFont.h"
-#include "FTGLPolygonFont.h"
+#include <FTGL/ftgl.h>
 
-#include "Defines.h"
-#include "Application.h"
+#include "../Defines.h"
+#include "../Application.h"
 #include "TextureManager.h"
 #include "ortho.h"
 

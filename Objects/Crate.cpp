@@ -19,7 +19,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "../Engine/MeshManager.h"
 #include "../MeshObjects/CrateMesh.h"
 
-#include "Application.h"
+#include "../Application.h"
 
 Crate::Crate(int xBlock, int zBlock)
 	: Object(xBlock, zBlock)

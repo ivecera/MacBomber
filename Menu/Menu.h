@@ -51,8 +51,8 @@ protected:
 	void drawHelperText();
 
 public:
-	Menu(char *Title, Menu *pParent = NULL,
-	     char *helpText =
+	Menu(const char *Title, Menu *pParent = NULL,
+	     const char *helpText =
 		     "use up&down keys to navigate / return to choose submenu");
 	virtual ~Menu();
 

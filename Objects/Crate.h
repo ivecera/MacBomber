@@ -18,7 +18,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #ifndef Crate_H
 #define Crate_H
 
-#include <GLUT/glut.h>
+#include <SDL_opengl.h>
 
 #include "Object.h"
 

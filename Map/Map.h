@@ -20,17 +20,17 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #include <iostream>
 #include <list>
-#include <GLUT/glut.h>
+#include <SDL_opengl.h>
 
 class Object;
 
-#include "Vector3.h"
-#include "BoundingBox_2D.h"
+#include "../Engine/Vector3.h"
+#include "../Engine/BoundingBox_2D.h"
 #include "StMapEntry.h"
 #include "../Defines.h"
-#include "Timer.h"
+#include "../Engine/Timer.h"
 #include "../Engine/ParticleSystem/ParticleManager.h"
-#include "3DMath.h"
+#include "../Engine/3DMath.h"
 
 using namespace std;
 

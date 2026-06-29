@@ -17,7 +17,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #include <string.h>
 #include "loadTexture.h"
-#include "SDL/SDL_endian.h"
+#include <SDL_endian.h>
 
 void swap(unsigned char &a, unsigned char &b)
 {

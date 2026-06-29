@@ -14,8 +14,8 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
-#include <GLUT/glut.h>
-#include "SDL/SDL.h"
+#include <SDL_opengl.h>
+#include <SDL.h>
 
 #include "Application.h"
 #include "Config.h"
@@ -41,7 +41,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "Engine/Clock.h"
 
 #include "Engine/ortho.h"
+#ifdef __APPLE__
 #include <CoreFoundation/CoreFoundation.h>
+#else
+#include <unistd.h>
+#include <time.h>
+#endif
 
 #include "Defines.h"
 
@@ -69,7 +74,9 @@ string Application::m_strResourcePath = string();
 int Application::screenWidth = 0;
 int Application::screenHeight = 0;
 
-io_connect_t root_port; // a reference to the Root Power Domain IOService
+#ifdef __APPLE__
+io_connect_t root_port;
+#endif
 
 Application::Application()
 {
@@ -98,6 +105,7 @@ Application::~Application()
 
 void Application::determineBundlePath()
 {
+#ifdef __APPLE__
 	char path[1024];
 	// Get a reference to Applications Bundle
 	CFBundleRef mainBundle = CFBundleGetMainBundle();
@@ -122,10 +130,25 @@ void Application::determineBundlePath()
 	CFRelease(cfStringRef);
 
 	m_strResourcePath = string(path);
+#elif defined(__linux__)
+	char path[1024];
+	ssize_t len = readlink("/proc/self/exe", path, sizeof(path) - 1);
+	if (len > 0) {
+		path[len] = '\0';
+		string exePath(path);
+		m_strResourcePath =
+			exePath.substr(0, exePath.find_last_of('/'));
+	} else {
+		m_strResourcePath = ".";
+	}
+#else
+	m_strResourcePath = ".";
+#endif
 }
 
 void Application::registerSleepCallBack()
 {
+#ifdef __APPLE__
 	IONotificationPortRef
 		notifyPortRef; // notification port allocated by IORegisterForSystemPower
 	io_object_t notifierObject; // notifier object, used to deregister later
@@ -149,8 +172,10 @@ void Application::registerSleepCallBack()
        call this if you already have a Carbon or Cocoa EventLoop running.
     */
 	//   CFRunLoopRun();
+#endif
 }
 
+#ifdef __APPLE__
 void Application::sleepCallBack(void *refCon, io_service_t service,
 				natural_t messageType, void *messageArgument)
 {
@@ -195,6 +220,7 @@ void Application::sleepCallBack(void *refCon, io_service_t service,
 		break;
 	}
 }
+#endif
 
 void Application::init()
 {
@@ -234,7 +260,11 @@ void Application::init()
 	setState(MENU);
 
 	//initiate "random" number generator
+#ifdef __APPLE__
 	sranddev();
+#else
+	srand(time(NULL));
+#endif
 }
 
 void Application::render()

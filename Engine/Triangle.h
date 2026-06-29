@@ -51,4 +51,4 @@ public:
 	float distanceToOrigin;
 };
 
-#endif;
+#endif

@@ -19,7 +19,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #define SquareMesh_H
 
 #include "Mesh.h"
-#include "Vector3.h"
+#include "../Engine/Vector3.h"
 
 class SquareMesh {
 private:

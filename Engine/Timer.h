@@ -18,7 +18,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #ifndef TIMER_H
 #define TIMER_H
 
-#include "SDL/SDl.h"
+#include <SDL.h>
 
 class Timer {
 private:

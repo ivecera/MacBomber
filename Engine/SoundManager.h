@@ -18,7 +18,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #ifndef SOUNDMANAGER_H
 #define SOUNDMANAGER_H
 
-#include "SDL_mixer/SDL_mixer.h"
+#include <SDL_mixer.h>
 
 class SoundManager {
 private:
@@ -37,7 +37,7 @@ private:
 	bool m_bMusicWaiting;
 
 	// Expands a given path with root "Contents/Resource" to absolute System Path
-	const char *expand(char *path);
+	const char *expand(const char *path);
 
 	/* 
 	 * void musicDone() is a callback function needed for SDLs Mix_HookMusicFinished call.

@@ -91,7 +91,7 @@ void Game::compileBackgroundDisplayList()
 	glTexCoord2f(0, 1);
 	glVertex3f(0, Application::screenHeight, -20);
 	glEnd();
-	glBindTexture(GL_TEXTURE_2D, NULL);
+	glBindTexture(GL_TEXTURE_2D, 0);
 
 	glDepthMask(true);
 	glEnable(GL_DEPTH_TEST);

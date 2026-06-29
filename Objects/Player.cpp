@@ -261,7 +261,7 @@ void Player::setStartPosition(int x, int z)
 	m_pBBox->update(m_vPos);
 }
 
-void Player::setName(char *name)
+void Player::setName(const char *name)
 {
 	m_cName = name;
 }

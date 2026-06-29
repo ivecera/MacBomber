@@ -25,7 +25,7 @@ private:
 	bool m_bEnabled;
 
 public:
-	LabelItem(char *caption);
+	LabelItem(const char *caption);
 
 	//	float getWidth();
 	void draw();

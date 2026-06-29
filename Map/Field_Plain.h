@@ -18,11 +18,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #ifndef FIELD_PLAIN_H
 #define FIELD_PLAIN_H
 
-#include <GLUT/glut.h>
-#include <OpenGL/glext.h>
+#include <SDL_opengl.h>
 
 #include "Field.h"
-#include "Vector3.h"
+#include "../Engine/Vector3.h"
 #include "../Objects/Bomb.h"
 
 class Item;

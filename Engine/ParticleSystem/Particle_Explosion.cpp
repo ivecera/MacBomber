@@ -1,5 +1,4 @@
-#include <GLUT/glut.h>
-#include <OpenGL/glext.h>
+#include <SDL_opengl.h>
 
 #include "ParticleManager.h"
 #include "Particle_Explosion.h"

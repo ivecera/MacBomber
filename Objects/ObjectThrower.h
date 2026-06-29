@@ -18,7 +18,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #ifndef OBJECTTHROWER_H
 #define OBJECTTHROWER_H
 
-#include "Vector3.h"
+#include "../Engine/Vector3.h"
 
 class SimpleBezier;
 class Object_Moving;

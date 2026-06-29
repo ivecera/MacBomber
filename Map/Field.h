@@ -18,9 +18,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #ifndef FIELD_H
 #define FIELD_H
 
-#include <GLUT/glut.h>
+#include <SDL_opengl.h>
 
-#include "Vector3.h"
+#include "../Engine/Vector3.h"
 #include "../Objects/Bomb.h"
 #include "../Objects/Crate.h"
 

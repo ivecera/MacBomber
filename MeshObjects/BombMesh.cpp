@@ -17,9 +17,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #include "BombMesh.h"
 
-#include <GLUT/glut.h>
-#include <OpenGL/glext.h>
-#include "Workaround.h"
+#include <SDL_opengl.h>
+#include "../Engine/Workaround.h"
 
 #include "../Application.h"
 #include "../Engine/TextureManager.h"

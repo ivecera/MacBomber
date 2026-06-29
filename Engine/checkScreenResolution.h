@@ -18,7 +18,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #ifndef CHECKSCREENRESOLUTION_H
 #define CHECKSCREENRESOLUTION_H
 
-#include "SDL/SDL.h"
+#include <SDL.h>
 
 // is the specified resolution with specified videoFlag supported by system?
 bool isResolutionSupported(int resIndex);

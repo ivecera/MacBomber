@@ -19,7 +19,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #ifndef CONTROLLER_JOYSTICK_H
 #define CONTROLLER_JOYSTICK_H
 
-#include "SDL/SDL.h"
+#include <SDL.h>
 #include "Controller.h"
 
 class Controller_Joystick : public Controller {

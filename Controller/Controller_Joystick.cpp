@@ -16,10 +16,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
 #include "Controller_Joystick.h"
-#include "Application.h"
-#include "InputManager.h"
+#include "../Application.h"
+#include "../Engine/InputManager.h"
 
-#include "Defines.h"
+#include "../Defines.h"
 
 Controller_Joystick::Controller_Joystick(int ID, SDL_Joystick *pJoystick)
 	: Controller()

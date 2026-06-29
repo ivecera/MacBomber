@@ -17,7 +17,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #ifndef SCORESCREEN_H
 #define SCORESCREEN_H
 
-#include "Vector3.h"
+#include "../Engine/Vector3.h"
 class Game;
 class Player;
 class Wobbler;

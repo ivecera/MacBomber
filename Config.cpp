@@ -20,7 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include <string>
 
 #include "Config.h"
-#include "SDL/SDL.h"
+#include <SDL.h>
 #include "Application.h"
 /*
 int Config::m_iPlayerKeys[4][5]
@@ -240,7 +240,7 @@ void Config::saveConfig()
 	string fileName = Application::m_strResourcePath + "/Config.cfg";
 	//create an Output File stream
 	ofstream configfile(fileName.c_str());
-	if (configfile == NULL) {
+	if (!configfile) {
 		cout << "Config: Couldn't save Config.cfg" << endl;
 		return;
 	}
@@ -306,7 +306,7 @@ void Config::loadConfig()
 	string fileName = Application::m_strResourcePath + "/Config.cfg";
 	//create an Input File stream
 	ifstream configfile(fileName.c_str());
-	if (configfile == NULL) {
+	if (!configfile) {
 		cout << "Config: Couldn't open Config.cfg. Using defaults instead!"
 		     << endl;
 		return;

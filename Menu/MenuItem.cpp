@@ -15,16 +15,17 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-#include "Application.h"
+#include <cstring>
+#include "../Application.h"
 #include "MenuItem.h"
 #include "Menu.h"
 #include "../Engine/TextureManager.h"
 #include "../Engine/ortho.h"
 
 #include "../Defines.h"
-#include <GLUT/glut.h>
+#include <SDL_opengl.h>
 
-#include "TextDrawer.h"
+#include "../Engine/TextDrawer.h"
 
 MenuItem::MenuItem(const char *caption)
 {
