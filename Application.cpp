@@ -43,10 +43,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "Engine/ortho.h"
 #ifdef __APPLE__
 #include <CoreFoundation/CoreFoundation.h>
-#else
-#include <unistd.h>
-#include <time.h>
 #endif
+#include <time.h>
 
 #include "Defines.h"
 
@@ -73,6 +71,7 @@ Uint32 TICK_TIME = (Uint32)(1000 / UPDATE_FPS); // ( TICK_TIME = 1000/FPS)
 int MAX_LOOPS = 2;
 float Application::m_fReciprocalFPS = 1 / UPDATE_FPS; //( 1/FPS)
 string Application::m_strResourcePath = string();
+string Application::m_strPrefPath = string();
 
 int Application::screenWidth = 0;
 int Application::screenHeight = 0;
@@ -84,7 +83,7 @@ io_connect_t root_port;
 Application::Application()
 {
 	m_pApplication = this;
-	determineBundlePath();
+	initPaths();
 	registerSleepCallBack();
 }
 
@@ -106,47 +105,26 @@ Application::~Application()
 	delete m_pConfig;
 }
 
-void Application::determineBundlePath()
+void Application::initPaths()
 {
-#ifdef __APPLE__
-	char path[1024];
-	// Get a reference to Applications Bundle
-	CFBundleRef mainBundle = CFBundleGetMainBundle();
-	assert(mainBundle);
-
-	// get a reference to its URL
-	CFURLRef mainBundleURL = CFBundleCopyBundleURL(mainBundle);
-	//	CFURLRef mainBundleURL = CFBundleCopyResourcesDirectoryURL(mainBundle);
-	assert(mainBundleURL);
-
-	// Convert URL to File System Path
-	CFStringRef cfStringRef =
-		CFURLCopyFileSystemPath(mainBundleURL, kCFURLPOSIXPathStyle);
-	assert(cfStringRef);
-
-	// Conversion CFString ---> CString
-	CFStringGetCString(cfStringRef, path, 1024, kCFStringEncodingASCII);
-
-	SDL_strlcat(path, "/Contents/Resources", sizeof(path));
-
-	CFRelease(mainBundleURL);
-	CFRelease(cfStringRef);
-
-	m_strResourcePath = string(path);
-#elif defined(__linux__)
-	char path[1024];
-	ssize_t len = readlink("/proc/self/exe", path, sizeof(path) - 1);
-	if (len > 0) {
-		path[len] = '\0';
-		string exePath(path);
-		m_strResourcePath =
-			exePath.substr(0, exePath.find_last_of('/'));
+	const char *basePath = SDL_GetBasePath();
+	if (basePath) {
+		m_strResourcePath = basePath;
+		// strip trailing path separator — callers supply their own
+		if (!m_strResourcePath.empty() &&
+		    m_strResourcePath.back() == '/')
+			m_strResourcePath.pop_back();
 	} else {
 		m_strResourcePath = ".";
 	}
-#else
-	m_strResourcePath = ".";
-#endif
+
+	char *prefPath = SDL_GetPrefPath("MacBomber", "MacBomber");
+	if (prefPath) {
+		m_strPrefPath = prefPath;
+		SDL_free(prefPath);
+	} else {
+		m_strPrefPath = m_strResourcePath;
+	}
 }
 
 void Application::registerSleepCallBack()

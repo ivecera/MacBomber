@@ -235,7 +235,7 @@ void Config::setMapStatus(int nr, bool bValue)
 
 void Config::saveConfig()
 {
-	string fileName = Application::expandResourcePath("/Config.cfg");
+	string fileName = Application::expandPrefPath("Config.cfg");
 	SDL_IOStream *io = SDL_IOFromFile(fileName.c_str(), "w");
 	if (!io) {
 		SDL_Log("Config: Couldn't save Config.cfg");
@@ -309,7 +309,7 @@ static int readInt(char **pos)
 
 void Config::loadConfig()
 {
-	string fileName = Application::expandResourcePath("/Config.cfg");
+	string fileName = Application::expandPrefPath("Config.cfg");
 	SDL_IOStream *io = SDL_IOFromFile(fileName.c_str(), "r");
 	if (!io) {
 		SDL_Log("Config: Couldn't open Config.cfg. Using defaults instead!");

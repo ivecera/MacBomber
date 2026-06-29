@@ -57,8 +57,8 @@ private:
 	//starts a new Game
 	void startNewGame();
 
-	//determines the Path of the .app Bundle in MacOS
-	void determineBundlePath();
+	// determines resource and preferences paths
+	void initPaths();
 	//registers the callback "sleepCallback"  to receive system sleep notifications
 	void registerSleepCallBack();
 #ifdef __APPLE__
@@ -91,9 +91,14 @@ public:
 	static Application *m_pApplication;
 
 	static string m_strResourcePath;
+	static string m_strPrefPath;
 	static string expandResourcePath(const char *relativePath)
 	{
 		return m_strResourcePath + relativePath;
+	}
+	static string expandPrefPath(const char *relativePath)
+	{
+		return m_strPrefPath + relativePath;
 	}
 
 	bool m_bSuspendEvent;
