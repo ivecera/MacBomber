@@ -39,22 +39,9 @@ TextDrawer::TextDrawer()
 	string fontfile =
 		Application::expandResourcePath("/Fonts/annifont.ttf");
 
-	// fix for a nasty 10.4.7 ATI X1600 glTexSubImage2D() bug *deprecated*
-	std::string renderer = (const char *)glGetString(GL_RENDERER);
-	std::string version = (const char *)glGetString(GL_VERSION);
-
-	if (renderer == std::string("ATI Radeon X1600 OpenGL Engine") &&
-	    version == std::string("1.5 ATI-1.4.32")) {
-		m_ttfSmallFont = new FTGLPolygonFont(fontfile.c_str());
-		m_ttfStdFont = new FTGLPolygonFont(fontfile.c_str());
-		m_ttfBigFont = new FTGLPolygonFont(fontfile.c_str());
-		cout << "TextDrawer: Using low quality font to avoid crash (ATI Driver bug in Mac OS 10.4.7) !"
-		     << endl;
-	} else {
-		m_ttfSmallFont = new FTGLTextureFont(fontfile.c_str());
-		m_ttfStdFont = new FTGLTextureFont(fontfile.c_str());
-		m_ttfBigFont = new FTGLTextureFont(fontfile.c_str());
-	}
+	m_ttfSmallFont = new FTGLTextureFont(fontfile.c_str());
+	m_ttfStdFont = new FTGLTextureFont(fontfile.c_str());
+	m_ttfBigFont = new FTGLTextureFont(fontfile.c_str());
 
 	m_ttfSmallFont->FaceSize(14);
 	m_ttfStdFont->FaceSize(18);
