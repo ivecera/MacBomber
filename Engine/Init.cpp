@@ -20,15 +20,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include <glm/glm.hpp>
 #include <glm/gtc/matrix_transform.hpp>
 #include <glm/gtc/type_ptr.hpp>
-#include <string>
 #include <SDL3_mixer/SDL_mixer.h>
 
-#include "intToString.h"
 #include "checkScreenResolution.h"
 #include "../Config.h"
 #include "../Application.h"
 
-using namespace std;
 
 // Initialize SDL
 void initSDL()
@@ -201,8 +198,6 @@ void dumpScreen()
 	int screenHeight = Application::m_pConfig->getScreenHeight();
 
 	static int count = 0;
-	string strPath("/Users/quarus/");
-	string strFileBaseName("macbomber");
 
 	SDL_Surface *screen = SDL_CreateSurface(screenWidth, screenHeight,
 #if (SDL_BYTEORDER == SDL_LIL_ENDIAN)
@@ -228,10 +223,10 @@ void dumpScreen()
 			   pixelsbuf + i * screenWidth * 4, screenWidth * 4);
 
 	screen->pixels = pixels;
-	string fullpath = strPath + strFileBaseName +
-			  convertValueToString(count) + ".bmp";
-	SDL_Log("Dumping Screenshot: %s", fullpath.c_str());
-	SDL_SaveBMP(screen, fullpath.c_str());
+	char fullpath[64];
+	SDL_snprintf(fullpath, sizeof(fullpath), "macbomber%d.bmp", count);
+	SDL_Log("Dumping Screenshot: %s", fullpath);
+	SDL_SaveBMP(screen, fullpath);
 
 	SDL_DestroySurface(screen);
 	screen = 0;
