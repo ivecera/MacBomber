@@ -35,7 +35,6 @@ set(SOURCES
     Engine/framerateCalculator.cpp
     Engine/Init.cpp
     Engine/InputManager.cpp
-    Engine/intToString.cpp
     Engine/loadTexture.cpp
     Engine/Matrix.cpp
     Engine/MeshManager.cpp

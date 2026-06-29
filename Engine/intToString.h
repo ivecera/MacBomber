@@ -18,8 +18,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #ifndef INTTOSTRING_H
 #define INTTOSTRING_H
 
-#include <string>
-using namespace std;
-string convertValueToString(int value);
+#include <SDL3/SDL.h>
+
+inline const char *convertValueToString(int value)
+{
+	static char buf[16];
+	SDL_itoa(value, buf, 10);
+	return buf;
+}
 
 #endif
