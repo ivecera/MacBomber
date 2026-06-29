@@ -39,6 +39,7 @@ Mesh::Mesh(const char *filename)
 	m_nTriangles = 0;
 
 	// Array in dem wir die Vertices des Meshs speichern
+	m_pTextureIndices = NULL;
 	m_pVertexIndices = NULL;
 	m_pVertices = NULL;
 	m_pVertexNormals = NULL;
