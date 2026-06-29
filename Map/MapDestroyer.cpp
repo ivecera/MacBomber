@@ -18,7 +18,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "MapDestroyer.h"
 #include "../Defines.h"
 #include "../Application.h"
-#include "../Engine/Vector3.h"
+#include <glm/glm.hpp>
 #include "../Engine/MeshManager.h"
 #include "../Engine/TextureManager.h"
 #include "../Engine/SoundManager.h"
@@ -37,7 +37,7 @@ MapDestroyer::MapDestroyer(Map *pMap)
 
 	m_pWiley = new Wiley();
 	m_pDestroyerThrower =
-		new ObjectThrower(Vector3(-10, 0, 0), getTarget(), m_pWiley);
+		new ObjectThrower(glm::vec3(-10, 0, 0), getTarget(), m_pWiley);
 
 	m_iTicks = 0;
 }
@@ -49,7 +49,7 @@ MapDestroyer::~MapDestroyer()
 }
 
 //randomly chooses a new target
-Vector3 MapDestroyer::getTarget()
+glm::vec3 MapDestroyer::getTarget()
 {
 	// FIX ME: don't choose field randomly if count is below 5
 
@@ -74,7 +74,7 @@ Vector3 MapDestroyer::getTarget()
 			y = 1;
 	}
 
-	return Vector3(x, y, z);
+	return glm::vec3(x, y, z);
 }
 
 void MapDestroyer::update()
@@ -92,7 +92,7 @@ void MapDestroyer::update()
 		//Did the the destroyer reach his target?
 		if (m_pDestroyerThrower->isDone()) {
 			//get destroyers position & a new target
-			Vector3 vDestination;
+			glm::vec3 vDestination;
 
 			//one field less to go
 			m_iFieldsLeft--;
@@ -101,7 +101,7 @@ void MapDestroyer::update()
 			if (m_iFieldsLeft <= 0) {
 				m_bMapCleared = true;
 				// let mapdestroyer hop out of the map
-				vDestination = Vector3(-10, 0, 0);
+				vDestination = glm::vec3(-10, 0, 0);
 			} else {
 				vDestination = getTarget();
 				//play a crunching sound

@@ -18,14 +18,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #ifndef MENUITEM_H
 #define MENUITEM_H
 
-#include "../Engine/Vector3.h"
+#include <glm/glm.hpp>
 
 class Menu;
 
 class MenuItem {
 protected:
 	// the positon of the menuitem
-	Vector3 m_vPosition;
+	glm::vec3 m_vPosition;
 	// the caption of this menuitem
 	//	char * m_cCaption;
 	char m_cCaption[50];
@@ -50,8 +50,8 @@ public:
 	};
 
 	//specifies the position of this MenuItem
-	virtual void setPosition(Vector3 vPosition);
-	Vector3 getPosition()
+	virtual void setPosition(glm::vec3 vPosition);
+	glm::vec3 getPosition()
 	{
 		return m_vPosition;
 	};

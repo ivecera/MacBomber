@@ -18,7 +18,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #ifndef TIMEBAR_H
 #define TIMEBAR_H
 
-#include "../Engine/Vector3.h"
+#include <glm/glm.hpp>
 
 // our timebar has always a fix length
 class Timebar {
@@ -28,7 +28,7 @@ private:
 	  |					|
 	  3 --------------- 2
 	*/
-	Vector3 m_vVertices[4];
+	glm::vec3 m_vVertices[4] = {};
 	// Texcoord of vertices 1 and 2
 	float m_fTexCoordX;
 	// specifies by what (pixel)amount the timebar should shrink per second

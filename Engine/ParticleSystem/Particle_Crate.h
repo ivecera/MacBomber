@@ -11,7 +11,7 @@
 #define PARTICLE_CRATE_H
 
 #include "Particle.h"
-#include "../Vector3.h"
+#include <glm/glm.hpp>
 
 class ParticleManager;
 
@@ -25,7 +25,7 @@ private:
 	ParticleManager *m_pParticleManager;
 
 public:
-	Particle_Crate(Vector3 m_vPos, ParticleManager *pParticleManager);
+	Particle_Crate(glm::vec3 m_vPos, ParticleManager *pParticleManager);
 	void update();
 	void draw();
 };

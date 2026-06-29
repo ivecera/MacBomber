@@ -14,7 +14,8 @@
 #include "../Billboard.h"
 #include "../TextureManager.h"
 
-Particle_Crate::Particle_Crate(Vector3 vPos, ParticleManager *pParticleManager)
+Particle_Crate::Particle_Crate(glm::vec3 vPos,
+			       ParticleManager *pParticleManager)
 	: Particle(vPos)
 {
 	m_iTTL = 40;

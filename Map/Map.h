@@ -23,13 +23,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 class Object;
 
-#include "../Engine/Vector3.h"
+#include <glm/glm.hpp>
 #include "../Engine/BoundingBox_2D.h"
 #include "StMapEntry.h"
 #include "../Defines.h"
 #include "../Engine/Timer.h"
 #include "../Engine/ParticleSystem/ParticleManager.h"
-#include "../Engine/3DMath.h"
 
 using namespace std;
 
@@ -93,29 +92,29 @@ class Map {
 
 	//used to move the map slightly to the specified direction
 	//caused a "shake" effect
-	Vector3 m_vDisplacement;
+	glm::vec3 m_vDisplacement;
 
 	Application *m_pApp;
 	Game *m_pGame;
 
 	// this fields contains pointers to all falling fields
-	list<Field *> m_listFallingFields;
+	std::list<Field *> m_listFallingFields;
 
-	list<Field *> m_listCrateFields;
-	list<Field *> m_listBlockFields;
+	std::list<Field *> m_listCrateFields;
+	std::list<Field *> m_listBlockFields;
 
-	list<Field *> m_listPlainFields_Color0;
-	list<Field *> m_listPlainFields_Color1;
+	std::list<Field *> m_listPlainFields_Color0;
+	std::list<Field *> m_listPlainFields_Color1;
 
-	list<Field *> m_listArrowFields_Color0;
-	list<Field *> m_listArrowFields_Color1;
+	std::list<Field *> m_listArrowFields_Color0;
+	std::list<Field *> m_listArrowFields_Color1;
 
-	list<Field *> m_listHoleFields_Color0;
-	list<Field *> m_listHoleFields_Color1;
+	std::list<Field *> m_listHoleFields_Color0;
+	std::list<Field *> m_listHoleFields_Color1;
 
-	list<Field *> m_listBombFields;
-	list<Field *> m_listItemFields;
-	list<Field *> m_listExplodingFields;
+	std::list<Field *> m_listBombFields;
+	std::list<Field *> m_listItemFields;
+	std::list<Field *> m_listExplodingFields;
 
 	void drawCrateFields();
 	void drawBlockFields();
@@ -128,7 +127,7 @@ class Map {
 
 	//calculates a displacement vector with length 1
 	//It does this by calculating a point on sphere around (0,0,0) with radius 1
-	void calculateDisplacement(Vector3 &vDisplacement);
+	void calculateDisplacement(glm::vec3 &vDisplacement);
 
 	// deletes all field in the array m_pMap
 	void cleanUp();
@@ -189,16 +188,16 @@ public:
 
 	//checks if player collides with a block/crate
 	//if yes: returns true,direction in which player should slide (if necessary) and time of collision
-	bool doesPlayerCollide(Player *pPlayer, Vector3 &slideDirection,
+	bool doesPlayerCollide(Player *pPlayer, glm::vec3 &slideDirection,
 			       float &time);
 
 	// let the specified field drop
 	void doDrop(int x, int z);
 
 	// adds a bomb to the bombthrower
-	void addBombToThrower(Vector3 vStart, Bomb *pBomb);
+	void addBombToThrower(glm::vec3 vStart, Bomb *pBomb);
 	//add item to the itemthrower
-	void addItemToThrower(Vector3 vStart, Item *pItem);
+	void addItemToThrower(glm::vec3 vStart, Item *pItem);
 
 	//sorts a given field into to the matching drawlist
 	void sortField(Field *pField);

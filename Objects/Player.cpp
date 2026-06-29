@@ -215,10 +215,10 @@ void Player::move()
 		}
 	}
 
-	Vector3 slideDirection;
+	glm::vec3 slideDirection;
 	float time = 0;
 	if (!m_pField->doesPlayerCollide(this, slideDirection, time)) {
-		Vector3 vMovement =
+		glm::vec3 vMovement =
 			m_vDisplacement *
 			(m_fVelocity * Application::m_fReciprocalFPS);
 		m_vPos = m_vPos + vMovement;
@@ -229,7 +229,7 @@ void Player::move()
 			slideVelocity = m_fVelocity / 2;
 
 		// slide into the right direction if needed
-		Vector3 vMovement =
+		glm::vec3 vMovement =
 			slideDirection *
 			(slideVelocity * Application::m_fReciprocalFPS);
 		m_vPos = m_vPos + vMovement;
@@ -241,7 +241,7 @@ void Player::move()
 			m_vPos = m_vPos + (m_vDisplacement *
 					   ((time * m_fVelocity *
 					     Application::m_fReciprocalFPS) -
-					    0.001));
+					    0.001f));
 		}
 	}
 
@@ -400,7 +400,8 @@ void Player::checkPlayerPlayerCollisions()
 		if (m_iDirection == NONE)
 			bCollision = m_pBBox->doesCollideWith(pBBox);
 		else {
-			Vector3 vVelocityVector = (m_vDisplacement)*m_fVelocity;
+			glm::vec3 vVelocityVector =
+				(m_vDisplacement)*m_fVelocity;
 			bCollision = pBBox->doesCollide(m_pBBox,
 							vVelocityVector, tmp);
 		}

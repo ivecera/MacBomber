@@ -59,7 +59,7 @@ ParticleManager::~ParticleManager()
 	glDeleteLists(m_iParticleDL, 1);
 }
 
-void ParticleManager::addItemParticle(Vector3 vPos, int count, int itemType)
+void ParticleManager::addItemParticle(glm::vec3 vPos, int count, int itemType)
 {
 	for (int i = 0; i < count; i++) {
 		Particle *particle = new Particle_Item(vPos, this, itemType);
@@ -69,7 +69,7 @@ void ParticleManager::addItemParticle(Vector3 vPos, int count, int itemType)
 	}
 }
 
-void ParticleManager::addCrateParticle(Vector3 vPos, int count)
+void ParticleManager::addCrateParticle(glm::vec3 vPos, int count)
 {
 	for (int i = 0; i < count; i++) {
 		Particle *particle = new Particle_Crate(vPos, this);
@@ -78,7 +78,7 @@ void ParticleManager::addCrateParticle(Vector3 vPos, int count)
 	}
 }
 
-void ParticleManager::addSmokeParticle(Vector3 vPos, int count)
+void ParticleManager::addSmokeParticle(glm::vec3 vPos, int count)
 {
 	for (int i = 0; i < count; i++) {
 		Particle *particle = new Particle_Smoke(vPos);
@@ -88,7 +88,7 @@ void ParticleManager::addSmokeParticle(Vector3 vPos, int count)
 	}
 }
 
-void ParticleManager::addPlayerSmokeParticle(Vector3 vPos, int count)
+void ParticleManager::addPlayerSmokeParticle(glm::vec3 vPos, int count)
 {
 	for (int i = 0; i < count; i++) {
 		Particle *particle = new Particle_Smoke(vPos);
@@ -111,14 +111,14 @@ void ParticleManager::addPlayerSmokeParticle(Vector3 vPos, int count)
 	}
 }
 
-void ParticleManager::addExplosionParticle(Vector3 vPos)
+void ParticleManager::addExplosionParticle(glm::vec3 vPos)
 {
 	Particle_Explosion *particle = new Particle_Explosion(vPos);
 	//randomizeStartPosition(particle->m_vPosition, 0.2);
 	m_listExplosionParticles.push_back(particle);
 }
 
-void ParticleManager::addWileyParticle(Vector3 vPos, int count)
+void ParticleManager::addWileyParticle(glm::vec3 vPos, int count)
 {
 	for (int i = 0; i < count; i++) {
 		Particle *particle = new Particle(vPos);
@@ -143,7 +143,7 @@ void ParticleManager::addWileyParticle(Vector3 vPos, int count)
 	}
 }
 
-void ParticleManager::calculateDisplacement(Vector3 &vDisplacement,
+void ParticleManager::calculateDisplacement(glm::vec3 &vDisplacement,
 					    int minAngle, int maxAngle)
 {
 	float angle;
@@ -168,7 +168,7 @@ void ParticleManager::calculateDisplacement(Vector3 &vDisplacement,
 	vDisplacement.z = z;
 }
 
-void ParticleManager::randomizeStartPosition(Vector3 &vPosition, float radius)
+void ParticleManager::randomizeStartPosition(glm::vec3 &vPosition, float radius)
 {
 	float angle;
 	float x, y, z;

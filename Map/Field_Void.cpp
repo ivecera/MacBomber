@@ -126,7 +126,7 @@ void Field_Void::moveBomb()
 			if (startFall((*it).pObject)) {
 				(*it).bDoesFall = true;
 				(*it).pObject->setDisplacement(
-					Vector3(0, -1, 0));
+					glm::vec3(0, -1, 0));
 
 				if ((*it).pObject->getType() == BOMB_OBJECT) {
 					Bomb *pBomb = (Bomb *)(*it).pObject;

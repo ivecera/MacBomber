@@ -32,9 +32,9 @@ struct stOption {
 class ToggleItem : public MenuItem {
 protected:
 	// An STL Vector with Option(names) (...overkil, i know)
-	vector<stOption> m_lOptionNames;
+	std::vector<stOption> m_lOptionNames;
 	// An iterator to the currently active Option
-	vector<stOption>::iterator m_itIterator;
+	std::vector<stOption>::iterator m_itIterator;
 
 	void increaseValue();
 	void decreaseValue();

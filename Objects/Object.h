@@ -18,7 +18,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #ifndef OBJECT_H
 #define OBJECT_H
 
-#include "../Engine/Vector3.h"
+#include <glm/glm.hpp>
 #include "../Engine/BoundingBox_2D.h"
 
 /*
@@ -38,7 +38,7 @@ protected:
 	int m_xBlock;
 	int m_zBlock;
 
-	Vector3 m_vPos; // The position of the object's center on the game field in world coordinates
+	glm::vec3 m_vPos; // The position of the object's center on the game field in world coordinates
 	float m_fSize; // The side length of the object
 
 	BoundingBox_2D *m_pBBox;
@@ -64,8 +64,8 @@ public:
 		return m_iType;
 	};
 	float getSize();
-	void setPosition(Vector3 vPos);
-	Vector3 getPosition();
+	void setPosition(glm::vec3 vPos);
+	glm::vec3 getPosition();
 	BoundingBox_2D *getBoundingBox();
 
 	// Checks whether this object collides with another

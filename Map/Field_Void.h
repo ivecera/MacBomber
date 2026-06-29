@@ -32,7 +32,7 @@ protected:
 	};
 
 	//List containing all falling bombs
-	list<SBombContainer> m_lBombList;
+	std::list<SBombContainer> m_lBombList;
 	// Returns true when the bomb is allowed to fall (center line crossed)
 	bool startFall(Object_Moving *pObject);
 	bool stopFall(Object *pObject);

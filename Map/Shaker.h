@@ -18,13 +18,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #ifndef SHAKER_H
 #define SHAKER_H
 
-#include "../Engine/Vector3.h"
+#include <glm/glm.hpp>
 
 class Shaker {
 private:
 public:
 	Shaker();
-	Vector3 doShake();
-	Vector3 doShake(Vector3 &vec1, Vector3 &vec2);
+	glm::vec3 doShake();
+	glm::vec3 doShake(glm::vec3 &vec1, glm::vec3 &vec2);
 };
 #endif

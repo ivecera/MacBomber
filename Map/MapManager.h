@@ -26,9 +26,9 @@ class MapPlaylist;
 
 class MapManager {
 private:
-	vector<StMapEntry> m_vMapEntries;
+	std::vector<StMapEntry> m_vMapEntries;
 	const char *m_cDirectory;
-	//	vector<StMapEntry>::iterator currentMap;
+	//	std::vector<StMapEntry>::iterator currentMap;
 
 	void readMaps();
 	void readMap(StMapEntry &mapEntry);

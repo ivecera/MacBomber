@@ -15,8 +15,8 @@ private:
 	//shall the playlist entries be shuffled
 	bool m_bRandom;
 	int m_iTotalMapCount;
-	vector<int> m_vMapEntryIndices;
-	vector<int>::iterator m_itCurrent;
+	std::vector<int> m_vMapEntryIndices;
+	std::vector<int>::iterator m_itCurrent;
 
 public:
 	MapPlaylist();

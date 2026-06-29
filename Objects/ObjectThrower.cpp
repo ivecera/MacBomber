@@ -16,33 +16,32 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
 #include "ObjectThrower.h"
-#include "../Engine/3DMath.h"
-#include "../Engine/Vector3.h"
+#include <glm/glm.hpp>
 #include "../Engine/SimpleBezier.h"
 #include "../Objects/Object_Moving.h"
 #include "../Application.h"
 #include <SDL3/SDL_opengl.h>
 
-ObjectThrower::ObjectThrower(Vector3 vStart, Vector3 vEnd,
+ObjectThrower::ObjectThrower(glm::vec3 vStart, glm::vec3 vEnd,
 			     Object_Moving *pObject)
 {
-	Vector3 vMiddle;
+	glm::vec3 vMiddle;
 	m_fVelocity = pObject->getVelocity();
 	m_bDone = false;
 
 	m_iWayPointCount = 10;
 	m_iCurrentWayPoint = 0;
-	m_pPath = new Vector3[m_iWayPointCount];
+	m_pPath = new glm::vec3[m_iWayPointCount];
 
 	m_vObjectPosition = vStart;
 	m_pObject = pObject;
 
-	Vector3 tmp = (vEnd - vStart);
-	tmp = tmp / 2;
+	glm::vec3 tmp = (vEnd - vStart);
+	tmp = tmp / 2.0f;
 	vMiddle = vStart + tmp;
 	//:compiler error	vMiddle = vStart + ( (vEnd-vStart)/2) ;
 
-	float fDistance = magnitude(vEnd - vStart);
+	float fDistance = glm::length(vEnd - vStart);
 	if (fDistance <= 3)
 		vMiddle.y = 3;
 	else if (fDistance <= 6)
@@ -63,7 +62,7 @@ ObjectThrower::~ObjectThrower()
 	delete[] m_pPath;
 }
 
-void ObjectThrower::calculateWayPoints(Vector3 vStart, Vector3 vEnd)
+void ObjectThrower::calculateWayPoints(glm::vec3 vStart, glm::vec3 vEnd)
 {
 	float fStepping = 1 / (float)(m_iWayPointCount - 1);
 
@@ -83,11 +82,11 @@ void ObjectThrower::calculateParameters()
 		m_pPath[m_iCurrentWayPoint] - m_pPath[m_iCurrentWayPoint - 1];
 
 	//calculate its Length
-	m_fLength = magnitude(m_vDisplacement);
+	m_fLength = glm::length(m_vDisplacement);
 	m_fLengthTraveled = 0;
 
 	//convert the directional vector to a displacment vector by normalizing
-	m_vDisplacement = normalize(m_vDisplacement);
+	m_vDisplacement = glm::normalize(m_vDisplacement);
 	m_pObject->setDisplacement(m_vDisplacement);
 }
 

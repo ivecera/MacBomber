@@ -54,7 +54,7 @@ private:
 	void drawLevelName();
 	void drawView();
 
-	string m_strLevelName;
+	std::string m_strLevelName;
 
 	Timebar *m_pTimebar;
 

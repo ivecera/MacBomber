@@ -45,7 +45,7 @@ public:
 	{
 		return m_iCurrentItem;
 	};
-	void setPosition(Vector3 vPos);
+	void setPosition(glm::vec3 vPos);
 
 	//return the selected Skin /Key of this row
 	int getKeySet();

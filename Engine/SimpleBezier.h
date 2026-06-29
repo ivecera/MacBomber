@@ -18,16 +18,16 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #ifndef SIMPLEBEZIER_H
 #define SIMPLEBEZIER_H
 
-#include "Vector3.h"
+#include <glm/glm.hpp>
 
 class SimpleBezier {
 public:
 	//private:
 	int m_iControlPointCount;
-	Vector3 *m_pControlPoints;
+	glm::vec3 *m_pControlPoints;
 
 	// returns a point on the curve for a value t in [0,1]
-	Vector3 calculatePoint(float t);
+	glm::vec3 calculatePoint(float t);
 
 	int calculateFactorial(int number); // factorial of number
 	int calculateBinomialCoefficient(int n, int k); // (n choose k)
@@ -36,9 +36,9 @@ public:
 
 public:
 	SimpleBezier();
-	SimpleBezier(Vector3 vPoint0, Vector3 vPoint1, Vector3 vPoint2);
-	SimpleBezier(Vector3 vPoint0, Vector3 vPoint1, Vector3 vPoint2,
-		     Vector3 vPoint3);
+	SimpleBezier(glm::vec3 vPoint0, glm::vec3 vPoint1, glm::vec3 vPoint2);
+	SimpleBezier(glm::vec3 vPoint0, glm::vec3 vPoint1, glm::vec3 vPoint2,
+		     glm::vec3 vPoint3);
 	~SimpleBezier();
 
 	void draw();

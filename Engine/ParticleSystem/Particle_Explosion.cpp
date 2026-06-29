@@ -7,7 +7,7 @@
 
 #include "../../Defines.h"
 
-Particle_Explosion::Particle_Explosion(Vector3 vPos)
+Particle_Explosion::Particle_Explosion(glm::vec3 vPos)
 	: Particle(vPos)
 {
 	m_iTTL = 16;

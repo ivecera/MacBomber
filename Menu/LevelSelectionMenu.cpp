@@ -34,17 +34,17 @@ LevelSelectionMenu::LevelSelectionMenu(Menu *pParent)
 		"up&down keys select a map / space enables or disables a map / ESC exits",
 		sizeof(m_cHelperText));
 	m_pLevelScrollList = new LevelScrollListItem();
-	addMenuItem(m_pLevelScrollList, Vector3(0, 0.7, 0));
+	addMenuItem(m_pLevelScrollList, glm::vec3(0, 0.7, 0));
 
 	m_pEnableAllMenuItem = new ToggleItem("Enable all Maps");
 	m_pEnableAllMenuItem->addOption(" ", 0);
 	m_pEnableAllMenuItem->addOption(" ", 1);
-	addMenuItem(m_pEnableAllMenuItem, Vector3(0.0625, 0.1, 0));
+	addMenuItem(m_pEnableAllMenuItem, glm::vec3(0.0625, 0.1, 0));
 
 	m_pDisableAllMenuItem = new ToggleItem("Disable all Maps");
 	m_pDisableAllMenuItem->addOption(" ", 0);
 	m_pDisableAllMenuItem->addOption(" ", 1);
-	addMenuItem(m_pDisableAllMenuItem, Vector3(0.4, 0.1, 0));
+	addMenuItem(m_pDisableAllMenuItem, glm::vec3(0.4, 0.1, 0));
 
 	m_pMapPreview = new MapPreview();
 	m_pMapPreview->setMap(Application::m_pMapManager->getMap(

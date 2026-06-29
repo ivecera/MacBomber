@@ -20,7 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #include <SDL3/SDL_opengl.h>
 
-#include "../Engine/Vector3.h"
+#include <glm/glm.hpp>
 #include "../Objects/Bomb.h"
 #include "../Objects/Crate.h"
 
@@ -71,24 +71,24 @@ protected:
 	CParticleSystem * m_pCrateParticleSystem;*/
 
 	// The x/y position of the min/max of the block in world space coordinates
-	Vector3 m_vMin;
-	Vector3 m_vMax;
+	glm::vec3 m_vMin;
+	glm::vec3 m_vMax;
 	// The center of the block in world space
-	Vector3 m_vPos;
+	glm::vec3 m_vPos;
 
 	BoundingBox_2D *m_pBBox;
 
 	//the amount of degree this field has to be rotated during fall
 	float m_fAngle;
 	// a randomly generated vector aorund which the falling field will be rotated
-	Vector3 m_vRotationAxis;
+	glm::vec3 m_vRotationAxis;
 
 	state m_iState;
 
 	// Checks whether the bomb on the field has exploded
 	void checkBomb();
 	// Called recursively to make other fields explode
-	void explodeField(int iSteps, Vector3 vDir, int x, int z);
+	void explodeField(int iSteps, glm::vec3 vDir, int x, int z);
 	void generateItem();
 
 	void updateItem();
@@ -154,7 +154,7 @@ public:
 	float getMinZ();
 	float getMaxX();
 	float getMaxZ();
-	Vector3 getPosition()
+	glm::vec3 getPosition()
 	{
 		return m_vPos;
 	};

@@ -28,7 +28,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 MenuItem::MenuItem(const char *caption)
 {
-	m_vPosition = Vector3(0, 0, 0);
+	m_vPosition = glm::vec3(0, 0, 0);
 	//	m_cCaption = caption;
 	SDL_strlcpy(m_cCaption, caption, sizeof(m_cCaption));
 	m_bActive = false;
@@ -72,7 +72,7 @@ void MenuItem::setActive(bool bActive)
 }
 
 //specifies the position of this MenuItem
-void MenuItem::setPosition(Vector3 vPosition)
+void MenuItem::setPosition(glm::vec3 vPosition)
 {
 	m_vPosition = vPosition;
 }

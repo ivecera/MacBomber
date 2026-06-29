@@ -11,7 +11,7 @@
 #include "Particle_Item.h"
 #include "../../Defines.h"
 
-Particle_Item::Particle_Item(Vector3 vPos, ParticleManager *pParticleManager,
+Particle_Item::Particle_Item(glm::vec3 vPos, ParticleManager *pParticleManager,
 			     int itemType)
 	: Particle(vPos)
 {

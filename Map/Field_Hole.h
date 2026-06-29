@@ -37,7 +37,7 @@ protected:
 	};
 
 	// contains all bombs, which are moving _into_ the hole
-	list<SBombContainer> m_lBombList;
+	std::list<SBombContainer> m_lBombList;
 
 	bool startFall(Bomb *pBomb);
 	bool stopFall(Bomb *pBomb);

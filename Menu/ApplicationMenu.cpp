@@ -20,7 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "../Defines.h"
 #include "../Application.h"
 #include "ApplicationMenu.h"
-#include "../Engine/Vector3.h"
+#include <glm/glm.hpp>
 #include "Menu.h"
 #include "PlayerSetupMenu.h"
 #include "LevelSelectionMenu.h"
@@ -297,7 +297,7 @@ ApplicationMenu::ApplicationMenu(Application *pApp)
 		"(Changes will apply after restart)");
 	m_pVideoSetupMenu->addMenuItem(
 		new LabelItem("(Changes will apply after restart)"),
-		Vector3(0.5 - (length / 2), 0.85, 0));
+		glm::vec3(0.5 - (length / 2), 0.85, 0));
 
 	m_pVideoSetupMenu->addSpace();
 	m_pVideoSetupMenu->addMenuItem(
@@ -305,27 +305,28 @@ ApplicationMenu::ApplicationMenu(Application *pApp)
 
 	/**m_pCredits*/
 	m_pCredits->addMenuItem(new LabelItem("Programming:"),
-				Vector3(0.3, 0.73, 0));
+				glm::vec3(0.3, 0.73, 0));
 	m_pCredits->addMenuItem(new LabelItem("Altay Cebe"),
-				Vector3(0.5, 0.73, 0));
+				glm::vec3(0.5, 0.73, 0));
 
 	m_pCredits->addMenuItem(new LabelItem("Graphics:"),
-				Vector3(0.3, 0.66, 0));
+				glm::vec3(0.3, 0.66, 0));
 	m_pCredits->addMenuItem(new LabelItem("Altay Cebe"),
-				Vector3(0.5, 0.66, 0));
+				glm::vec3(0.5, 0.66, 0));
 
-	m_pCredits->addMenuItem(new LabelItem("Music:"), Vector3(0.3, 0.59, 0));
+	m_pCredits->addMenuItem(new LabelItem("Music:"),
+				glm::vec3(0.3, 0.59, 0));
 	m_pCredits->addMenuItem(new LabelItem("Dennis Becker"),
-				Vector3(0.5, 0.59, 0));
+				glm::vec3(0.5, 0.59, 0));
 	m_pCredits->addMenuItem(new LabelItem("(www.ohrmusik.de)"),
-				Vector3(0.5, 0.55, 0));
+				glm::vec3(0.5, 0.55, 0));
 
 	m_pCredits->addMenuItem(new LabelItem("Special thanks to:"),
-				Vector3(0.3, 0.4, 0));
+				glm::vec3(0.3, 0.4, 0));
 	m_pCredits->addMenuItem(new LabelItem("Lale Cebe"),
-				Vector3(0.5, 0.36, 0));
+				glm::vec3(0.5, 0.36, 0));
 	m_pCredits->addMenuItem(new LabelItem("Jens Neuhalfen"),
-				Vector3(0.5, 0.29, 0));
+				glm::vec3(0.5, 0.29, 0));
 
 	Menu::setActiveMenu(m_pMainMenu);
 }

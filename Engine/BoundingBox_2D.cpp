@@ -17,9 +17,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #include "../Application.h"
 #include "BoundingBox_2D.h"
-#include "3DMath.h"
 
-BoundingBox_2D::BoundingBox_2D(Vector3 vPos, float size)
+BoundingBox_2D::BoundingBox_2D(glm::vec3 vPos, float size)
 
 {
 	// Initialize the vertex array for the box
@@ -47,7 +46,7 @@ BoundingBox_2D::BoundingBox_2D(Vector3 vPos, float size)
 	update(m_vPos);
 }
 
-void BoundingBox_2D::update(Vector3 &vPos)
+void BoundingBox_2D::update(glm::vec3 &vPos)
 {
 	m_vVertex_Worldspace[0] = m_vVertex[0] + vPos;
 	m_vVertex_Worldspace[1] = m_vVertex[1] + vPos;
@@ -81,7 +80,7 @@ bool BoundingBox_2D::doesCollideWith(BoundingBox_2D *pBBox)
 }
 
 bool BoundingBox_2D::doesCollide(BoundingBox_2D *pBBox,
-				 const Vector3 &vVelocityVector, float &time)
+				 const glm::vec3 &vVelocityVector, float &time)
 {
 	//performs an parametric collision detetcion
 

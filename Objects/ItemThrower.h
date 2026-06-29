@@ -25,12 +25,12 @@ class Item;
 class ItemThrower : public ObjectThrowerManager {
 private:
 	// choose a random target
-	Vector3 getTarget(int ignoreFieldX, int ignoreFieldZ);
+	glm::vec3 getTarget(int ignoreFieldX, int ignoreFieldZ);
 
 public:
 	ItemThrower(Map *pMap);
 
-	void add(Vector3 vStart, Item *pBomb);
+	void add(glm::vec3 vStart, Item *pBomb);
 	void handleDestinationReached(Object_Moving *pObject);
 };
 

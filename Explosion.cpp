@@ -18,14 +18,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include <SDL3/SDL_opengl.h>
 
 #include "Explosion.h"
-#include "Engine/Vector3.h"
+#include <glm/glm.hpp>
 #include "Engine/TextureManager.h"
 #include "Engine/Billboard.h"
 #include "Engine/Camera.h"
 #include "Application.h"
 #include "Defines.h"
 
-Explosion::Explosion(Vector3 vPos)
+Explosion::Explosion(glm::vec3 vPos)
 {
 	m_vPos = vPos;
 	compileDisplayList();

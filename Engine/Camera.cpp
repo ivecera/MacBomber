@@ -26,29 +26,21 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 Camera::Camera()
 {
-	Vector3 vPosition = Vector3(0.0, 0.0, 0.0);
-	Vector3 vView = Vector3(0.0, 0.0, 10.0);
-	Vector3 vUp = Vector3(0.0, 1.0, 0.0);
+	m_vView = glm::vec3(0.0f, 0.0f, 10.0f);
+	m_vUp = glm::vec3(0.0f, 1.0f, 0.0f);
 
-	m_vPosition = vPosition;
-	m_vView = vView;
-	m_vUp = vUp;
-
-	//	m_stPresets[0].vPosition = Vector3(9.5,17,13);
-	//	m_stPresets[0].vView = Vector3(9.5,3.65,8.7);
-
-	m_stPresets[0].vPosition = Vector3(9.5, 17, 13);
-	m_stPresets[0].vView = Vector3(9.5, 5, 9);
+	m_stPresets[0].vPosition = glm::vec3(9.5, 17, 13);
+	m_stPresets[0].vView = glm::vec3(9.5, 5, 9);
 	m_stPresets[0].fFogStart = 20;
 	m_stPresets[0].fFogEnd = 25;
 
-	m_stPresets[1].vPosition = Vector3(9.53, 16.7, 17);
-	m_stPresets[1].vView = Vector3(9.53, 4.58, 10);
+	m_stPresets[1].vPosition = glm::vec3(9.53, 16.7, 17);
+	m_stPresets[1].vView = glm::vec3(9.53, 4.58, 10);
 	m_stPresets[1].fFogStart = 22;
 	m_stPresets[1].fFogEnd = 26;
 
-	m_stPresets[2].vPosition = Vector3(9.5, 17, 8.5);
-	m_stPresets[2].vView = Vector3(9.5, 3.1, 7.6560);
+	m_stPresets[2].vPosition = glm::vec3(9.5, 17, 8.5);
+	m_stPresets[2].vView = glm::vec3(9.5, 3.1, 7.6560);
 	m_stPresets[2].fFogStart = 18;
 	m_stPresets[2].fFogEnd = 25;
 
@@ -58,9 +50,9 @@ void Camera::positionCamera(float positionX, float positionY, float positionZ,
 			    float viewX, float viewY, float viewZ,
 			    float upVectorX, float upVectorY, float upVectorZ)
 {
-	Vector3 tmp_vPosition(positionX, positionY, positionZ);
-	Vector3 tmp_vView(viewX, viewY, viewZ);
-	Vector3 tmp_upVector(upVectorX, upVectorY, upVectorZ);
+	glm::vec3 tmp_vPosition(positionX, positionY, positionZ);
+	glm::vec3 tmp_vView(viewX, viewY, viewZ);
+	glm::vec3 tmp_upVector(upVectorX, upVectorY, upVectorZ);
 
 	m_vPosition = tmp_vPosition;
 	m_vView = tmp_vView;
@@ -74,7 +66,7 @@ void Camera::moveCamera(float speed)
  	* This is done by subtracting the position vector from the view vector.
  	*/
 
-	Vector3 vDirection = m_vView - m_vPosition;
+	glm::vec3 vDirection = m_vView - m_vPosition;
 
 	/*
 	* We have calculated the direction vector we are looking at.
@@ -99,9 +91,9 @@ void Camera::moveCamera(float speed)
 void Camera::strafeCamera(float distance)
 {
 	// The movement direction is perpendicular to the up and view vectors
-	Vector3 vStrafeAxis = crossProduct((m_vView - m_vPosition), m_vUp);
+	glm::vec3 vStrafeAxis = glm::cross((m_vView - m_vPosition), m_vUp);
 
-	vStrafeAxis = normalize(vStrafeAxis);
+	vStrafeAxis = glm::normalize(vStrafeAxis);
 
 	m_vPosition.x +=
 		vStrafeAxis.x * distance * Application::m_fReciprocalFPS;
@@ -114,10 +106,10 @@ void Camera::strafeCamera(float distance)
 
 void Camera::rotateView(float angle, float x, float y, float z)
 {
-	Vector3 vNewView;
+	glm::vec3 vNewView;
 
 	//Get the view vector (The direction we are facing)
-	Vector3 vView = m_vView - m_vPosition;
+	glm::vec3 vView = m_vView - m_vPosition;
 
 	// Calculate the sine and cosine of the angle once
 	float cosTheta = SDL_cosf(angle);
@@ -176,10 +168,10 @@ void Camera::setViewByMouse()
 	 * This is perpendicular to the view and up vectors, so we calculate
 	 * the cross product of both vectors.
 	 */
-	Vector3 vAxis = crossProduct((m_vView - m_vPosition), m_vUp);
+	glm::vec3 vAxis = glm::cross((m_vView - m_vPosition), m_vUp);
 
 	// Normalize the resulting vector to unit length (1)
-	vAxis = normalize(vAxis);
+	vAxis = glm::normalize(vAxis);
 
 	rotateView(angleZ, vAxis.x, vAxis.y, vAxis.z);
 	rotateView(angleY, 0, 1, 0);

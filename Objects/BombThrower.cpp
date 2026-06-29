@@ -23,7 +23,7 @@ BombThrower::BombThrower(Map *pMap)
 {
 }
 
-Vector3 BombThrower::getTarget(int ignoreFieldX, int ignoreFieldZ)
+glm::vec3 BombThrower::getTarget(int ignoreFieldX, int ignoreFieldZ)
 {
 	int x, z;
 	bool done = false;
@@ -53,12 +53,12 @@ Vector3 BombThrower::getTarget(int ignoreFieldX, int ignoreFieldZ)
 	float _x = (float)x + 0.5f;
 	float _z = (float)z + 0.5f;
 
-	return Vector3(_x, 0.0f, _z);
+	return glm::vec3(_x, 0.0f, _z);
 }
 
-void BombThrower::add(Vector3 vStart, Bomb *pBomb)
+void BombThrower::add(glm::vec3 vStart, Bomb *pBomb)
 {
-	Vector3 vTarget = getTarget((int)vStart.x, (int)vStart.z);
+	glm::vec3 vTarget = getTarget((int)vStart.x, (int)vStart.z);
 	// add Bomb...
 	addToList(vStart, vTarget, pBomb);
 	// ..and disable bomb wobbling
@@ -77,7 +77,7 @@ void BombThrower::handleDestinationReached(Object_Moving *pObject)
 
 	} else // Call the appropriate placeBomb method of the field (also for blocks)
 	{
-		pBomb->setDisplacement(Vector3(0, 0, 0));
+		pBomb->setDisplacement(glm::vec3(0, 0, 0));
 		m_pMap->placeBomb(pBomb);
 
 		//only call destroyBlock Method if reached Field is *not* a hole or an void field

@@ -63,10 +63,10 @@ PlayerSetupMenu::PlayerSetupMenu(Menu *pParent)
 	m_pRows[2] = new PlayerSetupRow();
 	m_pRows[3] = new PlayerSetupRow();*/
 
-	addMenuItem(m_pRows[0], Vector3(0.312, 0.66, 0));
-	addMenuItem(m_pRows[1], Vector3(0.312, 0.48, 0));
-	addMenuItem(m_pRows[2], Vector3(0.312, 0.30, 0));
-	addMenuItem(m_pRows[3], Vector3(0.312, 0.12, 0));
+	addMenuItem(m_pRows[0], glm::vec3(0.312, 0.66, 0));
+	addMenuItem(m_pRows[1], glm::vec3(0.312, 0.48, 0));
+	addMenuItem(m_pRows[2], glm::vec3(0.312, 0.30, 0));
+	addMenuItem(m_pRows[3], glm::vec3(0.312, 0.12, 0));
 }
 
 PlayerSetupMenu::~PlayerSetupMenu()

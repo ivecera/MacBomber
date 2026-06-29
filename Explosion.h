@@ -18,7 +18,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #ifndef EXPLOSION_H
 #define EXPLOSION_H
 
-#include "Engine/Vector3.h"
+#include <glm/glm.hpp>
 #include <SDL3/SDL_opengl.h>
 
 class Camera;
@@ -27,7 +27,7 @@ class TextureManager;
 class Explosion {
 private:
 	//position of Explosion
-	Vector3 m_vPos;
+	glm::vec3 m_vPos;
 	// Explosion Display List
 	GLuint m_iExplosionDL;
 
@@ -40,7 +40,7 @@ private:
 	void updateBillboardMatrix();
 
 public:
-	Explosion(Vector3 vPos);
+	Explosion(glm::vec3 vPos);
 	~Explosion();
 	void update();
 	void draw();

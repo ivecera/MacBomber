@@ -3,7 +3,7 @@
 #include "../../Application.h"
 #include "../../Defines.h"
 
-Particle_SmokeTrail::Particle_SmokeTrail(Vector3 vPos)
+Particle_SmokeTrail::Particle_SmokeTrail(glm::vec3 vPos)
 	: Particle(vPos)
 {
 	m_iTTL = 20;

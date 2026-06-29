@@ -25,12 +25,12 @@ class Map;
 
 class BombThrower : public ObjectThrowerManager {
 private:
-	Vector3 getTarget(int ignoreFieldX, int ignoreFieldZ);
+	glm::vec3 getTarget(int ignoreFieldX, int ignoreFieldZ);
 
 public:
 	BombThrower(Map *pMap);
 
-	void add(Vector3 vStart, Bomb *pBomb);
+	void add(glm::vec3 vStart, Bomb *pBomb);
 	void handleDestinationReached(Object_Moving *pObject);
 };
 

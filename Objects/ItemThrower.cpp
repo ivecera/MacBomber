@@ -24,7 +24,7 @@ ItemThrower::ItemThrower(Map *pMap)
 {
 }
 
-Vector3 ItemThrower::getTarget(int ignoreFieldX, int ignoreFieldZ)
+glm::vec3 ItemThrower::getTarget(int ignoreFieldX, int ignoreFieldZ)
 {
 	int x, z;
 	bool bDone = false;
@@ -53,10 +53,10 @@ Vector3 ItemThrower::getTarget(int ignoreFieldX, int ignoreFieldZ)
 		}
 	}
 
-	return Vector3(((float)x) + 0.5f, 0, ((float)z) + 0.5f);
+	return glm::vec3(((float)x) + 0.5f, 0, ((float)z) + 0.5f);
 }
 
-void ItemThrower::add(Vector3 vStart, Item *pItem)
+void ItemThrower::add(glm::vec3 vStart, Item *pItem)
 {
 	addToList(vStart, getTarget((int)vStart.x, (int)vStart.z), pItem);
 	pItem->setWobble(false);

@@ -9,7 +9,7 @@
 
 #ifndef PARTICLE_H
 #define PARTICLE_H
-#include "../Vector3.h"
+#include <glm/glm.hpp>
 
 class Particle {
 protected:
@@ -19,8 +19,8 @@ protected:
 
 public:
 	float m_fVelocity; // the speed of the particle
-	Vector3 m_vDisplacement; // the Direction it travels
-	Vector3 m_vPosition; // the position of the particle
+	glm::vec3 m_vDisplacement; // the Direction it travels
+	glm::vec3 m_vPosition; // the position of the particle
 	int m_iTTL; // the amount of ticks it has to live ( Time To Live)
 
 	float m_fColor[4]; //the particles Color (R,G,B,A )
@@ -30,7 +30,7 @@ public:
 	float m_fRotation; // rotation of the particle
 	float m_BillboardMatrix[16];
 
-	Particle(Vector3 vPos);
+	Particle(glm::vec3 vPos);
 
 	bool isDead();
 	bool m_bHasTrail;

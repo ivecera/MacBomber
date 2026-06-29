@@ -15,7 +15,7 @@
 #include "ParticleManager.h"
 #include "Particle.h"
 
-Particle::Particle(Vector3 vPos)
+Particle::Particle(glm::vec3 vPos)
 {
 	m_vPosition = vPos;
 	m_fScaleFactorModifier = 0;

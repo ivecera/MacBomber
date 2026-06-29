@@ -18,7 +18,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #ifndef OBJECTTHROWER_H
 #define OBJECTTHROWER_H
 
-#include "../Engine/Vector3.h"
+#include <glm/glm.hpp>
 
 class SimpleBezier;
 class Object_Moving;
@@ -33,7 +33,7 @@ private:
 
 	//these vectors describe the objects trajectory
 	int m_iWayPointCount;
-	Vector3 *m_pPath;
+	glm::vec3 *m_pPath;
 
 	// the index of the waypoint the object is traveling to
 	int m_iCurrentWayPoint;
@@ -44,24 +44,24 @@ private:
 	float m_fLengthTraveled;
 
 	bool m_bDone; // True when the object has reached its target
-	Vector3 m_vObjectPosition;
-	Vector3 m_vDisplacement;
+	glm::vec3 m_vObjectPosition;
+	glm::vec3 m_vDisplacement;
 
 	//Calculates waypoints based on a Bezier Curve
-	void calculateWayPoints(Vector3 vStart, Vector3 vEnd);
+	void calculateWayPoints(glm::vec3 vStart, glm::vec3 vEnd);
 
 	//Calculates Displacment vector of the objects and the number of of times move() should be called
 	void calculateParameters();
 
 public:
-	ObjectThrower(Vector3 vStart, Vector3 vEnd, Object_Moving *pObject);
+	ObjectThrower(glm::vec3 vStart, glm::vec3 vEnd, Object_Moving *pObject);
 	~ObjectThrower();
 
-	Vector3 getObjectPosition()
+	glm::vec3 getObjectPosition()
 	{
 		return m_vObjectPosition;
 	};
-	Vector3 getDisplacement()
+	glm::vec3 getDisplacement()
 	{
 		return m_vDisplacement;
 	};

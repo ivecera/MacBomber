@@ -45,26 +45,26 @@ void Object_Moving::setDirection(int dir)
 	m_iDirection = dir;
 	switch (m_iDirection) {
 	case UP:
-		m_vDisplacement = Vector3(0, 0, -1);
+		m_vDisplacement = glm::vec3(0, 0, -1);
 		m_fOrientation = 180;
 		break;
 	case DOWN:
-		m_vDisplacement = Vector3(0, 0, 1);
+		m_vDisplacement = glm::vec3(0, 0, 1);
 		m_fOrientation = 0;
 		break;
 	case LEFT:
-		m_vDisplacement = Vector3(-1, 0, 0);
+		m_vDisplacement = glm::vec3(-1, 0, 0);
 		m_fOrientation = 270;
 		break;
 	case RIGHT:
-		m_vDisplacement = Vector3(1, 0, 0);
+		m_vDisplacement = glm::vec3(1, 0, 0);
 		m_fOrientation = 90;
 		break;
 	case NONE:
-		m_vDisplacement = Vector3(0, 0, 0);
+		m_vDisplacement = glm::vec3(0, 0, 0);
 		break;
 	default:
-		m_vDisplacement = Vector3(0, 0, 0);
+		m_vDisplacement = glm::vec3(0, 0, 0);
 		break;
 	}
 }
@@ -74,7 +74,7 @@ void Object_Moving::setDrop(bool bDrop)
 	m_bDoesDrop = bDrop;
 }
 
-void Object_Moving::setDisplacement(Vector3 vDisplacement)
+void Object_Moving::setDisplacement(glm::vec3 vDisplacement)
 {
 	m_vDisplacement = vDisplacement;
 }
@@ -91,7 +91,7 @@ void Object_Moving::move()
 	m_pBBox->update(m_vPos);
 }
 
-void Object_Moving::move(Vector3 vDisplacement)
+void Object_Moving::move(glm::vec3 vDisplacement)
 {
 	m_vPos = m_vPos + (vDisplacement *
 			   (m_fVelocity * Application::m_fReciprocalFPS));
@@ -99,7 +99,7 @@ void Object_Moving::move(Vector3 vDisplacement)
 
 bool Object_Moving::doDrop()
 {
-	Vector3 vVerticalDisplacement(0, -1, 0);
+	glm::vec3 vVerticalDisplacement(0, -1, 0);
 	vVerticalDisplacement = vVerticalDisplacement;
 
 	if (m_vPos.y > -8.0f) {

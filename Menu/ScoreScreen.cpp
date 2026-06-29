@@ -27,7 +27,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "../Engine/TextureManager.h"
 #include "../Engine/InputManager.h"
 
-#include "../Engine/Vector3.h"
+#include <glm/glm.hpp>
 #include "../Engine/Wobbler.h"
 
 #include "../MeshObjects/CupMesh.h"

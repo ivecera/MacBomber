@@ -120,7 +120,8 @@ void Field_Hole::moveBomb()
 		if ((*it).bDoesFall == false) {
 			if (startFall((*it).pBomb)) {
 				(*it).bDoesFall = true;
-				(*it).pBomb->setDisplacement(Vector3(0, -1, 0));
+				(*it).pBomb->setDisplacement(
+					glm::vec3(0, -1, 0));
 			}
 
 		} else {

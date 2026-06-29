@@ -19,7 +19,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #define MAPPREVIEW_H
 
 #include "../Map/StMapEntry.h"
-#include "../Engine/Vector3.h"
+#include <glm/glm.hpp>
 #include <list>
 
 class MapPreview {
@@ -33,19 +33,19 @@ private:
 		int iDirection;
 	};
 
-	list<stArrowField> m_listCrateFields;
-	list<stArrowField> m_listBlockFields;
+	std::list<stArrowField> m_listCrateFields;
+	std::list<stArrowField> m_listBlockFields;
 
-	list<stArrowField> m_listPlainFields_Color0;
-	list<stArrowField> m_listPlainFields_Color1;
+	std::list<stArrowField> m_listPlainFields_Color0;
+	std::list<stArrowField> m_listPlainFields_Color1;
 
-	list<stArrowField> m_listArrowFields_Color0;
-	list<stArrowField> m_listArrowFields_Color1;
+	std::list<stArrowField> m_listArrowFields_Color0;
+	std::list<stArrowField> m_listArrowFields_Color1;
 
-	list<stArrowField> m_listHoleFields_Color0;
-	list<stArrowField> m_listHoleFields_Color1;
+	std::list<stArrowField> m_listHoleFields_Color0;
+	std::list<stArrowField> m_listHoleFields_Color1;
 
-	list<stArrowField> m_listRandomFields;
+	std::list<stArrowField> m_listRandomFields;
 
 	void drawCrateFields();
 	void drawBlockFields();

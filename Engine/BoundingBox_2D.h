@@ -18,7 +18,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #ifndef BOUNDINGBOX_H
 #define BOUNDINGBOX_H
 
-#include "Vector3.h"
+#include <glm/glm.hpp>
 #include "../Defines.h"
 
 // We only deal with square bounding boxes
@@ -34,21 +34,21 @@ private:
 	//      3--------2
 
 	// The position of the bounding box in world space
-	Vector3 m_vPos;
+	glm::vec3 m_vPos;
 	float m_fRadius;
 
 public:
-	Vector3 m_vMin;
-	Vector3 m_vMax;
+	glm::vec3 m_vMin;
+	glm::vec3 m_vMax;
 
-	Vector3 m_vVertex[4];
-	Vector3 m_vVertex_Worldspace[4];
+	glm::vec3 m_vVertex[4] = {};
+	glm::vec3 m_vVertex_Worldspace[4] = {};
 
 	// Parameters: start world position + the min/max vertices of the 3D bounding box
-	BoundingBox_2D(Vector3 vPos, float size);
+	BoundingBox_2D(glm::vec3 vPos, float size);
 
 	//Updates the world space coordinates
-	void update(Vector3 &vPos);
+	void update(glm::vec3 &vPos);
 
 	//checks fixed bboxes for collision
 	bool doesCollideWith(BoundingBox_2D *pBBox);
@@ -56,8 +56,8 @@ public:
 	//checks if moving pBBox collides with this static boundingbox. returns true if yes
 	// vVelocityVector: m_vDisplacement * vVelocity
 	// time: contains time of collision
-	bool doesCollide(BoundingBox_2D *pBBox, const Vector3 &vVelocityVector,
-			 float &time);
+	bool doesCollide(BoundingBox_2D *pBBox,
+			 const glm::vec3 &vVelocityVector, float &time);
 };
 
 #endif

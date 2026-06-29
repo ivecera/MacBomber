@@ -11,7 +11,7 @@
 #define PARTICLE_ITEM_H
 
 #include "Particle.h"
-#include "../Vector3.h"
+#include <glm/glm.hpp>
 
 class ParticleManager;
 
@@ -22,7 +22,7 @@ private:
 	ParticleManager *m_pParticleManager;
 
 public:
-	Particle_Item(Vector3 m_vPos, ParticleManager *pParticleManager,
+	Particle_Item(glm::vec3 m_vPos, ParticleManager *pParticleManager,
 		      int itemType);
 	void update();
 };

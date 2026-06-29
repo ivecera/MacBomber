@@ -20,7 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #include <list>
 #include "ObjectThrower.h"
-#include "../Engine/Vector3.h"
+#include <glm/glm.hpp>
 
 class Map;
 class Object_Moving;
@@ -32,12 +32,13 @@ protected:
 		Object_Moving *pObject; // pObject is sufficient for setPosition()
 	};
 
-	list<SThrowerContainer> m_listThrower;
+	std::list<SThrowerContainer> m_listThrower;
 	Map *m_pMap;
 
-	virtual Vector3 getTarget(int ignoreFieldX, int ignoreFieldZ) = 0;
+	virtual glm::vec3 getTarget(int ignoreFieldX, int ignoreFieldZ) = 0;
 	virtual void handleDestinationReached(Object_Moving *pObject) = 0;
-	void addToList(Vector3 vStart, Vector3 vEnd, Object_Moving *pObject);
+	void addToList(glm::vec3 vStart, glm::vec3 vEnd,
+		       Object_Moving *pObject);
 
 public:
 	ObjectThrowerManager(Map *pMap);

@@ -18,8 +18,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #ifndef CCAMERA
 #define CCAMERA
 
-#include "Vector3.h"
-#include "3DMath.h"
+#include <glm/glm.hpp>
 #include <SDL3/SDL.h>
 
 /** This class represents the virtual camera in the 3D world
@@ -29,13 +28,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 struct stPreset {
 	// Cameras position
-	Vector3 vPosition;
+	glm::vec3 vPosition;
 
 	// the coordinate the camera is looking at
-	Vector3 vView;
+	glm::vec3 vView;
 	// since we have changing views (&use OpenGL fog) we store for each preset fog start/end values seperately
-	float fFogStart;
-	float fFogEnd;
+	float fFogStart = 0;
+	float fFogEnd = 0;
 };
 
 class Camera {
@@ -47,9 +46,9 @@ private:
 	int m_iPreset;
 
 public:
-	Vector3 m_vPosition; // The position of the virtual camera
-	Vector3 m_vView; // The viewing direction of the virtual camera
-	Vector3 m_vUp; // The direction that defines "up"
+	glm::vec3 m_vPosition; // The position of the virtual camera
+	glm::vec3 m_vView; // The viewing direction of the virtual camera
+	glm::vec3 m_vUp; // The direction that defines "up"
 	// FIXME: Left vector
 
 	Camera();

@@ -29,7 +29,7 @@ protected:
 	Menu *m_pParentMenu;
 
 	// this Vector contains all Menuitems of this Menu
-	vector<ptrMenuItem> m_lMenuItems;
+	std::vector<ptrMenuItem> m_lMenuItems;
 	// An iterator to the currently active Menuitem
 	//vector <ptrMenuItem>::iterator m_itIterator;
 	int m_iActiveItem;
@@ -59,7 +59,7 @@ public:
 	// adds a Menuitem to the menu. The position of this Item willbe determined by the Menu itself
 	void addMenuItem(MenuItem *pMenuItem);
 	// adds a Menuitem to the menu, with position vPosition
-	void addMenuItem(MenuItem *pMenuItem, Vector3 vPosition);
+	void addMenuItem(MenuItem *pMenuItem, glm::vec3 vPosition);
 	// adds a vertical Spacing
 	void addSpace(float value = 0.03);
 

@@ -58,7 +58,7 @@ float Object::getSize()
 	return m_fSize;
 }
 
-void Object::setPosition(Vector3 vPos)
+void Object::setPosition(glm::vec3 vPos)
 {
 	m_vPos = vPos;
 	m_xBlock = int(vPos.x);
@@ -66,7 +66,7 @@ void Object::setPosition(Vector3 vPos)
 	m_pBBox->update(m_vPos);
 }
 
-Vector3 Object::getPosition()
+glm::vec3 Object::getPosition()
 {
 	return m_vPos;
 }

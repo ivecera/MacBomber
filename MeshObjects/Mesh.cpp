@@ -22,7 +22,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "../Engine/TextureManager.h"
 
 #include "Mesh.h"
-#include "../Engine/3DMath.h"
 #include "lib3ds/chunk.h"
 #include "lib3ds/mesh.h"
 #include "lib3ds/vector.h"
@@ -76,8 +75,8 @@ void Mesh::load3dsFile(const char *fileName)
 		m_nMaterials++;
 	}*/
 	m_pVertexIndices = new int[m_nIndices];
-	m_pVertices = new Vector3[m_nVertices];
-	m_pVertexNormals = new Vector3[m_nVertices];
+	m_pVertices = new glm::vec3[m_nVertices];
+	m_pVertexNormals = new glm::vec3[m_nVertices];
 	m_pTexCoords = new float[m_nTexels * 2];
 
 	// -----------------	Fill arrays
@@ -97,7 +96,7 @@ void Mesh::load3dsFile(const char *fileName)
 	// Normals & Vertexindices
 	int j = 0;
 	int k = 0;
-	Vector3 faceNormal;
+	glm::vec3 faceNormal;
 
 	for (int i = 0; i < m_nTriangles; i++) {
 		//get the face Normal
@@ -121,7 +120,7 @@ void Mesh::load3dsFile(const char *fileName)
 
 	// Run through all vertexnormals and normalize them
 	for (int i = 0; i < m_nVertices; i++) {
-		m_pVertexNormals[i] = normalize(m_pVertexNormals[i]);
+		m_pVertexNormals[i] = glm::normalize(m_pVertexNormals[i]);
 	}
 
 	// Texcoords
@@ -164,13 +163,13 @@ void Mesh::createVBO()
 {
 	glGenBuffersARB(1, &m_nVBOVertices);
 	glBindBufferARB(GL_ARRAY_BUFFER_ARB, m_nVBOVertices);
-	glBufferDataARB(GL_ARRAY_BUFFER_ARB, m_nVertices * sizeof(Vector3),
+	glBufferDataARB(GL_ARRAY_BUFFER_ARB, m_nVertices * sizeof(glm::vec3),
 			m_pVertices, GL_STATIC_DRAW_ARB);
 	glBindBufferARB(GL_ARRAY_BUFFER_ARB, 0);
 
 	glGenBuffersARB(1, &m_nVBONormals);
 	glBindBufferARB(GL_ARRAY_BUFFER_ARB, m_nVBONormals);
-	glBufferDataARB(GL_ARRAY_BUFFER_ARB, m_nVertices * sizeof(Vector3),
+	glBufferDataARB(GL_ARRAY_BUFFER_ARB, m_nVertices * sizeof(glm::vec3),
 			m_pVertexNormals, GL_STATIC_DRAW_ARB);
 	glBindBufferARB(GL_ARRAY_BUFFER_ARB, 0);
 

@@ -21,7 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include <SDL3/SDL_opengl.h>
 #include "lib3ds/file.h"
 
-class Vector3;
+#include <glm/glm.hpp>
 
 struct stMaterial {
 	char name[50];
@@ -56,8 +56,8 @@ public:
 	//	float * m_pNormals;
 	float *m_pTexCoords;
 
-	Vector3 *m_pVertices;
-	Vector3 *m_pVertexNormals;
+	glm::vec3 *m_pVertices;
+	glm::vec3 *m_pVertexNormals;
 
 	GLuint m_nVBOVertices;
 	GLuint m_nVBOIndices;

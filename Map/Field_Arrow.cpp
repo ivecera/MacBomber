@@ -111,8 +111,8 @@ void Field_Arrow::moveBomb()
 {
 	if (m_bBomb) {
 		float fSize = m_pBomb->getSize() / 2;
-		Vector3 vPos_next = m_pBomb->getPosition() +
-				    (m_pBomb->getDisplacement() * fSize);
+		glm::vec3 vPos_next = m_pBomb->getPosition() +
+				      (m_pBomb->getDisplacement() * fSize);
 
 		// If the bomb is not moving (just placed), push it
 		if ((m_pBomb->getDirection() == NONE) &&
@@ -168,13 +168,13 @@ void Field_Arrow::update()
 		m_fAngle += (Application::m_fReciprocalFPS * 90);
 
 		if (m_bItem) {
-			Vector3 vVector = m_pItem->getPosition();
+			glm::vec3 vVector = m_pItem->getPosition();
 			vVector.y -= (Application::m_fReciprocalFPS * 4);
 			m_pItem->setPosition(vVector);
 		}
 
 		if (m_bBomb) {
-			Vector3 vVector = m_pBomb->getPosition();
+			glm::vec3 vVector = m_pBomb->getPosition();
 			vVector.y -= (Application::m_fReciprocalFPS * 4);
 			m_pBomb->setPosition(vVector);
 		}

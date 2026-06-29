@@ -37,7 +37,6 @@ set(SOURCES
     Engine/Init.cpp
     Engine/InputManager.cpp
     Engine/loadTexture.cpp
-    Engine/Matrix.cpp
     Engine/MeshManager.cpp
     Engine/ortho.cpp
     Engine/scaleFunctions.cpp
@@ -48,7 +47,6 @@ set(SOURCES
     Engine/TextureManager.cpp
     Engine/Timer.cpp
     Engine/TriangleMesh.cpp
-    Engine/Vector3.cpp
     Engine/Wobbler.cpp
 
     Engine/ParticleSystem/Particle.cpp
@@ -126,7 +124,10 @@ set(SOURCES
 
 add_executable(macbomber ${SOURCES})
 
-target_compile_definitions(macbomber PRIVATE GL_GLEXT_PROTOTYPES)
+target_compile_definitions(macbomber PRIVATE
+    GL_GLEXT_PROTOTYPES
+    GLM_FORCE_CTOR_INIT
+)
 
 target_include_directories(macbomber PRIVATE
     ${CMAKE_SOURCE_DIR}

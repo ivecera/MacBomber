@@ -18,7 +18,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #ifndef MAPDESTROYER_H
 #define MAPDESTROYER_H
 
-#include "../Engine/Vector3.h"
+#include <glm/glm.hpp>
 class Map;
 class ObjectThrower;
 class Wiley;
@@ -39,7 +39,7 @@ private:
 	bool m_bMapCleared;
 
 	//randomly chooses a new target
-	Vector3 getTarget();
+	glm::vec3 getTarget();
 
 	//used to determine if a particle should be added to wileys trail
 	int m_iTicks;

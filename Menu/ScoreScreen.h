@@ -17,7 +17,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #ifndef SCORESCREEN_H
 #define SCORESCREEN_H
 
-#include "../Engine/Vector3.h"
+#include <glm/glm.hpp>
 class Game;
 class Player;
 class Wobbler;
@@ -26,7 +26,7 @@ class ScoreScreen {
 private:
 	struct stRow {
 		//stores first slot (player) of row
-		Vector3 position;
+		glm::vec3 position;
 
 		int iColumns;
 		Player *pPlayer;
@@ -44,12 +44,12 @@ private:
 	bool m_bPaused;
 
 	//New Cup Position
-	Vector3 m_vCupPosition;
+	glm::vec3 m_vCupPosition;
 	// rotation angle of Cup
 	float m_fCupRotationAngle;
 
 	//position of the first Row on screen
-	Vector3 m_vFirstRowPosition;
+	glm::vec3 m_vFirstRowPosition;
 	//spacing between elements of a row / between rows
 	float m_fColumnSpacing;
 	float m_fRowSpacing;

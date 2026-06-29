@@ -35,7 +35,7 @@ ObjectThrowerManager::~ObjectThrowerManager()
 }
 
 void ObjectThrowerManager::addToList(
-	Vector3 vStart, Vector3 vEnd,
+	glm::vec3 vStart, glm::vec3 vEnd,
 	Object_Moving *pObject /*, CParticleSystem * pParticleSystem*/)
 {
 	SThrowerContainer pContainer;

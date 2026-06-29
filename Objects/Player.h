@@ -55,7 +55,7 @@ private:
 	enum Status { ALIVE, FALLING, DEADBYBOMB, REALLYDEAD };
 	Status m_iState;
 
-	Vector3 m_vDisplacementModifier;
+	glm::vec3 m_vDisplacementModifier;
 	float m_fOrientationCurrent; //the orientation is currently facing( used for rotation animation)
 	float m_fRotationDegrees; //the amount of degrees the player has to rotate
 	int m_iRotationDirection; // direction of rotation (-1 = neg, 1 = pos)

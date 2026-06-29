@@ -21,7 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include <SDL3/SDL_opengl.h>
 #include "lib3ds/file.h"
 
-class Vector3;
+#include <glm/glm.hpp>
 
 class Mesh {
 protected:
@@ -38,8 +38,8 @@ protected:
 	int *m_pVertexIndices;
 	float *m_pTexCoords;
 
-	Vector3 *m_pVertices;
-	Vector3 *m_pVertexNormals;
+	glm::vec3 *m_pVertices;
+	glm::vec3 *m_pVertexNormals;
 
 	bool m_bUseVBO;
 

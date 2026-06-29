@@ -63,7 +63,7 @@ void Menu::drawHelperText()
 
 void Menu::addMenuItem(MenuItem *pMenuItem)
 {
-	Vector3 vPosition;
+	glm::vec3 vPosition(0.0f);
 	vPosition.x = 0.25;
 	vPosition.y = m_fYValue -= 0.0625;
 	pMenuItem->setPosition(vPosition);
@@ -73,7 +73,7 @@ void Menu::addMenuItem(MenuItem *pMenuItem)
 	//	m_itIterator = m_lMenuItems.begin();
 }
 
-void Menu::addMenuItem(MenuItem *pMenuItem, Vector3 vPosition)
+void Menu::addMenuItem(MenuItem *pMenuItem, glm::vec3 vPosition)
 {
 	pMenuItem->setPosition(vPosition);
 

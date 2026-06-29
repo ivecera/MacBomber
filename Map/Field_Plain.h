@@ -21,7 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include <SDL3/SDL_opengl.h>
 
 #include "Field.h"
-#include "../Engine/Vector3.h"
+#include <glm/glm.hpp>
 #include "../Objects/Bomb.h"
 
 class Item;

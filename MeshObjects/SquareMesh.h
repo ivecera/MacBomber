@@ -19,12 +19,12 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #define SquareMesh_H
 
 #include "Mesh.h"
-#include "../Engine/Vector3.h"
+#include <glm/glm.hpp>
 
 class SquareMesh {
 private:
 	//stores texcoords for arrow layers
-	Vector3 m_pTexCoords[4][4];
+	glm::vec3 m_pTexCoords[4][4];
 
 	GLfloat mat_amb_diff[4];
 	GLfloat mat_ambient[4];

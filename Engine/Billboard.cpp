@@ -19,12 +19,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #include "Billboard.h"
 #include "Camera.h"
-#include "Vector3.h"
-#include "3DMath.h"
+#include <glm/glm.hpp>
 #include "../Application.h"
 
-void createBillboardMatrix(const Vector3 &vPos, const Vector3 &vLook,
-			   const Vector3 &vUp, const Vector3 &vRight,
+void createBillboardMatrix(const glm::vec3 &vPos, const glm::vec3 &vLook,
+			   const glm::vec3 &vUp, const glm::vec3 &vRight,
 			   float *pMatrix)
 {
 	pMatrix[0] = vRight.x;
@@ -46,42 +45,42 @@ void createBillboardMatrix(const Vector3 &vPos, const Vector3 &vLook,
 	pMatrix[15] = 1;
 }
 
-void calculateBillboardMatrix_Point(const Vector3 &vPos, float *pMatrix)
+void calculateBillboardMatrix_Point(const glm::vec3 &vPos, float *pMatrix)
 {
-	Vector3 vLook = Application::m_pCamera->m_vPosition - vPos;
-	vLook = normalize(vLook);
-	Vector3 vRight = crossProduct(Application::m_pCamera->m_vUp, vLook);
-	Vector3 vUp = crossProduct(vRight, vLook);
+	glm::vec3 vLook = Application::m_pCamera->m_vPosition - vPos;
+	vLook = glm::normalize(vLook);
+	glm::vec3 vRight = glm::cross(Application::m_pCamera->m_vUp, vLook);
+	glm::vec3 vUp = glm::cross(vRight, vLook);
 
 	createBillboardMatrix(vPos, vLook, vUp, vRight, pMatrix);
 }
 
-void calculateBillboardMatrix_Xaxis(const Vector3 &vPos, float *pMatrix)
+void calculateBillboardMatrix_Xaxis(const glm::vec3 &vPos, float *pMatrix)
 {
-	Vector3 vLook = Application::m_pCamera->m_vPosition - vPos;
+	glm::vec3 vLook = Application::m_pCamera->m_vPosition - vPos;
 	vLook.x = 0;
-	vLook = normalize(vLook);
-	Vector3 vUp(1, 0, 0);
-	Vector3 vRight = crossProduct(vUp, vLook);
+	vLook = glm::normalize(vLook);
+	glm::vec3 vUp(1, 0, 0);
+	glm::vec3 vRight = glm::cross(vUp, vLook);
 	createBillboardMatrix(vPos, vLook, vUp, vRight, pMatrix);
 }
 
-void calculateBillboardMatrix_Yaxis(const Vector3 &vPos, float *pMatrix)
+void calculateBillboardMatrix_Yaxis(const glm::vec3 &vPos, float *pMatrix)
 {
-	Vector3 vLook = Application::m_pCamera->m_vPosition - vPos;
+	glm::vec3 vLook = Application::m_pCamera->m_vPosition - vPos;
 	vLook.y = 0;
-	vLook = normalize(vLook);
-	Vector3 vUp(0, 1, 0);
-	Vector3 vRight = crossProduct(vUp, vLook);
+	vLook = glm::normalize(vLook);
+	glm::vec3 vUp(0, 1, 0);
+	glm::vec3 vRight = glm::cross(vUp, vLook);
 	createBillboardMatrix(vPos, vLook, vUp, vRight, pMatrix);
 }
 
-void calculateBillboardMatrix_Zaxis(const Vector3 &vPos, float *pMatrix)
+void calculateBillboardMatrix_Zaxis(const glm::vec3 &vPos, float *pMatrix)
 {
-	Vector3 vLook = Application::m_pCamera->m_vPosition - vPos;
+	glm::vec3 vLook = Application::m_pCamera->m_vPosition - vPos;
 	vLook.z = 0;
-	vLook = normalize(vLook);
-	Vector3 vUp(0, 0, 1);
-	Vector3 vRight = crossProduct(vUp, vLook);
+	vLook = glm::normalize(vLook);
+	glm::vec3 vUp(0, 0, 1);
+	glm::vec3 vRight = glm::cross(vUp, vLook);
 	createBillboardMatrix(vPos, vLook, vUp, vRight, pMatrix);
 }

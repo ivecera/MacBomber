@@ -16,6 +16,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
 #include "Map.h"
+#include "../Engine/3DMath.h"
 #include "../Engine/BoundingBox_2D.h"
 #include "../Objects/Object_Moving.h"
 #include "../Objects/Player.h"
@@ -327,7 +328,7 @@ Map::~Map()
 	cleanUp();
 }
 
-void Map::calculateDisplacement(Vector3 &vDisplacement)
+void Map::calculateDisplacement(glm::vec3 &vDisplacement)
 {
 	float angle;
 
@@ -484,7 +485,7 @@ int Map::getPlayerStartPositionZ(int nr)
 		return 0;
 }
 
-bool Map::doesPlayerCollide(Player *pPlayer, Vector3 &slideDirection,
+bool Map::doesPlayerCollide(Player *pPlayer, glm::vec3 &slideDirection,
 			    float &time)
 {
 	BoundingBox_2D *pFieldBBox;
@@ -498,7 +499,7 @@ bool Map::doesPlayerCollide(Player *pPlayer, Vector3 &slideDirection,
 	int zBlockNext =
 		pPlayer->getZBlock() + int(pPlayer->getDisplacement().z);
 
-	Vector3 vVelocityVector =
+	glm::vec3 vVelocityVector =
 		(pPlayer->getDisplacement()) * pPlayer->getVelocity();
 
 	switch (pPlayer->getDirection()) {
@@ -677,12 +678,12 @@ void Map::doDrop(int x, int z)
 	m_pMap[x][z] = new Field_Void(x, z, this);
 }
 
-void Map::addBombToThrower(Vector3 vStart, Bomb *pBomb)
+void Map::addBombToThrower(glm::vec3 vStart, Bomb *pBomb)
 {
 	m_pBombThrower->add(vStart, pBomb);
 }
 
-void Map::addItemToThrower(Vector3 vStart, Item *pItem)
+void Map::addItemToThrower(glm::vec3 vStart, Item *pItem)
 {
 	m_pItemThrower->add(vStart, pItem);
 }
@@ -937,7 +938,7 @@ void Map::draw()
 	} else {
 		//shake it, baby !
 		calculateDisplacement(m_vDisplacement);
-		m_vDisplacement = m_vDisplacement * 0.1;
+		m_vDisplacement = m_vDisplacement * 0.1f;
 	}
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glPushMatrix();

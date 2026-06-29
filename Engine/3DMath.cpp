@@ -18,54 +18,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "3DMath.h"
 #include <SDL3/SDL.h>
 
-/**
- * Mit dem Kreuzprodukt zweier Vektoren berechnet man den Vektor, welcher Senkrecht zu der Ebene ist
- * den die beiden Vektoren aufspannen ( welcher Senkrecht ist zu beiden Vektoren )
- * Definiton:
- * u = ( u1, u2, u3 ) 
- * v = ( v1, v2, v3 )
- *
- * u x v = ( u2*v3 - u3*v2, u3*v1 - u1*v3, u2*v1 - u1*v2 );
- *
- */
-
-Vector3 crossProduct(const Vector3 &u, const Vector3 &v)
-{
-	Vector3 product;
-
-	product.x = (u.y * v.z - u.z * v.y);
-	product.y = (u.z * v.x - u.x * v.z);
-	product.z = (u.x * v.y - u.y * v.x);
-
-	return product;
-}
-
-float dotProduct(const Vector3 &u, const Vector3 &v)
-{
-	float x, y, z = 0;
-
-	x = u.x * v.x;
-	y = u.y * v.y;
-	z = u.z * v.z;
-
-	return (x + y + z);
-}
-
-float magnitude(const Vector3 &v)
-{
-	float product = dotProduct(v, v);
-	return SDL_sqrtf(product);
-}
-
-// TODO: add const
-Vector3 normalize(Vector3 &v)
-{
-	float length = magnitude(v);
-	Vector3 normalizedVector = v / length;
-
-	return normalizedVector;
-}
-
 void rotateAroundYAxis(float &x, float &z, float theta)
 {
 	float _x;

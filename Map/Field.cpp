@@ -35,7 +35,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #include "../Engine/ParticleSystem/ParticleManager.h"
 #include "../Engine/BoundingBox_2D.h"
-#include "../Engine/3DMath.h"
 
 Field::Field(int xGridPos, int zGridPos, Map *pMap)
 {
@@ -73,7 +72,7 @@ Field::Field(int xGridPos, int zGridPos, Map *pMap)
 	m_vRotationAxis.z = 0;
 
 	// +0.5 y so the explosion is on the field
-	m_pExplosion = new Explosion(m_vPos + Vector3(0, 0.5, 0));
+	m_pExplosion = new Explosion(m_vPos + glm::vec3(0, 0.5, 0));
 
 	m_iState = NORMAL;
 }
@@ -119,7 +118,7 @@ void Field::checkBomb()
 	}
 }
 
-void Field::explodeField(int iSteps, Vector3 vDir, int x, int z)
+void Field::explodeField(int iSteps, glm::vec3 vDir, int x, int z)
 {
 	// Abort if out of bounds / max steps reached / reached field is a block / reached field has a crate
 	if ((x < 0) || (x == m_pMap->getWidth()) || (z < 0) ||
@@ -227,7 +226,7 @@ void Field::destroy()
 	if (m_bCrate) {
 		generateItem();
 		m_bCrate = false;
-		Vector3 vPos = m_vPos;
+		glm::vec3 vPos = m_vPos;
 		vPos.y = 1;
 		m_pMap->m_ParticleManager.addCrateParticle(vPos, 3);
 
@@ -242,13 +241,13 @@ void Field::destroy()
 
 	if (m_bBomb) {
 		m_bBomb = false;
-		explodeField(m_pBomb->getStrength(), Vector3(0, 0, 1), m_iXGrid,
-			     m_iZGrid + 1);
-		explodeField(m_pBomb->getStrength(), Vector3(0, 0, -1),
+		explodeField(m_pBomb->getStrength(), glm::vec3(0, 0, 1),
+			     m_iXGrid, m_iZGrid + 1);
+		explodeField(m_pBomb->getStrength(), glm::vec3(0, 0, -1),
 			     m_iXGrid, m_iZGrid - 1);
-		explodeField(m_pBomb->getStrength(), Vector3(1, 0, 0),
+		explodeField(m_pBomb->getStrength(), glm::vec3(1, 0, 0),
 			     m_iXGrid + 1, m_iZGrid);
-		explodeField(m_pBomb->getStrength(), Vector3(-1, 0, 0),
+		explodeField(m_pBomb->getStrength(), glm::vec3(-1, 0, 0),
 			     m_iXGrid - 1, m_iZGrid);
 
 		m_pBomb->explode();

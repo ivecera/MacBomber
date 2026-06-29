@@ -21,7 +21,7 @@ Shaker::Shaker()
 {
 }
 
-Vector3 Shaker::doShake(Vector3 &vec1, Vector3 &vec2)
+glm::vec3 Shaker::doShake(glm::vec3 &vec1, glm::vec3 &vec2)
 {
 	float deltaX = (rand() % 2) * 0.1;
 	float deltaZ = (rand() % 2) * 0.1;
@@ -32,10 +32,10 @@ Vector3 Shaker::doShake(Vector3 &vec1, Vector3 &vec2)
 	vec1.z = vec1.z + deltaZ;
 	vec2.z = vec2.z - deltaZ;
 
-	Vector3 vDelta = vec2 - vec1;
+	glm::vec3 vDelta = vec2 - vec1;
 
 	// Random value between 0 and 1
 	float t = (rand() % 100) * 0.01;
-	Vector3 output = vec1 + (vDelta * t);
+	glm::vec3 output = vec1 + (vDelta * t);
 	return output;
 }

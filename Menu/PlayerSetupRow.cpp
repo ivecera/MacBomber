@@ -49,13 +49,13 @@ void PlayerSetupRow::toggleEnable()
 	m_bEnabled = !m_bEnabled;
 }
 
-void PlayerSetupRow::setPosition(Vector3 vPos)
+void PlayerSetupRow::setPosition(glm::vec3 vPos)
 {
 	m_vPosition.x = vPos.x;
 	m_vPosition.y = vPos.y;
 	m_vPosition.z = vPos.z;
 
-	Vector3 vTmp = m_vPosition;
+	glm::vec3 vTmp = m_vPosition;
 	m_pToggleItem[0]->setPosition(vTmp);
 	vTmp.x += 0.3;
 	m_pToggleItem[1]->setPosition(vTmp);

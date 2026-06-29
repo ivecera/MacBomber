@@ -22,17 +22,18 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 SimpleBezier::SimpleBezier()
 {
-	m_pControlPoints = new Vector3[3];
-	m_pControlPoints[0] = Vector3(1, 0, 2);
-	m_pControlPoints[1] = Vector3(10, 14, 2);
-	m_pControlPoints[2] = Vector3(19, 0, 13);
+	m_pControlPoints = new glm::vec3[3];
+	m_pControlPoints[0] = glm::vec3(1, 0, 2);
+	m_pControlPoints[1] = glm::vec3(10, 14, 2);
+	m_pControlPoints[2] = glm::vec3(19, 0, 13);
 
 	m_iControlPointCount = 3;
 }
 
-SimpleBezier::SimpleBezier(Vector3 vPoint0, Vector3 vPoint1, Vector3 vPoint2)
+SimpleBezier::SimpleBezier(glm::vec3 vPoint0, glm::vec3 vPoint1,
+			   glm::vec3 vPoint2)
 {
-	m_pControlPoints = new Vector3[3];
+	m_pControlPoints = new glm::vec3[3];
 	m_pControlPoints[0] = vPoint0;
 	m_pControlPoints[1] = vPoint1;
 	m_pControlPoints[2] = vPoint2;
@@ -40,10 +41,10 @@ SimpleBezier::SimpleBezier(Vector3 vPoint0, Vector3 vPoint1, Vector3 vPoint2)
 	m_iControlPointCount = 3;
 }
 
-SimpleBezier::SimpleBezier(Vector3 vPoint0, Vector3 vPoint1, Vector3 vPoint2,
-			   Vector3 vPoint3)
+SimpleBezier::SimpleBezier(glm::vec3 vPoint0, glm::vec3 vPoint1,
+			   glm::vec3 vPoint2, glm::vec3 vPoint3)
 {
-	m_pControlPoints = new Vector3[4];
+	m_pControlPoints = new glm::vec3[4];
 	m_pControlPoints[0] = vPoint0;
 	m_pControlPoints[1] = vPoint1;
 	m_pControlPoints[2] = vPoint2;
@@ -57,12 +58,12 @@ SimpleBezier::~SimpleBezier()
 	delete[] m_pControlPoints;
 }
 
-Vector3 SimpleBezier::calculatePoint(float t)
+glm::vec3 SimpleBezier::calculatePoint(float t)
 {
 	if (t > 1)
 		t = 1;
 
-	Vector3 returnValue;
+	glm::vec3 returnValue;
 
 	for (int i = 0; i < m_iControlPointCount; i++) {
 		returnValue =
@@ -120,7 +121,7 @@ void SimpleBezier::draw()
 
 	// Zeichne "Kurve"
 	float t = 0.0f;
-	Vector3 tmp;
+	glm::vec3 tmp;
 	glColor3f(0.0f, 1.0f, 0.0f);
 	glBegin(GL_LINE_STRIP);
 

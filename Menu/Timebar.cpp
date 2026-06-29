@@ -24,10 +24,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 Timebar::Timebar(int totalTime)
 {
 	float length;
-	m_vVertices[0] = Vector3(0, 590, 0);
-	m_vVertices[1] = Vector3(200, 590, 0);
-	m_vVertices[2] = Vector3(200, 570, 0);
-	m_vVertices[3] = Vector3(0, 570, 0);
+	m_vVertices[0] = glm::vec3(0, 590, 0);
+	m_vVertices[1] = glm::vec3(200, 590, 0);
+	m_vVertices[2] = glm::vec3(200, 570, 0);
+	m_vVertices[3] = glm::vec3(0, 570, 0);
 
 	length = m_vVertices[1].x - m_vVertices[0].x;
 	m_fStepPerSecond = length / (float)totalTime;

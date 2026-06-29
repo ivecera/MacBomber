@@ -11,12 +11,12 @@
 #define PARTICLE_SMOKE_H
 
 #include "Particle.h"
-#include "../Vector3.h"
+#include <glm/glm.hpp>
 
 class Particle_Smoke : public Particle {
 private:
 public:
-	Particle_Smoke(Vector3 m_vPos);
+	Particle_Smoke(glm::vec3 m_vPos);
 	void update();
 };
 #endif

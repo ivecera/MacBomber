@@ -23,7 +23,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 class Object_Moving : public Object {
 protected:
 	float m_fVelocity;
-	Vector3 m_vDisplacement; // The direction of the player
+	glm::vec3 m_vDisplacement =
+		glm::vec3(0.0f); // The direction of the player
 	int m_iDirection; // The direction of the player (UP = 0; RIGHT, DOWN, LEFT)
 
 	bool m_bDoesDrop; // True when this variable has been set to true
@@ -43,8 +44,8 @@ public:
 	{
 		return m_iDirection;
 	};
-	void setDisplacement(Vector3 vDisplacement);
-	Vector3 getDisplacement()
+	void setDisplacement(glm::vec3 vDisplacement);
+	glm::vec3 getDisplacement()
 	{
 		return m_vDisplacement;
 	};
@@ -62,7 +63,7 @@ public:
 
 	// moves object according to specified displacment
 	// uesd to correct collision
-	void move(Vector3 vDisplacement);
+	void move(glm::vec3 vDisplacement);
 	virtual void move();
 	// Returns true if the object is falling, false if the fall duration has expired
 	bool doDrop();
