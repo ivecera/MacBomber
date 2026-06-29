@@ -37,7 +37,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "Engine/SoundManager.h"
 #include "Engine/TextDrawer.h"
 #include "Engine/ScreenFader.h"
-#include "Engine/framerateCalculator.h"
 #include "Engine/Init.h"
 #include "Engine/Clock.h"
 

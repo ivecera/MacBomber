@@ -33,13 +33,11 @@ set(SOURCES
     Engine/Camera.cpp
     Engine/checkScreenResolution.cpp
     Engine/Clock.cpp
-    Engine/framerateCalculator.cpp
     Engine/Init.cpp
     Engine/InputManager.cpp
     Engine/loadTexture.cpp
     Engine/MeshManager.cpp
     Engine/ortho.cpp
-    Engine/scaleFunctions.cpp
     Engine/ScreenFader.cpp
     Engine/SimpleBezier.cpp
     Engine/SoundManager.cpp

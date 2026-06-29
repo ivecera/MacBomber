@@ -16,7 +16,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
 #include <SDL3/SDL.h>
-#include <SDL3/SDL_opengl.h>
 
 #include "SimpleBezier.h"
 
@@ -104,32 +103,3 @@ float SimpleBezier::calculateBernsteinPolynomial(float t, int i)
 	return binCoeffi * rest;
 }
 
-void SimpleBezier::draw()
-{
-	glLineStipple(3, 0xAAAA);
-	glEnable(GL_LINE_STIPPLE);
-
-	// Zeichne Kontrollpolygonzug
-	glBegin(GL_LINE_STRIP);
-	glColor3f(1.0f, 1.0f, 0.0f);
-
-	for (int i = 0; i < m_iControlPointCount; i++)
-		glVertex3f(m_pControlPoints[i].x, m_pControlPoints[i].y,
-			   m_pControlPoints[i].z);
-	glEnd();
-	glDisable(GL_LINE_STIPPLE);
-
-	// Zeichne "Kurve"
-	float t = 0.0f;
-	glm::vec3 tmp;
-	glColor3f(0.0f, 1.0f, 0.0f);
-	glBegin(GL_LINE_STRIP);
-
-	for (int i = 0; i < 11; i++) {
-		tmp = calculatePoint(t);
-		glVertex3f(tmp.x, tmp.y, tmp.z);
-		t += 0.1f;
-	}
-
-	glEnd();
-}

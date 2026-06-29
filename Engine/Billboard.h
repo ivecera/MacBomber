@@ -18,15 +18,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #ifndef BILLBOARD_H
 #define BILLBOARD_H
 #include <glm/glm.hpp>
-class Camera;
 
-void createBillboardMatrix(const glm::vec3 &vPos, const glm::vec3 &vLook,
-			   const glm::vec3 &vUp, const glm::vec3 &vRight,
-			   float *pMatrix);
-
-void calculateBillboardMatrix_Point(const glm::vec3 &vPos, float *pMatrix);
 void calculateBillboardMatrix_Xaxis(const glm::vec3 &vPos, float *pMatrix);
-void calculateBillboardMatrix_Yaxis(const glm::vec3 &vPos, float *pMatrix);
-void calculateBillboardMatrix_Zaxis(const glm::vec3 &vPos, float *pMatrix);
 
 #endif

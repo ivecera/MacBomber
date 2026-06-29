@@ -40,8 +40,6 @@ public:
 	SimpleBezier(glm::vec3 vPoint0, glm::vec3 vPoint1, glm::vec3 vPoint2,
 		     glm::vec3 vPoint3);
 	~SimpleBezier();
-
-	void draw();
 };
 
 #endif

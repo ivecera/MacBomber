@@ -15,16 +15,14 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-#include <SDL3/SDL_opengl.h>
-
 #include "Billboard.h"
 #include "Camera.h"
-#include <glm/glm.hpp>
 #include "../Application.h"
 
-void createBillboardMatrix(const glm::vec3 &vPos, const glm::vec3 &vLook,
-			   const glm::vec3 &vUp, const glm::vec3 &vRight,
-			   float *pMatrix)
+static void createBillboardMatrix(const glm::vec3 &vPos,
+				  const glm::vec3 &vLook,
+				  const glm::vec3 &vUp,
+				  const glm::vec3 &vRight, float *pMatrix)
 {
 	pMatrix[0] = vRight.x;
 	pMatrix[1] = vRight.y;
@@ -45,42 +43,12 @@ void createBillboardMatrix(const glm::vec3 &vPos, const glm::vec3 &vLook,
 	pMatrix[15] = 1;
 }
 
-void calculateBillboardMatrix_Point(const glm::vec3 &vPos, float *pMatrix)
-{
-	glm::vec3 vLook = Application::m_pCamera->m_vPosition - vPos;
-	vLook = glm::normalize(vLook);
-	glm::vec3 vRight = glm::cross(Application::m_pCamera->m_vUp, vLook);
-	glm::vec3 vUp = glm::cross(vRight, vLook);
-
-	createBillboardMatrix(vPos, vLook, vUp, vRight, pMatrix);
-}
-
 void calculateBillboardMatrix_Xaxis(const glm::vec3 &vPos, float *pMatrix)
 {
 	glm::vec3 vLook = Application::m_pCamera->m_vPosition - vPos;
 	vLook.x = 0;
 	vLook = glm::normalize(vLook);
 	glm::vec3 vUp(1, 0, 0);
-	glm::vec3 vRight = glm::cross(vUp, vLook);
-	createBillboardMatrix(vPos, vLook, vUp, vRight, pMatrix);
-}
-
-void calculateBillboardMatrix_Yaxis(const glm::vec3 &vPos, float *pMatrix)
-{
-	glm::vec3 vLook = Application::m_pCamera->m_vPosition - vPos;
-	vLook.y = 0;
-	vLook = glm::normalize(vLook);
-	glm::vec3 vUp(0, 1, 0);
-	glm::vec3 vRight = glm::cross(vUp, vLook);
-	createBillboardMatrix(vPos, vLook, vUp, vRight, pMatrix);
-}
-
-void calculateBillboardMatrix_Zaxis(const glm::vec3 &vPos, float *pMatrix)
-{
-	glm::vec3 vLook = Application::m_pCamera->m_vPosition - vPos;
-	vLook.z = 0;
-	vLook = glm::normalize(vLook);
-	glm::vec3 vUp(0, 0, 1);
 	glm::vec3 vRight = glm::cross(vUp, vLook);
 	createBillboardMatrix(vPos, vLook, vUp, vRight, pMatrix);
 }
