@@ -260,11 +260,7 @@ void Application::init()
 	setState(MENU);
 
 	//initiate "random" number generator
-#ifdef __APPLE__
-	sranddev();
-#else
 	srand(time(NULL));
-#endif
 }
 
 void Application::render()
