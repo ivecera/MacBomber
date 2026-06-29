@@ -19,9 +19,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #define INIT_H
 #include "SDL/SDL.h"
 
-
-void initSDL ();
-int initGL ();
-int sizeGLWindow ();
+void initSDL();
+int initGL();
+int sizeGLWindow();
 void dumpScreen();
 #endif

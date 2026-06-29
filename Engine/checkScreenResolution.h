@@ -15,9 +15,8 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-
-#ifndef checkScreenResolution_H
-#define checkScreenResolution_H
+#ifndef CHECKSCREENRESOLUTION_H
+#define CHECKSCREENRESOLUTION_H
 
 #include "SDL/SDL.h"
 

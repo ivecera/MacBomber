@@ -18,20 +18,19 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #define Defines_H
 
-#define UP 0    // z+
+#define UP 0 // z+
 #define RIGHT 1 // x+
-#define DOWN 2  // z-
-#define LEFT 3  // x-
+#define DOWN 2 // z-
+#define LEFT 3 // x-
 
-#define NONE 4  // keine Bewegung
+#define NONE 4 // keine Bewegung
 #define BOMB 5
 
 #define DRAWGAME 666
 
-
 #define SPEEDUP 4
 #define POWERUP 5
-#define BOMBUP  6
+#define BOMBUP 6
 #define ENABLEKICK 7
 #define JOINT 9
 #define COCAINE 10
@@ -42,7 +41,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #define FIELD 0
 #define HOLE 1
 #define ARROW_UP 14
-#define ARROW_DOWN 15 
+#define ARROW_DOWN 15
 #define ARROW_LEFT 16
 #define ARROW_RIGHT 17
 #define BLOCK 6
@@ -55,7 +54,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #define PLAYER4_TEXTURE 3
 #define PLAYER_HAPPY_TEXTURE 4
 #define PLAYER_FRAGGED_TEXTURE 5
- 
+
 #define GOODIE_SPEEDUP_TEXTURE 6
 #define GOODIE_POWERUP_TEXTURE 7
 #define GOODIE_BOMBUP_TEXTURE 8
@@ -64,7 +63,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #define BADIE_JOINT_TEXTURE 11
 #define BADIE_COCAINE_TEXTURE 12
 #define BADIE_VIAGRA_TEXTURE 13
-#define BADIE_CONDOM_TEXTURE 14 
+#define BADIE_CONDOM_TEXTURE 14
 
 #define FIELD_PLAIN0_TEXTURE 15
 #define FIELD_PLAIN1_TEXTURE 16
@@ -88,26 +87,24 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #define JOYSTICK_TEXTURE 30
 #define PLAYER_DISABLED_TEXTURE 31
 
-
 #define EXPLOSION_TEXTURE1 32
 #define EXPLOSION_TEXTURE2 46
 #define EXPLOSION_TEXTURE3 47
 
-#define PARTICLE_SMOKE0_TEXTURE 33	//Large Smoke
-#define PARTICLE_SMOKE1_TEXTURE 34	//Small Smoke
+#define PARTICLE_SMOKE0_TEXTURE 33 //Large Smoke
+#define PARTICLE_SMOKE1_TEXTURE 34 //Small Smoke
 #define PARTICLE_GOODIE_TEXTURE 35
 #define PARTICLE_BADIE_TEXTURE 36
 #define PARTICLE_CRATE_TEXTURE 37
 #define PARTICLE_SPARK_TEXTURE 38
 #define PARTICLE_WILEY_TEXTURE 48
 
-
 #define MENU_ARROW_TEXTURE 39
 #define MENU_BACKGROUND_TEXTURE 40
 #define TIMEBAR_TEXTURE 41
 #define CLOCK_TEXTURE 42
 #define EYE_TEXTURE 43
-#define GAME_BACKGROUND_TEXTURE 49	
+#define GAME_BACKGROUND_TEXTURE 49
 
 // Typedefs for sounds & Music
 #define EXPlOSION_SOUND 0

@@ -580,7 +580,7 @@
 			fileEncoding = 4;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CParticle_SmokeTrail.h;
+			path = Particle_SmokeTrail.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -588,7 +588,7 @@
 			fileEncoding = 4;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CParticle_SmokeTrail.cpp;
+			path = Particle_SmokeTrail.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -608,7 +608,7 @@
 			fileEncoding = 4;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CParticle_Explosion.h;
+			path = Particle_Explosion.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -616,7 +616,7 @@
 			fileEncoding = 4;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CParticle_Explosion.cpp;
+			path = Particle_Explosion.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -789,7 +789,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CBillboard.cpp;
+			path = Billboard.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -797,7 +797,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CBillboard.h;
+			path = Billboard.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -805,7 +805,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CBoundingBox_2D.cpp;
+			path = BoundingBox_2D.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -813,7 +813,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CBoundingBox_2D.h;
+			path = BoundingBox_2D.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -821,7 +821,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CCamera.cpp;
+			path = Camera.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -829,7 +829,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CCamera.h;
+			path = Camera.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -837,7 +837,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CMatrix.cpp;
+			path = Matrix.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -845,7 +845,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CMatrix.h;
+			path = Matrix.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -853,7 +853,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CMeshManager.cpp;
+			path = MeshManager.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -861,7 +861,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CMeshManager.h;
+			path = MeshManager.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -869,7 +869,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CSimpleBezier.cpp;
+			path = SimpleBezier.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -877,7 +877,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CSimpleBezier.h;
+			path = SimpleBezier.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -885,7 +885,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CSoundManager.cpp;
+			path = SoundManager.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -893,7 +893,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CSoundManager.h;
+			path = SoundManager.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -901,7 +901,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CTextureManager.cpp;
+			path = TextureManager.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -909,7 +909,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CTextureManager.h;
+			path = TextureManager.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -917,7 +917,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CTimer.cpp;
+			path = Timer.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -925,7 +925,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CTimer.h;
+			path = Timer.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -941,7 +941,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CTriangleMesh.cpp;
+			path = TriangleMesh.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -949,7 +949,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CTriangleMesh.h;
+			path = TriangleMesh.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -957,7 +957,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CVector3.cpp;
+			path = Vector3.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -965,7 +965,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CVector3.h;
+			path = Vector3.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -1277,7 +1277,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CApplication.cpp;
+			path = Application.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -1285,7 +1285,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CApplication.h;
+			path = Application.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -1293,7 +1293,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CConfig.cpp;
+			path = Config.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -1301,7 +1301,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CConfig.h;
+			path = Config.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -1427,7 +1427,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CController_Keyboard.cpp;
+			path = Controller_Keyboard.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -1435,7 +1435,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CController_Keyboard.h;
+			path = Controller_Keyboard.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -1443,7 +1443,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CController.cpp;
+			path = Controller.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -1451,7 +1451,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CController.h;
+			path = Controller.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -1483,7 +1483,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CTextDrawer.cpp;
+			path = TextDrawer.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -1491,7 +1491,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CTextDrawer.h;
+			path = TextDrawer.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -1553,7 +1553,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CApplicationMenu.cpp;
+			path = ApplicationMenu.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -1561,7 +1561,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CApplicationMenu.h;
+			path = ApplicationMenu.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -1569,7 +1569,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CHUD.cpp;
+			path = HUD.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -1577,7 +1577,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CHUD.h;
+			path = HUD.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -1585,7 +1585,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CControllerSetupItem.cpp;
+			path = ControllerSetupItem.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -1593,7 +1593,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CControllerSetupItem.h;
+			path = ControllerSetupItem.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -1601,7 +1601,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CLevelScrollListItem.cpp;
+			path = LevelScrollListItem.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -1609,7 +1609,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CLevelScrollListItem.h;
+			path = LevelScrollListItem.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -1617,7 +1617,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CLevelSelectionMenu.cpp;
+			path = LevelSelectionMenu.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -1625,7 +1625,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CLevelSelectionMenu.h;
+			path = LevelSelectionMenu.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -1633,7 +1633,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CMapPreview.cpp;
+			path = MapPreview.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -1641,7 +1641,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CMapPreview.h;
+			path = MapPreview.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -1649,7 +1649,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CMenu.cpp;
+			path = Menu.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -1657,7 +1657,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CMenu.h;
+			path = Menu.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -1665,7 +1665,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CMenuItem.cpp;
+			path = MenuItem.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -1673,7 +1673,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CMenuItem.h;
+			path = MenuItem.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -1681,7 +1681,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CMenuSwitchItem.cpp;
+			path = MenuSwitchItem.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -1689,7 +1689,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CMenuSwitchItem.h;
+			path = MenuSwitchItem.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -1697,7 +1697,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CPlayerSetupItem.cpp;
+			path = PlayerSetupItem.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -1705,7 +1705,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CPlayerSetupItem.h;
+			path = PlayerSetupItem.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -1713,7 +1713,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CPlayerSetupMenu.cpp;
+			path = PlayerSetupMenu.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -1721,7 +1721,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CPlayerSetupMenu.h;
+			path = PlayerSetupMenu.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -1729,7 +1729,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CPlayerSetupRow.cpp;
+			path = PlayerSetupRow.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -1737,7 +1737,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CPlayerSetupRow.h;
+			path = PlayerSetupRow.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -1745,7 +1745,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CScoreScreen.cpp;
+			path = ScoreScreen.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -1753,7 +1753,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CScoreScreen.h;
+			path = ScoreScreen.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -1761,7 +1761,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CToggleItem.cpp;
+			path = ToggleItem.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -1769,7 +1769,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CToggleItem.h;
+			path = ToggleItem.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -1777,7 +1777,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CValueItem.cpp;
+			path = ValueItem.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -1785,7 +1785,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CValueItem.h;
+			path = ValueItem.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -2004,7 +2004,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CField_Arrow.cpp;
+			path = Field_Arrow.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -2012,7 +2012,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CField_Arrow.h;
+			path = Field_Arrow.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -2020,7 +2020,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CField_Block.cpp;
+			path = Field_Block.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -2028,7 +2028,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CField_Block.h;
+			path = Field_Block.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -2036,7 +2036,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CField_Hole.cpp;
+			path = Field_Hole.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -2044,7 +2044,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CField_Hole.h;
+			path = Field_Hole.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -2052,7 +2052,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CField_Plain.cpp;
+			path = Field_Plain.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -2060,7 +2060,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CField_Plain.h;
+			path = Field_Plain.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -2068,7 +2068,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CField_Void.cpp;
+			path = Field_Void.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -2076,7 +2076,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CField_Void.h;
+			path = Field_Void.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -2084,7 +2084,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CField.cpp;
+			path = Field.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -2092,7 +2092,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CField.h;
+			path = Field.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -2100,7 +2100,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CMap.cpp;
+			path = Map.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -2108,7 +2108,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CMap.h;
+			path = Map.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -2116,7 +2116,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CMapManager.cpp;
+			path = MapManager.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -2124,7 +2124,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CMapManager.h;
+			path = MapManager.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -2132,7 +2132,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CShaker.cpp;
+			path = Shaker.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -2140,7 +2140,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CShaker.h;
+			path = Shaker.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -2270,7 +2270,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CExplosion.cpp;
+			path = Explosion.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -2278,7 +2278,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CExplosion.h;
+			path = Explosion.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -2325,7 +2325,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CBomb.cpp;
+			path = Bomb.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -2333,7 +2333,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CBomb.h;
+			path = Bomb.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -2341,7 +2341,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CBombThrower.cpp;
+			path = BombThrower.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -2349,7 +2349,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CBombThrower.h;
+			path = BombThrower.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -2357,7 +2357,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CCrate.cpp;
+			path = Crate.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -2365,7 +2365,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CCrate.h;
+			path = Crate.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -2373,7 +2373,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CItem_BombUp.cpp;
+			path = Item_BombUp.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -2381,7 +2381,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CItem_BombUp.h;
+			path = Item_BombUp.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -2389,7 +2389,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CItem_Cocaine.cpp;
+			path = Item_Cocaine.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -2397,7 +2397,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CItem_Cocaine.h;
+			path = Item_Cocaine.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -2405,7 +2405,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CItem_EnableKick.cpp;
+			path = Item_EnableKick.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -2413,7 +2413,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CItem_EnableKick.h;
+			path = Item_EnableKick.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -2421,7 +2421,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CItem_Joint.cpp;
+			path = Item_Joint.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -2429,7 +2429,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CItem_Joint.h;
+			path = Item_Joint.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -2437,7 +2437,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CItem_PowerUp.cpp;
+			path = Item_PowerUp.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -2445,7 +2445,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CItem_PowerUp.h;
+			path = Item_PowerUp.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -2453,7 +2453,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CItem_SpeedUp.cpp;
+			path = Item_SpeedUp.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -2461,7 +2461,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CItem_SpeedUp.h;
+			path = Item_SpeedUp.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -2469,7 +2469,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CItem_Viagra.cpp;
+			path = Item_Viagra.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -2477,7 +2477,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CItem_Viagra.h;
+			path = Item_Viagra.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -2485,7 +2485,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CItem.cpp;
+			path = Item.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -2493,7 +2493,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CItem.h;
+			path = Item.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -2501,7 +2501,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CItemManager.cpp;
+			path = ItemManager.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -2509,7 +2509,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CItemManager.h;
+			path = ItemManager.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -2517,7 +2517,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CItemThrower.cpp;
+			path = ItemThrower.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -2525,7 +2525,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CItemThrower.h;
+			path = ItemThrower.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -2533,7 +2533,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CObject_Moving.cpp;
+			path = Object_Moving.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -2541,7 +2541,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CObject_Moving.h;
+			path = Object_Moving.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -2549,7 +2549,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CObject.cpp;
+			path = Object.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -2557,7 +2557,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CObject.h;
+			path = Object.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -2565,7 +2565,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CObjectThrower.cpp;
+			path = ObjectThrower.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -2573,7 +2573,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CObjectThrower.h;
+			path = ObjectThrower.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -2581,7 +2581,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CObjectThrowerManager.cpp;
+			path = ObjectThrowerManager.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -2589,7 +2589,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CObjectThrowerManager.h;
+			path = ObjectThrowerManager.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -2597,7 +2597,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CPlayer.cpp;
+			path = Player.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -2605,7 +2605,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CPlayer.h;
+			path = Player.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -2829,7 +2829,7 @@
 			fileEncoding = 4;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CMapDestroyer.h;
+			path = MapDestroyer.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -2837,7 +2837,7 @@
 			fileEncoding = 4;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CMapDestroyer.cpp;
+			path = MapDestroyer.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -2857,7 +2857,7 @@
 			fileEncoding = 4;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CWobbler.h;
+			path = Wobbler.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -2865,7 +2865,7 @@
 			fileEncoding = 4;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CWobbler.cpp;
+			path = Wobbler.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -2885,7 +2885,7 @@
 			fileEncoding = 4;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CGame_Standard.h;
+			path = Game_Standard.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -2893,7 +2893,7 @@
 			fileEncoding = 4;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CGame_Standard.cpp;
+			path = Game_Standard.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -2913,7 +2913,7 @@
 			fileEncoding = 4;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CGame_MapDestruction.h;
+			path = Game_MapDestruction.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -2921,7 +2921,7 @@
 			fileEncoding = 4;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CGame_MapDestruction.cpp;
+			path = Game_MapDestruction.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -2955,7 +2955,7 @@
 			fileEncoding = 4;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CController_Joystick.h;
+			path = Controller_Joystick.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -2963,7 +2963,7 @@
 			fileEncoding = 4;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CController_Joystick.cpp;
+			path = Controller_Joystick.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -3020,7 +3020,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CBlockMesh.cpp;
+			path = BlockMesh.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -3028,7 +3028,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CBlockMesh.h;
+			path = BlockMesh.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -3036,7 +3036,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CBombMesh.cpp;
+			path = BombMesh.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -3044,7 +3044,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CBombMesh.h;
+			path = BombMesh.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -3052,7 +3052,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CCrateMesh.cpp;
+			path = CrateMesh.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -3060,7 +3060,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CCrateMesh.h;
+			path = CrateMesh.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -3068,7 +3068,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CItemMesh.cpp;
+			path = ItemMesh.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -3076,7 +3076,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CItemMesh.h;
+			path = ItemMesh.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -3084,7 +3084,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CMesh.cpp;
+			path = Mesh.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -3092,7 +3092,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CMesh.h;
+			path = Mesh.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -3100,7 +3100,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CPlayerMesh.cpp;
+			path = PlayerMesh.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -3108,7 +3108,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CPlayerMesh.h;
+			path = PlayerMesh.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -3116,7 +3116,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CSquareMesh.cpp;
+			path = SquareMesh.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -3124,7 +3124,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CSquareMesh.h;
+			path = SquareMesh.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -3216,7 +3216,7 @@
 			fileEncoding = 4;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CCupMesh.h;
+			path = CupMesh.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -3224,7 +3224,7 @@
 			fileEncoding = 4;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CCupMesh.cpp;
+			path = CupMesh.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -3244,7 +3244,7 @@
 			fileEncoding = 4;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CWiley.h;
+			path = Wiley.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -3252,7 +3252,7 @@
 			fileEncoding = 4;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CWiley.cpp;
+			path = Wiley.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -3272,7 +3272,7 @@
 			fileEncoding = 4;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CClock.h;
+			path = Clock.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -3280,7 +3280,7 @@
 			fileEncoding = 4;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CClock.cpp;
+			path = Clock.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -3300,7 +3300,7 @@
 			fileEncoding = 4;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CLabelItem.h;
+			path = LabelItem.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -3308,7 +3308,7 @@
 			fileEncoding = 4;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CLabelItem.cpp;
+			path = LabelItem.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -3402,7 +3402,7 @@
 			fileEncoding = 4;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CScreenFader.h;
+			path = ScreenFader.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -3410,7 +3410,7 @@
 			fileEncoding = 4;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CScreenFader.cpp;
+			path = ScreenFader.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -3472,7 +3472,7 @@
 			fileEncoding = 4;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CTimebar.h;
+			path = Timebar.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -3480,7 +3480,7 @@
 			fileEncoding = 4;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CTimebar.cpp;
+			path = Timebar.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -3528,7 +3528,7 @@
 			fileEncoding = 4;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CMapPlaylist.h;
+			path = MapPlaylist.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -3536,7 +3536,7 @@
 			fileEncoding = 4;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CMapPlaylist.cpp;
+			path = MapPlaylist.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -3556,7 +3556,7 @@
 			fileEncoding = 4;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CInputManager.h;
+			path = InputManager.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -3564,7 +3564,7 @@
 			fileEncoding = 4;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CInputManager.cpp;
+			path = InputManager.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -3612,7 +3612,7 @@
 			fileEncoding = 4;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CItem_Condom.h;
+			path = Item_Condom.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -3620,7 +3620,7 @@
 			fileEncoding = 4;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CItem_Condom.cpp;
+			path = Item_Condom.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -3640,7 +3640,7 @@
 			fileEncoding = 4;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CParticle.h;
+			path = Particle.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -3648,7 +3648,7 @@
 			fileEncoding = 4;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CParticle.cpp;
+			path = Particle.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -3668,7 +3668,7 @@
 			fileEncoding = 4;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CParticle_Item.h;
+			path = Particle_Item.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -3676,7 +3676,7 @@
 			fileEncoding = 4;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CParticle_Item.cpp;
+			path = Particle_Item.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -3696,7 +3696,7 @@
 			fileEncoding = 4;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CParticleManager.h;
+			path = ParticleManager.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -3704,7 +3704,7 @@
 			fileEncoding = 4;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CParticleManager.cpp;
+			path = ParticleManager.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -3724,7 +3724,7 @@
 			fileEncoding = 4;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CParticle_Smoke.h;
+			path = Particle_Smoke.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -3732,7 +3732,7 @@
 			fileEncoding = 4;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CParticle_Smoke.cpp;
+			path = Particle_Smoke.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -3752,7 +3752,7 @@
 			fileEncoding = 4;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CParticle_Crate.h;
+			path = Particle_Crate.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -3760,7 +3760,7 @@
 			fileEncoding = 4;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CParticle_Crate.cpp;
+			path = Particle_Crate.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -3794,7 +3794,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.cpp.cpp;
-			path = CGame.cpp;
+			path = Game.cpp;
 			refType = 4;
 			sourceTree = "<group>";
 		};
@@ -3802,7 +3802,7 @@
 			fileEncoding = 30;
 			isa = PBXFileReference;
 			lastKnownFileType = sourcecode.c.h;
-			path = CGame.h;
+			path = Game.h;
 			refType = 4;
 			sourceTree = "<group>";
 		};

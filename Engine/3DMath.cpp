@@ -31,59 +31,53 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
  *
  */
 
-CVector3 crossProduct ( const CVector3 &u, const CVector3 &v )
+Vector3 crossProduct(const Vector3 &u, const Vector3 &v)
 {
-	
-	CVector3 product;
-	
-	product.x = ( u.y * v.z - u.z * v.y );
-	product.y = ( u.z * v.x - u.x * v.z );
-	product.z = ( u.x * v.y - u.y * v.x );
-	
-	return product;
+	Vector3 product;
 
+	product.x = (u.y * v.z - u.z * v.y);
+	product.y = (u.z * v.x - u.x * v.z);
+	product.z = (u.x * v.y - u.y * v.x);
+
+	return product;
 }
 
-float dotProduct ( const CVector3 &u, const CVector3 &v )
+float dotProduct(const Vector3 &u, const Vector3 &v)
 {
-	float x,y,z = 0;
-	
+	float x, y, z = 0;
+
 	x = u.x * v.x;
 	y = u.y * v.y;
 	z = u.z * v.z;
-	
-	return ( x + y + z );
 
+	return (x + y + z);
 }
 
-
-float magnitude ( const CVector3 &v )
+float magnitude(const Vector3 &v)
 {
-	float product = dotProduct ( v, v );
-	return sqrt( product );
+	float product = dotProduct(v, v);
+	return sqrt(product);
 }
-
 
 // TODO: add const
-CVector3 normalize (   CVector3 &v )
+Vector3 normalize(Vector3 &v)
 {
-	float length = magnitude( v );
-	CVector3 normalizedVector = v / length;
+	float length = magnitude(v);
+	Vector3 normalizedVector = v / length;
 
 	return normalizedVector;
 }
 
-void rotateAroundYAxis(float &x,float &z, float theta)
+void rotateAroundYAxis(float &x, float &z, float theta)
 {
 	float _x;
-	float _z; 
+	float _z;
 	//convert deg -> rad
-	theta = (theta*PI/180);
+	theta = (theta * PI / 180);
 
-	_x =  (   (cos(theta) * x) + (sin(theta) *z)	);
-	_z =  ((-1*sin(theta) * x) + (cos(theta) *z)	); 
+	_x = ((cos(theta) * x) + (sin(theta) * z));
+	_z = ((-1 * sin(theta) * x) + (cos(theta) * z));
 
 	x = _x;
 	z = _z;
 }
-

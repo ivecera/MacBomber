@@ -18,15 +18,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include <math.h>
 #include "scaleFunctions.h"
 
-float doScale(float & rads, float median)
+float doScale(float &rads, float median)
 {
-	
 	float sinus = sin(rads);
-	float scaleValue = median + (sinus  * (1-median)  );
-	
+	float scaleValue = median + (sinus * (1 - median));
+
 	if (rads > 6.28)
 		rads = 0;
-	
+
 	return scaleValue;
 }
-

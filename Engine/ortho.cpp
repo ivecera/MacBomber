@@ -17,58 +17,54 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #include <GLUT/glut.h>
 #include "ortho.h"
-#include "../CApplication.h"
-#include "../CConfig.h"
+#include "../Application.h"
+#include "../Config.h"
 
 void enableOrthoMode()
 {
 	//save Projection Matrix before entering Ortho Mode
-	
-	glMatrixMode(GL_PROJECTION);                        
-	glPushMatrix();                                    
-	glLoadIdentity();                                	
-	
-	glOrtho(0, CApplication::screenWidth, 
-			0, CApplication::screenHeight,
-			-100,100);
 
-	glNormal3f(0,0,1);
+	glMatrixMode(GL_PROJECTION);
+	glPushMatrix();
+	glLoadIdentity();
+
+	glOrtho(0, Application::screenWidth, 0, Application::screenHeight, -100,
+		100);
+
+	glNormal3f(0, 0, 1);
 
 	//save Modelview Matrix
 	glMatrixMode(GL_MODELVIEW);
 	glPushMatrix();
-	glLoadIdentity();           
+	glLoadIdentity();
 }
 
 void disableOrthoMode()
 {
-    // Pop off the last matrix pushed on when in projection mode (Get rid of ortho mode)
-    glMatrixMode( GL_PROJECTION );
-    glPopMatrix();                                            
-
-	// Pop off old model view matrix
-    glMatrixMode( GL_MODELVIEW );                            
+	// Pop off the last matrix pushed on when in projection mode (Get rid of ortho mode)
+	glMatrixMode(GL_PROJECTION);
 	glPopMatrix();
 
-
+	// Pop off old model view matrix
+	glMatrixMode(GL_MODELVIEW);
+	glPopMatrix();
 }
 
 float relToAbs(float relValue, int axis)
 {
-		//axis = 0 -> x
-		//axis = 1 -> y
+	//axis = 0 -> x
+	//axis = 1 -> y
 	if (axis > 0)
-		return ( CApplication::screenHeight * relValue );
+		return (Application::screenHeight * relValue);
 	else
-		return ( CApplication::screenWidth * relValue ); 
+		return (Application::screenWidth * relValue);
 }
-
 
 float absToRel(float absValue, int axis)
 {
-	// FIX ME : check for division by 0 
+	// FIX ME : check for division by 0
 	if (axis > 0)
-		return ( absValue/CApplication::screenHeight );
+		return (absValue / Application::screenHeight);
 	else
-		return ( absValue/CApplication::screenWidth ); 	
+		return (absValue / Application::screenWidth);
 }

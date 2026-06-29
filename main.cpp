@@ -16,15 +16,15 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
 #include "SDL/SDL.h"
-#include "CApplication.h"
+#include "Application.h"
 
 int main(int argc, char *argv[])
 {
-	CApplication app;
+	Application app;
 	app.init();
 	app.run();
-	
+
 	SDL_Quit();
-	
+
 	return 0;
 }

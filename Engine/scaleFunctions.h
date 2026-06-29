@@ -15,9 +15,9 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-#ifndef scaleFunctions_H
-#define scaleFunctions_H
+#ifndef SCALEFUNCTIONS_H
+#define SCALEFUNCTIONS_H
 
-float doScale(float & rads, float median);
+float doScale(float &rads, float median);
 
 #endif

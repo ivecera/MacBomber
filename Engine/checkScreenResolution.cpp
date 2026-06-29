@@ -16,28 +16,26 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
 #include "checkScreenResolution.h"
-#include "../CApplication.h"
-#include "../CConfig.h"
+#include "../Application.h"
+#include "../Config.h"
 
 bool isResolutionSupported(int resIndex)
 {
 	bool bSupported = false;
 	SDL_Rect **modes;
 	// Get all available fullscreen hardware modes
-	modes=SDL_ListModes(NULL, SDL_FULLSCREEN|SDL_HWSURFACE);
-	
+	modes = SDL_ListModes(NULL, SDL_FULLSCREEN | SDL_HWSURFACE);
+
 	//check if resolution specified by resIndex is supported
-	for(int i=0;modes[i] != NULL;++i)
-	{
-	//	printf("  %d x %d\n", modes[i]->w, modes[i]->h);
-		
-		if( ( ((int)modes[i]->w) == CApplication::m_pConfig->getResolutionWidth(resIndex)) &&
-			( ((int)modes[i]->h) == CApplication::m_pConfig->getResolutionHeight(resIndex))
-			)
-				bSupported = true;
+	for (int i = 0; modes[i] != NULL; ++i) {
+		//	printf("  %d x %d\n", modes[i]->w, modes[i]->h);
+
+		if ((((int)modes[i]->w) ==
+		     Application::m_pConfig->getResolutionWidth(resIndex)) &&
+		    (((int)modes[i]->h) ==
+		     Application::m_pConfig->getResolutionHeight(resIndex)))
+			bSupported = true;
 	}
-	
+
 	return bSupported;
-
-
 }

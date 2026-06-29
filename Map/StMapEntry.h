@@ -15,18 +15,17 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-#ifndef StMapEntry_H
-#define StMapEntry_H
+#ifndef STMAPENTRY_H
+#define STMAPENTRY_H
 
-struct StMapEntry
-{
-	char name[256];		//Mapname
-	char author[100];	//Created by...
+struct StMapEntry {
+	char name[256]; //Mapname
+	char author[100]; //Created by...
 	//		z(lines) x(cols)
-	char cArray[15][19];	// [13][17] -- + bounding Voidfields ->  [15][19] [y][x]
-	int playerCount;	// number of Players
-	bool enabled;	// true if this map is not in Playlist
-	
+	char cArray[15]
+		   [19]; // [13][17] -- + bounding Voidfields ->  [15][19] [y][x]
+	int playerCount; // number of Players
+	bool enabled; // true if this map is not in Playlist
 };
 
 #endif

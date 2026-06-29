@@ -17,9 +17,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #include "intToString.h"
 
-#include<iostream>
-#include<sstream>
-
+#include <iostream>
+#include <sstream>
 
 string convertValueToString(int value)
 {
@@ -28,4 +27,3 @@ string convertValueToString(int value)
 	s << value;
 	return s.str();
 }
-
