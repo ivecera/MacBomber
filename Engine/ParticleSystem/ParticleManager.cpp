@@ -15,7 +15,7 @@
 #include "Particle_Crate.h"
 #include "Particle_Explosion.h"
 
-#include "../3DMath.h"
+#include <glm/gtx/rotate_vector.hpp>
 #include "../TextureManager.h"
 #include "../../Application.h"
 #include "../../Defines.h"
@@ -146,49 +146,29 @@ void ParticleManager::addWileyParticle(glm::vec3 vPos, int count)
 void ParticleManager::calculateDisplacement(glm::vec3 &vDisplacement,
 					    int minAngle, int maxAngle)
 {
-	float angle;
-	float x, y, z;
+	//randomly choose an angle between minAngle - maxAngle
+	float angle =
+		glm::radians((float)(SDL_rand(maxAngle - minAngle) + minAngle));
 
-	//randomly choose an angle between minAngle - maxAngle;
-	angle = SDL_rand(maxAngle - minAngle);
-	angle += minAngle;
-	//convert deg -> rad
-	angle = (angle * SDL_PI_F / 180);
+	vDisplacement = glm::vec3(SDL_cosf(angle), SDL_sinf(angle), 0.0f);
 
-	//caluclate intial values of the displacement vector
-	x = SDL_cosf(angle);
-	y = SDL_sinf(angle);
-	z = 0;
-
-	//rotate the point (x,z) araund the y axis by a random angle
-	rotateAroundYAxis(x, z, SDL_rand(360));
-
-	vDisplacement.x = x;
-	vDisplacement.y = y;
-	vDisplacement.z = z;
+	//rotate the vector around the y axis by a random angle
+	float yAngle = glm::radians((float)SDL_rand(360));
+	vDisplacement = glm::rotateY(vDisplacement, yAngle);
 }
 
 void ParticleManager::randomizeStartPosition(glm::vec3 &vPosition, float radius)
 {
-	float angle;
-	float x, y, z;
+	//randomly choose an angle
+	float angle = glm::radians((float)SDL_rand(360));
 
-	//randomly choose an angle between minAngle - maxAngle;
-	angle = SDL_rand(360);
-	//convert deg -> rad
-	angle = (angle * SDL_PI_F / 180);
+	glm::vec3 offset(SDL_cosf(angle), SDL_sinf(angle), 0.0f);
 
-	//caluclate intial values of the displacement vector
-	x = SDL_cosf(angle);
-	y = SDL_sinf(angle);
-	z = 0;
+	//rotate the vector around the y axis by a random angle
+	float yAngle = glm::radians((float)SDL_rand(360));
+	offset = glm::rotateY(offset, yAngle);
 
-	//rotate the point (x,z) araund the y axis by a random angle
-	rotateAroundYAxis(x, z, SDL_rand(360));
-
-	vPosition.x += x * radius;
-	vPosition.y += y * radius;
-	vPosition.z += z * radius;
+	vPosition += offset * radius;
 }
 
 void ParticleManager::update()

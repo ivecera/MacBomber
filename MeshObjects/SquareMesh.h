@@ -36,9 +36,6 @@ private:
 	GLuint m_nVBOTexcoords[4];
 
 	int m_iMaxTextureCount;
-	float m_fTexCoords[4][8];
-	// the current set of texcoords which should be used for texture layer 2
-	int m_iCurrentTexCoords;
 	int *m_pTextureIndices;
 
 	// tells us wether a specific texture unit should be used
@@ -54,9 +51,6 @@ public:
 
 	SquareMesh();
 	~SquareMesh();
-
-	//specifies which texcoords to be used
-	void setTexCoord(int type);
 
 	// by passing NONE as nr, texture unit index will be disabled
 	void setTexture(int index, int nr);

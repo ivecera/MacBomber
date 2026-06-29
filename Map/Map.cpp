@@ -16,7 +16,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
 #include "Map.h"
-#include "../Engine/3DMath.h"
+#include <glm/gtx/rotate_vector.hpp>
 #include "../Engine/BoundingBox_2D.h"
 #include "../Objects/Object_Moving.h"
 #include "../Objects/Player.h"
@@ -330,26 +330,13 @@ Map::~Map()
 
 void Map::calculateDisplacement(glm::vec3 &vDisplacement)
 {
-	float angle;
+	float angle = glm::radians((float)SDL_rand(360));
 
-	float x, y, z;
+	vDisplacement = glm::vec3(SDL_cosf(angle), SDL_sinf(angle), 0.0f);
 
-	//randomly choose an angle between minAngle - maxAngle;
-	angle = SDL_rand(360);
-	//convert deg -> rad
-	angle = (angle * SDL_PI_F / 180);
-
-	//caluclate intial values of the displacement vector
-	x = SDL_cosf(angle);
-	y = SDL_sinf(angle);
-	z = 0;
-
-	//rotate the point (x,z) araund the y axis by a random angle
-	rotateAroundYAxis(x, z, SDL_rand(360));
-
-	vDisplacement.x = x;
-	vDisplacement.y = y;
-	vDisplacement.z = z;
+	//rotate the vector around the y axis by a random angle
+	float yAngle = glm::radians((float)SDL_rand(360));
+	vDisplacement = glm::rotateY(vDisplacement, yAngle);
 }
 
 void Map::cleanUp()

@@ -43,7 +43,6 @@ TriangleMesh::TriangleMesh()
 void TriangleMesh::load3dsFile(Lib3dsFile *pFile)
 {
 	Lib3dsMesh *mesh = NULL;
-	
 
 	if (pFile == NULL) {
 		SDL_Log("TriangleMesh: File not found.");

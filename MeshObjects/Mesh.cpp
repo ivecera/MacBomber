@@ -48,7 +48,7 @@ Mesh::Mesh(const char *filename)
 void Mesh::load3dsFile(const char *fileName)
 {
 	Lib3dsMesh *mesh = NULL;
-	
+
 	bool bTexture = false;
 
 	Lib3dsFile *pFile;

@@ -29,7 +29,6 @@ set(SOURCES
     Controller/Controller_Joystick.cpp
     Controller/Controller_Keyboard.cpp
 
-    Engine/3DMath.cpp
     Engine/Billboard.cpp
     Engine/BoundingBox_2D.cpp
     Engine/Camera.cpp
@@ -126,6 +125,7 @@ add_executable(macbomber ${SOURCES})
 
 target_compile_definitions(macbomber PRIVATE
     GL_GLEXT_PROTOTYPES
+    GLM_ENABLE_EXPERIMENTAL
     GLM_FORCE_CTOR_INIT
 )
 

@@ -20,15 +20,13 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "../Application.h"
 #include "../Engine/TextureManager.h"
 #include "../Defines.h"
-#include "../Engine/3DMath.h"
 
 #include <SDL3/SDL_opengl.h>
-#include <SDL3/SDL_opengl.h>
+#include <glm/gtx/rotate_vector.hpp>
 
 SquareMesh::SquareMesh()
 {
 	m_iMaxTextureCount = 3;
-	m_iCurrentTexCoords = 0;
 	m_bUseTexture = new bool[m_iMaxTextureCount];
 	for (int i = 0; i < m_iMaxTextureCount; i++) {
 		m_bUseTexture[i] = false;
@@ -71,49 +69,38 @@ void SquareMesh::init()
 {
 	glGenBuffersARB(4, m_nVBOTexcoords);
 	for (int i = 0; i < 4; i++) {
-		//all coords are subtracted by -0.5 to center them around origin for rotation
-		// so: 0 -> -0.5; 1 -> -0.5 etc.
-		m_fTexCoords[i][0] = -0.5;
-		m_fTexCoords[i][1] = -0.5;
-		m_fTexCoords[i][2] = 0.5;
-		m_fTexCoords[i][3] = -0.5;
-		m_fTexCoords[i][4] = 0.5;
-		m_fTexCoords[i][5] = 0.5;
-		m_fTexCoords[i][6] = -0.5;
-		m_fTexCoords[i][7] = 0.5;
+		// base texcoords centered around origin for rotation
+		glm::vec2 tc[4] = {
+			{ -0.5f, -0.5f },
+			{ 0.5f, -0.5f },
+			{ 0.5f, 0.5f },
+			{ -0.5f, 0.5f },
+		};
 
-		rotateAroundYAxis(m_fTexCoords[i][0], m_fTexCoords[i][1],
-				  -90 * i);
-		rotateAroundYAxis(m_fTexCoords[i][2], m_fTexCoords[i][3],
-				  -90 * i);
-		rotateAroundYAxis(m_fTexCoords[i][4], m_fTexCoords[i][5],
-				  -90 * i);
-		rotateAroundYAxis(m_fTexCoords[i][6], m_fTexCoords[i][7],
-				  -90 * i);
+		float angle = glm::radians(90.0f * i);
+		for (int j = 0; j < 4; j++) {
+			tc[j] = glm::rotate(tc[j], angle);
+			tc[j] += 0.5f;
+		}
 
-		//correct centering
-		m_fTexCoords[i][0] += 0.5;
-		m_fTexCoords[i][1] += 0.5;
-		m_fTexCoords[i][2] += 0.5;
-		m_fTexCoords[i][3] += 0.5;
-		m_fTexCoords[i][4] += 0.5;
-		m_fTexCoords[i][5] += 0.5;
-		m_fTexCoords[i][6] += 0.5;
-		m_fTexCoords[i][7] += 0.5;
+		float texcoords[8] = {
+			tc[0].x, tc[0].y, tc[1].x, tc[1].y,
+			tc[2].x, tc[2].y, tc[3].x, tc[3].y,
+		};
 
 		glBindBufferARB(GL_ARRAY_BUFFER_ARB, m_nVBOTexcoords[i]);
 		glBufferDataARB(GL_ARRAY_BUFFER_ARB, 4 * 2 * sizeof(GLfloat),
-				m_fTexCoords[i], GL_STATIC_DRAW_ARB);
+				texcoords, GL_STATIC_DRAW_ARB);
 		glBindBufferARB(GL_ARRAY_BUFFER_ARB, 0);
 	}
 
-	GLfloat fTexCoords[12] = { -0.5, 0.0, 0.5,  0.5,  0.0, 0.5,
-				   0.5,	 0,   -0.5, -0.5, 0,   -0.5 };
+	GLfloat vertices[12] = { -0.5, 0.0, 0.5,  0.5,	0.0, 0.5,
+				 0.5,  0,   -0.5, -0.5, 0,   -0.5 };
 
 	glGenBuffersARB(1, &m_nVBOVertices);
 	glBindBufferARB(GL_ARRAY_BUFFER_ARB, m_nVBOVertices);
-	glBufferDataARB(GL_ARRAY_BUFFER_ARB, 4 * 3 * sizeof(GLfloat),
-			fTexCoords, GL_STATIC_DRAW_ARB);
+	glBufferDataARB(GL_ARRAY_BUFFER_ARB, 4 * 3 * sizeof(GLfloat), vertices,
+			GL_STATIC_DRAW_ARB);
 	glBindBufferARB(GL_ARRAY_BUFFER_ARB, 0);
 
 	GLuint iIndices[4] = { 0, 1, 2, 3 };
@@ -131,11 +118,6 @@ void SquareMesh::init()
 	glBufferDataARB(GL_ARRAY_BUFFER_ARB, 4 * 3 * sizeof(GLfloat), fNormals,
 			GL_STATIC_DRAW_ARB);
 	glBindBufferARB(GL_ARRAY_BUFFER_ARB, 0);
-}
-
-void SquareMesh::setTexCoord(int type)
-{
-	m_iCurrentTexCoords = type;
 }
 
 void SquareMesh::setTexture(int index, int nr)
