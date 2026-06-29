@@ -48,7 +48,7 @@ Mesh::Mesh(const char *filename)
 void Mesh::load3dsFile(const char *fileName)
 {
 	Lib3dsMesh *mesh = NULL;
-	Lib3dsMaterial *mat = NULL;
+	
 	bool bTexture = false;
 
 	Lib3dsFile *pFile;
@@ -60,7 +60,6 @@ void Mesh::load3dsFile(const char *fileName)
 	}
 
 	mesh = pFile->meshes;
-	mat = pFile->materials;
 
 	// -----------------	Determine the counts
 	m_nVertices = mesh->points;

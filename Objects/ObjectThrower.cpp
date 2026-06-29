@@ -62,7 +62,7 @@ ObjectThrower::~ObjectThrower()
 	delete[] m_pPath;
 }
 
-void ObjectThrower::calculateWayPoints(glm::vec3 vStart, glm::vec3 vEnd)
+void ObjectThrower::calculateWayPoints(glm::vec3, glm::vec3)
 {
 	float fStepping = 1 / (float)(m_iWayPointCount - 1);
 

@@ -23,7 +23,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 class Controller_Keyboard : public Controller {
 private:
-	bool m_bBomb;
 
 public:
 	Controller_Keyboard(int ID);

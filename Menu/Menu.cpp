@@ -56,7 +56,7 @@ void Menu::gotoParentMenu()
 void Menu::drawHelperText()
 {
 	Application::m_pTextDrawer->setSize(SMALL);
-	if (m_cHelperText != NULL)
+	if (m_cHelperText[0] != '\0')
 		Application::m_pTextDrawer->drawText(0.005, 0.005,
 						     m_cHelperText);
 }

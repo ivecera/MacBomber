@@ -18,6 +18,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #ifndef CONFIG_H
 #define CONFIG_H
 
+#include <SDL3/SDL.h>
+
 class Config {
 private:
 	bool m_bFullscreen;
@@ -89,7 +91,7 @@ private:
 public:
 	Config();
 
-	static int m_iPlayerKeys[4][5];
+	static SDL_Keycode m_iPlayerKeys[4][5];
 
 	void setFullscreen(int value);
 	void setResolution(int value)

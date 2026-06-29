@@ -37,7 +37,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #define VIAGRA 11
 #define CONDOM 35
 
-// Typ Definitionen für Felder
+// Typ Definitions for fields
 #define FIELD 0
 #define HOLE 1
 #define ARROW_UP 14

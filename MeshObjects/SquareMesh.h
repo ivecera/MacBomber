@@ -24,9 +24,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 class SquareMesh {
 private:
 	//stores texcoords for arrow layers
-	glm::vec3 m_pTexCoords[4][4];
 
-	GLfloat mat_amb_diff[4];
 	GLfloat mat_ambient[4];
 	GLfloat mat_diffuse[4];
 	GLfloat mat_specular[4];
@@ -46,7 +44,7 @@ private:
 	// tells us wether a specific texture unit should be used
 	bool *m_bUseTexture;
 
-	//calculates four sets of Texcoords (in 90¡ steps)
+	//calculates four sets of Texcoords (in 90Â° steps)
 	void init();
 
 public:

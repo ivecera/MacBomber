@@ -3,6 +3,8 @@ project(MacBomber LANGUAGES C CXX)
 
 set(CMAKE_CXX_STANDARD 11)
 
+add_compile_options(-Wall -Wextra -Wpedantic)
+
 find_package(OpenGL REQUIRED)
 find_package(glm REQUIRED)
 find_package(Freetype REQUIRED)

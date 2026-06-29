@@ -31,10 +31,11 @@ int Config::m_iPlayerKeys[4][5]
 */
 //	0		1			2		3		4		5
 //UP (z+) RIGHT (x+) DOWN (z-) LEFT (x-) NONE BOMB
-int Config::m_iPlayerKeys[4][5] = {
-	SDLK_I,	   SDLK_L,    SDLK_K,	   SDLK_J, SDLK_U, SDLK_UP, SDLK_RIGHT,
-	SDLK_DOWN, SDLK_LEFT, SDLK_RETURN, SDLK_W, SDLK_D, SDLK_S,  SDLK_A,
-	SDLK_Q,	   SDLK_G,    SDLK_N,	   SDLK_B, SDLK_V, SDLK_F
+SDL_Keycode Config::m_iPlayerKeys[4][5] = {
+	{ SDLK_I, SDLK_L, SDLK_K, SDLK_J, SDLK_U },
+	{ SDLK_UP, SDLK_RIGHT, SDLK_DOWN, SDLK_LEFT, SDLK_RETURN },
+	{ SDLK_W, SDLK_D, SDLK_S, SDLK_A, SDLK_Q },
+	{ SDLK_G, SDLK_N, SDLK_B, SDLK_V, SDLK_F },
 };
 
 Config::Config()

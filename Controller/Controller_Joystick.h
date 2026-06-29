@@ -24,7 +24,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 class Controller_Joystick : public Controller {
 private:
-	bool m_bBomb;
 	int m_iDeadZone;
 	SDL_Joystick *m_pJoystick;
 	SDL_JoystickID m_iInstanceID;

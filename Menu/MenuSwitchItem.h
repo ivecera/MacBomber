@@ -24,7 +24,6 @@ class Menu;
 
 class MenuSwitchItem : public MenuItem {
 private:
-	bool m_bEnabled;
 	Menu *m_pLinkedMenu;
 
 public:

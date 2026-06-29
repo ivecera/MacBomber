@@ -86,7 +86,6 @@ void TextDrawer::drawText(float xPos, float yPos, const char *pText,
 void TextDrawer::drawTextCentered(float xPos, float yPos, const char *pText,
 				  float fScale)
 {
-	float height;
 	float width;
 	float llx, lly, llz, urx, ury, urz;
 
@@ -95,7 +94,6 @@ void TextDrawer::drawTextCentered(float xPos, float yPos, const char *pText,
 
 	// Calculate the length & width of the bbox
 	width = urx - llx;
-	height = ury - lly;
 
 	// Correct position and draw Text
 	glPushMatrix();

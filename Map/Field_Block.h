@@ -23,7 +23,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 class Field_Block : public Field {
 protected:
 private:
-	// to make it look more interessting, we allow each block to rotate around the y-axis (in 90¡steps)
+	// to make it look more interessting, we allow each block to rotate around the y-axis (in 90Â° steps)
 	float m_iOrientation;
 
 public:

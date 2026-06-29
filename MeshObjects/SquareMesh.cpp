@@ -166,7 +166,7 @@ void SquareMesh::configureTexture1(int index)
 	glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_DECAL);
 }
 
-void SquareMesh::configureTexCoord0(int index)
+void SquareMesh::configureTexCoord0(int)
 {
 	glClientActiveTextureARB(GL_TEXTURE0_ARB);
 	glBindBufferARB(GL_ARRAY_BUFFER_ARB, m_nVBOTexcoords[0]);

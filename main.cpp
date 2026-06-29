@@ -20,7 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include <SDL3/SDL_main.h>
 #include "Application.h"
 
-SDL_AppResult SDL_AppInit(void **appstate, int argc, char *argv[])
+SDL_AppResult SDL_AppInit(void **appstate, int, char *[])
 {
 	Application *app = new Application();
 	app->init();
@@ -40,7 +40,7 @@ SDL_AppResult SDL_AppIterate(void *appstate)
 	return app->iterate();
 }
 
-void SDL_AppQuit(void *appstate, SDL_AppResult result)
+void SDL_AppQuit(void *appstate, SDL_AppResult)
 {
 	Application *app = (Application *)appstate;
 	delete app;

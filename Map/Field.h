@@ -101,7 +101,7 @@ public:
 	// Places a bomb on the block
 	// Returns true if a bomb could be placed (there was no bomb on the field yet)
 	// Hole and Void fields always return true, since any number of bombs can be placed on them
-	virtual bool placeBomb(Bomb *bomb)
+	virtual bool placeBomb(Bomb *)
 	{
 		return true;
 	};
@@ -165,7 +165,7 @@ public:
 
 	virtual void destroy();
 	virtual void moveBomb() {};
-	virtual void kickBomb(int dir) {};
+	virtual void kickBomb(int) {};
 
 	virtual void update() {};
 	virtual void draw() {};

@@ -24,7 +24,6 @@ class ToggleItem;
 
 class PlayerSetupRow : public MenuItem {
 private:
-	int m_iYPos;
 	// Each Row has iCurrentItem ToggleItems
 	int m_iCurrentItem;
 	ToggleItem *m_pToggleItem[2];

@@ -78,7 +78,7 @@ SoundManager::~SoundManager()
 	MIX_DestroyAudio(m_Music[GAME_MUSIC]);
 }
 
-void SDLCALL SoundManager::musicDone(void *userdata, MIX_Track *track)
+void SDLCALL SoundManager::musicDone(void *userdata, MIX_Track *)
 {
 	SoundManager *self = (SoundManager *)userdata;
 	self->handelMusicDone();

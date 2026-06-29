@@ -100,7 +100,6 @@ void Object_Moving::move(glm::vec3 vDisplacement)
 bool Object_Moving::doDrop()
 {
 	glm::vec3 vVerticalDisplacement(0, -1, 0);
-	vVerticalDisplacement = vVerticalDisplacement;
 
 	if (m_vPos.y > -8.0f) {
 		m_vPos = m_vPos + (vVerticalDisplacement * 0.05f);

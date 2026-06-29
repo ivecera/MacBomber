@@ -35,7 +35,7 @@ Timebar::Timebar(int totalTime)
 	m_fTexCoordX = 1;
 }
 
-void Timebar::update(int time)
+void Timebar::update(int)
 {
 	// shrink the bar
 	//	m_vVertices[1].x = m_fStepPerSecond * (float)time;

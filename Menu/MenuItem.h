@@ -66,7 +66,7 @@ public:
 
 	// sets / gets the current value of the Menuitem
 	virtual int getValue();
-	virtual void setValue(int value) {};
+	virtual void setValue(int) {};
 
 	// returns the width of this MenuItem
 	//	virtual float getWidth(){};

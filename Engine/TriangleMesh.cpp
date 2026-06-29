@@ -43,7 +43,7 @@ TriangleMesh::TriangleMesh()
 void TriangleMesh::load3dsFile(Lib3dsFile *pFile)
 {
 	Lib3dsMesh *mesh = NULL;
-	Lib3dsMaterial *mat = NULL;
+	
 
 	if (pFile == NULL) {
 		SDL_Log("TriangleMesh: File not found.");
@@ -51,7 +51,6 @@ void TriangleMesh::load3dsFile(Lib3dsFile *pFile)
 	}
 
 	mesh = pFile->meshes;
-	mat = pFile->materials;
 
 	// -----------------	Determine the counts
 	m_nVertices = mesh->points;
