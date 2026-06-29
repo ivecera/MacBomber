@@ -19,7 +19,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #define EXPLOSION_H
 
 #include "Engine/Vector3.h"
-#include <SDL_opengl.h>
+#include <SDL3/SDL_opengl.h>
 
 class Camera;
 class TextureManager;

@@ -138,9 +138,9 @@ void TriangleMesh::load3dsFile(Lib3dsFile *pFile)
 		for (m=pFile->materials; m; m=m->next)
 		{
 				Lib3dsTextureMap tmpMap = m->texture1_map;
-				if (strcmp(tmpMap.name,"") != 0)
+				if (SDL_strcmp(tmpMap.name,"") != 0)
 				{
-					memcpy(m_cTexturename,tmpMap.name,64);
+					SDL_memcpy(m_cTexturename,tmpMap.name,64);
 				//	printf("%s\n",m_cTexturename);
 					loadTexture(m_TextureArray, textureIndex++, m->texture1_map.name);
 				}

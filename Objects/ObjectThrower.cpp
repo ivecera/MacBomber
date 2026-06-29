@@ -21,7 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "../Engine/SimpleBezier.h"
 #include "../Objects/Object_Moving.h"
 #include "../Application.h"
-#include <SDL_opengl.h>
+#include <SDL3/SDL_opengl.h>
 
 ObjectThrower::ObjectThrower(Vector3 vStart, Vector3 vEnd,
 			     Object_Moving *pObject)

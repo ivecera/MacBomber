@@ -15,8 +15,6 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-#include <cmath>
-
 #include "Map.h"
 #include "../Engine/BoundingBox_2D.h"
 #include "../Objects/Object_Moving.h"
@@ -338,11 +336,11 @@ void Map::calculateDisplacement(Vector3 &vDisplacement)
 	//randomly choose an angle between minAngle - maxAngle;
 	angle = rand() % (360);
 	//convert deg -> rad
-	angle = (angle * 3.14159265 / 180);
+	angle = (angle * SDL_PI_F / 180);
 
 	//caluclate intial values of the displacement vector
-	x = cos(angle);
-	y = sin(angle);
+	x = SDL_cosf(angle);
+	y = SDL_sinf(angle);
 	z = 0;
 
 	//rotate the point (x,z) araund the y axis by a random angle

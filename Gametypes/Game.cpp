@@ -224,12 +224,12 @@ Player *Game::getPlayer(int playerNr)
 		return NULL;
 }
 
-uint Game::getElapsedTime()
+Uint32 Game::getElapsedTime()
 {
 	return (m_tRoundTimer.getElapsedTime());
 }
 
-uint Game::getTotalTime()
+Uint32 Game::getTotalTime()
 {
 	return m_pApp->m_pConfig->getRoundTime();
 }

@@ -21,21 +21,23 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 bool isResolutionSupported(int resIndex)
 {
-	bool bSupported = false;
-	SDL_Rect **modes;
-	// Get all available fullscreen hardware modes
-	modes = SDL_ListModes(NULL, SDL_FULLSCREEN | SDL_HWSURFACE);
+	int numModes = 0;
+	int reqW = Application::m_pConfig->getResolutionWidth(resIndex);
+	int reqH = Application::m_pConfig->getResolutionHeight(resIndex);
+
+	SDL_DisplayMode **modes = SDL_GetFullscreenDisplayModes(
+		SDL_GetPrimaryDisplay(), &numModes);
+	if (!modes)
+		return false;
 
 	//check if resolution specified by resIndex is supported
-	for (int i = 0; modes[i] != NULL; ++i) {
-		//	printf("  %d x %d\n", modes[i]->w, modes[i]->h);
-
-		if ((((int)modes[i]->w) ==
-		     Application::m_pConfig->getResolutionWidth(resIndex)) &&
-		    (((int)modes[i]->h) ==
-		     Application::m_pConfig->getResolutionHeight(resIndex)))
-			bSupported = true;
+	for (int i = 0; i < numModes; ++i) {
+		if (modes[i]->w == reqW && modes[i]->h == reqH) {
+			SDL_free(modes);
+			return true;
+		}
 	}
 
-	return bSupported;
+	SDL_free(modes);
+	return false;
 }

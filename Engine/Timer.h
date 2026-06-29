@@ -18,7 +18,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #ifndef TIMER_H
 #define TIMER_H
 
-#include <SDL.h>
+#include <SDL3/SDL.h>
 
 class Timer {
 private:
@@ -29,12 +29,12 @@ private:
 
 public:
 	Timer();
-	Timer(uint alarm);
-	void setAlarm(uint alarmTime);
+	Timer(Uint32 alarm);
+	void setAlarm(Uint32 alarmTime);
 	// returns true when the alert time has been exceeded
 	bool isTimeUp();
 	// returns Elapsed Time since Timer Start in ms
-	uint getElapsedTime();
+	Uint32 getElapsedTime();
 };
 
 #endif

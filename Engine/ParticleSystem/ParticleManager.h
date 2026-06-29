@@ -10,7 +10,7 @@
 #ifndef PARTICLEMANAGER_H
 #define PARTICLEMANAGER_H
 
-#include <SDL_opengl.h>
+#include <SDL3/SDL_opengl.h>
 #include "Particle.h"
 #include "Particle_Explosion.h"
 

@@ -15,7 +15,6 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-#include <cstring>
 #include "../Application.h"
 #include "MenuItem.h"
 #include "Menu.h"
@@ -23,7 +22,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "../Engine/ortho.h"
 
 #include "../Defines.h"
-#include <SDL_opengl.h>
+#include <SDL3/SDL_opengl.h>
 
 #include "../Engine/TextDrawer.h"
 
@@ -31,7 +30,7 @@ MenuItem::MenuItem(const char *caption)
 {
 	m_vPosition = Vector3(0, 0, 0);
 	//	m_cCaption = caption;
-	strcpy(m_cCaption, caption);
+	SDL_strlcpy(m_cCaption, caption, sizeof(m_cCaption));
 	m_bActive = false;
 	m_bInteractive = true;
 	m_iValue = 0; // NEW

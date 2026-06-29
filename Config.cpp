@@ -20,23 +20,23 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include <string>
 
 #include "Config.h"
-#include <SDL.h>
+#include <SDL3/SDL.h>
 #include "Application.h"
 /*
 int Config::m_iPlayerKeys[4][5]
-=	{SDLK_k,SDLK_l,SDLK_i,SDLK_j,SDLK_u,
+=	{SDLK_K,SDLK_L,SDLK_I,SDLK_J,SDLK_U,
 	SDLK_DOWN,SDLK_RIGHT,SDLK_UP,SDLK_LEFT,SDLK_RETURN,
-	SDLK_s,SDLK_d,SDLK_w,SDLK_a,SDLK_q,
-	SDLK_b,SDLK_n,SDLK_g,SDLK_v,SDLK_f
+	SDLK_S,SDLK_D,SDLK_W,SDLK_A,SDLK_Q,
+	SDLK_B,SDLK_N,SDLK_G,SDLK_V,SDLK_F
 	}; // UP/DOWN geflippt!
 
 */
 //	0		1			2		3		4		5
 //UP (z+) RIGHT (x+) DOWN (z-) LEFT (x-) NONE BOMB
 int Config::m_iPlayerKeys[4][5] = {
-	SDLK_i,	   SDLK_l,    SDLK_k,	   SDLK_j, SDLK_u, SDLK_UP, SDLK_RIGHT,
-	SDLK_DOWN, SDLK_LEFT, SDLK_RETURN, SDLK_w, SDLK_d, SDLK_s,  SDLK_a,
-	SDLK_q,	   SDLK_g,    SDLK_n,	   SDLK_b, SDLK_v, SDLK_f
+	SDLK_I,	   SDLK_L,    SDLK_K,	   SDLK_J, SDLK_U, SDLK_UP, SDLK_RIGHT,
+	SDLK_DOWN, SDLK_LEFT, SDLK_RETURN, SDLK_W, SDLK_D, SDLK_S,  SDLK_A,
+	SDLK_Q,	   SDLK_G,    SDLK_N,	   SDLK_B, SDLK_V, SDLK_F
 };
 
 Config::Config()

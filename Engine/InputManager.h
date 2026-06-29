@@ -17,7 +17,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #ifndef INPUTMANAGER_H
 #define INPUTMANAGER_H
-#include <SDL.h>
+#include <SDL3/SDL.h>
 
 class Application;
 class Controller;
@@ -25,7 +25,7 @@ class Controller;
 class InputManager {
 private:
 	int m_iJoystickCount;
-	Uint8 *m_pKeystate;
+	const bool *m_pKeystate;
 
 	Application *m_pApp;
 	Controller *m_pController[8];

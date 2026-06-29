@@ -387,8 +387,8 @@ void Player::checkPlayerPlayerCollisions()
 		//only check with nearby Player and players that are alive
 
 		//... therefore we calculate the manhatan distance
-		distance = (abs(m_xBlock - pPlayer->getXBlock())) +
-			   (abs(m_zBlock - pPlayer->getZBlock()));
+		distance = (SDL_abs(m_xBlock - pPlayer->getXBlock())) +
+			   (SDL_abs(m_zBlock - pPlayer->getZBlock()));
 
 		// if pPlayer is too far away or dead abort
 		if ((distance > 1) || (pPlayer->isDead()))

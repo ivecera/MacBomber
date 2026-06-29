@@ -22,72 +22,120 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #include <iostream>
 
-SoundManager::SoundManager()
+SoundManager::SoundManager(MIX_Mixer *mixer)
 {
-	m_Samples[EXPlOSION_SOUND] = Mix_LoadWAV(
-		Application::expandResourcePath("/Sounds/explode.wav").c_str());
-	m_Samples[PUTBOMB_SOUND] = Mix_LoadWAV(
-		Application::expandResourcePath("/Sounds/putbomb.wav").c_str());
-	m_Samples[CRUNCH_SOUND] = Mix_LoadWAV(
-		Application::expandResourcePath("/Sounds/crunch.wav").c_str());
+	m_Samples[EXPlOSION_SOUND] = MIX_LoadAudio(
+		mixer,
+		Application::expandResourcePath("/Sounds/explode.wav").c_str(),
+		true);
+	m_Samples[PUTBOMB_SOUND] = MIX_LoadAudio(
+		mixer,
+		Application::expandResourcePath("/Sounds/putbomb.wav").c_str(),
+		true);
+	m_Samples[CRUNCH_SOUND] = MIX_LoadAudio(
+		mixer,
+		Application::expandResourcePath("/Sounds/crunch.wav").c_str(),
+		true);
 
-	m_Music[MENU_MUSIC] = Mix_LoadMUS(
+	m_Music[MENU_MUSIC] = MIX_LoadAudio(
+		mixer,
 		Application::expandResourcePath("/Sounds/macbomber_theme.mp3")
-			.c_str());
-	m_Music[SCORESCREEN_MUSIC] = Mix_LoadMUS(
+			.c_str(),
+		false);
+	m_Music[SCORESCREEN_MUSIC] = MIX_LoadAudio(
+		mixer,
 		Application::expandResourcePath("/Sounds/macbomber_fanfare.mp3")
-			.c_str());
-	m_Music[GAME_MUSIC] = Mix_LoadMUS(
+			.c_str(),
+		false);
+	m_Music[GAME_MUSIC] = MIX_LoadAudio(
+		mixer,
 		Application::expandResourcePath("/Sounds/macbomber_game.mp3")
-			.c_str());
+			.c_str(),
+		false);
+
+	// create tracks for sound effects
+	for (int i = 0; i < 8; i++)
+		m_pSfxTracks[i] = MIX_CreateTrack(mixer);
+
+	// create a dedicated music track
+	m_pMusicTrack = MIX_CreateTrack(mixer);
 
 	m_bMusicPlaying = false;
 	m_bLoopMusic = false;
-	;
 	m_bMusicWaiting = false;
-	Mix_HookMusicFinished(SoundManager::musicDone);
+	MIX_SetTrackStoppedCallback(m_pMusicTrack, SoundManager::musicDone,
+				    this);
 }
 
 SoundManager::~SoundManager()
 {
-	Mix_FreeChunk(m_Samples[EXPlOSION_SOUND]);
-	Mix_FreeChunk(m_Samples[PUTBOMB_SOUND]);
+	MIX_StopTrack(m_pMusicTrack, 0);
 
-	Mix_HaltMusic();
-	Mix_FreeMusic(m_Music[MENU_MUSIC]);
-	Mix_FreeMusic(m_Music[SCORESCREEN_MUSIC]);
-	Mix_FreeMusic(m_Music[GAME_MUSIC]);
+	MIX_DestroyAudio(m_Samples[EXPlOSION_SOUND]);
+	MIX_DestroyAudio(m_Samples[PUTBOMB_SOUND]);
+	MIX_DestroyAudio(m_Samples[CRUNCH_SOUND]);
+
+	MIX_DestroyAudio(m_Music[MENU_MUSIC]);
+	MIX_DestroyAudio(m_Music[SCORESCREEN_MUSIC]);
+	MIX_DestroyAudio(m_Music[GAME_MUSIC]);
 }
 
-void SoundManager::musicDone()
+void SDLCALL SoundManager::musicDone(void *userdata, MIX_Track *track)
 {
-	Application::m_pSoundManager->handelMusicDone();
+	SoundManager *self = (SoundManager *)userdata;
+	self->handelMusicDone();
 }
 
 void SoundManager::setVolumeSoundFX(int vol)
 {
-	// Maximum: 125; 125/ 5 = 25
-	Mix_Volume(-1, 25 * vol);
+	// vol is 0-5, convert to float gain 0.0-1.0
+	float gain = vol / 5.0f;
+	for (int i = 0; i < 8; i++)
+		MIX_SetTrackGain(m_pSfxTracks[i], gain);
 }
 
 void SoundManager::setVolumeMusic(int vol)
 {
-	//Maximum: 128; 128 / 5 ~= 25
-	Mix_VolumeMusic(25 * vol);
+	// vol is 0-5, convert to float gain 0.0-1.0
+	float gain = vol / 5.0f;
+	MIX_SetTrackGain(m_pMusicTrack, gain);
 }
 
 void SoundManager::playSoundFX(int nr)
 {
 	//Only Play if Sound is enabled
-	if (Application::m_pConfig->getSoundFX())
-		Mix_PlayChannel(-1, m_Samples[nr], 0);
+	if (!Application::m_pConfig->getSoundFX())
+		return;
+
+	// find a free SFX track
+	for (int i = 0; i < 8; i++) {
+		if (!MIX_TrackPlaying(m_pSfxTracks[i])) {
+			MIX_SetTrackAudio(m_pSfxTracks[i], m_Samples[nr]);
+			MIX_PlayTrack(m_pSfxTracks[i], 0);
+			return;
+		}
+	}
+	// all tracks busy — reuse the first one
+	MIX_SetTrackAudio(m_pSfxTracks[0], m_Samples[nr]);
+	MIX_PlayTrack(m_pSfxTracks[0], 0);
+}
+
+void SoundManager::startMusicTrack()
+{
+	MIX_SetTrackAudio(m_pMusicTrack, m_Music[m_iCurrentMusic]);
+	SDL_PropertiesID props = SDL_CreateProperties();
+	SDL_SetNumberProperty(props, MIX_PROP_PLAY_LOOPS_NUMBER,
+			      m_bLoopMusic ? -1 : 1);
+	SDL_SetNumberProperty(props, MIX_PROP_PLAY_FADE_IN_MILLISECONDS_NUMBER,
+			      500);
+	MIX_PlayTrack(m_pMusicTrack, props);
+	SDL_DestroyProperties(props);
 }
 
 void SoundManager::handelMusicDone()
 {
 	if (m_bMusicWaiting) {
-		Mix_FadeInMusic(m_Music[m_iCurrentMusic], m_bLoopMusic ? -1 : 1,
-				500);
+		startMusicTrack();
 		m_bMusicPlaying = true;
 	} else
 		m_bMusicPlaying = false;
@@ -112,22 +160,21 @@ void SoundManager::playMusic(int nr, bool bLoop)
 	{
 		m_bMusicPlaying = true;
 		m_bMusicWaiting = false;
-		Mix_FadeInMusic(m_Music[m_iCurrentMusic], m_bLoopMusic ? -1 : 1,
-				500);
+		startMusicTrack();
 	}
 }
 
 void SoundManager::stopMusic()
 {
-	Mix_FadeOutMusic(500);
+	MIX_StopTrack(m_pMusicTrack, MIX_TrackMSToFrames(m_pMusicTrack, 500));
 }
 
 void SoundManager::pauseMusic()
 {
-	Mix_PauseMusic();
+	MIX_PauseTrack(m_pMusicTrack);
 }
 
 void SoundManager::resumeMusic()
 {
-	Mix_ResumeMusic();
+	MIX_ResumeTrack(m_pMusicTrack);
 }

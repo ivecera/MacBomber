@@ -15,7 +15,6 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-#include <cstring>
 #include "LevelSelectionMenu.h"
 #include "LevelScrollListItem.h"
 #include "MapPreview.h"
@@ -30,8 +29,10 @@ LevelSelectionMenu::LevelSelectionMenu(Menu *pParent)
 	: Menu("Map Selection", pParent)
 {
 	//	m_cHelperText = "up&down keys select a map / space enables or disables a map / ESC exits";
-	strcpy(m_cHelperText,
-	       "up&down keys select a map / space enables or disables a map / ESC exits");
+	SDL_strlcpy(
+		m_cHelperText,
+		"up&down keys select a map / space enables or disables a map / ESC exits",
+		sizeof(m_cHelperText));
 	m_pLevelScrollList = new LevelScrollListItem();
 	addMenuItem(m_pLevelScrollList, Vector3(0, 0.7, 0));
 

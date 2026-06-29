@@ -15,10 +15,9 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-#include <cstring>
 #include "../Application.h"
 #include "ToggleItem.h"
-#include <SDL_opengl.h>
+#include <SDL3/SDL_opengl.h>
 #include "../Engine/TextDrawer.h"
 #include "../Engine/ortho.h"
 
@@ -59,7 +58,7 @@ void ToggleItem::addOption(const char *optionName, int value)
 	//create an Option with Name "optionName" and value "value"
 	stOption option;
 	//	option.name = optionName;
-	strcpy(option.name, optionName);
+	SDL_strlcpy(option.name, optionName, sizeof(option.name));
 
 	option.value = value;
 

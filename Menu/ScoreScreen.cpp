@@ -14,7 +14,7 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
-#include <SDL_opengl.h>
+#include <SDL3/SDL_opengl.h>
 
 #include "../Menu/ScoreScreen.h"
 #include "../Application.h"
@@ -63,14 +63,14 @@ ScoreScreen::ScoreScreen(Game *pGame)
 
 	// No winner
 	if (m_pGame->getWinnerOfRound() == DRAWGAME) {
-		strcpy(m_cHeading, "Draw Game !");
+		SDL_strlcpy(m_cHeading, "Draw Game !", sizeof(m_cHeading));
 		m_bDoHandleInput = true;
 
 	} else {
 		Player *pPlayer =
 			m_pGame->getPlayer(m_pGame->getWinnerOfRound());
-		strcpy(m_cHeading, pPlayer->getName());
-		strcat(m_cHeading, " wins !");
+		SDL_strlcpy(m_cHeading, pPlayer->getName(), sizeof(m_cHeading));
+		SDL_strlcat(m_cHeading, " wins !", sizeof(m_cHeading));
 
 		// The Winner gets a Trophy ! Init Trophys initial position.
 		m_vCupPosition.x = 1;

@@ -1,8 +1,6 @@
 cmake_minimum_required(VERSION 3.10)
 project(MacBomber LANGUAGES C CXX)
 
-set(OpenGL_GL_PREFERENCE LEGACY)
-
 set(CMAKE_CXX_STANDARD 11)
 
 find_package(OpenGL REQUIRED)
@@ -10,9 +8,9 @@ find_package(Freetype REQUIRED)
 find_package(ZLIB REQUIRED)
 find_package(PkgConfig REQUIRED)
 
-pkg_check_modules(SDL REQUIRED sdl12_compat)
-pkg_check_modules(SDL_IMAGE REQUIRED SDL_image)
-pkg_check_modules(SDL_MIXER REQUIRED SDL_mixer)
+pkg_check_modules(SDL3 REQUIRED sdl3)
+pkg_check_modules(SDL3_IMAGE REQUIRED sdl3-image)
+pkg_check_modules(SDL3_MIXER REQUIRED sdl3-mixer)
 pkg_check_modules(FTGL REQUIRED ftgl)
 
 find_library(LIB3DS_LIBRARY NAMES 3ds 3ds-1)
@@ -126,19 +124,15 @@ set(SOURCES
     Objects/Wiley.cpp
 )
 
-if(APPLE)
-    list(APPEND SOURCES SDLMain.m)
-endif()
-
 add_executable(macbomber ${SOURCES})
 
 target_compile_definitions(macbomber PRIVATE GL_GLEXT_PROTOTYPES)
 
 target_include_directories(macbomber PRIVATE
     ${CMAKE_SOURCE_DIR}
-    ${SDL_INCLUDE_DIRS}
-    ${SDL_IMAGE_INCLUDE_DIRS}
-    ${SDL_MIXER_INCLUDE_DIRS}
+    ${SDL3_INCLUDE_DIRS}
+    ${SDL3_IMAGE_INCLUDE_DIRS}
+    ${SDL3_MIXER_INCLUDE_DIRS}
     ${FTGL_INCLUDE_DIRS}
     ${FREETYPE_INCLUDE_DIRS}
     ${LIB3DS_INCLUDE_DIR}
@@ -147,9 +141,9 @@ target_include_directories(macbomber PRIVATE
 target_link_libraries(macbomber PRIVATE
     OpenGL::GL
     OpenGL::GLU
-    ${SDL_LIBRARIES}
-    ${SDL_IMAGE_LIBRARIES}
-    ${SDL_MIXER_LIBRARIES}
+    ${SDL3_LIBRARIES}
+    ${SDL3_IMAGE_LIBRARIES}
+    ${SDL3_MIXER_LIBRARIES}
     ${FTGL_LIBRARIES}
     Freetype::Freetype
     ZLIB::ZLIB

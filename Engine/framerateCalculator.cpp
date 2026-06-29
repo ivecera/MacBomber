@@ -15,7 +15,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-#include <SDL.h>
+#include <SDL3/SDL.h>
 #include "framerateCalculator.h"
 #include "../Application.h"
 
@@ -48,10 +48,11 @@ void calculateFramerate()
 
 #ifdef DRAWFPS
 		// Copy the FPS into the string strFrameRate
-		sprintf(strFrameRate, "FPS: %d", int(framesPerSecond));
+		SDL_snprintf(strFrameRate, sizeof(strFrameRate), "FPS: %d",
+			     int(framesPerSecond));
 
 		// Finally display the FPS string in the window title bar
-		SDL_WM_SetCaption(strFrameRate, "OpenGL. ");
+		SDL_SetWindowTitle(Application::m_pWindow, strFrameRate);
 #endif
 		//Application::m_fReciprocalFPS = 1/framesPerSecond;
 		// Reset the frame counter to 0

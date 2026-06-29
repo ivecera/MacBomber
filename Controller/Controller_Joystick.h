@@ -19,7 +19,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #ifndef CONTROLLER_JOYSTICK_H
 #define CONTROLLER_JOYSTICK_H
 
-#include <SDL.h>
+#include <SDL3/SDL.h>
 #include "Controller.h"
 
 class Controller_Joystick : public Controller {
@@ -27,6 +27,7 @@ private:
 	bool m_bBomb;
 	int m_iDeadZone;
 	SDL_Joystick *m_pJoystick;
+	SDL_JoystickID m_iInstanceID;
 
 public:
 	Controller_Joystick(int ID, SDL_Joystick *pJoystick);

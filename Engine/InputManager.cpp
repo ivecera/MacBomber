@@ -40,21 +40,24 @@ InputManager::InputManager(Application *pApp)
 		m_pController[i] = new Controller_Keyboard(i);
 
 	//---- Joystick Controllers
-	SDL_JoystickEventState(SDL_ENABLE);
-	m_iJoystickCount = SDL_NumJoysticks();
+	SDL_SetJoystickEventsEnabled(true);
+	int numJoysticks = 0;
+	SDL_JoystickID *joysticks = SDL_GetJoysticks(&numJoysticks);
+	m_iJoystickCount = numJoysticks;
 	//Restrict to 4 Joysticks at most
 	if (m_iJoystickCount > 4)
 		m_iJoystickCount = 4;
 	printf("InputManager: Found %d joystick(s)\n", m_iJoystickCount);
 
 	for (int i = 0; i < m_iJoystickCount; i++) {
-		m_pController[4 + i] =
-			new Controller_Joystick(4 + i, SDL_JoystickOpen(i));
+		m_pController[4 + i] = new Controller_Joystick(
+			4 + i, SDL_OpenJoystick(joysticks[i]));
 	}
+	SDL_free(joysticks);
 
 	// some joysticks or SDL seem to produce bogus events after being opened
 	// (stolen from supertux)
-	Uint32 ticks = SDL_GetTicks();
+	Uint64 ticks = SDL_GetTicks();
 	while (SDL_GetTicks() - ticks < 500) {
 		SDL_Event event;
 		SDL_PollEvent(&event);
@@ -77,7 +80,8 @@ bool InputManager::joysticksPresent()
 
 bool InputManager::isJoystickPresent(int joystickID)
 {
-	if (SDL_JoystickOpened(joystickID))
+	if (joystickID >= 0 && joystickID < m_iJoystickCount &&
+	    m_pController[4 + joystickID] != NULL)
 		return true;
 	else
 		return false;
@@ -95,7 +99,7 @@ Controller *InputManager::getController(int ctrlID)
 void InputManager::update()
 {
 	SDL_Event event;
-	m_pKeystate = SDL_GetKeyState(NULL);
+	m_pKeystate = SDL_GetKeyboardState(NULL);
 
 	for (int i = 0; i < 8; i++) {
 		if (m_pController[i] != NULL)
@@ -110,13 +114,13 @@ void InputManager::update()
 		}
 
 		switch (event.type) {
-		case SDL_QUIT:
+		case SDL_EVENT_QUIT:
 			SDL_Quit();
 			break;
-		case SDL_KEYDOWN:
+		case SDL_EVENT_KEY_DOWN:
 
 			// Iterate through keys where key repeat is unwanted
-			switch (event.key.keysym.sym) {
+			switch (event.key.key) {
 			case SDLK_1:
 				m_pApp->m_pCamera->setPreset(0);
 				break;
@@ -131,15 +135,15 @@ void InputManager::update()
 						m_pApp->m_pCamera->setPreset(3);
 						break;*/
 
-			case SDLK_p:
+			case SDLK_P:
 				m_pApp->pause();
 				break;
 				/*					
-					case SDLK_t:
+					case SDLK_T:
 						dumpScreen();
 						break;
 				
-					case SDLK_z:
+					case SDLK_Z:
 						printf("pos: %f, %f, %f\n", 
 							m_pApp->m_pCamera->m_vPosition.x,
 							m_pApp->m_pCamera->m_vPosition.y,
@@ -153,7 +157,7 @@ void InputManager::update()
 			default:
 				break;
 
-			} // switch( event.key.keysym.sym)
+			} // switch( event.key.key)
 			break;
 
 		default:
@@ -162,19 +166,19 @@ void InputManager::update()
 
 	} //while
 
-	if (m_pKeystate[SDLK_a] == SDL_PRESSED) {
+	if (m_pKeystate[SDL_SCANCODE_A]) {
 		m_pApp->m_pCamera->strafeCamera(-1.0f);
 	}
 
-	if (m_pKeystate[SDLK_w] == SDL_PRESSED) {
+	if (m_pKeystate[SDL_SCANCODE_W]) {
 		m_pApp->m_pCamera->moveCamera(1.0f);
 	}
 
-	if (m_pKeystate[SDLK_d] == SDL_PRESSED) {
+	if (m_pKeystate[SDL_SCANCODE_D]) {
 		m_pApp->m_pCamera->strafeCamera(1.0f);
 	}
 
-	if (m_pKeystate[SDLK_s] == SDL_PRESSED) {
+	if (m_pKeystate[SDL_SCANCODE_S]) {
 		m_pApp->m_pCamera->moveCamera(-1.0f);
 	}
 }

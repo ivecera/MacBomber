@@ -15,7 +15,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-#include <SDL_opengl.h>
+#include <SDL3/SDL_opengl.h>
 #include "../Application.h"
 #include "../Defines.h"
 #include "../Controller/Controller_Keyboard.h"
@@ -33,9 +33,9 @@ Menu::Menu(const char *Title, Menu *pMenu, const char *helpText)
 	//m_itIterator = m_lMenuItems.begin();
 	m_iActiveItem = 0;
 	//m_cTitle = Title;
-	strcpy(m_cTitle, Title);
+	SDL_strlcpy(m_cTitle, Title, sizeof(m_cTitle));
 	//	m_cHelperText = helpText;
-	strcpy(m_cHelperText, helpText);
+	SDL_strlcpy(m_cHelperText, helpText, sizeof(m_cHelperText));
 }
 
 Menu::~Menu()

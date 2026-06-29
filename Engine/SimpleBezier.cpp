@@ -15,8 +15,8 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-#include <math.h>
-#include <SDL_opengl.h>
+#include <SDL3/SDL.h>
+#include <SDL3/SDL_opengl.h>
 
 #include "SimpleBezier.h"
 
@@ -98,7 +98,7 @@ float SimpleBezier::calculateBernsteinPolynomial(float t, int i)
 	int n = m_iControlPointCount - 1;
 
 	int binCoeffi = calculateBinomialCoefficient(n, i);
-	float rest = pow(t, i) * pow((1 - t), n - i);
+	float rest = SDL_powf(t, i) * SDL_powf((1 - t), n - i);
 
 	return binCoeffi * rest;
 }

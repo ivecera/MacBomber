@@ -15,7 +15,6 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-#include <cstring>
 #include <string>
 using namespace std;
 
@@ -46,92 +45,92 @@ MeshManager::MeshManager()
 	m_pTriangleMesh = new TriangleMesh[7];
 
 	float tmp[4] = { 1, 1, 1, 1 };
-	memcpy(m_stMaterials[PLAYER_OBJECT].ambientDiffuse, tmp,
-	       sizeof(m_stMaterials[PLAYER_OBJECT].ambientDiffuse));
+	SDL_memcpy(m_stMaterials[PLAYER_OBJECT].ambientDiffuse, tmp,
+		   sizeof(m_stMaterials[PLAYER_OBJECT].ambientDiffuse));
 	tmp[0] = 0.5;
 	tmp[1] = 0.5;
 	tmp[2] = 0.5;
 	tmp[3] = 0.5;
-	memcpy(m_stMaterials[PLAYER_OBJECT].specular, tmp,
-	       sizeof(m_stMaterials[PLAYER_OBJECT].specular));
+	SDL_memcpy(m_stMaterials[PLAYER_OBJECT].specular, tmp,
+		   sizeof(m_stMaterials[PLAYER_OBJECT].specular));
 
 	tmp[0] = 1;
 	tmp[1] = 1;
 	tmp[2] = 1;
 	tmp[3] = 1;
-	memcpy(m_stMaterials[ITEM_OBJECT].ambientDiffuse, tmp,
-	       sizeof(m_stMaterials[ITEM_OBJECT].ambientDiffuse));
+	SDL_memcpy(m_stMaterials[ITEM_OBJECT].ambientDiffuse, tmp,
+		   sizeof(m_stMaterials[ITEM_OBJECT].ambientDiffuse));
 	tmp[0] = 0.7;
 	tmp[1] = 0.7;
 	tmp[2] = 0.7;
 	tmp[3] = 1;
-	memcpy(m_stMaterials[ITEM_OBJECT].specular, tmp,
-	       sizeof(m_stMaterials[ITEM_OBJECT].ambientDiffuse));
+	SDL_memcpy(m_stMaterials[ITEM_OBJECT].specular, tmp,
+		   sizeof(m_stMaterials[ITEM_OBJECT].specular));
 
 	tmp[0] = 0;
 	tmp[1] = 1;
 	tmp[2] = 1;
 	tmp[3] = 1;
-	memcpy(m_stMaterials[FIELD_OBJECT].ambientDiffuse, tmp,
-	       sizeof(m_stMaterials[FIELD_OBJECT].ambientDiffuse));
+	SDL_memcpy(m_stMaterials[FIELD_OBJECT].ambientDiffuse, tmp,
+		   sizeof(m_stMaterials[FIELD_OBJECT].ambientDiffuse));
 	tmp[0] = 0.0;
 	tmp[1] = 0.0;
 	tmp[2] = 0.0;
 	tmp[3] = 0;
-	memcpy(m_stMaterials[FIELD_OBJECT].specular, tmp,
-	       sizeof(m_stMaterials[FIELD_OBJECT].ambientDiffuse));
+	SDL_memcpy(m_stMaterials[FIELD_OBJECT].specular, tmp,
+		   sizeof(m_stMaterials[FIELD_OBJECT].specular));
 
 	tmp[0] = 1;
 	tmp[1] = 1;
 	tmp[2] = 1;
 	tmp[3] = 1;
-	memcpy(m_stMaterials[BLOCK_OBJECT].ambientDiffuse, tmp,
-	       sizeof(m_stMaterials[BLOCK_OBJECT].ambientDiffuse));
+	SDL_memcpy(m_stMaterials[BLOCK_OBJECT].ambientDiffuse, tmp,
+		   sizeof(m_stMaterials[BLOCK_OBJECT].ambientDiffuse));
 	tmp[0] = 0.2;
 	tmp[1] = 0.2;
 	tmp[2] = 0.2;
 	tmp[3] = 1;
-	memcpy(m_stMaterials[BLOCK_OBJECT].specular, tmp,
-	       sizeof(m_stMaterials[BLOCK_OBJECT].ambientDiffuse));
+	SDL_memcpy(m_stMaterials[BLOCK_OBJECT].specular, tmp,
+		   sizeof(m_stMaterials[BLOCK_OBJECT].specular));
 
 	tmp[0] = 1;
 	tmp[1] = 1;
 	tmp[2] = 1;
 	tmp[3] = 1;
-	memcpy(m_stMaterials[CRATE_OBJECT].ambientDiffuse, tmp,
-	       sizeof(m_stMaterials[CRATE_OBJECT].ambientDiffuse));
+	SDL_memcpy(m_stMaterials[CRATE_OBJECT].ambientDiffuse, tmp,
+		   sizeof(m_stMaterials[CRATE_OBJECT].ambientDiffuse));
 	tmp[0] = 0.4;
 	tmp[1] = 0.4;
 	tmp[2] = 0.4;
 	tmp[3] = 1;
-	memcpy(m_stMaterials[CRATE_OBJECT].specular, tmp,
-	       sizeof(m_stMaterials[CRATE_OBJECT].ambientDiffuse));
+	SDL_memcpy(m_stMaterials[CRATE_OBJECT].specular, tmp,
+		   sizeof(m_stMaterials[CRATE_OBJECT].specular));
 
 	tmp[0] = 0.8;
 	tmp[1] = 0.8;
 	tmp[2] = 0.8;
 	tmp[3] = 1;
-	memcpy(m_stMaterials[BOMB_OBJECT].ambientDiffuse, tmp,
-	       sizeof(m_stMaterials[BOMB_OBJECT].ambientDiffuse));
+	SDL_memcpy(m_stMaterials[BOMB_OBJECT].ambientDiffuse, tmp,
+		   sizeof(m_stMaterials[BOMB_OBJECT].ambientDiffuse));
 	tmp[0] = 0.8;
 	tmp[1] = 0.8;
 	tmp[2] = 0.8;
 	tmp[3] = 1;
-	memcpy(m_stMaterials[BOMB_OBJECT].specular, tmp,
-	       sizeof(m_stMaterials[BOMB_OBJECT].ambientDiffuse));
+	SDL_memcpy(m_stMaterials[BOMB_OBJECT].specular, tmp,
+		   sizeof(m_stMaterials[BOMB_OBJECT].specular));
 
 	tmp[0] = 0;
 	tmp[1] = 1;
 	tmp[2] = 1;
 	tmp[3] = 1;
-	memcpy(m_stMaterials[CUP_OBJECT].ambientDiffuse, tmp,
-	       sizeof(m_stMaterials[CUP_OBJECT].ambientDiffuse));
+	SDL_memcpy(m_stMaterials[CUP_OBJECT].ambientDiffuse, tmp,
+		   sizeof(m_stMaterials[CUP_OBJECT].ambientDiffuse));
 	tmp[0] = 1;
 	tmp[1] = 1;
 	tmp[2] = 1;
 	tmp[3] = 1;
-	memcpy(m_stMaterials[CUP_OBJECT].specular, tmp,
-	       sizeof(m_stMaterials[CUP_OBJECT].ambientDiffuse));
+	SDL_memcpy(m_stMaterials[CUP_OBJECT].specular, tmp,
+		   sizeof(m_stMaterials[CUP_OBJECT].specular));
 }
 
 MeshManager::~MeshManager()

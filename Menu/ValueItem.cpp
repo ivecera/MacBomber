@@ -17,7 +17,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #include "../Application.h"
 #include "ValueItem.h"
-#include <SDL_opengl.h>
+#include <SDL3/SDL_opengl.h>
 #include "../Engine/TextDrawer.h"
 #include "../Engine/intToString.h"
 #include "../Engine/ortho.h"

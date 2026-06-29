@@ -19,6 +19,9 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #define APPLICATION_H
 
 #include <string>
+#include <SDL3/SDL.h>
+
+struct MIX_Mixer;
 
 #ifdef __APPLE__
 #include <mach/mach_port.h>
@@ -97,6 +100,9 @@ public:
 
 	// Display resolution. These values are read once from config and the used throughout the game
 	// (can be discarded, when ingame resolution switching is done)
+	static SDL_Window *m_pWindow;
+	static SDL_GLContext m_glContext;
+	static MIX_Mixer *m_pMixer;
 	static int screenWidth;
 	static int screenHeight;
 

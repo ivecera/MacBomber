@@ -7,8 +7,7 @@
  *
  */
 
-#include <SDL_opengl.h>
-#include <cmath>
+#include <SDL3/SDL_opengl.h>
 
 #include "ParticleManager.h"
 #include "Particle_Item.h"
@@ -20,8 +19,6 @@
 #include "../TextureManager.h"
 #include "../../Application.h"
 #include "../../Defines.h"
-
-#define PI 3.14159265
 
 GLuint ParticleManager::m_iParticleDL = 0;
 
@@ -156,11 +153,11 @@ void ParticleManager::calculateDisplacement(Vector3 &vDisplacement,
 	angle = rand() % (maxAngle - minAngle);
 	angle += minAngle;
 	//convert deg -> rad
-	angle = (angle * PI / 180);
+	angle = (angle * SDL_PI_F / 180);
 
 	//caluclate intial values of the displacement vector
-	x = cos(angle);
-	y = sin(angle);
+	x = SDL_cosf(angle);
+	y = SDL_sinf(angle);
 	z = 0;
 
 	//rotate the point (x,z) araund the y axis by a random angle
@@ -179,11 +176,11 @@ void ParticleManager::randomizeStartPosition(Vector3 &vPosition, float radius)
 	//randomly choose an angle between minAngle - maxAngle;
 	angle = rand() % 360;
 	//convert deg -> rad
-	angle = (angle * PI / 180);
+	angle = (angle * SDL_PI_F / 180);
 
 	//caluclate intial values of the displacement vector
-	x = cos(angle);
-	y = sin(angle);
+	x = SDL_cosf(angle);
+	y = SDL_sinf(angle);
 	z = 0;
 
 	//rotate the point (x,z) araund the y axis by a random angle

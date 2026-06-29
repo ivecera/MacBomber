@@ -29,50 +29,46 @@ Controller_Keyboard::Controller_Keyboard(int ID)
 
 void Controller_Keyboard::update(SDL_Event &event)
 {
-	if (event.type == SDL_KEYDOWN) {
-		if ((event.key.keysym.sym) ==
-		    Config::m_iPlayerKeys[m_iID][UP]) {
+	if (event.type == SDL_EVENT_KEY_DOWN) {
+		if ((event.key.key) == Config::m_iPlayerKeys[m_iID][UP]) {
 			m_bKeyHold[UP] = true;
 			m_bKeyPressed[UP] = true;
-		} else if ((event.key.keysym.sym) ==
+		} else if ((event.key.key) ==
 			   Config::m_iPlayerKeys[m_iID][DOWN]) {
 			m_bKeyHold[DOWN] = true;
 			m_bKeyPressed[DOWN] = true;
-		} else if ((event.key.keysym.sym) ==
+		} else if ((event.key.key) ==
 			   Config::m_iPlayerKeys[m_iID][LEFT]) {
 			m_bKeyHold[LEFT] = true;
 			m_bKeyPressed[LEFT] = true;
-		} else if ((event.key.keysym.sym) ==
+		} else if ((event.key.key) ==
 			   Config::m_iPlayerKeys[m_iID][RIGHT]) {
 			m_bKeyHold[RIGHT] = true;
 			m_bKeyPressed[RIGHT] = true;
-		} else if ((event.key.keysym.sym) ==
-			   Config::m_iPlayerKeys[m_iID][4]) {
+		} else if ((event.key.key) == Config::m_iPlayerKeys[m_iID][4]) {
 			m_bKeyHold[4] = true;
 			m_bKeyPressed[4] = true;
-		} else if ((event.key.keysym.sym) == SDLK_ESCAPE) {
+		} else if ((event.key.key) == SDLK_ESCAPE) {
 			m_bKeyHold[5] = true;
 			m_bKeyPressed[5] = true;
-		} else if ((event.key.keysym.sym) == SDLK_SPACE) {
+		} else if ((event.key.key) == SDLK_SPACE) {
 			m_bKeyHold[6] = true;
 			m_bKeyPressed[6] = true;
 		}
 
-	} else if (event.type == SDL_KEYUP) {
-		if ((event.key.keysym.sym) ==
-		    Config::m_iPlayerKeys[m_iID][UP]) {
+	} else if (event.type == SDL_EVENT_KEY_UP) {
+		if ((event.key.key) == Config::m_iPlayerKeys[m_iID][UP]) {
 			m_bKeyHold[UP] = false;
-		} else if ((event.key.keysym.sym) ==
+		} else if ((event.key.key) ==
 			   Config::m_iPlayerKeys[m_iID][DOWN]) {
 			m_bKeyHold[DOWN] = false;
-		} else if ((event.key.keysym.sym) ==
+		} else if ((event.key.key) ==
 			   Config::m_iPlayerKeys[m_iID][LEFT]) {
 			m_bKeyHold[LEFT] = false;
-		} else if ((event.key.keysym.sym) ==
+		} else if ((event.key.key) ==
 			   Config::m_iPlayerKeys[m_iID][RIGHT]) {
 			m_bKeyHold[RIGHT] = false;
-		} else if ((event.key.keysym.sym) ==
-			   Config::m_iPlayerKeys[m_iID][4]) {
+		} else if ((event.key.key) == Config::m_iPlayerKeys[m_iID][4]) {
 			m_bKeyHold[4] = false;
 		}
 	}

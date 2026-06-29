@@ -27,13 +27,13 @@ Controller_Joystick::Controller_Joystick(int ID, SDL_Joystick *pJoystick)
 	m_iID = ID;
 	m_iDeadZone = 3200;
 	m_pJoystick = pJoystick;
+	m_iInstanceID = SDL_GetJoystickID(pJoystick);
 }
 
 Controller_Joystick::~Controller_Joystick()
 {
-	if (SDL_JoystickOpen(SDL_JoystickIndex(
-		    m_pJoystick))) //needed to prevent crash.... (?)
-		SDL_JoystickClose(m_pJoystick);
+	if (SDL_JoystickConnected(m_pJoystick))
+		SDL_CloseJoystick(m_pJoystick);
 }
 
 void Controller_Joystick::update(SDL_Event &event)
@@ -41,8 +41,8 @@ void Controller_Joystick::update(SDL_Event &event)
 	// --- register one time "keydown" events
 
 	//check for joystick axes events
-	if ((event.type == SDL_JOYAXISMOTION) &&
-	    (event.jaxis.which == (m_iID - 4))) {
+	if ((event.type == SDL_EVENT_JOYSTICK_AXIS_MOTION) &&
+	    (event.jaxis.which == m_iInstanceID)) {
 		//ignore events, which are within the joysticks deadzone
 		if ((event.jaxis.value < (-1 * m_iDeadZone)) ||
 		    (event.jaxis.value > m_iDeadZone)) {
@@ -65,16 +65,10 @@ void Controller_Joystick::update(SDL_Event &event)
 	}
 
 	// has button 0 (bomb button) been pressed down ?
-	if ((event.type == SDL_JOYBUTTONDOWN) &&
-	    (event.jbutton.which == (m_iID - 4)) &&
+	if ((event.type == SDL_EVENT_JOYSTICK_BUTTON_DOWN) &&
+	    (event.jbutton.which == m_iInstanceID) &&
 	    (event.jbutton.button == 0)) {
 		m_bKeyPressed[4] = true;
-	}
-
-	// has button 0 (bomb button) been released down ?
-	if ((event.type == SDL_JOYBUTTONUP) &&
-	    (event.jbutton.which == (m_iID - 4)) &&
-	    (event.jbutton.button == 0)) {
 	}
 
 	for (int i = 0; i < 7; i++)
@@ -82,19 +76,17 @@ void Controller_Joystick::update(SDL_Event &event)
 
 	// --- check wether a key is hold
 
-	if (SDL_JoystickIndex(m_pJoystick) == (m_iID - 4)) {
-		int value;
-		value = SDL_JoystickGetAxis(m_pJoystick, 1);
+	int value;
+	value = SDL_GetJoystickAxis(m_pJoystick, 1);
 
-		if (value > m_iDeadZone)
-			m_bKeyHold[DOWN] = true;
-		else if (value < (-1 * m_iDeadZone))
-			m_bKeyHold[UP] = true;
+	if (value > m_iDeadZone)
+		m_bKeyHold[DOWN] = true;
+	else if (value < (-1 * m_iDeadZone))
+		m_bKeyHold[UP] = true;
 
-		value = SDL_JoystickGetAxis(m_pJoystick, 0);
-		if (value > m_iDeadZone)
-			m_bKeyHold[RIGHT] = true;
-		else if (value < (-1 * m_iDeadZone))
-			m_bKeyHold[LEFT] = true;
-	}
+	value = SDL_GetJoystickAxis(m_pJoystick, 0);
+	if (value > m_iDeadZone)
+		m_bKeyHold[RIGHT] = true;
+	else if (value < (-1 * m_iDeadZone))
+		m_bKeyHold[LEFT] = true;
 }

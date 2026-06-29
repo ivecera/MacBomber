@@ -17,13 +17,10 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #include "Init.h"
 #include <iostream>
-#include <SDL_opengl.h>
+#include <SDL3/SDL_opengl.h>
 #include <GL/glu.h>
-#ifdef __APPLE__
-#include <OpenGL/OpenGL.h>
-#endif
 #include <string>
-#include <SDL_mixer.h>
+#include <SDL3_mixer/SDL_mixer.h>
 
 #include "intToString.h"
 #include "checkScreenResolution.h"
@@ -32,90 +29,43 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 using namespace std;
 
-SDL_Surface *screen;
-
 // Initialize SDL
 void initSDL()
 {
-	// Contains information about the video system
-	const SDL_VideoInfo *videoInfo;
-	int videoFlags = 0;
-	int audio_buffers = 1024;
-
 	cout << "SDL: Init VIDEO|AUDIO" << endl;
 	// Initialize video system and joystick input
-	if (SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK | SDL_INIT_TIMER |
-		     SDL_INIT_AUDIO) < 0) {
+	if (!SDL_Init(SDL_INIT_VIDEO | SDL_INIT_JOYSTICK | SDL_INIT_AUDIO)) {
 		cout << "SDL: Couldn't initialize. Error:" << SDL_GetError()
 		     << endl;
 		SDL_Quit();
 	}
 
-	// AUDIO 44100
+	// AUDIO 48000
 	// Note: Dennis sampled the song at 48000 sample rate... maybe less would be better?
-	if (Mix_OpenAudio(48000, MIX_DEFAULT_FORMAT, 2, audio_buffers) < 0) {
+	if (!MIX_Init()) {
+		cout << "SDL: Failed initializing mixer. Error:"
+		     << SDL_GetError() << endl;
+		SDL_Quit();
+	}
+
+	SDL_AudioSpec audioSpec = { SDL_AUDIO_S16, 2, 48000 };
+	Application::m_pMixer = MIX_CreateMixerDevice(
+		SDL_AUDIO_DEVICE_DEFAULT_PLAYBACK, &audioSpec);
+	if (Application::m_pMixer == NULL) {
 		cout << "SDL: Failed opening Audio Device. Error:"
 		     << SDL_GetError() << endl;
 		SDL_Quit();
 	}
 
-	// VIDEO
-	videoInfo = SDL_GetVideoInfo();
-
-	if (videoInfo == NULL) {
-		cout << "SDL: Couldn't read Videoinfo. Error:" << SDL_GetError()
-		     << endl;
-		SDL_Quit();
-	}
-
-	/*
-	cout << "SDL: VideoInfo: " << endl;
-	cout << "     Video Memory:	" << videoInfo->video_mem << endl;
-	cout << "     Video HW_Surface:	" << videoInfo->hw_available << endl;
-	cout << "     Video blit_hw   :	" << videoInfo->blit_hw << endl;
-	*/
-
-	// Create an integer with the appropriate flags
-	videoFlags = SDL_OPENGL; // Enable OpenGL in SDL
-	videoFlags |=
-		SDL_GL_DOUBLEBUFFER; // Enable double buffering in SDL with OpenGL
-	videoFlags |= SDL_RESIZABLE; // Window size should be variable
-	videoFlags |= SDL_HWPALETTE; // Store the palette in hardware
-
-	// Can hardware surfaces be used?
-	if (videoInfo->hw_available) {
-		videoFlags |= SDL_HWSURFACE;
-		cout << "SDL: Using Hardware Surfaces. " << endl;
-
-	} else {
-		videoFlags |= SDL_SWSURFACE;
-		cout << "SDL: Using Software Surfaces. " << endl;
-	}
-
-	// Can hardware acceleration be used?
-	if (videoInfo->blit_hw) {
-		videoFlags |= SDL_HWACCEL;
-		cout << "SDL: Using Hardware Acceleration " << endl;
-	}
-
-	if (Application::m_pConfig->getFullscreen())
-		videoFlags |= SDL_FULLSCREEN;
-
 	//check for supported resolutions
-	for (int i = 0; i < 3; i++) {
-		if (isResolutionSupported(i))
-			Application::m_pConfig->setResolutionSupport(i, true);
-		else
-			Application::m_pConfig->setResolutionSupport(i, false);
-	}
-
-	//doesn't work yet. SDL version is too old
-	//SDL_GL_SetAttribute(SDL_GL_SWAP_CONTROL, TRUE);
+	for (int i = 0; i < 3; i++)
+		Application::m_pConfig->setResolutionSupport(
+			i, isResolutionSupported(i));
 
 	/*	check if the *requested* resolution is supported
 		(if not default to 800x600 which (hopefully) should work everywhere)
 		This is necessary to ensure that someone who for e.g moved the MacBomber
-		binary from one System to another won't be able to start with an 
+		binary from one System to another won't be able to start with an
 		resolution setting, which isn't supported by the new system
 	*/
 
@@ -123,41 +73,48 @@ void initSDL()
 		    Application::m_pConfig->getResolution()))
 		Application::m_pConfig->setResolution(0);
 
-	cout << "SDL: Setting Resolution "
-	     << Application::m_pConfig->getScreenWidth() << " x "
-	     << Application::m_pConfig->getScreenHeight();
+	int width = Application::m_pConfig->getScreenWidth();
+	int height = Application::m_pConfig->getScreenHeight();
+
+	cout << "SDL: Setting Resolution " << width << " x " << height;
 	if (Application::m_pConfig->getFullscreen())
 		cout << " (fullscreen)" << endl;
 	else
 		cout << " (window)" << endl;
 
-	screen = SDL_SetVideoMode(Application::m_pConfig->getScreenWidth(),
-				  Application::m_pConfig->getScreenHeight(), 32,
-				  videoFlags);
-	if (screen == NULL) {
-		cout << "SDL: Error setting video mode. (Propably not supported by Hardware)"
+	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+
+	Uint32 windowFlags = SDL_WINDOW_OPENGL | SDL_WINDOW_RESIZABLE;
+	if (Application::m_pConfig->getFullscreen())
+		windowFlags |= SDL_WINDOW_FULLSCREEN;
+
+	Application::m_pWindow = SDL_CreateWindow("MacBomber v.0.5.1", width,
+						  height, windowFlags);
+	if (Application::m_pWindow == NULL) {
+		cout << "SDL: Error creating window: " << SDL_GetError()
 		     << endl;
 		SDL_Quit();
 	}
 
-	SDL_WM_SetCaption("MacBomber v.0.5.1", NULL);
-	SDL_GL_SetAttribute(SDL_GL_DOUBLEBUFFER, 1);
+	Application::m_glContext = SDL_GL_CreateContext(Application::m_pWindow);
+	if (Application::m_glContext == NULL) {
+		cout << "SDL: Error creating GL context: " << SDL_GetError()
+		     << endl;
+		SDL_Quit();
+	}
 
 	// set initial mouse position
-	SDL_WarpMouse(Application::m_pConfig->getScreenWidth() / 2,
-		      Application::m_pConfig->getScreenHeight() / 2);
+	SDL_WarpMouseInWindow(Application::m_pWindow, width / 2.0f,
+			      height / 2.0f);
 
-	SDL_ShowCursor(SDL_DISABLE);
+	SDL_HideCursor();
 }
 
 // Initialize OpenGL
 int initGL()
 {
-#ifdef __APPLE__
-	//activate vsyncing
-	long VBL = 1;
-	CGLSetParameter(CGLGetCurrentContext(), kCGLCPSwapInterval, &VBL);
-#endif
+	// activate vsyncing
+	SDL_GL_SetSwapInterval(1);
 
 	// Enable smooth shading
 	glShadeModel(GL_SMOOTH);
@@ -249,12 +206,11 @@ void dumpScreen()
 	string strPath("/Users/quarus/");
 	string strFileBaseName("macbomber");
 
-	SDL_Surface *screen = SDL_CreateRGBSurface(
-		SDL_SWSURFACE, screenWidth, screenHeight, 32,
-#if (SDL_BYTEORDER == SDL_LIL_ENDIAN) /* OpenGL RGBA masks */
-		0x000000FF, 0x0000FF00, 0x00FF0000, 0xFF000000
+	SDL_Surface *screen = SDL_CreateSurface(screenWidth, screenHeight,
+#if (SDL_BYTEORDER == SDL_LIL_ENDIAN)
+						SDL_PIXELFORMAT_ABGR8888
 #else
-		0xFF000000, 0x00FF0000, 0x0000FF00, 0x000000FF
+						SDL_PIXELFORMAT_RGBA8888
 #endif
 	);
 
@@ -270,8 +226,8 @@ void dumpScreen()
 
 	// flip image vertically...
 	for (int i = 0; i < screenHeight; ++i)
-		memcpy(pixels + (screenHeight - i - 1) * screenWidth * 4,
-		       pixelsbuf + i * screenWidth * 4, screenWidth * 4);
+		SDL_memcpy(pixels + (screenHeight - i - 1) * screenWidth * 4,
+			   pixelsbuf + i * screenWidth * 4, screenWidth * 4);
 
 	screen->pixels = pixels;
 	string fullpath = strPath + strFileBaseName +
@@ -279,10 +235,10 @@ void dumpScreen()
 	printf("Dumping Screenshot: %s\n", fullpath.c_str());
 	SDL_SaveBMP(screen, fullpath.c_str());
 
-	SDL_FreeSurface(screen);
+	SDL_DestroySurface(screen);
 	screen = 0;
 
-	//	delete pixels; <- freed in SDL_FreeSurface(screen);
+	//	delete pixels; <- freed in SDL_DestroySurface(screen);
 	delete[] pixelsbuf;
 	count++;
 }

@@ -14,8 +14,8 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
-#include <SDL_opengl.h>
-#include <SDL.h>
+#include <SDL3/SDL_opengl.h>
+#include <SDL3/SDL.h>
 
 #include "Application.h"
 #include "Config.h"
@@ -64,6 +64,9 @@ InputManager *Application::m_pInputManager = NULL;
 Config *Application::m_pConfig = NULL;
 Clock *Application::m_pClock = NULL;
 Game *Application::m_pGame = NULL;
+SDL_Window *Application::m_pWindow = NULL;
+SDL_GLContext Application::m_glContext = NULL;
+MIX_Mixer *Application::m_pMixer = NULL;
 
 float UPDATE_FPS = 30;
 Uint32 TICK_TIME = (Uint32)(1000 / UPDATE_FPS); // ( TICK_TIME = 1000/FPS)
@@ -124,7 +127,7 @@ void Application::determineBundlePath()
 	// Conversion CFString ---> CString
 	CFStringGetCString(cfStringRef, path, 1024, kCFStringEncodingASCII);
 
-	strcat(path, "/Contents/Resources");
+	SDL_strlcat(path, "/Contents/Resources", sizeof(path));
 
 	CFRelease(mainBundleURL);
 	CFRelease(cfStringRef);
@@ -237,7 +240,7 @@ void Application::init()
 	screenWidth = m_pConfig->getScreenWidth();
 	screenHeight = m_pConfig->getScreenHeight();
 
-	m_pSoundManager = new SoundManager();
+	m_pSoundManager = new SoundManager(m_pMixer);
 
 	m_iState = MENU;
 	m_pClock = new Clock();
@@ -286,7 +289,7 @@ void Application::render()
 		break;
 	}
 
-	SDL_GL_SwapBuffers();
+	SDL_GL_SwapWindow(m_pWindow);
 }
 
 void Application::startNewGame()
@@ -310,32 +313,11 @@ void Application::startNewGame()
 
 void Application::run()
 {
-	Uint32 time1 = SDL_GetTicks();
-	Uint32 time0 = time1;
+	Uint64 time1 = SDL_GetTicks();
+	Uint64 time0 = time1;
 	int numLoops = 0;
 
 	while (m_iState != QUIT) {
-#ifdef FREECAMERA
-		Uint8 *keystate;
-		keystate = SDL_GetKeyState(NULL);
-
-		if (keystate[SDLK_a] == SDL_PRESSED) {
-			m_pCamera->strafeCamera(-0.05f);
-		}
-
-		if (keystate[SDLK_w] == SDL_PRESSED) {
-			m_pCamera->moveCamera(0.05f);
-		}
-
-		if (keystate[SDLK_d] == SDL_PRESSED) {
-			m_pCamera->strafeCamera(0.05f);
-		}
-
-		if (keystate[SDLK_s] == SDL_PRESSED) {
-			m_pCamera->moveCamera(-0.05f);
-		}
-
-#endif
 		//	calculateFramerate();
 
 		time1 = SDL_GetTicks();

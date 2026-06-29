@@ -15,9 +15,8 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-#include <string.h>
 #include "loadTexture.h"
-#include <SDL_endian.h>
+#include <SDL3/SDL_endian.h>
 
 void swap(unsigned char &a, unsigned char &b)
 {
@@ -33,7 +32,8 @@ void swap(unsigned char &a, unsigned char &b)
 // IMG_Load loads images vertically mirrored. We flip this surface...
 void flipSurface(SDL_Surface *pSurface)
 {
-	int BytesPerPixel = pSurface->format->BytesPerPixel;
+	int BytesPerPixel =
+		SDL_GetPixelFormatDetails(pSurface->format)->bytes_per_pixel;
 	int width = pSurface->w;
 	int height = pSurface->h;
 	//  one char == one Byte
@@ -58,30 +58,24 @@ SDL_Surface *convertSurface(SDL_Surface *surface)
 	int w, h;
 	SDL_Surface *image;
 	SDL_Rect area;
-	Uint32 saved_flags;
-	Uint8 saved_alpha;
 
 	/* Use the surface width and height expanded to powers of 2 */
 	w = surface->w;
 	h = surface->h;
 
-	image = SDL_CreateRGBSurface(SDL_SWSURFACE, w, h, 32,
+	image = SDL_CreateSurface(w, h,
 #if (SDL_BYTEORDER == SDL_LIL_ENDIAN) /* OpenGL RGBA masks */
-				     0x000000FF, 0x0000FF00, 0x00FF0000,
-				     0xFF000000
+				  SDL_PIXELFORMAT_ABGR8888
 #else
-				     0xFF000000, 0x00FF0000, 0x0000FF00,
-				     0x000000FF
+				  SDL_PIXELFORMAT_RGBA8888
 #endif
 	);
 	if (image == NULL) {
 		return 0;
-	} /* Save the alpha blending attributes */
-	saved_flags = surface->flags & (SDL_SRCALPHA | SDL_RLEACCELOK);
-	saved_alpha = surface->format->alpha;
-	if ((saved_flags & SDL_SRCALPHA) == SDL_SRCALPHA) {
-		SDL_SetAlpha(surface, 0, 0);
 	}
+
+	/* Disable alpha blending for the blit — surface is freed afterwards */
+	SDL_SetSurfaceBlendMode(surface, SDL_BLENDMODE_NONE);
 
 	/* Copy the surface into the GL texture image */
 	area.x = 0;
@@ -90,11 +84,7 @@ SDL_Surface *convertSurface(SDL_Surface *surface)
 	area.h = surface->h;
 	SDL_BlitSurface(surface, &area, image, &area);
 
-	/* Restore the alpha blending attributes */
-	if ((saved_flags & SDL_SRCALPHA) == SDL_SRCALPHA) {
-		SDL_SetAlpha(surface, saved_flags, saved_alpha);
-	}
-	SDL_FreeSurface(surface);
+	SDL_DestroySurface(surface);
 	return image;
 }
 
@@ -140,7 +130,7 @@ bool loadTexture(GLuint *texture, int index, const char *texturePath,
 	}
 	// Free up any memory we may have used
 	if (pTexture)
-		SDL_FreeSurface(_pTexture);
+		SDL_DestroySurface(_pTexture);
 
 	return Status;
 }
@@ -180,7 +170,7 @@ bool loadTexture( GLuint *texture , int index, char * name )
 
 	// Free up any memory we may have used 
 	if ( pTexture )
-		SDL_FreeSurface( _pTexture );
+		SDL_DestroySurface( _pTexture );
 
 	return Status;
 }*/

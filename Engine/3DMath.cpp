@@ -16,9 +16,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
 #include "3DMath.h"
-#include <math.h>
-
-#define PI 3.14159265
+#include <SDL3/SDL.h>
 
 /**
  * Mit dem Kreuzprodukt zweier Vektoren berechnet man den Vektor, welcher Senkrecht zu der Ebene ist
@@ -56,7 +54,7 @@ float dotProduct(const Vector3 &u, const Vector3 &v)
 float magnitude(const Vector3 &v)
 {
 	float product = dotProduct(v, v);
-	return sqrt(product);
+	return SDL_sqrtf(product);
 }
 
 // TODO: add const
@@ -73,10 +71,10 @@ void rotateAroundYAxis(float &x, float &z, float theta)
 	float _x;
 	float _z;
 	//convert deg -> rad
-	theta = (theta * PI / 180);
+	theta = (theta * SDL_PI_F / 180);
 
-	_x = ((cos(theta) * x) + (sin(theta) * z));
-	_z = ((-1 * sin(theta) * x) + (cos(theta) * z));
+	_x = ((SDL_cosf(theta) * x) + (SDL_sinf(theta) * z));
+	_z = ((-1 * SDL_sinf(theta) * x) + (SDL_cosf(theta) * z));
 
 	x = _x;
 	z = _z;

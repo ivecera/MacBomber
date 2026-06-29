@@ -22,8 +22,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "../Defines.h"
 #include "../Engine/3DMath.h"
 
-#include <SDL_opengl.h>
-#include <SDL_opengl.h>
+#include <SDL3/SDL_opengl.h>
+#include <SDL3/SDL_opengl.h>
 
 SquareMesh::SquareMesh()
 {

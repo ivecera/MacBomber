@@ -15,8 +15,8 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
+#include <SDL3/SDL.h>
 #include "Matrix.h"
-#include <math.h>
 
 Matrix::Matrix()
 {
@@ -25,8 +25,8 @@ Matrix::Matrix()
 void Matrix::setupRotation(Vector3 axis, float theta)
 {
 	// Calculate sine and cosine of theta once
-	float sinTheta = sin(theta);
-	float cosTheta = cos(theta);
+	float sinTheta = SDL_sinf(theta);
+	float cosTheta = SDL_cosf(theta);
 
 	// We will use ( 1 - cos ( theta ) ) frequently in the rotation matrix
 	float a = 1.0f - cosTheta;

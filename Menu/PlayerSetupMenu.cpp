@@ -15,7 +15,7 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
-#include <SDL_opengl.h>
+#include <SDL3/SDL_opengl.h>
 
 #include "PlayerSetupMenu.h"
 #include "PlayerSetupRow.h"
@@ -34,8 +34,10 @@ PlayerSetupMenu::PlayerSetupMenu(Menu *pParent)
 	: Menu("Player Setup", pParent)
 {
 	//	m_cHelperText = "up&down navigates/ space enables or disables player / return modifies option / ESC exits";
-	strcpy(m_cHelperText,
-	       "up&down navigates/ space enables or disables player / return modifies option / ESC exits");
+	SDL_strlcpy(
+		m_cHelperText,
+		"up&down navigates/ space enables or disables player / return modifies option / ESC exits",
+		sizeof(m_cHelperText));
 	m_iCurrentRow = 0;
 	m_pRows[0] =
 		new PlayerSetupRow(Application::m_pConfig->getPlayerSkin(0),

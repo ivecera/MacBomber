@@ -18,16 +18,21 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #ifndef SOUNDMANAGER_H
 #define SOUNDMANAGER_H
 
-#include <SDL_mixer.h>
+#include <SDL3_mixer/SDL_mixer.h>
 
 class SoundManager {
 private:
 	//stores our sound FX
-	Mix_Chunk *m_Samples[3];
+	MIX_Audio *m_Samples[3];
 	//stores our music
-	Mix_Music *m_Music[3];
-	// currently playing music
+	MIX_Audio *m_Music[3];
 
+	// track for music playback
+	MIX_Track *m_pMusicTrack;
+	// tracks for sound effects
+	MIX_Track *m_pSfxTracks[8];
+
+	// currently playing music
 	int m_iCurrentMusic;
 	//true, if music is currently playing
 	bool m_bMusicPlaying;
@@ -36,17 +41,16 @@ private:
 	//true if a another music track is waiting, for current music to fadeout
 	bool m_bMusicWaiting;
 
-	// Expands a given path with root "Contents/Resource" to absolute System Path
-
-	/* 
-	 * void musicDone() is a callback function needed for SDLs Mix_HookMusicFinished call.
+	/*
+	 * void musicDone() is a callback function needed for track stopped notification.
 	 * What musicDone does is, to get the soundmanagers Address via Application::m_pSoundManager
 	 * and to call another element function "handelMusicDone()", where the real action takes place.
 	 */
-	static void musicDone();
+	static void SDLCALL musicDone(void *userdata, MIX_Track *track);
+	void startMusicTrack();
 
 public:
-	SoundManager();
+	SoundManager(MIX_Mixer *mixer);
 	~SoundManager();
 
 	void setVolumeSoundFX(int vol);

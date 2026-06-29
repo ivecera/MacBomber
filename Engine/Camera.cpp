@@ -15,8 +15,8 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
-#include <math.h>
-#include <SDL_opengl.h>
+#include <SDL3/SDL_opengl.h>
+#include <GL/glu.h>
 
 #include "Camera.h"
 #include "../Application.h"
@@ -118,8 +118,8 @@ void Camera::rotateView(float angle, float x, float y, float z)
 	Vector3 vView = m_vView - m_vPosition;
 
 	// Calculate the sine and cosine of the angle once
-	float cosTheta = (float)cos(angle);
-	float sinTheta = (float)sin(angle);
+	float cosTheta = SDL_cosf(angle);
+	float sinTheta = SDL_sinf(angle);
 
 	//Find the new x position for the new rotated point
 	vNewView.x = (cosTheta + (1 - cosTheta) * x * x) * vView.x;
@@ -143,13 +143,12 @@ void Camera::rotateView(float angle, float x, float y, float z)
 
 void Camera::setViewByMouse()
 {
-	// Calculate the window center using bit shifting
-	int screenMiddleX = Application::screenWidth >> 1;
-	int screenMiddleY = Application::screenHeight >> 1;
+	float screenMiddleX = Application::screenWidth * 0.5f;
+	float screenMiddleY = Application::screenHeight * 0.5f;
 
 	// Store the current mouse coordinates obtained via SDL_GetMouseState(&mouseX,&mouseY)
-	int mouseX;
-	int mouseY;
+	float mouseX;
+	float mouseY;
 
 	float angleY; // The angle by which the viewpoint should be rotated around the Y axis
 	float angleZ; // The angle by which the viewpoint should be rotated around the Z axis
@@ -158,11 +157,12 @@ void Camera::setViewByMouse()
 	SDL_GetMouseState(&mouseX, &mouseY);
 
 	// If no mouse movement occurred - abort
-	if ((mouseX == screenMiddleX) && (mouseY == screenMiddleY))
+	if (mouseX == screenMiddleX && mouseY == screenMiddleY)
 		return;
 
 	// Move the mouse back to the screen center
-	SDL_WarpMouse(screenMiddleX, screenMiddleY);
+	SDL_WarpMouseInWindow(Application::m_pWindow, screenMiddleX,
+			      screenMiddleY);
 
 	/* Calculate how much the mouse has moved in the x and y directions.
 	 * By dividing we convert these values into actual angles.

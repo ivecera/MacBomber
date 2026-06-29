@@ -16,9 +16,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
 #include <dirent.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
 #include <fstream>
 #include <iostream>
 
@@ -59,8 +56,8 @@ void MapManager::readMap(StMapEntry &mapEntry)
 	char *mapName = mapEntry.name;
 	char fileName[150] = { 0 };
 
-	strcat(fileName, m_cDirectory);
-	strcat(fileName, mapName);
+	SDL_strlcat(fileName, m_cDirectory, sizeof(fileName));
+	SDL_strlcat(fileName, mapName, sizeof(fileName));
 
 	ifstream in;
 	in.open(fileName);
@@ -100,13 +97,14 @@ void MapManager::readMaps()
 	struct dirent *entry;
 
 	while ((entry = readdir(pDir)) != NULL) {
-		if (strstr(entry->d_name, ".map") !=
+		if (SDL_strstr(entry->d_name, ".map") !=
 		    NULL) //Filter out all non-.map files
 		{
 			StMapEntry mapEntry;
 
 			//			mapEntry.name = entry->d_name;
-			strcpy(mapEntry.name, entry->d_name);
+			SDL_strlcpy(mapEntry.name, entry->d_name,
+				    sizeof(mapEntry.name));
 			m_vMapEntries.push_back(mapEntry);
 		}
 	}
@@ -118,12 +116,14 @@ void MapManager::readMaps()
 		//Edit Map Name, for e.g: "Big_Standard.map"  --> "Big Standard"
 
 		// 1. Replace underscore by Space FIXME: Only replaces ONE _ !!!
-		char *strTmp = strchr((*it).name, '_');
+		char *strTmp = SDL_strchr((*it).name, '_');
 		if (strTmp != NULL)
 			*strTmp = ' ';
 
 		// 2. cut .map extension
-		strtok((*it).name, ".");
+		char *dot = SDL_strchr((*it).name, '.');
+		if (dot != NULL)
+			*dot = '\0';
 	}
 
 	closedir(pDir);

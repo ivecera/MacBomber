@@ -25,7 +25,7 @@ Timer::Timer()
 	m_iStartTime = Application::m_pClock->getTicks();
 }
 
-Timer::Timer(uint alarm)
+Timer::Timer(Uint32 alarm)
 {
 	//	m_iAlarmTime = SDL_GetTicks() + alarm;
 	m_iAlarmTime = Application::m_pClock->getTicks() + alarm;
@@ -40,7 +40,7 @@ bool Timer::isTimeUp()
 		return false;
 }
 
-void Timer::setAlarm(uint alarmTime)
+void Timer::setAlarm(Uint32 alarmTime)
 {
 	//	m_iAlarmTime = SDL_GetTicks() + alarmTime;
 	//	m_iStartTime = SDL_GetTicks();
@@ -49,7 +49,7 @@ void Timer::setAlarm(uint alarmTime)
 	m_iStartTime = Application::m_pClock->getTicks();
 }
 
-uint Timer::getElapsedTime()
+Uint32 Timer::getElapsedTime()
 {
 	//	return SDL_GetTicks() - m_iStartTime;
 	return Application::m_pClock->getTicks() - m_iStartTime;
