@@ -283,6 +283,6 @@ void dumpScreen()
 	screen = 0;
 
 	//	delete pixels; <- freed in SDL_FreeSurface(screen);
-	delete pixelsbuf;
+	delete[] pixelsbuf;
 	count++;
 }
