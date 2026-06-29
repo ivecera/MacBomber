@@ -220,7 +220,7 @@ int sizeGLWindow()
 	int screenHeight = Application::m_pConfig->getScreenHeight();
 
 	// Since we divide width by height, we must ensure height is not "0"
-	if (screenWidth == 0)
+	if (screenHeight == 0)
 		screenHeight = 1;
 
 	// Our viewport is the entire screen
