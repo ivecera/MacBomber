@@ -19,7 +19,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #define BOMB_H
 
 #include <SDL3/SDL_opengl.h>
-#include <iostream>
 #include <SDL3/SDL.h>
 
 #include "../Defines.h"

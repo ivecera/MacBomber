@@ -22,8 +22,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "../Engine/intToString.h"
 #include "../Engine/ortho.h"
 
-#include <iostream>
-#include <sstream>
 #include <string>
 
 ValueItem::ValueItem(const char *caption, int min, int max, int stepping)

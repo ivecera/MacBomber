@@ -18,7 +18,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #ifndef MAP_H
 #define MAP_H
 
-#include <iostream>
 #include <list>
 #include <SDL3/SDL_opengl.h>
 

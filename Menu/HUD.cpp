@@ -31,8 +31,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "../Map/StMapEntry.h"
 #include "Timebar.h"
 
-#include <iostream>
-#include <sstream>
 HUD::HUD(int index)
 {
 	StMapEntry tmpEntry = Application::m_pMapManager->getMap(index);
