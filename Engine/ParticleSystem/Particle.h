@@ -28,7 +28,7 @@ public:
 	float m_fScaleFactor; // the scalefactor for the particles Texture
 	float m_fScaleFactorModifier;
 	float m_fRotation; // rotation of the particle
-	float m_BillboardMatrix[16];
+	glm::mat4 m_BillboardMatrix;
 
 	Particle(glm::vec3 vPos);
 

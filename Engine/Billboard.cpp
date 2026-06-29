@@ -19,35 +19,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "Camera.h"
 #include "../Application.h"
 
-static void createBillboardMatrix(const glm::vec3 &vPos, const glm::vec3 &vLook,
-				  const glm::vec3 &vUp, const glm::vec3 &vRight,
-				  float *pMatrix)
-{
-	pMatrix[0] = vRight.x;
-	pMatrix[1] = vRight.y;
-	pMatrix[2] = vRight.z;
-	pMatrix[3] = 0;
-	pMatrix[4] = vUp.x;
-	pMatrix[5] = vUp.y;
-	pMatrix[6] = vUp.z;
-	pMatrix[7] = 0;
-	pMatrix[8] = vLook.x;
-	pMatrix[9] = vLook.y;
-	pMatrix[10] = vLook.z;
-	pMatrix[11] = 0;
-
-	pMatrix[12] = vPos.x;
-	pMatrix[13] = vPos.y;
-	pMatrix[14] = vPos.z;
-	pMatrix[15] = 1;
-}
-
-void calculateBillboardMatrix_Xaxis(const glm::vec3 &vPos, float *pMatrix)
+void calculateBillboardMatrix_Xaxis(const glm::vec3 &vPos, glm::mat4 &matrix)
 {
 	glm::vec3 vLook = Application::m_pCamera->m_vPosition - vPos;
 	vLook.x = 0;
 	vLook = glm::normalize(vLook);
 	glm::vec3 vUp(1, 0, 0);
 	glm::vec3 vRight = glm::cross(vUp, vLook);
-	createBillboardMatrix(vPos, vLook, vUp, vRight, pMatrix);
+
+	matrix = glm::mat4(glm::vec4(vRight, 0), glm::vec4(vUp, 0),
+			   glm::vec4(vLook, 0), glm::vec4(vPos, 1));
 }

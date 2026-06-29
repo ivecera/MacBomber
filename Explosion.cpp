@@ -19,6 +19,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 
 #include "Explosion.h"
 #include <glm/glm.hpp>
+#include <glm/gtc/type_ptr.hpp>
 #include "Engine/TextureManager.h"
 #include "Engine/Billboard.h"
 #include "Engine/Camera.h"
@@ -79,7 +80,7 @@ void Explosion::draw()
 	glEnable(GL_BLEND);
 	Application::m_pTextureManager->bindTexture(m_iTextureIndex);
 	glPushMatrix();
-	glMultMatrixf(m_BillboardMatrix);
+	glMultMatrixf(glm::value_ptr(m_BillboardMatrix));
 	glScalef(m_fScaleFactor, m_fScaleFactor, 0);
 
 	glNormal3f(0, 0, 1);

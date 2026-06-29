@@ -19,6 +19,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #define BILLBOARD_H
 #include <glm/glm.hpp>
 
-void calculateBillboardMatrix_Xaxis(const glm::vec3 &vPos, float *pMatrix);
+void calculateBillboardMatrix_Xaxis(const glm::vec3 &vPos, glm::mat4 &matrix);
 
 #endif

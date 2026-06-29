@@ -33,7 +33,7 @@ private:
 
 	int m_iTextureIndex;
 	float m_fScaleFactor;
-	float m_BillboardMatrix[16];
+	glm::mat4 m_BillboardMatrix;
 
 	//creates an DisplayList and stores it in m_iExplosionDL
 	void compileDisplayList();

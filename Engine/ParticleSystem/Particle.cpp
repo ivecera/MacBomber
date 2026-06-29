@@ -7,6 +7,7 @@
  *
  */
 #include <SDL3/SDL_opengl.h>
+#include <glm/gtc/type_ptr.hpp>
 
 #include "../../Application.h"
 #include "../../Defines.h"
@@ -54,7 +55,7 @@ void Particle::draw()
 	glColor4f(m_fColor[0], m_fColor[1], m_fColor[2], m_fColor[3]);
 
 	glPushMatrix();
-	glMultMatrixf(m_BillboardMatrix);
+	glMultMatrixf(glm::value_ptr(m_BillboardMatrix));
 	glNormal3f(0, 0, 1);
 	glScalef(m_fScaleFactor, m_fScaleFactor, m_fScaleFactor);
 
