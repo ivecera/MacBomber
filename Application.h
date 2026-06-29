@@ -53,6 +53,9 @@ private:
 	enum state { MENU = 0, GAME, GAME_PAUSED, QUIT };
 	//the current State the application is in
 	int m_iState;
+	Uint64 m_time0;
+	Uint64 m_time1;
+
 	void render();
 	//starts a new Game
 	void startNewGame();
@@ -115,7 +118,8 @@ public:
 	~Application();
 
 	void init();
-	void run();
+	SDL_AppResult iterate();
+	SDL_AppResult handleEvent(SDL_Event *event);
 
 	//gets called when pause key was pressed
 	void pause();

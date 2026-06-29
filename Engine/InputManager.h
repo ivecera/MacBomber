@@ -19,22 +19,23 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #define INPUTMANAGER_H
 #include <SDL3/SDL.h>
 
-class Application;
 class Controller;
 
 class InputManager {
 private:
 	int m_iJoystickCount;
-	const bool *m_pKeystate;
-
-	Application *m_pApp;
 	Controller *m_pController[8];
 
 public:
-	InputManager(Application *pApp);
+	InputManager();
 	~InputManager();
 
 	Controller *getController(int ctrlID);
+
+	// dispatch a single event to all active controllers
+	void dispatchEvent(SDL_Event &event);
+	// reset all active controllers
+	void resetAll();
 
 	//returns count of connected joysticks
 	int getJoystickCount()
@@ -46,9 +47,6 @@ public:
 	bool joysticksPresent();
 	//returns true if joystick with SDL ID joystickID is present
 	bool isJoystickPresent(int joystickID);
-
-	//queries joystick events
-	void update();
 };
 
 #endif

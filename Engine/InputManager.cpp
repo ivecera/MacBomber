@@ -16,21 +16,14 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
 /*People demand freedom of speech as a compensation
-for the freedom of thought which they never use - Kierkegaard 
+for the freedom of thought which they never use - Kierkegaard
  */
 #include "InputManager.h"
-#include "../Defines.h"
-#include "../Application.h"
-#include "Camera.h"
 #include "../Controller/Controller_Keyboard.h"
 #include "../Controller/Controller_Joystick.h"
-#include "../Config.h"
-#include "Init.h"
 
-InputManager::InputManager(Application *pApp)
+InputManager::InputManager()
 {
-	m_pApp = pApp;
-
 	// Inititate Controllers
 	for (int i = 0; i < 8; i++)
 		m_pController[i] = NULL;
@@ -96,89 +89,14 @@ Controller *InputManager::getController(int ctrlID)
 		return m_pController[ctrlID];
 }
 
-void InputManager::update()
+void InputManager::dispatchEvent(SDL_Event &event)
 {
-	SDL_Event event;
-	m_pKeystate = SDL_GetKeyboardState(NULL);
+	for (int i = 0; i < 4 + m_iJoystickCount; i++)
+		m_pController[i]->update(event);
+}
 
-	for (int i = 0; i < 8; i++) {
-		if (m_pController[i] != NULL)
-			m_pController[i]->reset();
-	}
-
-	while (SDL_PollEvent(&event)) {
-		//send current event to controller classes
-		for (int i = 0; i < 8; i++) {
-			if (m_pController[i] != NULL)
-				m_pController[i]->update(event);
-		}
-
-		switch (event.type) {
-		case SDL_EVENT_QUIT:
-			SDL_Quit();
-			break;
-		case SDL_EVENT_KEY_DOWN:
-
-			// Iterate through keys where key repeat is unwanted
-			switch (event.key.key) {
-			case SDLK_1:
-				m_pApp->m_pCamera->setPreset(0);
-				break;
-			case SDLK_2:
-				m_pApp->m_pCamera->setPreset(1);
-				break;
-			case SDLK_3:
-				m_pApp->m_pCamera->setPreset(2);
-				break;
-
-				/*					case SDLK_4:
-						m_pApp->m_pCamera->setPreset(3);
-						break;*/
-
-			case SDLK_P:
-				m_pApp->pause();
-				break;
-				/*					
-					case SDLK_T:
-						dumpScreen();
-						break;
-				
-					case SDLK_Z:
-						printf("pos: %f, %f, %f\n", 
-							m_pApp->m_pCamera->m_vPosition.x,
-							m_pApp->m_pCamera->m_vPosition.y,
-							m_pApp->m_pCamera->m_vPosition.z);
-						printf("view: %f, %f, %f\n", 
-							m_pApp->m_pCamera->m_vView.x,
-							m_pApp->m_pCamera->m_vView.y,
-							m_pApp->m_pCamera->m_vView.z);
-						break;
-							*/
-			default:
-				break;
-
-			} // switch( event.key.key)
-			break;
-
-		default:
-			break;
-		} //switch ( event.type )
-
-	} //while
-
-	if (m_pKeystate[SDL_SCANCODE_A]) {
-		m_pApp->m_pCamera->strafeCamera(-1.0f);
-	}
-
-	if (m_pKeystate[SDL_SCANCODE_W]) {
-		m_pApp->m_pCamera->moveCamera(1.0f);
-	}
-
-	if (m_pKeystate[SDL_SCANCODE_D]) {
-		m_pApp->m_pCamera->strafeCamera(1.0f);
-	}
-
-	if (m_pKeystate[SDL_SCANCODE_S]) {
-		m_pApp->m_pCamera->moveCamera(-1.0f);
-	}
+void InputManager::resetAll()
+{
+	for (int i = 0; i < 4 + m_iJoystickCount; i++)
+		m_pController[i]->reset();
 }

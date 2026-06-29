@@ -16,6 +16,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 #include <SDL3/SDL_opengl.h>
 #include <SDL3/SDL.h>
+#include <SDL3_mixer/SDL_mixer.h>
 
 #include "Application.h"
 #include "Config.h"
@@ -103,6 +104,11 @@ Application::~Application()
 	delete m_pScreenFader;
 	delete m_pClock;
 	delete m_pConfig;
+
+	MIX_DestroyMixer(m_pMixer);
+	MIX_Quit();
+	SDL_GL_DestroyContext(m_glContext);
+	SDL_DestroyWindow(m_pWindow);
 }
 
 void Application::initPaths()
@@ -234,7 +240,7 @@ void Application::init()
 	m_pTextDrawer = new TextDrawer();
 	m_pScreenFader = new ScreenFader();
 
-	m_pInputManager = new InputManager(this);
+	m_pInputManager = new InputManager();
 	m_pMainMenu = new ApplicationMenu(this);
 
 	m_bSuspendEvent = false;
@@ -242,6 +248,9 @@ void Application::init()
 
 	//initiate "random" number generator
 	srand(time(NULL));
+
+	m_time0 = SDL_GetTicks();
+	m_time1 = m_time0;
 }
 
 void Application::render()
@@ -289,49 +298,93 @@ void Application::startNewGame()
 	}
 }
 
-void Application::run()
+SDL_AppResult Application::handleEvent(SDL_Event *event)
 {
-	Uint64 time1 = SDL_GetTicks();
-	Uint64 time0 = time1;
+	if (event->type == SDL_EVENT_QUIT)
+		return SDL_APP_SUCCESS;
+
+	// only dispatch input-relevant events to controllers
+	if (event->type == SDL_EVENT_KEY_DOWN ||
+	    event->type == SDL_EVENT_KEY_UP ||
+	    event->type == SDL_EVENT_JOYSTICK_AXIS_MOTION ||
+	    event->type == SDL_EVENT_JOYSTICK_BUTTON_DOWN ||
+	    event->type == SDL_EVENT_JOYSTICK_BUTTON_UP)
+		m_pInputManager->dispatchEvent(*event);
+
+	if (event->type == SDL_EVENT_KEY_DOWN) {
+		switch (event->key.key) {
+		case SDLK_1:
+			m_pCamera->setPreset(0);
+			break;
+		case SDLK_2:
+			m_pCamera->setPreset(1);
+			break;
+		case SDLK_3:
+			m_pCamera->setPreset(2);
+			break;
+		case SDLK_P:
+			pause();
+			break;
+		default:
+			break;
+		}
+	}
+
+	return SDL_APP_CONTINUE;
+}
+
+SDL_AppResult Application::iterate()
+{
+	if (m_iState == QUIT)
+		return SDL_APP_SUCCESS;
+
+	// read keyboard state for camera movement
+	const bool *keystate = SDL_GetKeyboardState(NULL);
+	if (keystate[SDL_SCANCODE_A])
+		m_pCamera->strafeCamera(-1.0f);
+	if (keystate[SDL_SCANCODE_W])
+		m_pCamera->moveCamera(1.0f);
+	if (keystate[SDL_SCANCODE_D])
+		m_pCamera->strafeCamera(1.0f);
+	if (keystate[SDL_SCANCODE_S])
+		m_pCamera->moveCamera(-1.0f);
+
+	m_time1 = SDL_GetTicks();
 	int numLoops = 0;
 
-	while (m_iState != QUIT) {
-		//	calculateFramerate();
-
-		time1 = SDL_GetTicks();
-		numLoops = 0;
-
-		/*Reset time values once after wake up from sleep.
-		  This is needed because, the system doesn't go to sleep immediatley.
-		  SDL could be running for a while, while MacBomber isn't updated anymore. This could
-		  cause time1 and time0 values to be too small, upon awakening, because the SDL Ticks
-		  was kept updated after MacBomber went to bed.   
-		 */
-		if (m_bSuspendEvent) {
-			time1 = SDL_GetTicks();
-			time0 = time1;
-			m_bSuspendEvent = false;
-		}
-
-		while (((time1 - time0) > TICK_TIME) &&
-		       (numLoops < MAX_LOOPS)) {
-			m_pInputManager->update();
-			switch (m_iState) {
-			case MENU:
-				m_pMainMenu->update();
-				break;
-			case GAME:
-			case GAME_PAUSED:
-				m_pGame->update();
-				break;
-			default:
-				break;
-			}
-			time0 += TICK_TIME;
-			numLoops++;
-		}
-		render();
+	/*Reset time values once after wake up from sleep.
+	  This is needed because, the system doesn't go to sleep immediatley.
+	  SDL could be running for a while, while MacBomber isn't updated anymore. This could
+	  cause time1 and time0 values to be too small, upon awakening, because the SDL Ticks
+	  was kept updated after MacBomber went to bed.
+	 */
+	if (m_bSuspendEvent) {
+		m_time1 = SDL_GetTicks();
+		m_time0 = m_time1;
+		m_bSuspendEvent = false;
 	}
+
+	while (((m_time1 - m_time0) > TICK_TIME) && (numLoops < MAX_LOOPS)) {
+		switch (m_iState) {
+		case MENU:
+			m_pMainMenu->update();
+			break;
+		case GAME:
+		case GAME_PAUSED:
+			m_pGame->update();
+			break;
+		default:
+			break;
+		}
+		m_time0 += TICK_TIME;
+		numLoops++;
+		// reset one-shot flags after each tick consumes them
+		m_pInputManager->resetAll();
+	}
+
+	render();
+
+	return SDL_APP_CONTINUE;
 }
 
 void Application::pause()
