@@ -18,15 +18,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #ifndef _LOADTEXTURE_H
 #define _LOADTEXTURE_H
 
-//#include "SDL_image.h"
 #include <SDL3/SDL.h>
 #include <SDL3_image/SDL_image.h>
 #include <SDL3/SDL_opengl.h>
 
-void swap(unsigned char &a, unsigned char &b);
-void flipSurface(SDL_Surface *pSurface);
 bool loadTexture(GLuint *texture, int index, const char *name,
 		 bool enableMipMap = false);
-SDL_Surface *convertSurface(SDL_Surface *pSurface);
 
 #endif

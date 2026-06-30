@@ -16,162 +16,41 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
 #include "loadTexture.h"
-#include <SDL3/SDL_endian.h>
-
-void swap(unsigned char &a, unsigned char &b)
-{
-	unsigned char temp;
-
-	temp = a;
-	a = b;
-	b = temp;
-
-	return;
-}
-
-// IMG_Load loads images vertically mirrored. We flip this surface...
-void flipSurface(SDL_Surface *pSurface)
-{
-	int BytesPerPixel =
-		SDL_GetPixelFormatDetails(pSurface->format)->bytes_per_pixel;
-	int width = pSurface->w;
-	int height = pSurface->h;
-	//  one char == one Byte
-	unsigned char *data =
-		(unsigned char *)(pSurface->pixels); // the pixel data
-
-	SDL_LockSurface(pSurface);
-
-	for (int i = 0; i < (height / 2); ++i)
-		for (int j = 0; j < width * BytesPerPixel; j += BytesPerPixel)
-			for (int k = 0; k < BytesPerPixel; ++k)
-				swap(data[(i * width * BytesPerPixel) + j + k],
-				     data[((height - i - 1) * width *
-					   BytesPerPixel) +
-					  j + k]);
-
-	SDL_UnlockSurface(pSurface);
-}
-
-SDL_Surface *convertSurface(SDL_Surface *surface)
-{
-	int w, h;
-	SDL_Surface *image;
-	SDL_Rect area;
-
-	/* Use the surface width and height expanded to powers of 2 */
-	w = surface->w;
-	h = surface->h;
-
-	image = SDL_CreateSurface(w, h,
-#if (SDL_BYTEORDER == SDL_LIL_ENDIAN) /* OpenGL RGBA masks */
-				  SDL_PIXELFORMAT_ABGR8888
-#else
-				  SDL_PIXELFORMAT_RGBA8888
-#endif
-	);
-	if (image == NULL) {
-		return 0;
-	}
-
-	/* Disable alpha blending for the blit — surface is freed afterwards */
-	SDL_SetSurfaceBlendMode(surface, SDL_BLENDMODE_NONE);
-
-	/* Copy the surface into the GL texture image */
-	area.x = 0;
-	area.y = 0;
-	area.w = surface->w;
-	area.h = surface->h;
-	SDL_BlitSurface(surface, &area, image, &area);
-
-	SDL_DestroySurface(surface);
-	return image;
-}
 
 bool loadTexture(GLuint *texture, int index, const char *texturePath,
 		 bool enableMipMap)
 {
-	// Status indicator
-	bool Status = false;
+	SDL_Surface *loaded = IMG_Load(texturePath);
+	if (!loaded)
+		return false;
 
-	// Create storage space for the texture
-	SDL_Surface *pTexture;
-	SDL_Surface *_pTexture;
+	SDL_Surface *surface =
+		SDL_ConvertSurface(loaded, SDL_PIXELFORMAT_RGBA32);
+	SDL_DestroySurface(loaded);
+	if (!surface)
+		return false;
 
-	// Load The Bitmap, Check For Errors, If Bitmap's Not Found Quit
-	if ((pTexture = IMG_Load(texturePath))) {
-		_pTexture = convertSurface(pTexture);
-		flipSurface(_pTexture);
-		// Set the status to true
-		Status = true;
+	SDL_FlipSurface(surface, SDL_FLIP_VERTICAL);
 
-		glGenTextures(1, &texture[index]);
-		glBindTexture(GL_TEXTURE_2D, texture[index]);
+	glGenTextures(1, &texture[index]);
+	glBindTexture(GL_TEXTURE_2D, texture[index]);
 
-		if (enableMipMap) {
-			//Mip Mapping
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER,
-					GL_LINEAR);
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,
-					GL_LINEAR_MIPMAP_NEAREST);
-			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, _pTexture->w,
-				     _pTexture->h, 0, GL_RGBA, GL_UNSIGNED_BYTE,
-				     _pTexture->pixels);
-			glGenerateMipmap(GL_TEXTURE_2D);
-		} else { // Linear Filtering (slow but looks good)
-			glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, _pTexture->w,
-				     _pTexture->h, 0, GL_RGBA, GL_UNSIGNED_BYTE,
-				     _pTexture->pixels);
+	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, surface->w, surface->h, 0,
+		     GL_RGBA, GL_UNSIGNED_BYTE, surface->pixels);
 
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,
-					GL_LINEAR);
-			glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER,
-					GL_LINEAR);
-		}
+	if (enableMipMap) {
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER,
+				GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,
+				GL_LINEAR_MIPMAP_NEAREST);
+		glGenerateMipmap(GL_TEXTURE_2D);
+	} else {
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER,
+				GL_LINEAR);
+		glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER,
+				GL_LINEAR);
 	}
-	// Free up any memory we may have used
-	if (pTexture)
-		SDL_DestroySurface(_pTexture);
 
-	return Status;
+	SDL_DestroySurface(surface);
+	return true;
 }
-
-/*
-bool loadTexture( GLuint *texture , int index, char * name )
-{
-	// Status indicator 
-	bool Status = false;
-
-	char texturePath[150]="/Users/quarus/Entwicklung/Textures/";
-	strcat(texturePath,name);
-
-	// Create storage space for the texture 
-	SDL_Surface * pTexture;
-	SDL_Surface * _pTexture;
-	
-	// Load The Bitmap, Check For Errors, If Bitmap's Not Found Quit 
-	if ( ( pTexture = IMG_Load( texturePath ) ) )
-	{
-		_pTexture = convertSurface(pTexture);
-		flipSurface(_pTexture);
-		// Set the status to true 
-		Status = true;
-		
-		glGenTextures( 1, &texture[index] );		
-		glBindTexture( GL_TEXTURE_2D, texture[index] );
-		
-		glTexImage2D( GL_TEXTURE_2D, 0, GL_RGBA, _pTexture->w,
-					  _pTexture->h, 0, GL_RGBA,
-					  GL_UNSIGNED_BYTE, _pTexture->pixels );
-		
-		// Linear Filtering 
-		glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR );
-		glTexParameteri( GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR );
-	}
-
-	// Free up any memory we may have used 
-	if ( pTexture )
-		SDL_DestroySurface( _pTexture );
-
-	return Status;
-}*/
