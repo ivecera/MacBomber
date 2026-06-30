@@ -10,7 +10,6 @@
 #ifndef PARTICLEMANAGER_H
 #define PARTICLEMANAGER_H
 
-#include <SDL3/SDL_opengl.h>
 #include "Particle.h"
 #include "Particle_Explosion.h"
 
@@ -39,9 +38,6 @@ private:
 	std::list<Particle_Explosion *> m_listExplosionParticles;
 
 public:
-	static GLuint m_iParticleDL;
-
-	ParticleManager();
 	~ParticleManager();
 
 	void addItemParticle(glm::vec3 vPos, int count, int itemType);

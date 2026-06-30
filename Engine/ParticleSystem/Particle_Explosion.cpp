@@ -1,9 +1,9 @@
 #include <SDL3/SDL_opengl.h>
 #include <glm/gtc/type_ptr.hpp>
 
-#include "ParticleManager.h"
 #include "Particle_Explosion.h"
 #include "../../Application.h"
+#include "../DrawQuad.h"
 #include "../TextureManager.h"
 
 #include "../../Defines.h"
@@ -83,7 +83,7 @@ void Particle_Explosion::draw()
 
 	Application::m_pTextureManager->bindTexture(m_iTextureIndex);
 	glRotatef(m_fRotation, 0, 0, 1);
-	glCallList(ParticleManager::m_iParticleDL);
+	drawUnitQuad();
 	glPopMatrix();
 
 	glColor4f(1, 1, 1, 1);

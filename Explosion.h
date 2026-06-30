@@ -19,7 +19,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #define EXPLOSION_H
 
 #include <glm/glm.hpp>
-#include <SDL3/SDL_opengl.h>
 
 class Camera;
 class TextureManager;
@@ -28,15 +27,10 @@ class Explosion {
 private:
 	//position of Explosion
 	glm::vec3 m_vPos;
-	// Explosion Display List
-	GLuint m_iExplosionDL;
-
 	int m_iTextureIndex;
 	float m_fScaleFactor;
 	glm::mat4 m_BillboardMatrix;
 
-	//creates an DisplayList and stores it in m_iExplosionDL
-	void compileDisplayList();
 	void updateBillboardMatrix();
 
 public:

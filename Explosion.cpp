@@ -20,6 +20,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "Explosion.h"
 #include <glm/glm.hpp>
 #include <glm/gtc/type_ptr.hpp>
+#include "Engine/DrawQuad.h"
 #include "Engine/TextureManager.h"
 #include "Engine/Billboard.h"
 #include "Engine/Camera.h"
@@ -29,32 +30,11 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 Explosion::Explosion(glm::vec3 vPos)
 {
 	m_vPos = vPos;
-	compileDisplayList();
 	updateBillboardMatrix();
 	reset();
 }
 
-Explosion::~Explosion()
-{
-	glDeleteLists(m_iExplosionDL, 1);
-}
-
-void Explosion::compileDisplayList()
-{
-	m_iExplosionDL = glGenLists(1);
-	glNewList(m_iExplosionDL, GL_COMPILE);
-	glBegin(GL_TRIANGLE_STRIP);
-	glTexCoord2f(0.0f, 1.0f);
-	glVertex3f(-0.5f, 0.5f, 0.0f);
-	glTexCoord2f(0.0f, 0.0f);
-	glVertex3f(-0.5f, -0.5f, 0.0f);
-	glTexCoord2f(1.0f, 1.0f);
-	glVertex3f(0.5f, 0.5f, 0.0f);
-	glTexCoord2f(1.0f, 0.0f);
-	glVertex3f(0.5f, -0.5f, 0.0f);
-	glEnd();
-	glEndList();
-}
+Explosion::~Explosion() = default;
 
 void Explosion::updateBillboardMatrix()
 {
@@ -85,13 +65,7 @@ void Explosion::draw()
 
 	glNormal3f(0, 0, 1);
 
-	/*	glBegin(GL_TRIANGLE_STRIP);
-			glTexCoord2f(0.0f, 1.0f); glVertex3f(-0.5f,  0.5f,  0.0f);   
-			glTexCoord2f(0.0f, 0.0f); glVertex3f(-0.5f, -0.5f,  0.0f); 
-			glTexCoord2f(1.0f, 1.0f); glVertex3f( 0.5f,  0.5f,  0.0f);   
-     		glTexCoord2f(1.0f, 0.0f); glVertex3f( 0.5f, -0.5f,  0.0f);   
-		glEnd();		*/
-	glCallList(m_iExplosionDL);
+	drawUnitQuad();
 
 	//		glTranslatef(-0.2,0,-0.1);
 

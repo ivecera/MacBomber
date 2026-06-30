@@ -20,25 +20,6 @@
 #include "../../Application.h"
 #include "../../Defines.h"
 
-GLuint ParticleManager::m_iParticleDL = 0;
-
-ParticleManager::ParticleManager()
-{
-	m_iParticleDL = glGenLists(1);
-	glNewList(m_iParticleDL, GL_COMPILE);
-	glBegin(GL_TRIANGLE_STRIP);
-	glTexCoord2f(0.0f, 1.0f);
-	glVertex3f(-0.5f, 0.5f, 0.0f);
-	glTexCoord2f(0.0f, 0.0f);
-	glVertex3f(-0.5f, -0.5f, 0.0f);
-	glTexCoord2f(1.0f, 1.0f);
-	glVertex3f(0.5f, 0.5f, 0.0f);
-	glTexCoord2f(1.0f, 0.0f);
-	glVertex3f(0.5f, -0.5f, 0.0f);
-	glEnd();
-	glEndList();
-}
-
 ParticleManager::~ParticleManager()
 {
 	{
@@ -56,7 +37,6 @@ ParticleManager::~ParticleManager()
 		delete (*it);
 	}
 	m_listExplosionParticles.clear();
-	glDeleteLists(m_iParticleDL, 1);
 }
 
 void ParticleManager::addItemParticle(glm::vec3 vPos, int count, int itemType)

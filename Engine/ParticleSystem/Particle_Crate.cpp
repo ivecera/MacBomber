@@ -9,6 +9,7 @@
 #include "../../Application.h"
 #include "ParticleManager.h"
 #include "Particle_Crate.h"
+#include "../DrawQuad.h"
 #include "Particle_SmokeTrail.h"
 #include "../../Defines.h"
 #include "../Billboard.h"
@@ -82,7 +83,7 @@ void Particle_Crate::draw()
 	glScalef(m_fScaleFactor, m_fScaleFactor, m_fScaleFactor);
 
 	Application::m_pTextureManager->bindTexture(m_iTextureIndex);
-	glCallList(ParticleManager::m_iParticleDL);
+	drawUnitQuad();
 
 	glPopMatrix();
 

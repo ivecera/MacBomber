@@ -15,6 +15,8 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
+#include <SDL3/SDL_opengl.h>
+
 #include "Game.h"
 #include "../Objects/Player.h"
 #include "../Map/Map.h"
@@ -51,7 +53,6 @@ Game::Game(Application *pApp)
 	m_bPaused = false;
 
 	m_pPlaylist = m_pApp->m_pMapManager->getPlaylist();
-	compileBackgroundDisplayList();
 }
 
 Game::~Game()
@@ -67,13 +68,10 @@ Game::~Game()
 		delete m_pPlayer[i];
 
 	delete m_pPlaylist;
-	glDeleteLists(m_iBackgroundDL, 1);
 }
 
-void Game::compileBackgroundDisplayList()
+void Game::drawBackground()
 {
-	m_iBackgroundDL = glGenLists(1);
-	glNewList(m_iBackgroundDL, GL_COMPILE);
 	enableOrthoMode();
 	glDepthMask(false);
 	glDisable(GL_DEPTH_TEST);
@@ -97,7 +95,6 @@ void Game::compileBackgroundDisplayList()
 	glEnable(GL_DEPTH_TEST);
 	glEnable(GL_LIGHTING);
 	disableOrthoMode();
-	glEndList();
 }
 
 int Game::determineWinner()
@@ -322,7 +319,7 @@ void Game::draw()
 		m_pScoreScreen->draw();
 		break;
 	case RUNNING:
-		glCallList(m_iBackgroundDL);
+		drawBackground();
 		drawRunning();
 		break;
 	};

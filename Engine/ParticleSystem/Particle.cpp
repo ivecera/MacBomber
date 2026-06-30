@@ -12,8 +12,8 @@
 #include "../../Application.h"
 #include "../../Defines.h"
 #include "../Billboard.h"
+#include "../DrawQuad.h"
 #include "../TextureManager.h"
-#include "ParticleManager.h"
 #include "Particle.h"
 
 Particle::Particle(glm::vec3 vPos)
@@ -61,13 +61,7 @@ void Particle::draw()
 
 	Application::m_pTextureManager->bindTexture(m_iTextureIndex);
 	glRotatef(m_fRotation, 0, 0, 1);
-	/*		glBegin(GL_TRIANGLE_STRIP);
-			glTexCoord2f(0.0f, 1.0f); glVertex3f(-0.5f,  0.5f,  0.0f);   
-			glTexCoord2f(0.0f, 0.0f); glVertex3f(-0.5f, -0.5f,  0.0f); 
-			glTexCoord2f(1.0f, 1.0f); glVertex3f( 0.5f,  0.5f,  0.0f);   
-     		glTexCoord2f(1.0f, 0.0f); glVertex3f( 0.5f, -0.5f,  0.0f);   
-		glEnd();*/
-	glCallList(ParticleManager::m_iParticleDL);
+	drawUnitQuad();
 	glPopMatrix();
 
 	glColor4f(1, 1, 1, 1);

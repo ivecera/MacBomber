@@ -18,8 +18,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #ifndef GAME_H
 #define GAME_H
 
-#include <SDL3/SDL_opengl.h>
-
 #include "../Config.h"
 #include "../Engine/Timer.h"
 #include "../Defines.h"
@@ -71,9 +69,7 @@ protected:
 	//is game paused?
 	bool m_bPaused;
 
-	//a Displaylist to fill the background with a textured quad
-	GLuint m_iBackgroundDL;
-	void compileBackgroundDisplayList();
+	void drawBackground();
 	// gets called once if time is Up. Returns winning player index or
 	int determineWinner();
 	Application *pApp;
