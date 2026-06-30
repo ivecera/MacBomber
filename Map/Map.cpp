@@ -15,6 +15,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
+#include "../Engine/MatrixStack.h"
 #include "Map.h"
 #include <glm/gtx/rotate_vector.hpp>
 #include "../Engine/BoundingBox_2D.h"
@@ -928,10 +929,10 @@ void Map::draw()
 		m_vDisplacement = m_vDisplacement * 0.1f;
 	}
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
-	glPushMatrix();
+	modelview.push();
 	if (!m_pGame->isPaused())
-		glTranslatef(m_vDisplacement.x, m_vDisplacement.y,
-			     m_vDisplacement.z);
+		modelview.translate(m_vDisplacement.x, m_vDisplacement.y,
+				    m_vDisplacement.z);
 
 	drawCrateFields();
 	drawBlockFields();
@@ -944,5 +945,5 @@ void Map::draw()
 
 	drawExplosions();
 	m_ParticleManager.draw();
-	glPopMatrix();
+	modelview.pop();
 }

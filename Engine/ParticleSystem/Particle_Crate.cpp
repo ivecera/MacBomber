@@ -6,6 +6,7 @@
  *  Copyright 2007 __MyCompanyName__. All rights reserved.
  *
  */
+#include "../MatrixStack.h"
 #include "../../Application.h"
 #include "ParticleManager.h"
 #include "Particle_Crate.h"
@@ -72,20 +73,21 @@ void Particle_Crate::draw()
 
 	glColor4f(m_fColor[0], m_fColor[1], m_fColor[2], m_fColor[3]);
 
-	glPushMatrix();
+	modelview.push();
 
-	glTranslatef(m_vPosition.x, m_vPosition.y, m_vPosition.z);
+	modelview.translate(m_vPosition.x, m_vPosition.y, m_vPosition.z);
 
-	glRotatef(m_fAngleX, 1, 0, 0);
-	glRotatef(m_fAngleY, 0, 1, 0);
-	glRotatef(m_fAngleZ, 0, 0, 1);
+	modelview.rotate(m_fAngleX, 1, 0, 0);
+	modelview.rotate(m_fAngleY, 0, 1, 0);
+	modelview.rotate(m_fAngleZ, 0, 0, 1);
 
-	glScalef(m_fScaleFactor, m_fScaleFactor, m_fScaleFactor);
+	modelview.scale(m_fScaleFactor, m_fScaleFactor, m_fScaleFactor);
 
+	modelview.apply();
 	Application::m_pTextureManager->bindTexture(m_iTextureIndex);
 	drawUnitQuad();
 
-	glPopMatrix();
+	modelview.pop();
 
 	glColor4f(1, 1, 1, 1);
 	glDepthMask(GL_TRUE);

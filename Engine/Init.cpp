@@ -16,10 +16,8 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
 #include "Init.h"
+#include "MatrixStack.h"
 #include <SDL3/SDL_opengl.h>
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
 #include <SDL3_mixer/SDL_mixer.h>
 
 #include "checkScreenResolution.h"
@@ -175,18 +173,13 @@ int sizeGLWindow()
 	// Our viewport is the entire screen
 	glViewport(0, 0, screenWidth, screenHeight);
 
-	glMatrixMode(GL_PROJECTION); // Select the projection matrix
-	glLoadIdentity(); // Reset the projection matrix
-
-	//		Field of view	Aspect ratio	Camera clipping distance
-	//						     near   far
-	glm::mat4 proj = glm::perspective(
+	projection.load(glm::perspective(
 		glm::radians(45.0f), (float)screenWidth / (float)screenHeight,
-		1.0f, 150.0f);
-	glLoadMatrixf(glm::value_ptr(proj));
+		1.0f, 150.0f));
+	projection.apply();
 
-	glMatrixMode(GL_MODELVIEW); // Select the modelview matrix
-	glLoadIdentity(); // Reset the modelview matrix
+	modelview.loadIdentity();
+	modelview.apply();
 
 	return 1;
 }

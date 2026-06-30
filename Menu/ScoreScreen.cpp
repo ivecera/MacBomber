@@ -14,6 +14,7 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
+#include "../Engine/MatrixStack.h"
 #include <SDL3/SDL_opengl.h>
 
 #include "../Menu/ScoreScreen.h"
@@ -27,7 +28,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "../Engine/TextureManager.h"
 #include "../Engine/InputManager.h"
 
-#include <glm/glm.hpp>
 #include "../Engine/Wobbler.h"
 
 #include "../MeshObjects/CupMesh.h"
@@ -97,13 +97,14 @@ ScoreScreen::~ScoreScreen()
 void ScoreScreen::drawCup()
 {
 	glEnable(GL_LIGHTING);
-	glTranslatef(relToAbs(m_vCupPosition.x, 0), 0, 0.0);
-	glPushMatrix();
+	modelview.translate(relToAbs(m_vCupPosition.x, 0), 0, 0.0);
+	modelview.push();
 	// rotates the cup
-	//glRotatef(m_fCupRotationAngle,0,1,0);
-	glScalef(10 + m_pWobbler->getScaleValueX(),
-		 10 + m_pWobbler->getScaleValueY(),
-		 10 + m_pWobbler->getScaleValueZ());
+	//modelview.rotate(m_fCupRotationAngle,0,1,0);
+	modelview.scale(10 + m_pWobbler->getScaleValueX(),
+			10 + m_pWobbler->getScaleValueY(),
+			10 + m_pWobbler->getScaleValueZ());
+	modelview.apply();
 	Application::m_pMeshManager->m_pCupMesh->configureMaterial();
 	Application::m_pMeshManager->m_pCupMesh->configureTexCoord0();
 	Application::m_pMeshManager->m_pCupMesh->configureTexture0(CUP_TEXTURE);
@@ -111,7 +112,7 @@ void ScoreScreen::drawCup()
 	Application::m_pMeshManager->m_pCupMesh->drawVBO();
 	Application::m_pMeshManager->m_pCupMesh->resetTextureEngines();
 	Application::m_pMeshManager->m_pCupMesh->disableBuffers();
-	glPopMatrix();
+	modelview.pop();
 	glDisable(GL_LIGHTING);
 }
 
@@ -155,17 +156,18 @@ void ScoreScreen::draw()
 
 	// loop through all rows
 	for (int i = 0; i < m_iRows; i++) {
-		glPushMatrix();
+		modelview.push();
 		//1. Translate to current rows y Pos ( this is our new Origin )
-		glTranslatef(relToAbs(m_pRows[i].position.x, 0),
-			     relToAbs(m_pRows[i].position.y, 1), 0);
+		modelview.translate(relToAbs(m_pRows[i].position.x, 0),
+				    relToAbs(m_pRows[i].position.y, 1), 0);
 
 		Application::m_pTextDrawer->drawTextCentered(
 			0, -0.042, m_pRows[i].pPlayer->getName());
 
 		//2. Draw player
-		glPushMatrix();
-		glScalef(80, 80, 80);
+		modelview.push();
+		modelview.scale(80, 80, 80);
+		modelview.apply();
 		//					Application::m_pTextureManager->bindTexture(m_pRows[i].pPlayer->getSkin());
 		//					Application::m_pMeshManager->drawMesh(PLAYER_OBJECT);
 		Application::m_pMeshManager->m_pPlayerMesh->configureMaterial();
@@ -182,21 +184,23 @@ void ScoreScreen::draw()
 			->resetTextureEngines();
 		Application::m_pMeshManager->m_pPlayerMesh->disableBuffers();
 
-		glPopMatrix();
+		modelview.pop();
 		glActiveTextureARB(GL_TEXTURE0_ARB);
 		glEnable(GL_TEXTURE_2D);
 		glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE, GL_MODULATE);
 
 		//loop through all slots
 		// add a small offset to the players column
-		glTranslatef(relToAbs(m_fOffsetLeft, 0), 0, 0);
+		modelview.translate(relToAbs(m_fOffsetLeft, 0), 0, 0);
 		// 3. draw Cups
 		for (int j = 0;
 		     j < Application::m_pConfig->getPointsForVictory(); j++) {
-			glTranslatef(relToAbs(m_fColumnSpacing, 0), 0, 0);
+			modelview.translate(relToAbs(m_fColumnSpacing, 0), 0,
+					    0);
 			if (j < m_pRows[i].iColumns) {
-				glPushMatrix();
-				glScalef(10, 10, 10);
+				modelview.push();
+				modelview.scale(10, 10, 10);
+				modelview.apply();
 				Application::m_pMeshManager->m_pCupMesh
 					->configureMaterial();
 				Application::m_pMeshManager->m_pCupMesh
@@ -211,40 +215,41 @@ void ScoreScreen::draw()
 					->resetTextureEngines();
 				Application::m_pMeshManager->m_pCupMesh
 					->disableBuffers();
-				glPopMatrix();
+				modelview.pop();
 				glActiveTextureARB(GL_TEXTURE0_ARB);
 				glEnable(GL_TEXTURE_2D);
 				glTexEnvi(GL_TEXTURE_ENV, GL_TEXTURE_ENV_MODE,
 					  GL_MODULATE);
 			}
 			//4. draw small white blocks beneath the cup positions
-			glPushMatrix();
+			modelview.push();
 			glColor3f(1, 1, 1);
-			glTranslatef(0, -20, 0);
+			modelview.translate(0, -20, 0);
+			modelview.apply();
 			glBegin(GL_QUADS);
 			glVertex3f(-10, -5, 0);
 			glVertex3f(10, -5, 0);
 			glVertex3f(10, 5, 0);
 			glVertex3f(-10, 5, 0);
 			glEnd();
-			glPopMatrix();
+			modelview.pop();
 		}
 
-		glPopMatrix();
+		modelview.pop();
 	}
 	// draw Cup
-	glPushMatrix();
+	modelview.push();
 	// Translate to winners rows
-	glTranslatef(relToAbs(m_pRows[m_pGame->getWinnerOfRound()].position.x +
-				      m_fOffsetLeft,
-			      0),
-		     relToAbs(m_pRows[m_pGame->getWinnerOfRound()].position.y,
-			      1),
-		     0);
+	modelview.translate(
+		relToAbs(m_pRows[m_pGame->getWinnerOfRound()].position.x +
+				 m_fOffsetLeft,
+			 0),
+		relToAbs(m_pRows[m_pGame->getWinnerOfRound()].position.y, 1),
+		0);
 	if (m_pGame->getWinnerOfRound() != DRAWGAME)
 		//	drawCup( m_pGame->getWinnerOfRound(),m_pGame->getPlayerScore(m_pGame->getWinnerOfRound())+1 );
 		drawCup();
-	glPopMatrix();
+	modelview.pop();
 
 	disableOrthoMode();
 	glEnable(GL_LIGHTING);

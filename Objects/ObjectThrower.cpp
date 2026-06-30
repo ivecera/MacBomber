@@ -15,8 +15,8 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
+#include "../Engine/MatrixStack.h"
 #include "ObjectThrower.h"
-#include <glm/glm.hpp>
 #include "../Engine/SimpleBezier.h"
 #include "../Objects/Object_Moving.h"
 #include "../Application.h"
@@ -112,10 +112,9 @@ void ObjectThrower::update()
 
 void ObjectThrower::draw()
 {
-	glPushMatrix();
+	modelview.apply();
 	glBegin(GL_LINE_STRIP);
 	for (int i = 0; i < m_iWayPointCount; i++)
 		glVertex3f(m_pPath[i].x, m_pPath[i].y, m_pPath[i].z);
 	glEnd();
-	glPopMatrix();
 }

@@ -15,10 +15,8 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
+#include "../Engine/MatrixStack.h"
 #include <SDL3/SDL_opengl.h>
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
 
 #include "MapPreview.h"
 #include "../Application.h"
@@ -146,10 +144,11 @@ void MapPreview::drawCrateFields()
 
 	for (it = m_listCrateFields.begin(); it != m_listCrateFields.end();
 	     it++) {
-		glPushMatrix();
-		glTranslatef((*it).xPos, 0, (*it).zPos);
+		modelview.push();
+		modelview.translate((*it).xPos, 0, (*it).zPos);
+		modelview.apply();
 		Application::m_pMeshManager->m_pCrateMesh->drawVBO();
-		glPopMatrix();
+		modelview.pop();
 	}
 
 	Application::m_pMeshManager->m_pCrateMesh->disableBuffers();
@@ -168,10 +167,11 @@ void MapPreview::drawBlockFields()
 
 	for (it = m_listBlockFields.begin(); it != m_listBlockFields.end();
 	     it++) {
-		glPushMatrix();
-		glTranslatef((*it).xPos, 0, (*it).zPos);
+		modelview.push();
+		modelview.translate((*it).xPos, 0, (*it).zPos);
+		modelview.apply();
 		Application::m_pMeshManager->m_pBlockMesh->drawVBO();
-		glPopMatrix();
+		modelview.pop();
 	}
 	Application::m_pMeshManager->m_pBlockMesh->disableBuffers();
 	Application::m_pMeshManager->m_pBlockMesh->resetTextureEngines();
@@ -190,10 +190,11 @@ void MapPreview::drawPlainFields()
 
 	for (it = m_listPlainFields_Color0.begin();
 	     it != m_listPlainFields_Color0.end(); it++) {
-		glPushMatrix();
-		glTranslatef((*it).xPos, 0, (*it).zPos);
+		modelview.push();
+		modelview.translate((*it).xPos, 0, (*it).zPos);
+		modelview.apply();
 		Application::m_pMeshManager->m_pSquareMesh->drawVBO();
-		glPopMatrix();
+		modelview.pop();
 	}
 	Application::m_pMeshManager->m_pSquareMesh->disableBuffers();
 	Application::m_pMeshManager->m_pSquareMesh->resetTextureEngines();
@@ -207,10 +208,11 @@ void MapPreview::drawPlainFields()
 
 	for (it = m_listPlainFields_Color1.begin();
 	     it != m_listPlainFields_Color1.end(); it++) {
-		glPushMatrix();
-		glTranslatef((*it).xPos, 0, (*it).zPos);
+		modelview.push();
+		modelview.translate((*it).xPos, 0, (*it).zPos);
+		modelview.apply();
 		Application::m_pMeshManager->m_pSquareMesh->drawVBO();
-		glPopMatrix();
+		modelview.pop();
 	}
 	Application::m_pMeshManager->m_pSquareMesh->disableBuffers();
 	Application::m_pMeshManager->m_pSquareMesh->resetTextureEngines();
@@ -226,10 +228,11 @@ void MapPreview::drawPlainFields()
 
 	for (it = m_listHoleFields_Color0.begin();
 	     it != m_listHoleFields_Color0.end(); it++) {
-		glPushMatrix();
-		glTranslatef((*it).xPos, 0, (*it).zPos);
+		modelview.push();
+		modelview.translate((*it).xPos, 0, (*it).zPos);
+		modelview.apply();
 		Application::m_pMeshManager->m_pSquareMesh->drawVBO();
-		glPopMatrix();
+		modelview.pop();
 	}
 	Application::m_pMeshManager->m_pSquareMesh->disableBuffers();
 	Application::m_pMeshManager->m_pSquareMesh->resetTextureEngines();
@@ -252,10 +255,11 @@ void MapPreview::drawArrowFields()
 	     it != m_listArrowFields_Color0.end(); it++) {
 		Application::m_pMeshManager->m_pSquareMesh->configureTexCoord1(
 			((*it).iDirection));
-		glPushMatrix();
-		glTranslatef((*it).xPos, 0, (*it).zPos);
+		modelview.push();
+		modelview.translate((*it).xPos, 0, (*it).zPos);
+		modelview.apply();
 		Application::m_pMeshManager->m_pSquareMesh->drawVBO();
-		glPopMatrix();
+		modelview.pop();
 	}
 	Application::m_pMeshManager->m_pSquareMesh->disableBuffers();
 	Application::m_pMeshManager->m_pSquareMesh->resetTextureEngines();
@@ -274,10 +278,11 @@ void MapPreview::drawArrowFields()
 	     it != m_listArrowFields_Color1.end(); it++) {
 		Application::m_pMeshManager->m_pSquareMesh->configureTexCoord1(
 			((*it).iDirection));
-		glPushMatrix();
-		glTranslatef((*it).xPos, 0, (*it).zPos);
+		modelview.push();
+		modelview.translate((*it).xPos, 0, (*it).zPos);
+		modelview.apply();
 		Application::m_pMeshManager->m_pSquareMesh->drawVBO();
-		glPopMatrix();
+		modelview.pop();
 	}
 	Application::m_pMeshManager->m_pSquareMesh->disableBuffers();
 	Application::m_pMeshManager->m_pSquareMesh->resetTextureEngines();
@@ -297,10 +302,11 @@ void MapPreview::drawHoleFields()
 
 	for (it = m_listHoleFields_Color1.begin();
 	     it != m_listHoleFields_Color1.end(); it++) {
-		glPushMatrix();
-		glTranslatef((*it).xPos, 0, (*it).zPos);
+		modelview.push();
+		modelview.translate((*it).xPos, 0, (*it).zPos);
+		modelview.apply();
 		Application::m_pMeshManager->m_pSquareMesh->drawVBO();
-		glPopMatrix();
+		modelview.pop();
 	}
 
 	Application::m_pMeshManager->m_pSquareMesh->disableBuffers();
@@ -318,10 +324,11 @@ void MapPreview::drawRandomFields()
 
 	for (it = m_listRandomFields.begin(); it != m_listRandomFields.end();
 	     it++) {
-		glPushMatrix();
-		glTranslatef((*it).xPos, 0, (*it).zPos);
+		modelview.push();
+		modelview.translate((*it).xPos, 0, (*it).zPos);
+		modelview.apply();
 		Application::m_pMeshManager->m_pSquareMesh->drawVBO();
-		glPopMatrix();
+		modelview.pop();
 	}
 
 	Application::m_pMeshManager->m_pSquareMesh->disableBuffers();
@@ -330,12 +337,12 @@ void MapPreview::drawRandomFields()
 
 void MapPreview::draw()
 {
-	glPushMatrix();
-	glLoadIdentity();
+	modelview.push();
+	modelview.loadIdentity();
 	glm::mat4 v = glm::lookAt(glm::vec3(13, 25, 13), glm::vec3(13, -1, 9.5),
 				  glm::vec3(0, 1, 0));
-	glMultMatrixf(glm::value_ptr(v));
-	glTranslatef(8, -2, 2);
+	modelview.multiply(v);
+	modelview.translate(8, -2, 2);
 
 	drawCrateFields();
 	drawBlockFields();
@@ -343,5 +350,5 @@ void MapPreview::draw()
 	drawArrowFields();
 	drawHoleFields();
 	drawRandomFields();
-	glPopMatrix();
+	modelview.pop();
 }

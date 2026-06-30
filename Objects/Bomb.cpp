@@ -15,6 +15,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
+#include "../Engine/MatrixStack.h"
 #include "Bomb.h"
 #include "../Engine/MeshManager.h"
 #include "../Engine/TriangleMesh.h"
@@ -91,15 +92,16 @@ void Bomb::update()
 
 void Bomb::draw()
 {
-	glPushMatrix();
-	glTranslatef(m_vPos.x, m_vPos.y, m_vPos.z);
+	modelview.push();
+	modelview.translate(m_vPos.x, m_vPos.y, m_vPos.z);
 
 	if (m_bWobble)
-		glScalef(m_pWobbler->getScaleValueX(),
-			 m_pWobbler->getScaleValueY(),
-			 m_pWobbler->getScaleValueZ());
+		modelview.scale(m_pWobbler->getScaleValueX(),
+				m_pWobbler->getScaleValueY(),
+				m_pWobbler->getScaleValueZ());
 
+	modelview.apply();
 	Application::m_pMeshManager->m_pBombMesh->drawVBO();
 
-	glPopMatrix();
+	modelview.pop();
 }

@@ -15,6 +15,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
+#include "../Engine/MatrixStack.h"
 #include "PlayerSetupRow.h"
 
 #include "../Application.h"
@@ -110,11 +111,12 @@ void PlayerSetupRow::draw()
 	if (!m_bEnabled) {
 		glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 		glEnable(GL_BLEND);
-		glPushMatrix();
-		glTranslatef(relToAbs(m_vPosition.x, 0),
-			     relToAbs(m_vPosition.y + 0.05, 1), 10);
+		modelview.push();
+		modelview.translate(relToAbs(m_vPosition.x, 0),
+				    relToAbs(m_vPosition.y + 0.05, 1), 10);
 		Application::m_pTextureManager->bindTexture(
 			PLAYER_DISABLED_TEXTURE);
+		modelview.apply();
 		glBegin(GL_QUADS);
 		/*glTexCoord2f(1,1);glVertex3f(-50,-50,10);
 				glTexCoord2f(0,1);glVertex3f(400,-50,10); 
@@ -130,7 +132,7 @@ void PlayerSetupRow::draw()
 		glTexCoord2f(1, 0);
 		glVertex3f(-1 * relToAbs(0.0625, 0), relToAbs(0.084, 1), 0);
 		glEnd();
-		glPopMatrix();
+		modelview.pop();
 		glDisable(GL_BLEND);
 	}
 

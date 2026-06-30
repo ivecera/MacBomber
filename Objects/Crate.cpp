@@ -15,6 +15,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
+#include "../Engine/MatrixStack.h"
 #include "Crate.h"
 #include "../Engine/MeshManager.h"
 #include "../MeshObjects/CrateMesh.h"
@@ -31,7 +32,8 @@ Crate::Crate(int xBlock, int zBlock)
 
 void Crate::draw()
 {
-	glTranslatef(0.0f, 0.5f, 0.0f);
-	glRotatef(m_iOrientation, 0, 1, 0);
+	modelview.translate(0.0f, 0.5f, 0.0f);
+	modelview.rotate(m_iOrientation, 0, 1, 0);
+	modelview.apply();
 	Application::m_pMeshManager->m_pCrateMesh->drawVBO();
 }

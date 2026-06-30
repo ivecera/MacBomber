@@ -15,6 +15,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
+#include "../Engine/MatrixStack.h"
 #include "../Application.h"
 #include "MenuItem.h"
 #include "Menu.h"
@@ -45,11 +46,12 @@ void MenuItem::drawQuad()
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glEnable(GL_BLEND);
 
-	glPushMatrix();
+	modelview.push();
 	Application::m_pTextureManager->bindTexture(MENU_ARROW_TEXTURE);
-	glTranslatef(relToAbs(m_vPosition.x - 0.031, 0),
-		     relToAbs(m_vPosition.y + 0.013, 1), 0);
+	modelview.translate(relToAbs(m_vPosition.x - 0.031, 0),
+			    relToAbs(m_vPosition.y + 0.013, 1), 0);
 	//		glNormal3f(0,0,1);
+	modelview.apply();
 	glBegin(GL_QUADS);
 	glTexCoord2f(1, 1);
 	glVertex3f(20, 20, 0);
@@ -62,7 +64,7 @@ void MenuItem::drawQuad()
 	glEnd();
 	glColor3f(1.0f, 1.0, 1.0f);
 
-	glPopMatrix();
+	modelview.pop();
 	glDisable(GL_BLEND);
 }
 

@@ -16,38 +16,33 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
 #include <SDL3/SDL_opengl.h>
+#include "MatrixStack.h"
 #include "ortho.h"
 #include "../Application.h"
 #include "../Config.h"
 
 void enableOrthoMode()
 {
-	//save Projection Matrix before entering Ortho Mode
-
-	glMatrixMode(GL_PROJECTION);
-	glPushMatrix();
-	glLoadIdentity();
-
-	glOrtho(0, Application::screenWidth, 0, Application::screenHeight, -100,
-		100);
+	projection.push();
+	projection.load(glm::ortho(0.0f, (float)Application::screenWidth, 0.0f,
+				   (float)Application::screenHeight, -100.0f,
+				   100.0f));
+	projection.apply();
 
 	glNormal3f(0, 0, 1);
 
-	//save Modelview Matrix
-	glMatrixMode(GL_MODELVIEW);
-	glPushMatrix();
-	glLoadIdentity();
+	modelview.push();
+	modelview.loadIdentity();
+	modelview.apply();
 }
 
 void disableOrthoMode()
 {
-	// Pop off the last matrix pushed on when in projection mode (Get rid of ortho mode)
-	glMatrixMode(GL_PROJECTION);
-	glPopMatrix();
+	projection.pop();
+	projection.apply();
 
-	// Pop off old model view matrix
-	glMatrixMode(GL_MODELVIEW);
-	glPopMatrix();
+	modelview.pop();
+	modelview.apply();
 }
 
 float relToAbs(float relValue, int axis)

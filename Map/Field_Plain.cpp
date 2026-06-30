@@ -15,6 +15,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
+#include "../Engine/MatrixStack.h"
 #include "Field_Plain.h"
 
 //#include "Field.h"
@@ -190,13 +191,13 @@ void Field_Plain::update()
 
 void Field_Plain::draw()
 {
-	glPushMatrix();
-	glTranslatef(m_vPos.x, m_vPos.y, m_vPos.z);
+	modelview.push();
+	modelview.translate(m_vPos.x, m_vPos.y, m_vPos.z);
 
 	//only rotatie if there is a crate on this field
 	if ((m_iState == FALLING) && (m_bCrate))
-		glRotatef(m_fAngle, m_vRotationAxis.x, m_vRotationAxis.y,
-			  m_vRotationAxis.z);
+		modelview.rotate(m_fAngle, m_vRotationAxis.x, m_vRotationAxis.y,
+				 m_vRotationAxis.z);
 
 	if (m_bCrate)
 		m_pCrate->draw();
@@ -208,6 +209,7 @@ void Field_Plain::draw()
 				->configureTexCoord1(m_iDecalOrientation);
 		}
 
+		modelview.apply();
 		Application::m_pMeshManager->m_pSquareMesh->drawVBO();
 
 		if (m_bDecal) {
@@ -215,5 +217,5 @@ void Field_Plain::draw()
 			glDisable(GL_TEXTURE_2D);
 		}
 	}
-	glPopMatrix();
+	modelview.pop();
 }

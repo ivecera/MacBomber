@@ -15,10 +15,10 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
+#include "../Engine/MatrixStack.h"
 #include "MapDestroyer.h"
 #include "../Defines.h"
 #include "../Application.h"
-#include <glm/glm.hpp>
 #include "../Engine/MeshManager.h"
 #include "../Engine/TextureManager.h"
 #include "../Engine/SoundManager.h"
@@ -26,8 +26,6 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include "../Map/Map.h"
 #include "../Objects/ObjectThrower.h"
 #include "../Objects/Wiley.h"
-
-#include <SDL3/SDL_opengl.h>
 
 MapDestroyer::MapDestroyer(Map *pMap)
 {
@@ -124,7 +122,5 @@ void MapDestroyer::update()
 
 void MapDestroyer::draw()
 {
-	glPushMatrix();
 	m_pWiley->draw();
-	glPopMatrix();
 }

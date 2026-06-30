@@ -15,6 +15,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
+#include "../Engine/MatrixStack.h"
 #include "Player.h"
 #include "Item.h"
 #include "Item_BombUp.h"
@@ -414,16 +415,17 @@ void Player::checkPlayerPlayerCollisions()
 
 void Player::drawPlayer()
 {
-	glPushMatrix();
+	modelview.push();
 
-	glTranslatef(m_vPos.x, m_vPos.y - 0.5f, m_vPos.z);
-	glRotatef(m_fOrientation, 0, 1, 0);
+	modelview.translate(m_vPos.x, m_vPos.y - 0.5f, m_vPos.z);
+	modelview.rotate(m_fOrientation, 0, 1, 0);
 
 	if (m_bWobble)
-		glScalef(m_pWobbler->getScaleValueX(),
-			 m_pWobbler->getScaleValueY(),
-			 m_pWobbler->getScaleValueZ());
+		modelview.scale(m_pWobbler->getScaleValueX(),
+				m_pWobbler->getScaleValueY(),
+				m_pWobbler->getScaleValueZ());
 
+	modelview.apply();
 	Application::m_pMeshManager->m_pPlayerMesh->configureTexture0(
 		m_iPrimaryTexture);
 	Application::m_pMeshManager->m_pPlayerMesh->configureTexture1(
@@ -431,7 +433,7 @@ void Player::drawPlayer()
 
 	Application::m_pMeshManager->m_pPlayerMesh->drawVBO();
 
-	glPopMatrix();
+	modelview.pop();
 }
 
 void Player::draw()

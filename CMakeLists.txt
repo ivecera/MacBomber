@@ -36,6 +36,7 @@ set(SOURCES
     Engine/Clock.cpp
     Engine/Init.cpp
     Engine/InputManager.cpp
+    Engine/MatrixStack.cpp
     Engine/loadTexture.cpp
     Engine/MeshManager.cpp
     Engine/ortho.cpp

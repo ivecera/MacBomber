@@ -15,6 +15,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
+#include "../Engine/MatrixStack.h"
 #include "Item.h"
 #include <SDL3/SDL_opengl.h>
 #include "../Engine/MeshManager.h"
@@ -72,20 +73,21 @@ void Item::update()
 
 void Item::draw()
 {
-	glPushMatrix();
+	modelview.push();
 	// FIX ME: we add 0.5 to m_vPos because the bottom of the item model bottom is at y= -0.5;
-	glTranslatef(m_vPos.x, m_vPos.y + 0.5, m_vPos.z);
-	glRotatef(
+	modelview.translate(m_vPos.x, m_vPos.y + 0.5, m_vPos.z);
+	modelview.rotate(
 		180, 0, 1,
 		0); //rotate around y-axis, Makes items face in the right direction.
 
 	if (m_bWobble)
-		glScalef(m_pWobbler->getScaleValueX(),
-			 m_pWobbler->getScaleValueY(),
-			 m_pWobbler->getScaleValueZ());
+		modelview.scale(m_pWobbler->getScaleValueX(),
+				m_pWobbler->getScaleValueY(),
+				m_pWobbler->getScaleValueZ());
 
+	modelview.apply();
 	Application::m_pMeshManager->m_pItemMesh->configureTexture0(m_iTexture);
 	Application::m_pMeshManager->m_pItemMesh->drawVBO();
 
-	glPopMatrix();
+	modelview.pop();
 }

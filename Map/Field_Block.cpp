@@ -15,6 +15,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
+#include "../Engine/MatrixStack.h"
 #include "Field_Block.h"
 #include "../Engine/TriangleMesh.h"
 #include "../Engine/MeshManager.h"
@@ -41,17 +42,18 @@ bool Field_Block::placeBomb(Bomb *bomb)
 
 void Field_Block::draw()
 {
-	glPushMatrix();
-	glTranslatef(m_vPos.x, m_vPos.y, m_vPos.z);
+	modelview.push();
+	modelview.translate(m_vPos.x, m_vPos.y, m_vPos.z);
 
 	if (m_iState == FALLING) {
-		glRotatef(m_fAngle, 0, 1, 0);
-		glRotatef(5, 1, 0, 0);
+		modelview.rotate(m_fAngle, 0, 1, 0);
+		modelview.rotate(5, 1, 0, 0);
 	}
 
-	glRotatef(m_iOrientation, 0, 1, 0);
+	modelview.rotate(m_iOrientation, 0, 1, 0);
+	modelview.apply();
 	Application::m_pMeshManager->m_pBlockMesh->drawVBO();
-	glPopMatrix();
+	modelview.pop();
 }
 
 void Field_Block::update()

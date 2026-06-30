@@ -15,6 +15,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
+#include "../Engine/MatrixStack.h"
 #include "LevelScrollListItem.h"
 #include "../Application.h"
 #include "../Defines.h"
@@ -52,8 +53,9 @@ void LevelScrollListItem::drawTriangle()
 	glEnable(GL_BLEND);
 
 	Application::m_pTextureManager->bindTexture(MENU_ARROW_TEXTURE);
-	//glTranslatef(m_vPosition.x-40,m_vPosition.y, m_vPosition.z);
+	//modelview.translate(m_vPosition.x-40,m_vPosition.y, m_vPosition.z);
 	//		glNormal3f(0,0,1);
+	modelview.apply();
 	glBegin(GL_QUADS);
 	glTexCoord2f(1, 1);
 	glVertex3f(20, 20, 0);
@@ -81,15 +83,17 @@ void LevelScrollListItem::drawSlots()
 	for (int i = 0; i < m_iSlotsPerPage; i++) {
 		tmp = Application::m_pMapManager->getMap(m_iOffset + i);
 
-		glPushMatrix();
-		glTranslatef(relToAbs(0.031, 0), relToAbs(yPos + 0.013, 1), 0);
+		modelview.push();
+		modelview.translate(relToAbs(0.031, 0),
+				    relToAbs(yPos + 0.013, 1), 0);
+		modelview.apply();
 
 		// Draw an arrow to mark the currently selected Slot
 		if ((i == m_iCurrentSlot) && (m_bActive))
 			// which item is active
 			drawTriangle();
 
-		glPopMatrix();
+		modelview.pop();
 
 		(tmp.enabled) ? glColor3f(0, 1, 0) : glColor3f(1, 0, 0);
 
@@ -159,12 +163,9 @@ void LevelScrollListItem::space()
 void LevelScrollListItem::draw()
 {
 	//glDisable(GL_COLOR_MATERIAL);
-	glPushMatrix();
 	glColor3f(1, 1, 1);
-	//		glTranslatef(m_vPosition.x ,m_vPosition.y, m_vPosition.z);
+	//		modelview.translate(m_vPosition.x ,m_vPosition.y, m_vPosition.z);
 	drawSlots();
 	drawCount();
-
-	glPopMatrix();
 	//	glEnable(GL_COLOR_MATERIAL);
 }

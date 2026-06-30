@@ -14,6 +14,7 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
+#include "../Engine/MatrixStack.h"
 #include <SDL3/SDL_opengl.h>
 
 #include "Field_Arrow.h"
@@ -200,12 +201,13 @@ void Field_Arrow::draw()
 
 	glColor4f(1.0f, 1.0f, 1.0f, 1.0f);
 
-	glPushMatrix();
-	glTranslatef(m_vPos.x, m_vPos.y, m_vPos.z);
+	modelview.push();
+	modelview.translate(m_vPos.x, m_vPos.y, m_vPos.z);
+	modelview.apply();
 	Application::m_pMeshManager->m_pSquareMesh->configureTexCoord1(
 		m_iDirection);
 	Application::m_pMeshManager->m_pSquareMesh->drawVBO();
-	glPopMatrix();
+	modelview.pop();
 
 	glDisable(GL_BLEND);
 }

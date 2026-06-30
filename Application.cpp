@@ -19,6 +19,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 #include <SDL3_mixer/SDL_mixer.h>
 
 #include "Application.h"
+#include "Engine/MatrixStack.h"
 #include "Config.h"
 #include "Gametypes/Game.h"
 #include "Gametypes/Game_Standard.h"
@@ -173,7 +174,7 @@ void Application::render()
 {
 	//    glClear ( GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT );
 	glClear(GL_DEPTH_BUFFER_BIT);
-	glLoadIdentity();
+	modelview.loadIdentity();
 
 #ifdef FREECAMERA
 	m_pCamera->setViewByMouse();

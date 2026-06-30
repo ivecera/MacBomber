@@ -15,11 +15,10 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
+#include "Engine/MatrixStack.h"
 #include <SDL3/SDL_opengl.h>
 
 #include "Explosion.h"
-#include <glm/glm.hpp>
-#include <glm/gtc/type_ptr.hpp>
 #include "Engine/DrawQuad.h"
 #include "Engine/TextureManager.h"
 #include "Engine/Billboard.h"
@@ -59,17 +58,18 @@ void Explosion::draw()
 
 	glEnable(GL_BLEND);
 	Application::m_pTextureManager->bindTexture(m_iTextureIndex);
-	glPushMatrix();
-	glMultMatrixf(glm::value_ptr(m_BillboardMatrix));
-	glScalef(m_fScaleFactor, m_fScaleFactor, 0);
+	modelview.push();
+	modelview.multiply(m_BillboardMatrix);
+	modelview.scale(m_fScaleFactor, m_fScaleFactor, 0);
 
 	glNormal3f(0, 0, 1);
 
+	modelview.apply();
 	drawUnitQuad();
 
-	//		glTranslatef(-0.2,0,-0.1);
+	//		modelview.translate(-0.2,0,-0.1);
 
-	glPopMatrix();
+	modelview.pop();
 	glBindTexture(GL_TEXTURE_2D, 0);
 
 	glDisable(GL_BLEND);

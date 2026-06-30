@@ -1,5 +1,5 @@
+#include "../MatrixStack.h"
 #include <SDL3/SDL_opengl.h>
-#include <glm/gtc/type_ptr.hpp>
 
 #include "Particle_Explosion.h"
 #include "../../Application.h"
@@ -76,15 +76,16 @@ void Particle_Explosion::draw()
 
 	glColor4f(m_fColor[0], m_fColor[1], m_fColor[2], m_fColor[3]);
 
-	glPushMatrix();
-	glMultMatrixf(glm::value_ptr(m_BillboardMatrix));
+	modelview.push();
+	modelview.multiply(m_BillboardMatrix);
 	glNormal3f(0, 0, 1);
-	glScalef(m_fScaleFactor, m_fScaleFactor, m_fScaleFactor);
+	modelview.scale(m_fScaleFactor, m_fScaleFactor, m_fScaleFactor);
 
 	Application::m_pTextureManager->bindTexture(m_iTextureIndex);
-	glRotatef(m_fRotation, 0, 0, 1);
+	modelview.rotate(m_fRotation, 0, 0, 1);
+	modelview.apply();
 	drawUnitQuad();
-	glPopMatrix();
+	modelview.pop();
 
 	glColor4f(1, 1, 1, 1);
 	glEnable(GL_DEPTH_TEST);

@@ -14,6 +14,7 @@ You should have received a copy of the GNU General Public License
 along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
+#include "../Engine/MatrixStack.h"
 #include "HUD.h"
 
 #include <SDL3/SDL_opengl.h>
@@ -56,8 +57,10 @@ void HUD::drawTime()
 	if (m_bDrawTime) {
 		Application::m_pTextureManager->bindTexture(CLOCK_TEXTURE);
 		glEnable(GL_BLEND);
-		glPushMatrix();
-		glTranslatef(relToAbs(m_fMargin, 0), relToAbs(0.94, 1), 0);
+		modelview.push();
+		modelview.translate(relToAbs(m_fMargin, 0), relToAbs(0.94, 1),
+				    0);
+		modelview.apply();
 		glBegin(GL_QUADS);
 		glTexCoord2f(1, 1);
 		glVertex3f(40, 40, 0);
@@ -68,7 +71,7 @@ void HUD::drawTime()
 		glTexCoord2f(1, 0);
 		glVertex3f(40, 0, 0);
 		glEnd();
-		glPopMatrix();
+		modelview.pop();
 		glDisable(GL_BLEND);
 
 		string strTime = convertValueToString(m_iTime);
@@ -102,8 +105,10 @@ void HUD::drawView()
 {
 	Application::m_pTextureManager->bindTexture(EYE_TEXTURE);
 	glEnable(GL_BLEND);
-	glPushMatrix();
-	glTranslatef(relToAbs(1 - m_fMargin - 0.08, 0), relToAbs(0.94, 1), 0);
+	modelview.push();
+	modelview.translate(relToAbs(1 - m_fMargin - 0.08, 0),
+			    relToAbs(0.94, 1), 0);
+	modelview.apply();
 	glBegin(GL_QUADS);
 	glTexCoord2f(1, 1);
 	glVertex3f(40, 40, 0);
@@ -114,7 +119,7 @@ void HUD::drawView()
 	glTexCoord2f(1, 0);
 	glVertex3f(40, 0, 0);
 	glEnd();
-	glPopMatrix();
+	modelview.pop();
 	glDisable(GL_BLEND);
 
 	string strView = convertValueToString(m_iView);

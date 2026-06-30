@@ -7,6 +7,7 @@
  *
  */
 
+#include "../Engine/MatrixStack.h"
 #include "Wiley.h"
 #include "../Engine/MeshManager.h"
 #include "../Engine/TriangleMesh.h"
@@ -24,8 +25,9 @@ Wiley::Wiley()
 
 void Wiley::draw()
 {
-	glPushMatrix();
-	glTranslatef(m_vPos.x, m_vPos.y, m_vPos.z);
+	modelview.push();
+	modelview.translate(m_vPos.x, m_vPos.y, m_vPos.z);
+	modelview.apply();
 	Application::m_pMeshManager->m_pBombMesh->configureTexCoord0();
 	Application::m_pMeshManager->m_pBombMesh->configureTexture0(
 		DESTROYER_TEXTURE);
@@ -34,5 +36,5 @@ void Wiley::draw()
 	Application::m_pMeshManager->m_pBombMesh->disableBuffers();
 	Application::m_pMeshManager->m_pBombMesh->resetTextureEngines();
 
-	glPopMatrix();
+	modelview.pop();
 }

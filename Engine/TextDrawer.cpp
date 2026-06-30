@@ -21,6 +21,7 @@ Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 using namespace std;
 
 #include "TextDrawer.h"
+#include "MatrixStack.h"
 #include <FTGL/ftgl.h>
 
 #include "../Defines.h"
@@ -76,11 +77,12 @@ void TextDrawer::setSize(int size)
 void TextDrawer::drawText(float xPos, float yPos, const char *pText,
 			  float fScale)
 {
-	glPushMatrix();
-	glTranslatef(relToAbs(xPos, 0), relToAbs(yPos, 1), 0);
-	glScalef(fScale, fScale, fScale);
+	modelview.push();
+	modelview.translate(relToAbs(xPos, 0), relToAbs(yPos, 1), 0);
+	modelview.scale(fScale, fScale, fScale);
+	modelview.apply();
 	m_pCurrentFont->Render(pText);
-	glPopMatrix();
+	modelview.pop();
 }
 
 void TextDrawer::drawTextCentered(float xPos, float yPos, const char *pText,
@@ -96,12 +98,13 @@ void TextDrawer::drawTextCentered(float xPos, float yPos, const char *pText,
 	width = urx - llx;
 
 	// Correct position and draw Text
-	glPushMatrix();
-	glTranslatef(relToAbs(xPos, 0) - ((width / 2) * fScale),
-		     relToAbs(yPos, 1), 0.0);
-	glScalef(fScale, fScale, fScale);
+	modelview.push();
+	modelview.translate(relToAbs(xPos, 0) - ((width / 2) * fScale),
+			    relToAbs(yPos, 1), 0.0);
+	modelview.scale(fScale, fScale, fScale);
+	modelview.apply();
 	m_pCurrentFont->Render(pText);
-	glPopMatrix();
+	modelview.pop();
 }
 
 float TextDrawer::getLength(const char *pText)

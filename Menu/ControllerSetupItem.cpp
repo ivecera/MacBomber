@@ -1,4 +1,5 @@
 
+#include "../Engine/MatrixStack.h"
 #include "ControllerSetupItem.h"
 #include "../Defines.h"
 #include "ToggleItem.h"
@@ -70,15 +71,15 @@ void ControllerSetupItem::determineTexture()
 /*
 void ControllerSetupItem::drawQuad()
 {
-	glPushMatrix();
-	glTranslatef(m_vPosition.x-20,m_vPosition.y, m_vPosition.z);
+	modelview.push();
+	modelview.translate(m_vPosition.x-20,m_vPosition.y, m_vPosition.z);
 	glBegin(GL_QUADS);
 		glVertex3f(30,30,0);
 		glVertex3f(-30,30,0);
 		glVertex3f(-30,-30,0);
 		glVertex3f(30,-30,0);
 	glEnd();
-	glPopMatrix();	
+	modelview.pop();	
 }*/
 
 void ControllerSetupItem::draw()
@@ -93,16 +94,17 @@ void ControllerSetupItem::draw()
 	if (m_bActive)
 		drawQuad();
 
-	glPushMatrix();
-	glTranslatef(relToAbs(m_vPosition.x, 0), relToAbs(m_vPosition.y, 1),
-		     -1);
-	glPushMatrix();
-	glTranslatef(0, 50, -1);
+	modelview.push();
+	modelview.translate(relToAbs(m_vPosition.x, 0),
+			    relToAbs(m_vPosition.y, 1), -1);
+	modelview.push();
+	modelview.translate(0, 50, -1);
 	glBlendFunc(GL_SRC_ALPHA, GL_ONE_MINUS_SRC_ALPHA);
 	glEnable(GL_BLEND);
 	//		glColor3f(1,1,1);
 	Application::m_pTextureManager->bindTexture(m_iCurrentTexture);
-	glScalef(150, 150, 150);
+	modelview.scale(150, 150, 150);
+	modelview.apply();
 	glBegin(GL_QUADS);
 	/*				 glTexCoord2f(1,1);glVertex3f(100,25,0);
 				 glTexCoord2f(0,1);glVertex3f(0,25,0); 
@@ -119,11 +121,11 @@ void ControllerSetupItem::draw()
 	glEnd();
 	glDisable(GL_BLEND);
 
-	glPopMatrix();
+	modelview.pop();
 	//	Application::m_pTextDrawer->setSize(24);
 	glBindTexture(GL_TEXTURE_2D, 0);
 	Application::m_pTextDrawer->drawText(0, 0, (*m_itIterator).name);
-	glPopMatrix();
+	modelview.pop();
 
 	m_bActive = false;
 	//glColor3f(1,1,1);

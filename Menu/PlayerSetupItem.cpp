@@ -15,6 +15,7 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA  02110-1301, USA.
 */
 
+#include "../Engine/MatrixStack.h"
 #include <SDL3/SDL_opengl.h>
 
 #include "../Defines.h"
@@ -41,11 +42,12 @@ PlayerSetupItem::PlayerSetupItem(int value)
 
 void PlayerSetupItem::draw()
 {
-	glPushMatrix();
-	glTranslatef(relToAbs(m_vPosition.x, 0), relToAbs(m_vPosition.y, 1),
-		     -30);
-	glPushMatrix();
-	glScalef(80, 80, 80);
+	modelview.push();
+	modelview.translate(relToAbs(m_vPosition.x, 0),
+			    relToAbs(m_vPosition.y, 1), -30);
+	modelview.push();
+	modelview.scale(80, 80, 80);
+	modelview.apply();
 	Application::m_pMeshManager->m_pPlayerMesh->configureMaterial();
 	Application::m_pMeshManager->m_pPlayerMesh->configureTexCoord0();
 	Application::m_pMeshManager->m_pPlayerMesh->configureTexCoord1();
@@ -58,7 +60,7 @@ void PlayerSetupItem::draw()
 	Application::m_pMeshManager->m_pPlayerMesh->resetTextureEngines();
 	Application::m_pMeshManager->m_pPlayerMesh->disableBuffers();
 
-	glPopMatrix();
+	modelview.pop();
 
 	glActiveTextureARB(GL_TEXTURE0_ARB);
 	glEnable(GL_TEXTURE_2D);
@@ -66,7 +68,7 @@ void PlayerSetupItem::draw()
 
 	Application::m_pTextDrawer->drawText(0.03, 0, (*m_itIterator).name);
 
-	glPopMatrix();
+	modelview.pop();
 
 	if (m_bActive)
 		drawQuad();
