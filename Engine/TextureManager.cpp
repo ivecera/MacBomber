@@ -83,7 +83,7 @@ void TextureManager::loadTextures()
 			.c_str(),
 		true);
 	loadTexture(m_TextureArray, GOODIE_ENABLETHROW_TEXTURE,
-		    Application::expandResourcePath("/Textures/Items/item.png")
+		    Application::expandResourcePath("/Textures/Items/Item.png")
 			    .c_str(),
 		    true);
 	loadTexture(
@@ -98,22 +98,22 @@ void TextureManager::loadTextures()
 		    true);
 	loadTexture(m_TextureArray, BADIE_VIAGRA_TEXTURE,
 		    Application::expandResourcePath(
-			    "/Textures/Items/itemViagra.png")
+			    "/Textures/Items/ItemViagra.png")
 			    .c_str(),
 		    true);
 	loadTexture(m_TextureArray, BADIE_CONDOM_TEXTURE,
 		    Application::expandResourcePath(
-			    "/Textures/Items/itemCondom.png")
+			    "/Textures/Items/ItemCondom.png")
 			    .c_str(),
 		    true);
 
 	loadTexture(m_TextureArray, FIELD_PLAIN0_TEXTURE,
 		    Application::expandResourcePath(
-			    "/Textures/Fields/field_plain0.png")
+			    "/Textures/Fields/field_Plain0.png")
 			    .c_str());
 	loadTexture(m_TextureArray, FIELD_PLAIN1_TEXTURE,
 		    Application::expandResourcePath(
-			    "/Textures/Fields/field_plain1.png")
+			    "/Textures/Fields/field_Plain1.png")
 			    .c_str());
 	loadTexture(m_TextureArray, FIELD_MUD0_TEXTURE,
 		    Application::expandResourcePath(
